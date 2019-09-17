@@ -36,7 +36,7 @@ export const Approutes: Routes = [
       { path: 'Maininvoice', loadChildren: './invoices/invoices.module#InvoicesModule', canActivate: [AuthGuard] },
       { path: 'addinvoice', loadChildren: './invoices/addinvoice/addinvoice.module#AddinvoiceModule', canActivate: [AuthGuard] },
       { path: 'viewinvoice', loadChildren: './invoices/viewinvoice/viewinvoice.module#ViewinvoiceModule', canActivate: [AuthGuard] },
-
+      { path: 'buyinvoice', loadChildren: './invoices/buyinvoice/buyinvoice.module#BuyinvoiceModule', canActivate: [AuthGuard] },
       // LAZY LOAD PENDING ..
       //   {   path:'Maininvoice',    
 
