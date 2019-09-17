@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+      <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+      <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+
+<div class="col-md-12">
+    <h4 class="ltr">Letters</h4>
+    <h4 class="rtl">حروف</h4>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr"><a class="nav-link"> Patient Details</a></li>
+      <li class="rtl"><a class="nav-link"><span>تفاصيل المريض</span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a></li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/letters' [queryParams]="{Refrral:patientId}">Letters </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/letters' [queryParams]="{Refrral:patientId}"><span>حروف</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" > Edit Letter </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link"><span>تحرير الرسالة</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Edit Letters</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;تحرير الحروف</p>
+    </div>
+    <form [formGroup]="letters" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label class="ltr">Letter Type</label>
+          <label class="rtl">نوع الرسالة</label>
+          <select class="form-control" formControlName="lettertype" [ngClass]="{ 'is-invalid': submitted && f.lettertype.errors }"
+            (change)="lettertype($event.target.value)">
+            <option *ngFor="let item of letter" [value]="item.Lettertemplate_ID">{{item.Lettertemplate_Name}}</option>
+          </select>
+          <div *ngIf="submitted && f.lettertype.errors" class="invalid-feedback">Lettertemplate_ID
+            <div *ngIf="f.lettertype.errors.required" class="ltr">Please select Type</div>
+            <div *ngIf="f.lettertype.errors.required" class="rtl">Please select Type</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label class="ltr">Doctor:</label>
+          <label class="rtl">طبيب:</label>
+          <select class="form-control" formControlName="doctor"
+          [ngClass]="{ 'is-invalid': submitted && f.doctor.errors }">
+            <option *ngFor="let item of doctors" [value]="item.Emp_Id">{{item.First_name}}</option>
+          </select>
+          <div *ngIf="submitted && f.doctor.errors" class="invalid-feedback">
+            <div *ngIf="f.doctor.errors.required" class="ltr">Please select Doctor</div>
+            <div *ngIf="f.doctor.errors.required" class="rtl">Please select Doctor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 ">
+          <ckeditor [editor]="Editor" id="description" formControlName="description"></ckeditor>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <button class="btn btn-warning margin ltr" style="float:right" (click)="updateletters()">
+          <i class="fa fa-check-circle"></i> Update
+        </button>
+        <button class="btn btn-warning margin rtl" style="float:right" (click)="updateletters()">
+          <i class="fa fa-check-circle"></i> تحديث
+        </button>
+        <button class="btn btn-info margin ml-2 ltr" style='float:right' routerLink="/letters" [queryParams]="{referal:patientId}">
+          <i class="fa fa-ban"></i> Cancel
+        </button>
+        <button class="btn btn-info margin ml-2 rtl" style='float:right' routerLink="/letters" [queryParams]="{referal:patientId}">
+          <i class="fa fa-ban"></i> إلغاء
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-1"></div>
+</div>

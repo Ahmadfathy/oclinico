@@ -1,0 +1,125 @@
+
+  <div class="row" >
+    <div class="col-md-12">
+      <ul id="breadcrumb" >
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" >Wards</a></li>
+        <li class="rtl"><a class="nav-link" ><span>عنابر</span></a></li>
+
+      </ul>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;View Wards Details</p>
+        <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;عرض تفاصيل أجنحة</p>
+      </div>
+
+      <form [formGroup]="pharmacyfg">
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Patient Id</label>
+              <label class="form-control-label rtl">رقم المريض</label>
+              <input readonly="readonly" formControlName="regval" type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Patient Name</label>
+              <label class="form-control-label rtl">اسم المريض</label>
+              <input readonly="readonly" formControlName="genname" type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Gender</label>
+              <label class="form-control-label rtl">جنس</label>
+              <input readonly="readonly" formControlName="tradename" type="text" class="form-control">
+            </div>
+
+          </div><br>
+          <!-- ---------------------------- -->
+
+          <div class="row">
+              <div class="col-md-4">
+                  <label class="form-control-label ltr">Contact No</label>
+                  <label class="form-control-label rtl">رقم التواصل</label>
+                  <input readonly="readonly" formControlName="atccode1" type="text" class="form-control">
+                </div>
+
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Date of Birth</label>
+              <label class="form-control-label rtl">تاريخ الميلاد</label>
+              <input readonly="readonly" formControlName="strengthval" type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Date of Study</label>
+              <label class="form-control-label rtl">تاريخ الدراسة</label>
+              <input readonly="readonly" formControlName="unitstrengthval" type="text" class="form-control">
+            </div>
+         
+
+          </div><br>
+
+          <!-- ---------------------------- -->
+        
+
+          <div class="row">
+              <div class="col-md-4">
+                  <label class="form-control-label ltr">Date of Report</label>
+                  <label class="form-control-label rtl">تاريخ التقرير</label>
+                  <input readonly="readonly" formControlName="dosage" type="text" class="form-control">
+                </div>
+                
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Examination</label>
+              <label class="form-control-label rtl">الفحص</label>
+              <input readonly="readonly" formControlName="routeadmin" type="text" class="form-control">
+            </div>
+         
+
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Ward No</label>
+              <label class="form-control-label rtl">جناح رقم</label>
+              <input readonly="readonly" formControlName="atccode2" type="text" class="form-control">
+            </div>
+
+          </div><br>
+
+          <!-- ---------------------------- -->
+
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Bed No</label>
+              <label class="form-control-label rtl">السرير لا</label>
+              <input readonly="readonly" formControlName="volume" type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Doctor Name</label>
+              <label class="form-control-label rtl">اسم الطبيب</label>
+              <input readonly="readonly" formControlName="unitvolume" type="text" class="form-control">
+            </div>
+          
+
+          </div><br>
+
+
+
+          <div class="row">
+           
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Remarks</label>
+              <label class="form-control-label rtl">ملاحظات</label>
+              <textarea readonly="readonly" formControlName="remarks" type="text" class="form-control"></textarea>
+            </div>
+           
+
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

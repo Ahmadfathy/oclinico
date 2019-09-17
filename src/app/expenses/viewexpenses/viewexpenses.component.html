@@ -1,0 +1,189 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<form>
+
+    <div class="row" >
+        <!-- *ngIf="addexpense" -->
+        <h4 class="ltr">View Expense</h4>
+
+        <h4 class="rtl">عرض النفقات</h4>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb">
+                <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr">
+                    <a class="nav-link " routerLink='/expenses'> Expense Details</a>
+                </li>
+                <li class=" rtl">
+                    <a class="nav-link" routerLink='/expenses'> تفاصيل النفقات</a>
+                </li>
+                <li class="ltr">
+                    <a class="nav-link">View Expense</a>
+                </li>
+                <li class="rtl">
+                    <a class="nav-link rtl">عرض النفقات</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="card">
+                    <div class="card-header">
+                            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Expense Details</p>
+                            <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p>
+                        </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-title mt-4 ltr">Expense Details</h3>
+
+                            <h3 class="card-title mt-4 rtl">تفاصيل النفقات</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-md btn-success addbtn" style="float:right" (click)="edit(expenseid)">Edit</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-md btn-success addbtn" (click)="open(content,expenseid,content2)">Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Expense Date :</label>
+                            <label class="form-control-label rtl">تاريخ النفقات :</label>
+                            <label style="float:right">{{ExpenseDate}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Vendor :</label>
+                            <label class="form-control-label rtl">بائع :</label>
+                            <label style="float:right">{{Vendor}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Category :</label>
+                            <label class="form-control-label rtl">الفئة :</label>
+                            <label style="float:right">{{Category}}</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Total Expense Amount(including tax) :</label>
+                            <label class="form-control-label rtl">إجمالي المصروفات (بما في ذلك الضريبة) :</label>
+                            <label style="float:right">{{TotalExpense}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="mr-sm-2 ltr" for="title">Tax :</label>
+                            <label class="mr-sm-2 rtl" for="title">عنوان :</label>
+                            <label style="float:right">{{Tax}}</label>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Tax Total :</label>
+                            <label class="form-control-label rtl">مجموع الضرائب :</label>
+                            <label style="float:right">{{TaxTotal}}</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Notes :</label>
+                            <label class="form-control-label rtl">ملاحظات :</label>
+                            <label style="float:right">{{Notes}}</label>
+                        </div>
+                    </div>
+
+
+                    <!-- Table data -->
+                    <div *ngIf='tableexpenses'>
+                        <table class="table table-hover table-responsive" id="dataTable">
+                                <thead class="ltr">
+                                        <tr >
+                                            <th>Products</th>
+                                            <th>Unit Cost Price(Ex.Tax)</th>
+                                            <th>Quantity</th>
+                                            <!-- <th></th> -->
+                                        </tr>
+                                    </thead>
+                                    <thead class="rtl">
+                                            <tr >
+                                                    <th>منتجات</th>
+                                                    <th>سعر تكلفة الوحدة (مثال: الضريبة)</th>
+                                                    <th>كمية</th>
+                                                    <!-- <th></th> -->
+                                                </tr>
+                                    </thead>
+
+                            <tbody style="width:100%">
+                                <tr *ngFor="let item of table; let i=index">
+                                    <td>{{item.Products}}</td>
+                                    <td>{{item.Unitcost}}</td>
+                                    <td>{{item.Quantity}}</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                        <br>
+                    </div>
+                    <!-- Table data end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+
+
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Expenses</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+          <button type="button" class="btn btn-secondary" (click)="c('Ok click')">Yes</button>
+        </div>
+      </ng-template>
+    
+      <ng-template #content2 let-c="close" let-d="dismiss" >
+        <div class="modal-header">
+       
+        </div>
+        <div class="modal-body">
+          <p>Successfully deleted.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Ok click')">Ok</button>
+          </div>
+      </ng-template>
+
+</form>

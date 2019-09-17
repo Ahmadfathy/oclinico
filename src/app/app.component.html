@@ -1,0 +1,10 @@
+<ng2-slim-loading-bar></ng2-slim-loading-bar>
+<router-outlet>
+        <div class="preloader" style="position:fixed;background:#fff;z-index:9" *ngIf="isPageloaderVisible">
+                <div class="spinner">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+                </div>
+            </div>
+    <app-spinner></app-spinner>
+</router-outlet>

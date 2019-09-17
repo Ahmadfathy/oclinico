@@ -1,0 +1,78 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul  id="breadcrumb" >
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+        <li class="ltr"><a class="nav-link">Finance Details</a></li>
+        
+        <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+        <li class="rtl"><a class="nav-link" routerLink='/settings'><span>إعدادات</span></a></li>
+        <li class="rtl"><a class="nav-link"><span>تفاصيل المالية</span></a></li>
+      
+      </ul>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Finance Details</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;التمويل تفاصيل</h4>
+      </div>
+      <div class="card-body">
+      <div style="text-align: right !important;margin-right: 60px;">
+          <span class="ltr"> 
+            <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/AddFinanceDetail"><i  class="fa fa-fw fa-user"></i> Add</a>
+          </span>
+          <span class="rtl" style="float:left;margin-left: 22px;">   
+            <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/AddFinanceDetail"><i  class="fa fa-fw fa-user"></i> إضافة</a>
+          </span>
+    </div><br>
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="ltr" style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>Pay Mode Name</th>
+              <th>Status</th>
+              <th>Transaction Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <thead class="rtl" style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>اسم وضع الدفع</th>
+              <th>الحالة</th>
+              <th>تاريخ العملية</th>
+              <th>الاجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let f of FinanceDetailsData">
+              <td>{{f.Paymodetype_Name}}</td>
+              <td>{{f.Status}}</td>
+              <td>{{f.Trans_date}}</td>
+              <td style="display:flex;">
+                <span>
+                  <a class="nav-link" routerLink='/EditFinanceDetail' [queryParams]="{sno : f.Sno}">
+                    <i class="fa fa-pencil-alt text-info"></i> Edit
+                  </a>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

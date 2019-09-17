@@ -1,0 +1,34 @@
+
+<div class="container editcontainer"> 
+        <div class="row">
+            <div class="col-md-12">
+              
+          <ul id="breadcrumb" class="aligncls">
+            <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+            <li><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+            <li><a class="nav-link"  routerLink='/Treatment'><span ></span>Treatment</a></li>
+        
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="container">
+    <h2>Import Treatments</h2>
+<div class="form-group" id="EditTemplate" >
+
+    <div class="table  borderless">
+     
+             <tr><th><label>Add File*</label></th>  
+              <td>           
+                  <input type="file" #file  name="myFile" (change)="fileEvent($event)">
+               </td></tr>
+    </div>
+  </div>
+
+  <div _ngcontent-c3="" class="col-md-12 text-center submitBtns">
+            <button _ngcontent-c3="" class="btn btn-md btn-warning" type="submit" (click)="Submit()">
+              <i _ngcontent-c3="" class="fa fa-check-circle"></i> Submit</button>
+    
+              <button _ngcontent-c3="" class="btn btn-md btn-success" type="submit">
+              <i _ngcontent-c3="" class="fa fa-ban"></i> Cancel</button></div>
+  </div>

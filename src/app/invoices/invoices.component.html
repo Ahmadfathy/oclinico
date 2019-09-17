@@ -1,0 +1,183 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner" >
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/Maininvoice'> Invoice Details</a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Invoice Details</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p>
+            </div>
+
+            <!-- <div class="container">
+
+                <div class="text-right justify-content-between">
+
+                    <span class="ltr"> <a class="nav-link" style="display: inline-block;" routerLink='/addexpense'><i
+                                class="fa fa-fw fa-user"></i> Add</a></span>
+                    <span class="rtl"> <a class="nav-link" style="display: inline-block;" routerLink='/addexpense'><i
+                                class="fa fa-fw fa-user"></i> إضافة</a></span>
+                </div>
+
+            </div> -->
+
+
+            <div class="card-body">
+                <div class="text-right justify-content-between">
+                    <span class="ltr"> <a class="nav-link" style="display: inline-block;" (click)="gotoaddinvoice()" ><i
+                                    class="fa fa-fw fa-user"></i> Add</a></span>
+                    <span class="rtl"> <a class="nav-link" style="display: inline-block;" (click)="gotoaddinvoice()" ><i
+                                    class="fa fa-fw fa-user"></i> إضافة</a></span>
+                </div>
+                <div class="row" style="text-align:center">
+                    <div class="col-md-12">
+                      <div  class="ltr">
+                        <!-- <button class="btn btn-info ltr" (click)="exportexcelall('dataTable')" value="Export to Excel">Export
+                          Excel</button>&nbsp;&nbsp; -->
+                        <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                      </div>
+                      <div style="float:left;margin-bottom: 20px;" class="rtl">
+                        <!-- <button class="btn btn-info rtl" (click)="exportexcelall('dataTable')" value="Export to Excel">Export
+                          Excel</button>&nbsp;&nbsp; -->
+                        <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                      </div>
+                    </div>
+                  </div>
+                <table class="table table-hover table-bordered responsive" id="dataTable" cellspacing="0" style="width:100% ">
+                    <thead>
+                        <tr class="headrow ltr">
+                            <th>Sno</th>
+                            <th>File Number</th>
+                            <th>Invoice No</th>
+                            <th>Patient</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr class="headrow rtl">
+                            <th>سنو</th>
+                            <th>رقم الملف</th>
+                            <th>رقم الفاتورة</th>
+                            <th>المريض</th>
+                            <th>كمية</th>
+                            <th>تاريخ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of invoicedetails; let j = index" [style.color]="i.Status != 'completed' ? 'red' : 'green'">
+                            <td>{{j+1}}</td>
+                            <td>{{i.PatientId}}</td>
+                            <td>{{i.Invoiceno}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.Invoice_tot}}</td>
+                            <td>{{i.Trans_datetime}}</td>
+                            <td style="display:flex;">
+                                <span><a  class="nav-link"   [routerLink]="['/viewinvoice']" [queryParams]="{invoicenum:i.Invoiceno}"><i class="fa fa-fw fa-eye"></i> </a></span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------ Print ------------------ -->
+<div id="DivIdToPrint" style="display: none;">
+    <div class="invoice-box">
+      <table>
+        <tbody>
+          <tr>
+            <td style="text-align: center">
+              <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+              <p style="font-size: 14px;
+                              margin: 0px;
+                              color: #005a85;
+                              padding: 0;
+                              position: relative;
+                              top: -5px;
+                              font-weight: bold;">المركز
+                الطبي الجامعي</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <table cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr class="horizontal-row">
+            <td colspan="2">
+              <table>
+                <thead>
+                    <tr class="headrow ltr">
+                        <th>Sno</th>
+                        <th>File Number</th>
+                        <th>Invoice No</th>
+                        <th>Patient</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr class="headrow rtl">
+                        <th>سنو</th>
+                        <th>رقم الملف</th>
+                        <th>رقم الفاتورة</th>
+                        <th>المريض</th>
+                        <th>كمية</th>
+                        <th>تاريخ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of invoicedetails; let j = index" [style.color]="i.Status != 'completed' ? 'red' : 'green'">
+                        <td>{{j+1}}</td>
+                        <td>{{i.PatientId}}</td>
+                        <td>{{i.Invoiceno}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.Invoice_tot}}</td>
+                        <td>{{i.Trans_datetime}}</td>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+  
+          <tr class="bottom-line">
+            <td colspan="3">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                      <span> {{website}}</span>
+                    </td>
+                    <td class="text-center">
+                      <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                      <span> {{email}}</span>
+                    </td>
+                    <td class="text-center">
+                      <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                      <span> {{phoneno}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

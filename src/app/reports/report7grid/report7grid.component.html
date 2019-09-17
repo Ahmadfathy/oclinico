@@ -1,0 +1,186 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Request For Medical Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>طلب تقرير طبي</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ------------------------------Grid Binding --------------------------------- -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Request For Medical Report</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;طلب تقرير طبي </h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>S.no</th>
+              <th>الرقم</th>
+              <th>التاريخ</th>
+              <th>وبعد</th>
+              <th>وجنسيتة</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="showdata">
+            <tr *ngFor="let r of table;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{r.LABEL1}}</td>
+              <td>{{r.LABEL2}}</td>
+              <td>{{r.LABEL4}}</td>
+              <td>{{r.LABEL5}}</td>
+              <td>
+                <span class="fa fa-eye text-info" style="cursor: pointer;color:#4a87ee" (click)="viewurinalreport(r.patient_id,'View',r.tran_date)"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-pencil-alt text-info" style="cursor: pointer;color:#4a87ee" (click)="edit(r.patient_id,'Edit',r.tran_date)"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-print text-info" style="cursor: pointer;color:#4a87ee" (click)="print(r.patient_id,r.tran_date)"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata">No Data Found</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ------------------------------Grid Binding --------------------------------- -->
+
+<!-- --------------print--------------------- -->
+
+<div class="invoice-box" id="DivIdToPrint" style="display:none">
+  <div class="maindiv">
+    <div style='width:95.6%; float:left; height: auto; border:solid 2px #333; padding: 15px;'>
+      <div style='width:30%; height:auto; float:left;'>
+        <div style='width: 100%;float: left;height: auto;margin-bottom: 10px'>
+          <div style="width:calc(100% - 75px); height: 26px; float: left; border:none; border-bottom: 2px dotted #000; outline: none;">{{field1}}</div>
+          <div style='width:35%; height:auto; float: right;padding-top: 6px;'> الرقم : &nbsp; </div>
+        </div>
+        <div style='width: 100%; float: left; height: auto; margin-bottom: 10px'>
+          <div style="width:calc(100% - 75px); border:none; height: 26px; float: left; border-bottom: 2px dotted #000; outline: none;">{{field2}}</div>
+          <div style='width:35%; height:auto; float:right; padding-top: 6px;'> التاريخ : &nbsp; </div>
+        </div>
+        <div style='width: 100%;float: left;height: auto;margin-bottom: 10px'>
+          <div style="width:calc(100% - 75px); float: left; height: 26px; border:none; border-bottom: 2px dotted #000; outline: none;">{{field4}}</div>
+          <div style='width: 35%; height: auto; float: right; padding-top: 6px;'> التوابع : &nbsp; </div>
+        </div>
+      </div>
+      <div style="width: 40%; height: auto; float: left; text-align: center;">
+        <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+        <br>
+        <strong> (طلب تقرير طبي ) </strong>
+      </div>
+      <div style="text-align: center;width: 30%; height: auto; float: right;">
+        <br> المملكة العربية السعودية
+        <br> وزارة التعليم
+        <br> الجامعة الاسلامية بالمدينة المنورة
+        <br>
+        <strong> المركز الطبي الجامعي</strong>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="maindiv" style="margin-bottom: 10px;">
+    <div class="top2" style='width:95.6%; float: left;height:auto;border: solid 2px #333;padding: 15px;'>
+      <br>
+      <div class="maindiv">
+        <div class="et1" style="width: 20%; float: left; margin-right: 10px; text-align: left;"> وفقة الله </div>
+        <div class="ed1" style="width: 61%; float: left;"> &nbsp; &nbsp; </div>
+        <div class="et1" style="width: 16%; float: right;"> سعادة مدير &nbsp; </div>
+      </div>
+      <div class="maindiv">
+        <div style="width: 100%; height:auto; text-align: center; margin: 14px 0px 10px 0px;">
+          االسلام عليكم ورحمة الله وبركاته
+          <div style="width:16%; border:none; display: inline-block; height: 20px; border-bottom: 2px dotted #000; outline: none;">{{field3}}</div> وبعد :
+        </div>
+      </div>
+      <div class="maindiv">
+        <div class="ed1" style="width: 14%; float: left;">
+          <div style="width:100%; border:none; height: 26px; border-bottom: 2px dotted #000; outline: none;">{{field5}}</div>
+        </div>
+        <div class="et1" style="width: 13%; float: left; margin-right: 10px;"> وجنسيتة : &nbsp; </div>
+        <div class="ed1" style="width: 43%; float: left;">
+          <div style="width: 100%; height: 26px; float: left;border:none;border-bottom: 2px dotted;">{{field6}}</div>
+        </div>
+        <div class="et1" style="width: 28%; float: right;"> بناء على مراجعة الموظف &nbsp; / </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 57%; float: left;">
+          <div style="width:calc(100% - 200px); height: 26px; float: right; height: 26px; margin-left: 10px; border:none; border-bottom: 2px dotted #000; outline: none;">{{field8}}</div>
+          وإجراء الكشف الطبي علية </div>
+        <div class="et1" style="width: 9%; float: left; margin-right: 10px;"> الموافق : </div>
+        <div class="ed1" style="width: 26%; float: left;">
+          <div style="width: 100%; border:none; height: 26px; border-bottom: 2px dotted #000; outline: none;">{{field7}}</div>
+        </div>
+        <div class="et1" style="width: 6%; float: right;"> لكم :</div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+        <div class="et1" style="width: 23%; float: left; margin-right: 10px;"> &nbsp; </div>
+        <div class="ed1" style="width: 33%; float: left;">
+          <div style=" border:none; border-bottom: 2px dotted #000; outline: none;">{{field9}}</div>
+          &nbsp; </div>
+        <div class="et1" style="width: 22%; float: right;"> ورقم ملفه الطبي لديكم : &nbsp; </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+        <div class="et1" style="width: 80%; float: right;"> عليه نإمل إفادتنا بتقرير طبي بحالنه الصحيه وتحديد مدة الإجازة له إن وجدت . </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> ولكم جزيل الشكر ,,,, </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> والسلام عليكم ورحمه الله وبركاته ,,,, </div>
+      </div>
+      <div class="maindiv" style="margin-top: 60px;">
+        <div style="width: 35%; float: left; height:auto; text-align: center; margin-bottom: 10px;">
+          المشرف على المركز الطيس الجامعي
+        </div>
+        <div style="width: 60%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+          &nbsp;
+        </div>
+        <div class="et1" style="width: 30%; float: left; text-align: center;">
+          عوض بن مطر المشرافي
+        </div>
+        <div style="width: 70%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- -------------print----------------- -->

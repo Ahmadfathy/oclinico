@@ -1,0 +1,114 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a>
+      </li>
+      <li class="ltr"><a class="nav-link" routerLink='/Taxes'>Taxes</a></li>
+      <li class="ltr"><a class="nav-link">Add Taxes</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+      <li class="rtl"><a class="nav-link" routerLink='/settings'><span>إعدادات</span></a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/Taxes'>الضرائب</a></li>
+      <li class="rtl"><a class="nav-link">إضافة الضرائب</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb">
+                <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr"><a class="nav-link">settings</a></li>
+                <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="rtl"><a class="nav-link "><span>إعدادات</span></a></li>
+            </ul>
+        </div>
+    </div> -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="addtax">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Taxes</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة الضرائب</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Tax Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم الضرائب&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="taxname" formControlName="taxname" [ngClass]="{'has-error' :formErrors.taxname}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.taxname" style="color: red">
+                {{formErrors.taxname}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Tax Per&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الضرائب في&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="taxper" formControlName="taxper" [ngClass]="{'has-error' :formErrors.taxper}"
+                (blur)="checkValidationErrors()" [(ngModel)]="pertax" (keyup)="entertaxper($event)" type="number"
+                class="form-control">
+              <!-- (keypress)="fromkey($event)" -->
+              <span class="help-block" *ngIf="formErrors.taxper" style="color: red">
+                {{formErrors.taxper}}
+              </span>
+              <div [hidden]="checkvalidation" class="errmsg">Value should be between 0 - 100 </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Status&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.status}">
+                <select formControlName="status" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option class="ltr" label="select" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <select formControlName="status" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option class="rtl" label="تحديد" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                  {{formErrors.status}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions text-center submitBtns">
+            <div class="card-body ">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="Submit()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                Submit</button>
+              <button type="submit" class="btn btn-md btn-warning rtl" (click)="Submit()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                خضع</button>
+              <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/Taxes']">
+                <i class="fa fa-ban"></i>
+                Cancel</button>
+              <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/Taxes']">
+                <i class="fa fa-ban"></i>
+                إلغاء</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,36 @@
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid #e9ecef;
+}
+li:hover { 
+  background-color: #E0FFFF;
+}
+.form-control {
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+
+  .coin_name{
+padding: 16px
+
+  }
+  .margin{
+    margin-left:8px;
+  }
+  
+.table th {
+  background-color:#4a87ee;
+  color:white;
+}
+.events{
+  margin: 20px 10px;
+  }
+
+  .cls li{
+    cursor: pointer;
+  }
+  

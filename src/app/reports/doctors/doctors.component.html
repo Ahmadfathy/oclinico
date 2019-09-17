@@ -1,0 +1,160 @@
+<style type="text/css">
+  .dataTables_filter {
+    margin-left: 200px;
+
+  }
+</style>
+
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'><span>تقارير</span> </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/doctors'> Doctors</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/doctors'> <span>الأطباء</span>
+        </a>
+      </li>
+      <!-- <li class="rtl">
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Doctors </p>
+        <p class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp; الأطباء
+        </p>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <label class="form-control-label ltr">From Date</label>
+            <label class="form-control-label rtl">من التاريخ
+            </label>
+            <br>
+            <!-- <input type="date" name="FromDate" id="FromDate" class="form-control" (change)="MyFromDate($event.target.value)" [(ngModel)]="Day_FromDate"> -->
+            <input [owlDateTimeTrigger]="FromDate" [owlDateTime]="FromDate" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyFromDate()"
+              [(ngModel)]="Day_FromDate">
+            <owl-date-time [pickerType]="'calendar'" #FromDate></owl-date-time>
+          </div>
+          <div class="col-6">
+            <label class="form-control-label ltr">To Date</label>
+            <label class="form-control-label rtl">حتى الآن
+            </label>
+            <br>
+            <!-- <input type="date" name="ToDate" id="ToDate" class="form-control" (change)="MyToDate($event.target.value)" [(ngModel)]="Day_ToDate"> -->
+            <input [owlDateTimeTrigger]="ToDate" [owlDateTime]="ToDate" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyToDate()"
+              [(ngModel)]="Day_ToDate">
+            <owl-date-time [pickerType]="'calendar'" #ToDate></owl-date-time>
+          </div>
+          <div class="col-12">
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-md btn-info ltr" (click)="btnSearch()">
+                <i class="fas fa-search"></i>
+                Search</button>
+              <button type="submit" class="btn btn-md btn-info rtl" (click)="btnSearch()">
+                <i class="fas fa-search"></i>
+                بحث</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <label class="form-control-label ltr">Summary of performance by doctor
+        </label>
+        <label class="form-control-label rtl"> ملخص الأداء من قبل الطبيب
+        </label>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr bg-info text-white">
+            <tr>
+              <!-- <th>Sno</th> -->
+              <th>Name</th>
+              <th>Revenue</th>
+              <th>Appointments</th>
+              <th>Average Revenue</th>
+              <th>New patients</th>
+              <th>Did not arrives</th>
+              <th>Cancellations</th>
+            </tr>
+          </thead>
+          <thead class="headrow rtl bg-info text-white">
+            <tr>
+              <!-- <th>Sno</th> -->
+              <th>اسم</th>
+              <th>إيرادات</th>
+              <th>تعيينات</th>
+              <th>متوسط ​​العائد
+              </th>
+              <th>المرضى الجدد
+              </th>
+              <th>لم يصل
+              </th>
+              <th>إلغاء</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of products;let i=index;">
+              <!-- <td>{{ i + 1 }}</td> -->
+              <td>{{prd.First_name}}</td>
+              <td>{{prd.revenue}}</td>
+              <td>{{prd.appointmnets}}</td>
+              <td>{{prd.avgrevenue}}</td>
+              <td>{{prd.newpatients}}</td>
+              <td>{{prd.notarrivefull}}</td>
+              <td>{{prd.cancelperfull}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="1" style="
+                background-color: #FFF;
+                font-weight: bold;
+                color: #212020;
+                text-align: center;
+            ">Total</th>
+              <td>{{revenue}} </td>
+              <td>{{appointmnets}} </td>
+              <td>{{avgrevenue}} </td>
+              <td>{{newpatients}} </td>
+              <td>{{notarrivefull}} </td>
+              <td>{{cancelperfull}} </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

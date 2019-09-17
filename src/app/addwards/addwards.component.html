@@ -1,0 +1,117 @@
+
+<h2 class="card-title rtl">ضافة عنابر</h2>
+<h2 class="card-title ltr">Add Wards</h2><br>
+
+
+    <div class="row">
+        <div class="col-md-12">
+      <ul id="breadcrumb" >
+        <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link"  routerLink='/wards'><span class="fa fa-fw fa-user"> </span>Wards</a></li>
+          <li class="ltr"><a class="nav-link">Add Wards</a></li>
+          <li class="rtl"><a class="nav-link"  routerLink='/wards'><span>عنابر</span><span class="fa fa-fw fa-user"> </span></a></li>
+          <li class="rtl"><a class="nav-link"><span>ضافة عنابر</span></a></li>
+     </ul>
+    </div>
+  </div>
+ 
+
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <!-- <form [formGroup]="patient"> -->
+        <div class="card-body">
+            
+          <div class="row">
+            <div class="col-md-4">
+                <h4 class="p-t-20 ltr">Floor</h4>
+                <h4 class="p-t-20 rtl">الدور‎‎</h4>
+                <select class="custom-select mr-sm-2 ltr" >
+                    <option label="select" disabled></option>
+                   <option *ngFor="let item of floor"  [value]="item">{{item}}</option>
+                 </select>
+                 <select class="custom-select mr-sm-2 rtl" >
+                    <option label="اختر" disabled></option>
+                   <option *ngFor="let item of floor"  [value]="item">{{item}}</option>
+                 </select>
+              </div>
+              <div class="col-md-4">
+                  <h4 class="p-t-20 ltr">Location</h4>
+                  <h4 class="p-t-20 rtl">الموقع‎‎</h4>
+                  <select class="custom-select mr-sm-2 ltr" >
+                     <option label="select" disabled></option>
+                     <option *ngFor="let item of location"  [value]="item">{{item}}</option>
+                   </select>
+                   <select class="custom-select mr-sm-2 rtl" >
+                    <option label="اختر" disabled></option>
+                    <option *ngFor="let item of location"  [value]="item">{{item}}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="p-t-20 ltr">Count</h4>
+                    <h4 class="p-t-20 rtl">عدد</h4>
+                    <select class="custom-select mr-sm-2 ltr" >
+                       <option label="select" disabled></option>
+                       <option *ngFor="let item of count"  [value]="item">{{item}}</option>
+                     </select>
+                     <select class="custom-select mr-sm-2 rtl" >
+                        <option label="اختر" disabled></option>
+                        <option *ngFor="let item of count"  [value]="item">{{item}}</option>
+                      </select>
+                  </div>
+              </div><br><br>
+
+              <div class="row">
+                  <div class="col-md-4">
+                      <h4 class="p-t-20 ltr">Department</h4>
+                      <h4 class="p-t-20 rtl">قسم</h4>
+                      <select class="custom-select mr-sm-2 ltr" >
+                         <option label="select" disabled></option>
+                         <option *ngFor="let item of department"  [value]="item">{{item}}</option>
+                       </select>
+                       <select class="custom-select mr-sm-2 rtl" >
+                        <option label="اختر" disabled></option>
+                        <option *ngFor="let item of department"  [value]="item">{{item}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="p-t-20 ltr">Room No</h4>
+                        <h4 class="p-t-20 rtl">رقم الغرفة</h4>
+                        <select class="custom-select mr-sm-2 ltr" >
+                           <option label="select" disabled></option>
+                           <option *ngFor="let item of roomno"  [value]="item">{{item}}</option>
+                         </select>
+                         <select class="custom-select mr-sm-2 rtl" >
+                            <option label="اختر" disabled></option>
+                            <option *ngFor="let item of roomno"  [value]="item">{{item}}</option>
+                          </select>
+                      </div>
+                      <div class="col-md-4">
+                      <h4 class="p-t-20 ltr">Room Cost</h4>
+                      <h4 class="p-t-20 rtl">تكلفة الغرفة</h4>
+                     <input id="roomcost" type="number" class="form-control">
+                     </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4 class="p-t-20 ltr">Notes</h4>
+                            <h4 class="p-t-20 rtl">ملاحظات</h4>
+                           <textarea class="form-control ltr" id="notesinput" type="text" placeholder="Your Notes"></textarea>
+                           <textarea class="form-control rtl" id="notesinput" type="text" placeholder="الملاحظات‎"></textarea>
+                           
+                          </div>
+                          </div><br><br><br>
+                          <div class="row">
+                              <button type="button" class="btn btn-warning ltr" >Add</button>&nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-warning ltr" >Cancel</button>
+                              <button type="button" class="btn btn-warning rtl" >إضافة</button>&nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-warning rtl" >إلغاء</button>
+                             </div>            
+
+          </div>
+          <!-- </form> -->
+          </div>
+          </div>
+          </div>
+          

@@ -1,0 +1,134 @@
+
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+
+<h4 class="ltr">Add Cash Receipt</h4>
+<h4 class="rtl">إضافة إيصال نقدي</h4>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+      <ul id="breadcrumb">
+          <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+          <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+          <li class="ltr"><a class="nav-link"  routerLink='/CashReceipts'>Cash Receipts Details</a></li>
+          <li class="ltr"><a class="nav-link">Add Cash Receipt</a></li>
+          <li class="rtl"><a class="nav-link"  routerLink='/settings'><span > إعدادات</span></a></li>
+          
+          <li class="rtl"><a class="nav-link"  routerLink='/CashReceipts'><span>تفاصيل الإيصالات النقدية </span></a></li>
+          <li class="rtl"><a class="nav-link"><span>إضافة إيصال نقدي</span></a></li>
+         
+      </ul>
+  </div>
+</div>
+
+
+<form [formGroup]="addcashreceipt">
+
+<div class="row">
+<div class="col-md-12 col-lg-12 col-xl-12">
+  <div class="card">
+      <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Cash Receipt</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة إيصال نقدي</h4>
+        </div>
+      <div class="card-body">
+         
+          <div class="row">
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.empname}">
+                  <label class="form-control-label ltr">Employee Name *</label>
+                  <label class="form-control-label rtl">اسم الموظف *</label>
+                  <input type="text" class="form-control"  formControlName="empname"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.empname">
+                    {{formErrors.empname}}
+                  </span>
+            </div>
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.recptno}">
+                  <label class="form-control-label ltr">Receipt No *</label>
+                  <label class="form-control-label rtl">رقم الإيصال *</label>
+                  <input type="text" class="form-control"  formControlName="recptno"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.recptno">
+                    {{formErrors.recptno}}
+                  </span>
+            </div>
+            
+           <div class="col-md-4">
+            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.cashtype}">
+                <label class="mr-sm-2 ltr" for="title">Cash Type *</label>
+                <label class="mr-sm-2 rtl" for="title">نوع النقد *</label>
+                
+                      <select value="Select" name="title" formControlName="cashtype"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                        <option value="select" disabled>-- select --</option>
+                        <option value="Opening" >Opening</option>
+                        <option value="Closing" >Closing</option>
+                        <option value="Used" >Used</option>
+                        <option value="Received" >Received</option>
+                      </select>
+                      <select value="Select" name="title" formControlName="cashtype"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                        <option value="select" disabled>-- اختار --</option>
+                        <option value="Opening" >Opening</option>
+                        <option value="Closing" >Closing</option>
+                        <option value="Used" >Used</option>
+                        <option value="Received" >Received</option>
+                      </select>
+                      <span class="help-block errorcolorcls" *ngIf="formErrors.cashtype">
+                        {{formErrors.cashtype}}
+                      </span>
+                      
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.amount}">
+                  <label class="form-control-label ltr">Amount *</label>
+                  <label class="form-control-label rtl">المبلغ *</label>
+                  <input type="text" (keypress)="keyPressamnt($event)" class="form-control"  formControlName="amount"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.amount">
+                    {{formErrors.amount}}
+                  </span>
+            </div>
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.notes}">
+                  <label class="form-control-label ltr">Notes *</label>
+                  <label class="form-control-label rtl">الملاحظات *</label>
+                  
+                 <textarea type="textarea" class="form-control"  formControlName="notes"  (blur)="checkValidationErrors()"></textarea>
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.notes">
+                    {{formErrors.notes}}
+                  </span>
+            </div>
+           
+          </div>
+              
+                      <div class="row mt-5">
+                          <div class="col-md-12 text-center submitBtns">
+                              <button type="submit" class="btn btn-md btn-warning ltr" (click)="addcashreceiptbmit()" style="margin-right:5px;">
+                                  <i class ="fa fa-check-circle"></i>
+                                   Submit </button>
+                              <button type="submit" class="btn btn-md btn-warning rtl" (click)="addcashreceiptbmit()" >
+                                  <i class ="fa fa-check-circle"></i>
+                                  إرسل </button>
+                              <button type="submit" class="btn btn-md btn-success ltr" (click)="addcashreceiptcancle()">
+                                      <i class ="fa fa-ban"></i>
+                                  Cancel</button>
+                              <button type="submit" class="btn btn-md btn-success rtl" (click)="addcashreceiptcancle()" style="margin-right:5px;">
+                                      <i class ="fa fa-ban"></i>
+                                      إلغاء</button>
+                          </div>
+                      </div>
+      </div>
+  </div>
+</div>
+</div>
+
+
+
+</form>

@@ -1,0 +1,16 @@
+.headrow{
+    background-color: #4a87ee;
+    color: white;
+  }
+  .addgreen{
+      color: white;
+      background-color: #86b347;
+      padding: 2px;
+      font-size: 12px;
+  }
+  .addorange{
+      color: white;
+      background-color: #fe9600;
+      padding: 2px;
+      font-size: 12px;
+  }

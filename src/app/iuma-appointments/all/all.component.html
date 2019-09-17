@@ -1,0 +1,1638 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link"><span class="fa fa-fw fa-user"></span>&nbsp;Appointments</a></li>
+      <li class="rtl"><a class="nav-link"><span>مواعيد</span><span class="fa fa-fw fa-user"></span></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <form>
+        <div class="card-body">
+          <h6 class="card-title rtl" style="width:150px">مواعيد</h6>
+          <h6 class="card-title ltr" style="width:150px">Appointments</h6>
+          <span>
+            <div style="float:right;margin-top:-32px">
+              <button class="addappointment ltr" (click)="open(content)"><span class="fa fa-plus-circle"></span>
+                &nbsp;&nbsp;Add Appointment</button>
+            </div>
+            <div style="float:left;margin-top:-32px">
+              <button class="addappointment rtl" (click)="open(content)"><span class="fa fa-plus-circle"></span>
+                &nbsp;&nbsp;موعد إضافة</button>
+            </div>
+          </span>
+          <ngb-tabset (tabChange)="beforeChange($event)" #tabs>
+            <!-- ..................first tab ........................................................... -->
+            <ngb-tab class="eachTabPane ltr" id="all">
+              <ng-template ngbTabTitle><b class="ltr">All</b>
+                <b class="rtl">الكل</b>
+              </ng-template>
+
+              <ng-template ngbTabContent>
+
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelconfirmed('dataTable')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelconfirmed('dataTable')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelall('dataTable')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable" cellspacing="10px">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of Alldata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td><span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                <!-- &nbsp;&nbsp;&nbsp;&nbsp; <span *ngIf = "arrivedicon[i]" class="fa fa-book" [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"></span> -->
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info" (click)="openview(all.Appointment_id,pendingcontent,confirmedcontent)"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <!-- ..................basic info 1 end.......................................................... -->
+            <!-- ....................basic info 2 start............................... -->
+            <ngb-tab class="eachTabPane" id="pending">
+              <ng-template ngbTabTitle><b class="ltr">Pending Confirmation</b>
+                <b class="rtl">في انتظار التأكيد</b>
+              </ng-template>
+              <ng-template ngbTabContent><br>
+
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelconfirmed('dataTable1')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelconfirmed('dataTable1')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelpending('dataTable1')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable1" cellspacing="0" style="margin-top:-35px">
+                          <thead class="headrow ltr">
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of Alldata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td><span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info"></i>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................basic info 2 end............................... -->
+            <!-- ....................confirmed start............................... -->
+            <ngb-tab class="eachTabPane" id="confirmed">
+              <ng-template ngbTabTitle><b class="ltr">Confirmed</b>
+                <b class="rtl">مؤكد </b></ng-template>
+              <ng-template ngbTabContent><br>
+
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelconfirmed('dataTable2')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelconfirmed('dataTable2')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelconfirmed('dataTable2')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable2" cellspacing="0">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <td>Sno</td>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of Alldata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td><span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info"></i>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>        
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................confirmed end............................... -->
+            <!-- ....................treated start............................... -->
+            <ngb-tab class="eachTabPane" id="arrived">
+              <ng-template ngbTabTitle><b class="ltr">Arrived</b>
+                <b class="rtl">وصل</b></ng-template>
+              <ng-template ngbTabContent><br>
+
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelaarrived('dataTable3')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelaarrived('dataTable3')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelaarrived('dataTable3')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable3" cellspacing="0">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of Alldata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td><span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                <!-- &nbsp;&nbsp;&nbsp;&nbsp; <span class="fa fa-book" [routerLink]="['/treatmentnote']" [queryParams]="{Refrral:all.patientid}" ></span> -->
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info"></i>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>
+                          <!-- <div [hidden]="nodata">No Data Found</div> -->
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................treated end............................... -->
+            <!-- ....................cancelled start............................... -->
+            <ngb-tab class="eachTabPane" id="cancelled">
+              <ng-template ngbTabTitle><b class="ltr">Cancelled</b>
+                <b class="rtl">ألغي/ملغى </b></ng-template>
+              <ng-template ngbTabContent><br>
+
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelcancelled('dataTable4')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelcancelled('dataTable4')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelcancelled('dataTable4')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable4" cellspacing="0">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of Alldata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td><span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info"></i>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>
+                          <!-- <div [hidden]="nodata">No Data Found</div> -->
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................cancelled end............................... -->
+            <!-- ....................requested end............................... -->
+            <ngb-tab class="eachTabPane" id="requested">
+              <ng-template ngbTabTitle><b class="ltr">Requested</b>
+                <b class="rtl">طلب موعد</b></ng-template>
+              <ng-template ngbTabContent><br>
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelrequested('dataTable5')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="printrequest()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelrequested('dataTable5')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="printrequest()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelrequested('dataTable5')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable5" cellspacing="0">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th>Options</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th>خيارات</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of requestdata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                &nbsp;&nbsp;&nbsp;&nbsp; <span *ngIf="arrivedicon[i]" class="fa fa-book" [routerLink]="['/treatmentnote']"
+                                  [queryParams]="{Refrral:all.patientid}"></span>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>
+                          <!-- <div [hidden]="nodata">No Data Found</div> -->
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................requested end............................... -->
+
+            <!-- ....................Waitlist ............................... -->
+            <ngb-tab class="eachTabPane" id="waitlist">
+              <ng-template ngbTabTitle><b class="ltr">Waitlist</b>
+                <b class="rtl">طلب موعد</b></ng-template>
+              <ng-template ngbTabContent><br>
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                  <div class="spinner" style="margin: 100px auto !important;">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                  </div>
+                </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelwaitlist('dataTable6')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="printwaitlist()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelwaitlist('dataTable6')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="printwaitlist()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelwaitlist('dataTable6')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable6" cellspacing="0">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of waitlistdata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-pencil-alt text-info" (click)="openeditrequest(all.Appointment_id,content1)"></span>
+                                <!-- &nbsp;&nbsp;&nbsp;&nbsp; <span *ngIf = "arrivedicon[i]" class="fa fa-book" [routerLink]="['/treatmentnote']" [queryParams]="{Refrral:all.patientid}"></span> -->
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info"></i>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>
+                          <!-- <div [hidden]="nodata">No Data Found</div> -->
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................Waitlist end............................... -->
+            <!-- ....................Emergency ............................... -->
+            <ngb-tab class="eachTabPane" id="Emergency">
+              <ng-template ngbTabTitle><b class="ltr">Emergency</b>
+                <b class="rtl">طلب موعد</b></ng-template>
+              <ng-template ngbTabContent><br>
+                <!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+                    <div class="spinner" style="margin: 100px auto !important;">
+                      <div class="double-bounce1"></div>
+                      <div class="double-bounce2"></div>
+                    </div>
+                  </div> -->
+
+                <div class="row" style="padding-top:10px">
+                  <div class="col-md-12">
+                    <div class="showLoader1" *ngIf='showLoader' style="width: 100%;height: 100%;position: absolute;display: block;top: 0;left: 0;z-index: 100;">
+                      <i class="fa fa-spinner fa-spin fa-3x fa-fw" style=" position: absolute;top: 0px;left: 0;right: 0;margin: auto;font-size:24px;color : #1976d2;">
+                      </i></div>
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div style="float:right;margin-bottom: 20px;" class="ltr">
+                              <button class="btn btn-info ltr" (click)="exportexcelemergency('dataTable7')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info ltr" (click)="printemergency()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                            <div style="float:left;margin-bottom: 20px;" class="rtl">
+                              <button class="btn btn-info rtl" (click)="exportexcelemergency('dataTable7')" value="Export to Excel">Export
+                                Excel</button>&nbsp;&nbsp;
+                              <button class="btn btn-info rtl" (click)="printemergency()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <button class="exportbutton" (click)="exportexcelwaitlist('dataTable6')" value="Export to Excel">Export Excel</button> -->
+                        <table class="table table-hover table-bordered" id="dataTable7" cellspacing="0">
+                          <thead class="headrow ltr">
+
+                            <tr>
+                              <th>Sno</th>
+                              <th>Patient Id</th>
+                              <th>Patient Name</th>
+                              <th>Doctor</th>
+                              <th>Date-Time</th>
+                              <!-- <th>Remarks</th> -->
+                              <th>Status</th>
+                              <th style="width:65px !important">Options</th>
+                              <th style="width:48px !important">Result</th>
+                            </tr>
+
+                          </thead>
+                          <thead class="headrow rtl">
+                            <tr>
+                              <th>الرقم التسلسلي</th>
+                              <th>رقم المريض</th>
+                              <th>اسم المريض</th>
+                              <th>طبيب</th>
+                              <th>التاريخ-الوقت</th>
+                              <!-- <th>ملاحظات</th> -->
+                              <th>الحالة</th>
+                              <th style="width:75px !important">خيارات</th>
+                              <th style="width:60px !important">Result</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="showdata">
+                            <tr *ngFor="let all of emergencydata;let i=index">
+                              <td>{{i+1}}</td>
+                              <td>{{all.patientid}}</td>
+                              <td>{{all.PatientName}}</td>
+                              <td>{{all.Name}}</td>
+                              <td>{{all.appointdate}}</td>
+                              <!-- <td>{{all.description}}</td> -->
+                              <td>{{all.arrivestatus}}</td>
+
+                              <td><span class="fa fa-pencil-alt text-info" (click)="openedit(all.Appointment_id,content1)"></span>
+                                <!-- &nbsp;&nbsp;&nbsp;&nbsp; <span *ngIf = "arrivedicon[i]" class="fa fa-book" [routerLink]="['/treatmentnote']" [queryParams]="{Refrral:all.patientid}"></span> -->
+                                &nbsp;<span [routerLink]="['/addtreatment']" [queryParams]="{Refrral:all.patientid}"
+                                  [ngStyle]="all.treatmentstatus == 'save'? {'color':'orange'} :''" class="fa fa-book"></span>
+                                &nbsp;<span class="fa fa-sign-in-alt "></span>
+                                &nbsp;<span class="fa fa-sign-out-alt "></span>
+                              </td>
+                              <td>
+                                <i class="fa fa-x-ray"></i>
+                                &nbsp;<i class="fas fa-flask"></i>
+                                &nbsp;<i class="fa fa-eye text-info"></i>
+                              </td>
+                              <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <!-- ....................Emergency end............................... -->
+          </ngb-tabset>
+
+
+        </div>
+
+        <ng-template #content let-c="close" let-d="dismiss" style="width:700px !important">
+          <div class="modal-header">
+            <h4 class="modal-title ltr">Add Appointment</h4>
+            <h4 class="modal-title rtl">إضافة موعد </h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form [formGroup]="addappointment">
+              <div class="card-body">
+                <div class="mt-3">
+                  <br />
+                  <input type="checkbox" formControlName="emergency" (change)="emergencyclick()"><span style="color: red;font-weight: bold">&nbsp;EMERGENCY</span>
+                </div>
+                <div class="row" style="position:relative">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Patient</label>
+                      <!-- <div class="col-md-2 addPatient" style="float:right" (click)="addpatient()"><img src='assets/images//add_patient.png'></div> -->
+                      <div class="col-md-6" style="padding-left:0px">
+                        <div class="input-wrapper">
+                          <input id="patient" autocomplete="off" formControlName="patient" (keyup)="patient()">
+                          <label class="loading-icon"><img src='assets//images//5.gif'></label>
+                          <!-- <span *ngIf="formErrors.patient" style="color:red">{{formErrors.patient}}</span> -->
+
+                        </div>
+
+                        <div class="patientDetails" (click)="Pdetails()"></div>
+
+                        <div class="patientDetails not">
+                        </div>
+                      </div>
+
+                    </div>
+                    <span *ngIf="formErrors.patient" style="color:red">{{formErrors.patient}}</span>
+                  </div>
+                  <div *ngIf="addpatientshow">
+                    <div class="col-md-6 form-group">
+                      <div class="mt-3">
+                        <label class="form-control-label ltr">Patient Name</label>
+                        <input type="text" class="form-control" formControlName="patientname">
+                      </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <div class="mt-3">
+                        <label class="form-control-label ltr">Gender</label>
+                        <input type="text" class="form-control" formControlName="gender">
+                      </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <div class="mt-3">
+                        <label class="form-control-label ltr">Email</label>
+                        <input type="text" class="form-control" formControlName="email">
+                      </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <div class="mt-3">
+                        <label class="form-control-label ltr">Mobile</label>
+                        <input type="text" class="form-control" formControlName="mobile">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Sub-Departments</label>
+                      <select formControlName="departments" class="custom-select mr-sm-2 ltr" [(ngModel)]="selecteddepartment"
+                        (change)="departmentschange($event.target.value)" id="deptid">
+                        <option value="">Select</option>
+                        <option *ngFor="let dept of deptdata" [value]="dept.speName">{{dept.speName}}</option>
+                      </select>
+                      <span *ngIf="formErrors.departments" style="color:red">{{formErrors.departments}}</span>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Rooms</label>
+                      <select formControlName="rooms" class="custom-select mr-sm-2 ltr" [(ngModel)]="selectedroom" id="roomid">
+                        <option value=''>Select</option>
+                        <option *ngFor="let room of roomdata" [value]="room.Emp_Id">{{room.Assign_Rooms}}</option>
+                      </select>
+                      <label class="loading-icon1"><img src='assets//images//5.gif'></label>
+
+                      <span *ngIf="formErrors.rooms" style="color:red">{{formErrors.rooms}}</span>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Appointment Types</label>
+                      <select formControlName="appointmenttypes" class="custom-select mr-sm-2 ltr" id="apttypeid"
+                        [(ngModel)]="selectedapptypes">
+                        <option value="">Select</option>
+                        <option *ngFor="let appt of appointmenttypesdata" [value]="appt.Slot_Name">{{appt.Slot_Name}}</option>
+                      </select>
+                      <span *ngIf="formErrors.departments" style="color:red">{{formErrors.departments}}</span>
+
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Date</label>
+
+                      <input type="date" placeholder="mm/dd/yyyy" class="form-control" formControlName="apptdate"
+                        (change)="datechange($event.target.value)" id="dateid">
+                      <span *ngIf="formErrors.date" style="color:red">{{formErrors.date}}</span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Available Slots</label>
+                      <select formControlName="slots" class="custom-select mr-sm-2 ltr" id="slotid" [(ngModel)]="selectedslots"
+                        (change)="slotschange()">
+                        <option value=''>Select</option>
+                        <option *ngFor="let tslots of available_slots" [value]="tslots">{{tslots}}</option>
+                        <!-- <option *ngFor="let tslots of appointmentslots" [value]="tslots">{{tslots}}</option> -->
+                      </select>
+                      <!-- <label class="loading-icon2"><img src='assets//images//5.gif'></label> -->
+                      <span *ngIf="formErrors.slots" style="color:red">{{formErrors.slots}}</span>
+
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Appointment Status</label>
+                      <select formControlName="status" class="custom-select mr-sm-2 ltr" [(ngModel)]="selectedstatus"
+                        id="aptid">
+                        <option value=''>Select</option>
+                        <option value="UnConfirmed">Pending Verification</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Arrived">Arrived</option>
+                        <option value="Canceled">Canceled</option>
+                      </select>
+                      <span *ngIf="formErrors.status" style="color:red">{{formErrors.status}}</span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Remarks</label>
+                      <input type="text" class="form-control" formControlName="remarks" id="remarksid">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <!-- <div class="mt-3">
+                       <br/>
+                        <input type="checkbox" formControlName="emergency"> &nbsp; Emergency
+                     
+                      </div> -->
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group text-center col-md-12">
+              <div class="col-xs-12">
+                <button class="btn btn-secondary" (click)="submit()">Submit</button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close('test')">Submit</button>
+        </div> -->
+        </ng-template>
+
+        <ng-template #content1 let-c="close" let-d="dismiss" style="width:700px !important">
+          <div class="modal-header">
+            <h4 class="modal-title ltr">Edit Appointment</h4>
+            <!-- <h4 class="modal-title rtl">إضافة موعد</h4> -->
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form [formGroup]="addappointment">
+              <div class="card-body">
+                <div class="mt-3">
+                  <br />
+                  <input type="checkbox" formControlName="emergency" (change)="emergencyclick()"><span style="color: red;font-weight: bold">&nbsp;EMERGENCY</span>
+                </div>
+                <div class="row" style="position:relative">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Patient Name</label>
+                      <input type="text" class="form-control" formControlName="patientname" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Sub-Departments</label>
+                      <select formControlName="departments" class="custom-select mr-sm-2 ltr" [(ngModel)]="selecteddepartment"
+                        (change)="departmentschange($event.target.value)">
+                        <!-- <option value="">Select</option> -->
+                        <option *ngFor="let dept of deptdata" [value]="dept.speName">{{dept.speName}}</option>
+                      </select>
+                      <span *ngIf="formErrors.departments" style="color:red">{{formErrors.departments}}</span>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Rooms</label>
+                      <select formControlName="rooms" class="custom-select mr-sm-2 ltr" [(ngModel)]="selectedroom"
+                        (change)="datechange('room')">
+                        <option value=''>Select</option>
+                        <option *ngFor="let room of roomdata" [value]="room.Emp_Id">{{room.Assign_Rooms}}</option>
+
+                      </select>
+                      <label class="loading-icon1"><img src='assets//images//5.gif'></label>
+
+                      <span *ngIf="formErrors.rooms" style="color:red">{{formErrors.rooms}}</span>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Appointment Types</label>
+                      <select formControlName="appointmenttypes" class="custom-select mr-sm-2 ltr" id="apttypeid1"
+                        [(ngModel)]="selectedapptypes">
+                        <option value="">Select</option>
+                        <option *ngFor="let appt of appointmenttypesdata" [value]="appt.Slot_Name">{{appt.Slot_Name}}</option>
+                      </select>
+                      <span *ngIf="formErrors.departments" style="color:red">{{formErrors.departments}}</span>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Date</label>
+
+                      <input type="date" placeholder="mm/dd/yyyy" class="form-control" id="dateid1" formControlName="apptdate"
+                        (change)="datechange($event.target.value)">
+                      <span *ngIf="formErrors.apptdate" style="color:red">{{formErrors.apptdate}}</span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Available Slots</label>
+                      <select formControlName="slots" class="custom-select mr-sm-2 ltr" id="slotid1" [(ngModel)]="selectedslots"
+                        (change)="slotschange()">
+                        <option value=''>Select</option>
+                        <option *ngFor="let tslots of available_slots" [value]="tslots">{{tslots}}</option>
+                        <!-- <option *ngFor="let slots of appointmentslots" [value]="slots">{{slots}}</option> -->
+                      </select>
+                      <!-- <label class="loading-icon2"><img src='assets//images//5.gif'></label> -->
+                      <span *ngIf="formErrors.slots" style="color:red">{{formErrors.slots}}</span>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Appointment Status</label>
+                      <select formControlName="status" class="custom-select mr-sm-2 ltr" id="aptid1" [(ngModel)]="selectedstatus"
+                        (blur)="CheckValidationErrors()">
+                        <option value=''>Select</option>
+                        <option value="UnConfirmed">Pending Verification</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Arrived">Arrived</option>
+                        <option value="Canceled">Canceled</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Remarks</label>
+                      <input type="text" class="form-control" formControlName="remarks" id="remarksid">
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group text-center col-md-12">
+              <div class="col-xs-12">
+                <button class="btn btn-secondary" (click)="editsubmit()">Submit</button>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+
+
+        <!-- ............pening status view.............. -->
+
+        <ng-template #pendingcontent let-c="close" let-d="dismiss" style="width:700px !important">
+          <div class="modal-header">
+            <h4 class="modal-title ltr">View Appointment</h4>
+            <!-- <h4 class="modal-title rtl">إضافة موعد</h4> -->
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form [formGroup]="addappointment">
+              <div class="card-body">
+                <div class="row" style="position:relative">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Name</label>
+                      <input type="text" class="form-control" formControlName="p_patientname" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">DOB</label>
+                      <input type="text" class="form-control" formControlName="p_patientdob" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Gender</label>
+                      <input type="text" class="form-control" formControlName="p_patientgender" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Type</label>
+                      <input type="text" class="form-control" formControlName="p_patienttype" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Status</label>
+                      <input type="text" class="form-control" formControlName="p_status" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Appointment Id</label>
+                      <input type="text" class="form-control" formControlName="appointment_id" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Patient Id</label>
+                      <input type="text" class="form-control" formControlName="patient_id" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Doctor Name</label>
+                      <input type="text" class="form-control" formControlName="doctor_name" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Doctor Designation</label>
+                      <input type="text" class="form-control" formControlName="doctor_designation" readonly>
+                    </div>
+                  </div>
+
+                </div>
+                <div style="text-align:center" [hidden]="QRcodeIMGshow">
+                  <img [src]="qrcodeimg" style="height:200px">
+                </div>
+              </div>
+            </form>
+          </div>
+        </ng-template>
+        <!-- ........confirm status view............. -->
+        <ng-template #confirmedcontent let-c="close" let-d="dismiss" style="width:700px !important">
+          <div class="modal-header">
+            <h4 class="modal-title ltr">View Appointment</h4>
+            <!-- <h4 class="modal-title rtl">إضافة موعد</h4> -->
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form [formGroup]="addappointment">
+              <div class="card-body">
+                <h4 class="modal-title ltr">Patient Information</h4>
+                <div class="row" style="position:relative">
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Name</label>
+                      <input type="text" class="form-control" formControlName="c_patientname" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">DOB</label>
+                      <input type="text" class="form-control" formControlName="c_patientdob" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Gender</label>
+                      <input type="text" class="form-control" formControlName="c_patientgender" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Type</label>
+                      <input type="text" class="form-control" formControlName="c_patienttype" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Status</label>
+                      <input type="text" class="form-control" formControlName="c_status" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Appointment Id</label>
+                      <input type="text" class="form-control" formControlName="c_appointment_id" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Patient Id</label>
+                      <input type="text" class="form-control" formControlName="c_patient_id" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Doctor Name</label>
+                      <input type="text" class="form-control" formControlName="c_doctor_name" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Doctor Designation</label>
+                      <input type="text" class="form-control" formControlName="c_doctor_designation" readonly>
+                    </div>
+                  </div><br>
+                  <h4 class="modal-title ltr">Clinic Information</h4><br>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Clinic Name</label>
+                      <input type="text" class="form-control" formControlName="c_clinicname" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Clinic Id</label>
+                      <input type="text" class="form-control" formControlName="c_clinicid" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Name</label>
+                      <input type="text" class="form-control" formControlName="c_clinicinfo_name" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Email Id</label>
+                      <input type="text" class="form-control" formControlName="c_clinicinfo_email" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Address</label>
+                      <input type="text" class="form-control" formControlName="c_clinicinfo_address" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">City</label>
+                      <input type="text" class="form-control" formControlName="c_clinicinfo_city" readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <div class="mt-3">
+                      <label class="form-control-label ltr">Phone No</label>
+                      <input type="text" class="form-control" formControlName="c_clinicinfo_phoneno" readonly>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div style="text-align:center" [hidden]="QRcodeIMGshow">
+                  <img [src]="qrcodeimg" style="height:200px">
+                </div>
+              </div>
+            </form>
+          </div>
+        </ng-template>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!------------------ Print ------------------ -->
+<div id="DivIdToPrint" style="display: none;">
+  <div class="invoice-box">
+    <table>
+      <tbody>
+        <tr>
+          <td style="text-align: center">
+            <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+            <p style="font-size: 14px;
+                            margin: 0px;
+                            color: #005a85;
+                            padding: 0;
+                            position: relative;
+                            top: -5px;
+                            font-weight: bold;">المركز
+              الطبي الجامعي</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="horizontal-row">
+          <td colspan="2">
+            <table>
+              <thead>
+                <tr class="ltr">
+                  <th align="center">Sno</th>
+                  <th align="center">Patient Id</th>
+                  <th align="center">Patient Name</th>
+                  <th align="center">Doctor</th>
+                  <th align="center">Date-Time</th>
+                  <th align="center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let all of Alldata;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{all.patientid}}</td>
+                  <td>{{all.PatientName}}</td>
+                  <td>{{all.Name}}</td>
+                  <td>{{all.appointdate}}</td>
+                  <td>{{all.arrivestatus}}</td>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="bottom-line">
+          <td colspan="3">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                    <span> {{website}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                    <span> {{email}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                    <span> {{phoneno}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!------------------ Print Requested ------------------ -->
+<div id="DivIdToPrintrequested" style="display: none;">
+  <div class="invoice-box">
+    <table>
+      <tbody>
+        <tr>
+          <td style="text-align: center">
+            <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+            <p style="font-size: 14px;
+                            margin: 0px;
+                            color: #005a85;
+                            padding: 0;
+                            position: relative;
+                            top: -5px;
+                            font-weight: bold;">المركز
+              الطبي الجامعي</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="horizontal-row">
+          <td colspan="2">
+            <table>
+              <thead>
+                <tr class="ltr">
+                  <th align="center">Sno</th>
+                  <th align="center">Patient Id</th>
+                  <th align="center">Patient Name</th>
+                  <th align="center">Doctor</th>
+                  <th align="center">Date-Time</th>
+                  <th align="center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let all of requestdata;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{all.patientid}}</td>
+                  <td>{{all.PatientName}}</td>
+                  <td>{{all.Name}}</td>
+                  <td>{{all.appointdate}}</td>
+                  <td>{{all.arrivestatus}}</td>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="bottom-line">
+          <td colspan="3">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                    <span> {{website}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                    <span> {{email}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                    <span> {{phoneno}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!------------------ Print Waitlist ------------------ -->
+<div id="DivIdToPrintwaitlist" style="display: none;">
+  <div class="invoice-box">
+    <table>
+      <tbody>
+        <tr>
+          <td style="text-align: center">
+            <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+            <p style="font-size: 14px;
+                            margin: 0px;
+                            color: #005a85;
+                            padding: 0;
+                            position: relative;
+                            top: -5px;
+                            font-weight: bold;">المركز
+              الطبي الجامعي</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="horizontal-row">
+          <td colspan="2">
+            <table>
+              <thead>
+                <tr class="ltr">
+                  <th align="center">Sno</th>
+                  <th align="center">Patient Id</th>
+                  <th align="center">Patient Name</th>
+                  <th align="center">Doctor</th>
+                  <th align="center">Date-Time</th>
+                  <th align="center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let all of waitlistdata;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{all.patientid}}</td>
+                  <td>{{all.PatientName}}</td>
+                  <td>{{all.Name}}</td>
+                  <td>{{all.appointdate}}</td>
+                  <td>{{all.arrivestatus}}</td>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="bottom-line">
+          <td colspan="3">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                    <span> {{website}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                    <span> {{email}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                    <span> {{phoneno}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!------------------ Print Emergency ------------------ -->
+<div id="DivIdToPrintemergency" style="display: none;">
+  <div class="invoice-box">
+    <table>
+      <tbody>
+        <tr>
+          <td style="text-align: center">
+            <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+            <p style="font-size: 14px;
+                              margin: 0px;
+                              color: #005a85;
+                              padding: 0;
+                              position: relative;
+                              top: -5px;
+                              font-weight: bold;">المركز
+              الطبي الجامعي</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="horizontal-row">
+          <td colspan="2">
+            <table>
+              <thead>
+                <tr class="ltr">
+                  <th align="center">Sno</th>
+                  <th align="center">Patient Id</th>
+                  <th align="center">Patient Name</th>
+                  <th align="center">Doctor</th>
+                  <th align="center">Date-Time</th>
+                  <th align="center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let all of emergencydata;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{all.patientid}}</td>
+                  <td>{{all.PatientName}}</td>
+                  <td>{{all.Name}}</td>
+                  <td>{{all.appointdate}}</td>
+                  <td>{{all.arrivestatus}}</td>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="bottom-line">
+          <td colspan="3">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                    <span> {{website}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                    <span> {{email}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                    <span> {{phoneno}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

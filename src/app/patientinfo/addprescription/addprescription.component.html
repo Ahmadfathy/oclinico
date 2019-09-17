@@ -1,0 +1,321 @@
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+  </div>
+  
+<div class="col-md-12">
+    <h4 class="ltr">Prescription Details </h4>
+    <h4 class="rtl">وصفة طبية التفاصيل</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span> تفاصيل المريض</span></a>
+            </li>
+            <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a></li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/prescription' [queryParams]="{Refrral:patientId}"> Prescription
+                    Details </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/prescription'><span> وصفة طبية التفاصيل</span> </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Add Prescription </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span> إضافة وصفة طبية</span> </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+
+        <app-sidelinks></app-sidelinks>
+    </div>
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Add Prescription</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;إضافة وصفة طبية</p>
+        </div>
+        <form [formGroup]="presription" (ngSubmit)="onSubmit()" class="actionsForm">
+            <div class="row">
+                <!-- class="actionsForm" -->
+
+                <div class="form-group col-md-6">
+                    <label class="ltr">Doctor</label>
+                    <label class="rtl">طبيب</label>
+                    <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.doctor.errors }"
+                        formControlName="doctor" (change)='selectAppointment($event)'>
+                        <option>Select</option>
+                        <option *ngFor="let item of doctors" [value]="item.Emp_Id">{{item.First_name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.doctor.errors" class="invalid-feedback">
+                        <div *ngIf="f.doctor.errors.required" class="ltr">Please Select Doctor</div>
+                        <div *ngIf="f.doctor.errors.required" class="rtl">يرجى اختيار الطبيب</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+
+                <!-- <div (click) = 'getApointVal()'>click</div> -->
+                <div class="form-group col-md-6">
+                    <label class="ltr">Appoinment:</label>
+                    <label class="rtl">موعد :</label>
+                    <select class="form-control apoint" formControlName="apointment" [ngClass]="{ 'is-invalid': submitted && f.apointment.errors }">
+                        <option selected>Select</option>
+                        <option *ngFor="let i of apoinemets" value={{i.Ap_id}}>{{i.dt}}</option>
+                    </select>
+                    <!-- <div [hidden]="apoinment" class="errorcode ltr">Please Select Appointment</div>
+                       <div [hidden]="apoinment" class="errorcode rtl">يرجى اختيار موعد</div> -->
+                    <div *ngIf="submitted && f.apointment.errors" class="invalid-feedback">
+                        <div *ngIf="f.apointment.errors.required" class="ltr">Please Select Appointment</div>
+                        <div *ngIf="f.apointment.errors.required" class="rtl">يرجى اختيار موعد</div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row" style="display:none">
+                <div class="col-md-12">
+                    <div>
+                        <label for="email" class="mar ltr">Prescription Reload :</label>
+                        <label for="email" class="mar rtl">وصفة طبية تحديث :</label>
+                        <label class="radio-inline ">
+                            <input type="radio" class="mar" id="pradio" name="pradio" value="Yes">Yes
+                        </label>
+                        <label class="radio-inline ">
+                            <input type="radio" value="No" class="mar" checked="checked" id="pradio" name="pradio">No
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+
+                <div class="table-responsive col-md-12" style="width:100%">
+                    <table class="table table-bordered table-striped table-highlight" style="width:100%" id="mytable">
+
+                        <thead class="ltr">
+                            <th>Sno</th>
+                            <th>Generic Name</th>
+                            <th>Trade Name</th>
+                            <th>Dosage</th>
+                            <th>Quantity</th>
+                            <th>No Of Days</th>
+                            <th>Notes</th>
+                            <th>Reload</th>
+                            <th>Reload Period</th>
+                            <th>Delete</th>
+                        </thead>
+                        <thead class="rtl">
+                            <th>سنو</th>
+                            <th>دواء</th>
+                            <th>الاسم التجاري</th>
+                            <th>الكمية‎</th>
+                            <th>كمية</th>
+                            <th>لا أيام</th>
+                            <th>ملاحظات</th>
+                            <th>إعادة تحميل</th>
+                            <th>فترة التحميل
+                            </th>
+                            <th>حذف</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let field of  fieldArray;let i = index" class="eachdata">
+                                <td>{{i+1}}</td>
+                                <!-- formControlName="medicine" -->
+                                <td>
+                                    <!-- <input (keyup)="genericnam($event,i)" [(ngModel)]="geniricnames[i]" [ngModelOptions]="{standalone:true}" class="medicineSelect">
+
+                                    <div *ngIf='showDatapatient[i]' class="pnames">
+                                        <div *ngFor='let each of genericname'>
+                                            <p (click)="getval($event,i)">{{each.GenericName}}</p>
+                                        </div>
+
+                                    </div> -->
+
+
+
+                                    <select class="medicineSelect form-control" style="min-width: 100px" (change)="tradenamelatest($event.target.value,i)">
+                                        <option value="" selected>Select</option>
+                                        <option *ngFor="let each of genericname" [value]='each.ID'>{{each.GenericName}}</option>
+                                    </select>
+                                </td>
+
+                                <!-- <select class="medicineSelect form-control"style="min-width: 100px" (change) ='Tradename($event)'(focusout)="focmedicene($event.target.value)"> -->
+                                <!-- (focusout)="focmedicene($event.target.value)  -->
+
+                                <!-- <option value="select" selected>Select</option> 
+                                <option *ngFor="let item of genericname"[value]="item.Expire_date">{{item.Expire_date}}</option>
+                            </select>
+                            <div [hidden]="selectmedicene" class="errorcode ltr">Select Medicine</div>
+                            <div [hidden]="selectmedicene" class="errorcode rtl">Select Medicine</div> -->
+
+                                <!-- <div *ngIf="submitted && f.medicine.errors" class="invalid-feedback">
+                                    <div *ngIf="f.medicine.errors.required"class="ltr">Select Medicine</div>
+                                    <div *ngIf="f.medicine.errors.required"class="rtl">اختر الطب</div>
+                                </div></td> -->
+                                <!-- formControlName="quanity" -->
+                                <!-- (keyup)='updateInvoice($event,j,"Quantity")' -->
+
+
+
+                                <!-- <td><input type="text" class="quanity form-control"style="min-width: 100px"(focusout)="focqty($event.target.value)"/>
+                                    </td> -->
+
+
+
+
+                                <!-- <td><select type="text" class="medicineSelect form-control"style="min-width: 100px" >
+                                            <option value="" selected>Select</option>
+                                            <option *ngFor="let trade of tradename"[value]="trade.name">{{trade.name}}</option>
+                                        </select></td> -->
+                                <td>
+                                    <select class="tradeSelect form-control" style="min-width: 100px">
+                                        <option value="" selected>Select</option>
+                                        <option *ngFor="let trade of tradenamearray[i].tradename" [value]="trade.TradeNameAr">{{trade.TradeNameAr}}</option>
+                                    </select>
+                                </td>
+                                <!-- <td>
+                                    <input (keyup)="tradenam($event,i)" [(ngModel)]="tradenames[i]" [ngModelOptions]="{standalone:true}" class="tradeSelect">
+                                    <div *ngIf='showtradenames[i]' class="pnames">
+                                        <div *ngFor='let each of tradename'>
+                                            <p (click)="gettradeval($event,i)">{{each.name}}</p>
+                                        </div>
+
+                                    </div>
+                                </td> -->
+
+
+
+
+
+
+
+                                <td>
+                                    <input type="text" class="quanityy form-control" style="min-width: 100px"
+                                        (focusout)="focqty($event.target.value)" />
+                                </td>
+
+                                <td>
+                                    <input type="text" class="quanity form-control" style="min-width: 100px" (focusout)="focqty($event.target.value)" />
+                                    <!-- <div *ngIf="submitted && f.quanity.errors" class="invalid-feedback">
+                                <div *ngIf="f.quanity.errors.required" class="ltr">Enter Dosage</div>
+                                <div *ngIf="f.quanity.errors.required "class="rtl">أدخل الجرعة</div>
+                            </div>  -->
+                                    <div [hidden]="quanity" class="errorcode ltr">Enter Dosage</div>
+                                    <div [hidden]="quanity" class="errorcode rtl">Enter Dosage</div>
+                                </td>
+                                <!-- (keyup)='updateInvoice($event,j,"nodays")' -->
+                                <td>
+                                    <input type="text" class="nodays form-control" style="min-width: 100px" (focusout)="focdays($event.target.value)" />
+                                    <!-- <div *ngIf="submitted && f.days.errors" class="invalid-feedback">
+                                        <div *ngIf="f.days.errors.required" class="ltr">Enter Days</div>
+                                        <div *ngIf="f.days.errors.required"class="rtl">أدخل الأيام</div>
+                                    </div> -->
+                                    <div [hidden]="days" class="errorcode ltr">Enter Days</div>
+                                    <div [hidden]="days" class="errorcode rtl">Enter Days</div>
+                                </td>
+                                <!-- (keyup)='updateInvoice($event,j,"note")' -->
+                                <td>
+                                    <textarea class="note form-control" style="min-width: 100px"></textarea>
+                                </td>
+                                <!-- <td><textarea class="form-control"cols="100"style="min-width: 100px"></textarea><button type="button" class="btn btn-warning btn-xs mt-2 ml-2"(click)="addFieldValue()">Add Medicine</button></td> -->
+                                <td>
+                                    <div style="min-width: 100px">
+                                        <div>
+                                            <label class="radio-inline">
+                                                <input type="radio" class="tradio" value="Yes" [name]="'optradioval1'+[i]"
+                                                    [id]="'radio'+[i]" (click)="tableradio(i)">Yes</label>
+                                            <label class="radio-inline">
+                                                <input type="radio" class="tradio" value="No" [name]="'optradioval1'+[i]"
+                                                    [id]="'radio'+[i]" (click)="tableradio(i)">No</label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="month form-control" style="min-width: 100px" [id]="'deptid'+[i]">
+                                        <option *ngFor="let item of months">{{item}}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <i class="fa fa-trash text-danger" aria-hidden="true" (click)="deleteFieldValue(i)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align:center;">
+                        <button type="button" class="btn btn-warning btn-xs mt-2 ml-2" (click)="addFieldValue('add')">Add
+                            Medicine</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-5 form-group">
+                    <label class="ltr"> Notes </label>
+                    <label class="rtl"> ملاحظات </label>
+                    <textarea class="form-control notesPrescription"></textarea>
+                </div>
+            </div>
+            <br>
+
+
+
+
+            <div class="row">
+                <button class="btn btn-warning margin ltr" style="float:right" (click)="cratepriscription()">
+                    <i class="fa fa-check-circle"></i> Submit
+                </button>
+
+                <button class="btn btn-warning margin rtl" style="float:right" (click)="cratepriscription()">
+                    <i class="fa fa-check-circle"></i> خضع
+                </button>
+                <button class="btn btn-info margin ltr" style='float:right' routerLink="/prescription" [queryParams]="{referal:patientId}">
+                    Cancel
+                </button>
+                <button class="btn btn-info margin rtl" style='float:right' routerLink="/prescription" [queryParams]="{referal:patientId}">
+                    إلغاء
+                </button>
+
+            </div>
+        </form>
+        <!-- {{presription.status}} -->
+    </div>
+
+</div>

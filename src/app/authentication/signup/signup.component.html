@@ -1,0 +1,152 @@
+<style type="text/css">
+    .auth-wrapper .auth-box {
+        max-width: inherit !important;
+        background-color: transparent !important;
+        box-shadow: inherit !important;
+        margin: 0px !important;
+        width: 100%;
+        height: auto;
+
+
+    }
+
+    .db img {
+        width: 15%;
+        filter: drop-shadow(0px 0px 0px #383838);
+    }
+
+    .footer {
+        margin: 0 auto;
+        padding: 5px 0px;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background-color: #0e70a0;
+        color: white;
+    }
+
+    .anaccount {
+        color: #fff;
+    }
+
+    .text-info {
+        color: #ffdc79 !important;
+    }
+    .errmsg{
+        color: white;
+    font-size: 14px;
+    padding-left: 3rem !important
+    }
+</style>
+<div class="auth-wrapper no-block justify-content-center align-items-center" style="background:url(assets/images/big/auth-bg.jpg) no-repeat fixed; background-size: cover;">
+
+
+    <!-- ------------- -->
+    <li class="nav-item" ngbDropdown placement="bottom-left">
+        <a ngbDropdownToggle class="nav-link" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">{{SelectedLang}}
+            <i class="flag-icon flag-icon-{{flag}} font-18"></i>
+        </a>
+        <div class="dropdown-menu-left animated fadeIn" aria-labelledby="navbarDropdown2" ngbDropdownMenu>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="changelag('English')"  style="color:white;">
+                <i class="flag-icon flag-icon-us"></i>
+                <span *ngIf="langenglish">English</span>
+                <span *ngIf="langarabic">ذلك. لا تمانع </span>
+            </a>
+
+            <a class="dropdown-item" href="javascript:void(0)" (click)="changelag('Arabic')"  style="color:white;">
+                <i class="flag-icon flag-icon-sa"></i>
+                <span *ngIf="langenglish">Arabic</span>
+                <span *ngIf="langarabic">ذلك. لا تمانع </span>
+            </a>
+
+        </div>
+    </li>
+    <!-- --------------- -->
+
+    <div class="auth-box">
+        <div>
+            <div class="logo">
+                <span class="db">
+                    <img src="assets/images/logo-IU.png" alt="logo" />
+                </span>
+
+            </div>
+            <br>
+            <div class="logo">
+
+                <h3 class="font-medium" *ngIf="langenglish">Sign Up </h3>
+                <h3 class="font-medium" *ngIf="langarabic">سجل </h3>
+            </div>
+            <!-- Form -->
+            <div class="row">
+                    <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+
+                    <form class="form-horizontal m-t-20" (ngSubmit)="RegisterSubmit()" [formGroup]="register" id="regiform">
+                        <div class="form-group row ">
+                            <div class="col-12 ">
+                                <input class="form-control" type="text" formControlName="businessname" placeholder="Business Name" required
+                                    [ngClass]="{ 'is-invalid': submitted && f.businessname.errors }" (blur)="bnamecheck()" (keyup)="businesku()"
+                                />
+                                <!-- (change)="bnamecheck()" -->
+                                <div *ngIf="submitted && f.businessname.errors" class="invalid-feedback pl-5">
+                                    <div *ngIf="f.businessname.errors.required" class="errmsg">Business name is required</div>
+                                </div>
+                                <div *ngIf="bnameexist" class="errmsg" >Business name already existed.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12 ">
+                                <input class="form-control" type="email" formControlName="email" placeholder="Email" required [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                    (blur)="emailCheck()" (keyup)="emailku()"/>
+                                <!-- (change)="emailCheck()" -->
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback pl-5">
+                                    <div *ngIf="f.email.errors.required" class="errmsg">Email is required</div>
+                                    <div *ngIf="f.email.errors.pattern" class="errmsg">
+                                        Invalid Email.
+                                    </div>
+                                </div>
+                                <div *ngIf="emailexist" class="errmsg">Email already existed.</div>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12 ">
+                                <input class="form-control" type="password" formControlName="password" placeholder="Password" required [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback pl-5">
+                                    <div *ngIf="f.password.errors.required" class="errmsg">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength" class="errmsg">Password must be at least 6 characters</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="regFailed" class="errmsg">Email or Business Name Already Exists.</div>
+      
+                        <div class="form-group text-center ">
+                            <div class="col-xs-12 p-b-20 ">
+                                <button class="btn btn-block btn-lg btn-info " type="submit " [ngClass]="{'button--loading':loginvalid,'btn-primary':register.valid,'btn-secondary':!register.valid}">SIGN UP</button>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0 m-t-10 ">
+                            <div class="col-sm-12 text-center anaccount">
+                                Already have an account?
+                                <a routerLink="/login" class="text-info m-l-5 ">
+                                    <b>Sign In</b>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    2019 © ISLAMIC UNIVERSITY OF MADINAH
+</div>

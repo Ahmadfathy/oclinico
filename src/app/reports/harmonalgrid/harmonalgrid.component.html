@@ -1,0 +1,416 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Harmonal Assay Request</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>نموذج تحليل الهرمونات</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ------------------------------Grid Binding --------------------------------- -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Harmonal Assay Request</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;نموذج تحليل الهرمونات</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>S.no</th>
+              <th>Name</th>
+              <th>File Number</th>
+              <th>Nationality</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="showdata">
+            <tr *ngFor="let report of table;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{report.Name}}</td>
+              <td>{{report.File_Number }}</td>
+              <td>{{report.Nationality }}</td>
+              <td>{{report.Date}}</td>
+              <td>
+                <span class="fa fa-eye text-info" style="cursor: pointer;color:#4a87ee" (click)="viewurinalreport(report.patient_id,'View',report.tran_date)"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-pencil-alt text-info" style="cursor: pointer;color:#4a87ee" (click)="edit(report.patient_id,'Edit',report.tran_date)"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-print text-info" style="cursor: pointer;color:#4a87ee" (click)="print(report.patient_id,report.tran_date)"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata">No Data Found</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ------------------------------Grid Binding --------------------------------- -->
+
+
+<!-- ------------------------print--------------------------- -->
+<div id="DivIdToPrint" style='display:none'>
+
+  <body>
+    <div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+          <tr class="top">
+            <td colspan="2" align="left" valign="top">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td width="18%" class="title" style="border: 1px solid #000;">
+                      <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:160px;">
+                    </td>
+                    <td width="82%" valign="top" style="border: 1px solid #000;">
+
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="47">
+                              Name :
+                            </td>
+                            <td width="323">
+                              <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{name}}</div>
+                              <td width="36">
+                                : الاسم
+                              </td>
+                              <td rowspan="3" style="border: 1px solid #ccc; height: 39px; width: 40px;"></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="20%">
+                              File Number :
+                            </td>
+                            <td width="67%">
+                              <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{filenumber}}</div>
+                              <td width="13%" style="text-align: right;"> : رقم الملف </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="9%">
+                              Date :
+                            </td>
+                            <td width="29%">
+                              <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{date}}</div>
+                            </td>
+                            <td width="9%" style="text-align: right;"> : التاريخ
+                            </td>
+                            <td width="8%">&nbsp;</td>
+                            <td width="8%">
+                              Age :
+                            </td>
+                            <td width="29%">
+                              <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{age}}</div>
+                            </td>
+                            <td width="8%" style="text-align: right;">: العمر</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="19%">
+                              Nationality :
+                            </td>
+                            <td width="71%">
+                              <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{nationality}}</div>
+                            </td>
+                            <td width="10%" style="text-align: right;">: الجنسية</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="22%">
+                              Gender :
+                            </td>
+                            <td width="34%">
+                              <input type="checkbox" value="" id="male1" />
+                              <label for="male">Male |ذكر</label>
+                            </td>
+                            <td width="28%">
+                              <input type="checkbox" id="female1" value="" />
+                              <label for="female">Famale | انثى</label>
+                            </td>
+                            <td width="16%" style="text-align: right;">: الجنس</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+              </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td style="font-weight: bold; font-size: 18px; text-align: center;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="border: 1px solid #000;">
+              <table width="100%" cellpadding="2" cellspacing="2">
+                <tbody>
+                  <tr>
+                    <td colspan="4" style="font-size: 20px; font-weight: bold; text-align: center; background-color: #d14040; color: #fff; padding: 5px;">
+                      Hormonal Assay Request &nbsp; &nbsp; &nbsp; نموذج تحليل الهرمونات
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                      <div style="width: 40%; float: left; text-align: center;">
+                        <input type="checkbox" id="routine1" />
+                        <label for="routine">Routine</label>
+                      </div>
+                      <div style="width: 20%; float: left; text-align: center;">
+                        <input type="checkbox" id="urgent1" />
+                        <label for="Urgent">Urgent</label>
+                      </div>
+                      <div style="width: 40%; float: left; text-align: center;">
+                        <input type="checkbox" id="preoperative1" />
+                        <label for="Pre-operative">Pre-operative</label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="22%">
+                      Clinical Comments :
+                    </td>
+                    <td colspan="3">
+                      <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{clinicalcomments}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Requested by :
+                    </td>
+                    <td width="30%">
+                      <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{requestedby}}</div>
+                    </td>
+                    <td width="25%">
+                      Stamp & Signature :
+                    </td>
+                    <td width="25%">
+                      <div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{stampsignature}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="height: 10px;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td style="font-weight: bold; font-size: 18px; text-align: center; height: 10px;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%" border="1" cellpadding="5" cellspacing="5">
+                <tbody>
+                  <tr>
+                    <td colspan="2" style="text-align: center; font-size: 16px; font-weight: bold;">...........Test..........
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="50%">
+                      <input type="checkbox" id="tsh1" />
+                      <label for="TSH">TSH</label>
+                    </td>
+                    <td width="50%"> PSA &nbsp; &nbsp;
+                      <input type="checkbox" value="" id="t1" />
+                      <label for="true">T</label>
+                      &nbsp; &nbsp;
+                      <input type="checkbox" value="" id="f1" />
+                      <label for="false"> F </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="fta41" />
+                      <label for="fta4">FTA 4</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="ferritin1" />
+                      <label for="Ferritin">Ferritin</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="antitg1" />
+                      <label for="AntiTG">Anti TG</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="vitd1" />
+                      <label for="VitD">Vit D</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="antipo1" />
+                      <label for="AntiTPO">Anti TPO</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="vit121" />
+                      <label for="VitB12">Vit B12</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="fsh1" />
+                      <label for="FSH">FSH</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="toxoplasmaigm1" />
+                      <label for="ToxoplasmaIgM">Toxoplasma IgM</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="lh1" />
+                      <label for="LH">LH</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="toxoplasmaigg1" />
+                      <label for="ToxoplasmaIgG">Toxoplasma IgG</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="Porlactin1" />
+                      <label for="Porlactin">Porlactin</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="rubellaigm1" />
+                      <label for="RubellaIgM">Rubella IgM</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="bhcg1" />
+                      <label for="bhcg1">B-HCG</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="rubellaigg1" />
+                      <label for="RubellaIgG">Rubella IgG</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="estradiol1" />
+                      <label for="Estradiol">Estradiol</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="cytomeggaovirusigm1" />
+                      <label for="CytomegalovirusIgM">Cytomegalovirus IgM</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="testosterone1" />
+                      <label for="Testosterone">Testosterone</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" id="cytomegalovirusigg1" />
+                      <label for="CytomegalovirusIgG">Cytomegalovirus IgG</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" id="progesterone1" />
+                      <label for="Progesterone">Progesterone</label>
+                    </td>
+                    <td>Others:
+                      <div style="width:calc(100% - 53px); display:inline-block; height:20px; border:none; border-bottom: 1px dashed #000; outline: none;">{{others}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Remarks:
+                      <div style="width:calc(100% - 80px); height:20px; display:inline-block; border:none; border-bottom: 1px dashed #000; outline: none;">{{remarks}}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Checked by:
+                      <div style="width:calc(100% - 100px); height:20px; display:inline-block; border:none; border-bottom: 1px dashed #000; outline: none;">{{checked}}</div>
+                    </td>
+                    <td>Stamp & Signature :
+                      <div style="width:calc(100% - 150px); display:inline-block; height:20px; border:none; border-bottom: 1px dashed #000; outline: none;">{{stamp}}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</div>
+<!-- ---------------------print------------------	 -->

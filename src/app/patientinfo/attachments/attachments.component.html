@@ -1,0 +1,132 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+      <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+      <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <h4 class="ltr">Attachments</h4>
+    <h4 class="rtl">مرفقات</h4>
+  </div>
+  <div *ngIf="pay" class="col-md-3">
+    <h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5>
+    <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link"> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link"><span>تفاصيل المريض</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/attachements'>Attachments </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/attachements'><span>مرفقات</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Attachments</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;مرفقات</p>
+    </div>
+
+    <div *ngIf="showdata">
+      <div style="text-align:right !important">
+        <span class="ltr">
+          <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addatachments" [queryParams]="{Refrral:patientId}">
+            <i class="fa fa-fw fa-user"></i> Add</a>
+        </span>
+        <span class="rtl">
+          <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addatachments" [queryParams]="{Refrral:patientId}">
+            <i class="fa fa-fw fa-user"></i> إضافة</a>
+        </span>
+      </div>
+
+      <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered" id="dataTable" *ngIf="showdata">
+        <thead class="ltr">
+          <tr>
+            <th>Description Name</th>
+            <th> Attached Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <thead class="rtl">
+          <tr>
+            <th>وصف الاسم</th>
+            <th>التاريخ المرفق</th>
+            <th>أفعال</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of table;let i=index">
+            <td>{{patient.Description}}</td>
+            <td>{{patient.Trans_date}}</td>
+            <td>
+              <span class="fa fa-eye text-info" [routerLink]="['/viewattachments']" [queryParams]="{Refrral:patient.Sno,patientid:patientId}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="fa fa-pencil-alt text-info" [routerLink]="['/editattachments']" [queryParams]="{Refrral:patient.Sno,patientid:patientId}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="nodata" align="center">
+      <br>
+      <br>
+      <img src="./assets/images/folder-icon.png" height="100px" width="100px">
+      <br>
+      <br>
+      <p>
+        <b>There are no attachments</b>
+      </p>
+      <p> You may not have created any yet. You could
+        <a routerLink="/addatachments" [queryParams]="{referal:patientId}">
+          <u>create an attachment</u>
+        </a> now.
+      </p>
+    </div>
+
+
+  </div>
+</div>

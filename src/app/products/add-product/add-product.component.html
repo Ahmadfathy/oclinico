@@ -1,0 +1,293 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/Pharmacy'>
+                    Pharmacy</a>
+                <!-- Products -->
+            </li>
+
+            <li class="ltr">
+                <a class="nav-link" routerLink='/addproduct'> New Medication
+                    <!-- New Product -->
+                </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/Pharmacy'>
+                    <span>صيدلية.
+                        <!-- المنتجات -->
+                    </span>
+                </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/addproduct'><span>
+                        دواء جديد.
+                    <!-- منتج جديد -->
+                </span>
+                </a>
+            </li>
+
+            <!-- <li class="rtl">
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;
+                    New Medication
+                    <!-- Products -->
+                </p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;
+                    دواء جديد.
+                    <!-- المنتجات -->
+                </p>
+            </div>
+            <form [formGroup]="addproduct">
+                <div class="row">
+                    <div class="col-md-12 col-lg-10 col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.ItemCode}">
+                                        <label class="form-control-label ltr">Item Code
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">رمز الصنف
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" formControlName="ItemCode" (blur)="checkValidationErrors()" (change)="onChangeItemCode()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.ItemCode">
+                                            {{formErrors.ItemCode}}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Name}">
+                                        <label class="form-control-label ltr">Name
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">اسم
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="Name" formControlName="Name" (blur)="checkValidationErrors()" (change)="onChangeName()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.Name">
+                                            {{formErrors.Name}}
+                                        </span>
+                                      
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.SerialNumber}">
+                                        <label class="form-control-label ltr">Serial Number
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">الرقم التسلسلي
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="SerialNumber" formControlName="SerialNumber" (change)="onChangeSerialNumber()"
+                                            (blur)="checkValidationErrors()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.SerialNumber">
+                                            {{formErrors.SerialNumber}}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Supplier}">
+                                        <label class="form-control-label ltr">Supplier
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">المورد
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="Supplier" id="Supplier" formControlName="Supplier" (change)="onChangeSupplier()"
+                                            (blur)="checkValidationErrors()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.Supplier">
+                                            {{formErrors.Supplier}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Price}">
+                                        <label class="form-control-label ltr">Price
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">السعر
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="Price" id="Price" formControlName="Price" (change)="onChangePrice()" (blur)="checkValidationErrors()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.Price">
+                                            {{formErrors.Price}}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="Tax_Includes">
+                                        <label class="form-control-label ltr">Tax</label>
+                                        <label class="form-control-label rtl">ضريبة
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="Tax" id="Tax" (change)="onChangeTax()" formControlName="Tax">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label> &nbsp;</label>
+                                        <br>
+                                        <input type="checkbox" name="IncludesTax" id="IncludesTax" (change)="FieldsChange($event)"> &nbsp;
+                                        <label class="form-control-label ltr">Price Includes Tax</label>
+                                        <label class="form-control-label rtl">السعر يشمل الضريبة
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label class="form-control-label ltr">Expire Date
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">تاريخ انتهاء الصلاحية
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <select name="day" id="day" formControlName="day" class="dropdown-toggle-split form-control" (change)="myday($event.target.value)"
+                                            [(ngModel)]="selectedday">
+                                            <option *ngFor="let dates of Dayes" [value]="dates">{{dates}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label style="margin-top: 15px;"></label>
+                                        <br>
+                                        <select name="month" id="month" formControlName="month" (change)="mymonth($event.target.value)" class="dropdown-toggle-split form-control"
+                                            [(ngModel)]="selectedmonth">
+                                            <option *ngFor="let month of months" [value]="month.id">
+                                                {{month.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label style="margin-top: 15px;"></label>
+                                        <br>
+                                        <select name="year" id="year" formControlName="year" class="dropdown-toggle-split form-control" (change)="myyear($event.target.value)"
+                                            [(ngModel)]="selectedyear">
+                                            <option *ngFor="let year of years" [value]="year">
+                                                {{year}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.CostPrice}">
+                                        <label class="form-control-label ltr">Cost Price
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">سعر التكلفة
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="CostPrice" id="CostPrice" (change)="onChangeCostPrice()" formControlName="CostPrice"
+                                            (blur)="checkValidationErrors()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.CostPrice">
+                                            {{formErrors.CostPrice}}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.StockLevel}">
+                                        <label class="form-control-label ltr">Stock Level(must be a Number)
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">مستوى المخزون (يجب أن يكون عدد)
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <input type="text" class="form-control" name="StockLevel" id="StockLevel" formControlName="StockLevel" (change)="onChangeStockLevel()"
+                                            (blur)="checkValidationErrors()">
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.StockLevel">
+                                            {{formErrors.StockLevel}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Notes}">
+                                        <label class="form-control-label ltr">Notes
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <label class="form-control-label rtl">الملاحظات
+                                            <strong class="req">*</strong>
+                                        </label>
+                                        <br>
+                                        <textarea class="form-control" name="Notes" id="Notes" formControlName="Notes" (blur)="checkValidationErrors()" cols="40"
+                                            rows="5"></textarea>
+                                        <span style="color: red;" class="help-block" *ngIf="formErrors.Notes">
+                                            {{formErrors.Notes}}
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-6">
+                                        <br>
+                                        <label class="ltr">Is This Product A Expenses Purchase?</label>
+                                        <label class="ltr">If Yes, This Will Automatically Update Product Stock Levels and Cost Prices If Applicable</label>
+                                        <label class="rtl">هل هذا المنتج هو شراء المصاريف؟
+                                        </label>
+                                        <label class="rtl">إذا كانت الإجابة نعم، تلقائيا سوف يتم تحديث مستويات المنتج المخزون واسعار التكلفة
+                                            إذا وجدت
+                                        </label>
+                                        <input type="radio" id="Yes" value="all" [checked]="!isSpecial" [(ngModel)]="selected" name="radioModel" formControlName="radioModel"
+                                            (change)="onSelectionChangeYes($event)">
+                                        <label class="ltr">Yes</label>
+                                        <label class="rtl">نعم</label>
+                                        <br>
+                                        <input type="radio" id="No" value="notall" [checked]="!isSpecial" [(ngModel)]="selected" name="radioModel" formControlName="radioModel"
+                                            (change)="onSelectionChangeNo($event)">
+                                        <label class="ltr">No</label>
+                                        <label class="rtl">لا</label>
+
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-md btn-warning ltr" (click)="addproductsubmit()">
+                                            <i class="fa fa-check-circle"></i>
+                                            Submit</button>&nbsp;
+                                        <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/product']">
+                                            <i class="fa fa-ban"></i>
+                                            Cancel</button>
+                                        <button type="submit" class="btn btn-md btn-warning rtl" (click)="addproductsubmit()">
+                                            <i class="fa fa-check-circle"></i>
+                                            إرسل</button>&nbsp;
+                                        <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/product']">
+                                            <i class="fa fa-ban"></i>
+                                            إلغاء</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

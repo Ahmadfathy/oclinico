@@ -1,0 +1,466 @@
+<style type="text/css">
+  .dataTables_filter {
+    margin-left: 200px;
+
+  }
+</style>
+
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/doctors'> Urinalysis Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/doctors'>
+          <span>نموذج فحص البول</span>
+        </a>
+      </li>
+      <!-- <li class="rtl">
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<!-- ------------------------------Grid Binding --------------------------------- -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Urinalysis Report</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;نموذج فحص البول </h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>Sno</th>
+              <th>Name</th>
+              <th>File Number</th>
+              <th>Nationality</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="showdata">
+            <tr *ngFor="let report of table;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{report.Name}}</td>
+              <td>{{report.File_Number }}</td>
+              <td>{{report.Nationality }}</td>
+              <td>{{report.Date}}</td>
+
+              <td>
+                <span class="fa fa-eye text-info" style="cursor: pointer;" (click)="viewurinalreport(report.patient_id,'view',report.tran_date)"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-pencil-alt text-info" style="cursor: pointer;" (click)="editurinalreport(report.patient_id,'edit',report.tran_date)"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-print text-info" style="cursor: pointer;" (click)="print(report.patient_id,report.tran_date)"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata">No Data Found</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ------------------------------grid binding------------------------------------ -->
+
+<!-- ----------------------------print------------------------------ -->
+
+
+<div id="DivIdToPrint" style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;display:none">
+  <table cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+      <tr class="top">
+        <td colspan="2" align="left" valign="top">
+          <table width="100%">
+            <tbody>
+              <tr>
+                <td width="18%" class="title" style="border: 1px solid #000;">
+                  <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:160px;">
+                </td>
+                <td width="82%" valign="top" style="border: 1px solid #000;">
+                  <table width="100%" cellpadding="2" cellspacing="2">
+                    <tbody>
+                      <tr>
+                        <td width="47">
+                          Name :
+                        </td>
+                        <td width="323" style=" border:none; border-bottom: 1px dashed #000; outline: none;">
+                          {{name}}
+                        </td>
+                        <td width="36">
+                          : الاسم
+                        </td>
+                        <td rowspan="3" style="border: 1px solid #ccc; height: 39px; width: 40px;"></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table width="100%" cellpadding="2" cellspacing="2">
+                    <tbody>
+                      <tr>
+                        <td width="20%">
+                          File Number :
+                        </td>
+                        <td width="67%" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                          {{filenumber}}
+                        </td>
+                        <td width="13%" style="text-align: right;"> : رقم الملف </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table width="100%" cellpadding="2" cellspacing="2">
+                    <tbody>
+                      <tr>
+                        <td width="11%" height="20">
+                          Date :
+                        </td>
+                        <td width="22%" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                          {{date}}
+                        </td>
+                        <td width="10%" style="text-align: right;"> : التاريخ
+                        </td>
+                        <td width="20%">&nbsp;</td>
+                        <td width="9%">
+                          Age :
+                        </td>
+                        <td width="20%" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                          {{age}}
+                        </td>
+                        <td width="8%" style="text-align: right;">: العمر</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table width="100%" cellpadding="2" cellspacing="2">
+                    <tbody>
+                      <tr>
+                        <td width="19%">
+                          Nationality :
+                        </td>
+                        <td width="71%" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                          {{Nationality}}
+                        </td>
+                        <td width="10%" style="text-align: right;">: الجنسية</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table width="100%" cellpadding="2" cellspacing="2">
+                    <tbody>
+                      <tr>
+                        <td width="22%">
+                          Gender :
+                        </td>
+                        <td width="34%">
+                          <label for="Male1">
+                            <input type="radio" value="radiomale" id="Male1" name="radioModel1"> Male | ذكر</label>
+                        </td>
+                        <td width="28%">
+                          <label for="Famale1">
+                            <input type="radio" value="radiofemale" id="Famale1" name="radioModel1"> Female | انثى</label>
+                        </td>
+                        <td width="16%" style="text-align: right;">: الجنس</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%">
+            <tbody>
+              <tr>
+                <td style="font-weight: bold; font-size: 18px; text-align: center;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border: 1px solid #000;">
+          <table width="100%" cellpadding="2" cellspacing="2">
+            <tbody>
+              <tr>
+                <td colspan="4" style="font-size: 20px; font-weight: bold; text-align: center; background-color: #eb881e; color: #000; padding: 5px;">
+                  Urinalysis Request & Report &nbsp; &nbsp; &nbsp; نموذج فحص البول
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div style="width: 40%; float: left; text-align: center;">
+                    <input type="checkbox" value="" id="BRoutine" />
+                    <label for="Routine">Routine</label>
+                  </div>
+                  <div style="width: 20%; float: left; text-align: center;">
+                    <input type="checkbox" value="" id="BUrgent" />
+                    <label for="Urgent">Urgent</label>
+                  </div>
+                  <div style="width: 40%; float: left; text-align: center;">
+                    <input type="checkbox" value="" id="BPre-operative" />
+                    <label for="Pre-operative">Pre-operative</label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                </td>
+              </tr>
+              <tr>
+                <td width="19%">
+                  Clinical Comments :
+                </td>
+                <td colspan="3" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                  {{clinicalcomments}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Requested by :
+                </td>
+                <td width="35%" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                  {{requestedby}}
+                </td>
+                <td width="20%">
+                  Stamp & Signature :
+                </td>
+                <td width="26%" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                  {{stampsignature}}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4" style="height: 10px;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%">
+            <tbody>
+              <tr>
+                <td style="font-weight: bold; font-size: 18px; text-align: center; height: 10px;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%" style="border-collapse: collapse;" cellpadding="5" cellspacing="5">
+            <tbody>
+              <tr>
+                <td width="17%" rowspan="2" style="border: 1px solid #000; text-align: center;">Physical Examination</td>
+                <td width="17%" style="border-top: 1px solid #000;">
+                  <input type="checkbox" value="" id="BYellow" />
+                  <label for="Yellow">Yellow</label>
+                </td>
+                <td width="16%" style="border-top: 1px solid #000;">
+                  <input type="checkbox" value="" id="BDarkY" />
+                  <label for="DarkY">Dark Y</label>
+                </td>
+                <td width="17%" style="border-top: 1px solid #000;">
+                  <input type="checkbox" value="" id="BPaleY" />
+                  <label for="PaleY">Pale Y</label>
+                </td>
+                <td width="14%" style="border-top: 1px solid #000;">
+                  <input type="checkbox" value="" id="BBloody" />
+                  <label for="Bloody">Bloody</label>
+                </td>
+                <td width="19%" style="border-top: 1px solid #000; border-right: 1px solid #000;">
+                  <input type="checkbox" value="" id="BReddish" />
+                  <label for="Reddish">Reddish</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" value="" id="BBownish" />
+                  <label for="Bownish">Brownish</label>
+                </td>
+                <td>
+                  <input type="checkbox" value="" id="BClear" />
+                  <label for="Clear">Clear</label>
+                </td>
+                <td>
+                  <input type="checkbox" value="" id="BTurbid" />
+                  <label for="Turbid">Turbid</label>
+                </td>
+                <td colspan="2" style="border-right: 1px solid #000;width:calc(100% - 84px); border-bottom: 1px dashed #000; outline: none;">
+                  <input type="checkbox" value="" id="BSq.Gr" />
+                  <label for="Sq.Gr">Sp.Gr</label> : {{sqgrvalue}}</td>
+              </tr>
+              <tr>
+                <td colspan="6"></td>
+              </tr>
+              <tr>
+                <td rowspan="3" style="border: 1px solid #000; text-align: center;"> Chemical Examination</td>
+                <td colspan="2" style="border-top: 1px solid #000;width:calc(100% - 112px); border:none; outline: none;">Glucose (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{glucose}}</span>)
+                  <!-- ({{glucose}}) -->
+                </td>
+                <td colspan="2" style="border-top: 1px solid #000;width:calc(100% - 102px); border:none; outline: none;">Protien (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{protien}}</span>)
+                  <!-- ({{protien}}) -->
+                </td>
+                <td style="border-top: 1px solid #000; border-right: 1px solid #000;width:calc(100% - 68px);outline: none;">Ketone (
+                  <span style="width: 52px; height: 20px; display: inline-block;">{{ketone}}</span>)
+                  <!-- ({{ketone}}) -->
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style=" width:calc(100% - 111px); border:none; outline: none;">Bilirubin (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{bilirubin}}</span>)
+                  <!-- ({{bilirubin}}) -->
+                </td>
+                <td colspan="2" style=" width:calc(100% - 140px); border:none; outline: none;">Urob ilinogen (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{urobilinogen}}</span>)
+
+                  <!-- ({{urobilinogen}}) -->
+                </td>
+                <td style="border-right: 1px solid #000;"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style=" width:calc(100% - 48px); outline: none;">PH
+                  <span style=" width:calc(120% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{ph}} </span>
+                  <!-- {{ph}} -->
+                </td>
+                <td colspan="3" style="border-right: 1px solid #000; width:calc(100% - 84px);outline: none;">Other :
+                  <span style=" width:calc(120% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{other}} </span>
+                  <!-- {{other}} -->
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6"></td>
+              </tr>
+              <tr>
+                <td rowspan="4" style="border: 1px solid #000; text-align: center;">Microscopi Examination</td>
+                <td colspan="2" style="border-top: 1px solid #000; border:none; outline: none;">Pus
+                  <span style=" width:calc(100% - 160px); height: 20px;
+                      display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{pus1}} </span>
+                  (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{pus2}}</span>)/
+                  <small style="font-size: 12px;">HPF</small>
+                </td>
+                <td colspan="3" style="border-top: 1px solid #000; border-right: 1px solid #000;">Crystals :
+                  <span style=" width:calc(98% - 210px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{crystals1}} </span>
+                  (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{crystals2}}</span>)/
+                  <small style="font-size: 12px;">HPF</small>
+
+
+                  <!--                   
+                      {{crystals1}} ({{crystals2}})/
+                      <small style="font-size: 12px;">HPF</small> -->
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="width:calc(100% - 160px); border:none;outline: none;">RBC
+                  <span style=" width:calc(92% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{rbc1}} </span>
+                  (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{rbc2}}</span>)/
+                  <small style="font-size: 12px;">HPF</small>
+
+                  <!-- {{rbc1}} ({{rbc2}})/
+                      <small style="font-size: 12px;">HPF</small> -->
+                </td>
+                <td colspan="3" style="border-right: 1px solid #000;">Amorphous:Ureat
+                  <span style=" width:calc(66% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{amorphous1}} </span>
+                  (
+                  <span style="width: 73px; height: 20px; display: inline-block;">{{amorphous2}}</span>)/
+                  <small style="font-size: 12px;">HPF</small>
+
+                  <!-- {{amorphous1}} ({{amorphous2}})/
+                      <small style="font-size: 12px;">HPF</small> -->
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style=" width:calc(100% - 166px); border:none; outline: none;">Epith Cells
+                  <span style=" width:calc(81% - 152px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{epithcells1}} </span>
+                  (
+                  <span style="width: 60px; height: 20px; display: inline-block;">{{epithcells2}}</span>)/
+                  <small style="font-size: 12px;">HPF</small>
+
+                  <!-- {{epithcells1}} ({{epithcells2}})/
+                      <small style="font-size: 12px;">HPF</small> -->
+                </td>
+                <td colspan="3" style="border-right: 1px solid #000;width:calc(100% - 58px);outline: none;">Other :
+                  <span style=" width:calc(120% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{otherME}} </span>
+                  <!-- {{otherME}} -->
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6" style="border-right: 1px solid #000;"></td>
+              </tr>
+              <tr>
+                <td colspan="6" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">Remarks:
+                  <span style=" width:calc(110% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{remarks}} </span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" style="border-bottom: 1px solid #000; border-left: 1px solid #000;border-bottom: 1px solid #000">Checked by:
+                  <span style=" width:calc(110% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{checkedby}} </span>
+                </td>
+                <td colspan="3" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Stamp & Signature :
+                  <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{finastampsignature}} </span>
+
+                </td>
+                <!-- <td width="323" style=" border:none; outline: none;">
+                      {{finastampsignature}}
+                    </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

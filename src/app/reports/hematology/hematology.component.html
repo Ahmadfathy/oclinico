@@ -1,0 +1,649 @@
+<div class="row">
+	<div class="col-md-12">
+		<ul id="breadcrumb">
+			<li>
+				<a class="nav-link" routerLink='/dashboard'>
+					<span class="fa fa-fw fa-home"> </span>
+				</a>
+			</li>
+			<li class="ltr">
+				<a class="nav-link" routerLink='/reports' *ngIf="inreportspage">Reports</a>
+			</li>
+			<li class="rtl">
+				<a class="nav-link" routerLink='/reports' *ngIf="inreportspage">
+					<span>تقارير</span>
+				</a>
+			</li>
+			<li class="ltr">
+				<a class="nav-link" routerLink='/autocomplate' *ngIf="inpatientpage"> Patient Details</a>
+			</li>
+			<li class="rtl">
+				<a class="nav-link" routerLink='/autocomplate' *ngIf="inpatientpage">
+					<span> تفاصيل المريض</span>
+				</a>
+			</li>
+			<li class="ltr">
+				<a class="nav-link" routerLink='/hematologygrid' *ngIf="inreportspage"> Hematology Request & Report</a>
+			</li>
+			<li class="rtl">
+				<a class="nav-link" routerLink='/hematologygrid' *ngIf="inreportspage">
+					<span>نموذج تحليل امراض الدم</span>
+				</a>
+			</li>
+			<li class="ltr">
+				<a class="nav-link" *ngIf="inpatientpage"> Hematology Request & Report</a>
+			</li>
+			<li class="rtl">
+				<a class="nav-link" *ngIf="inpatientpage">
+					<span>نموذج تحليل امراض الدم</span>
+				</a>
+			</li>
+			<li class="ltr" *ngIf="inreportspage">
+				<a class="nav-link">{{paramtext}} Hematology Request & Report</a>
+			</li>
+			<li class="rtl" *ngIf="inreportspage">
+				<a class="nav-link">
+					<span>نموذج تحليل امراض الدم</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="m-b-0 text-black ltr" *ngIf="inreportspage">
+					<i class="sl-icon-menu font-14"></i> &nbsp;{{paramtext}} Hematology Request & Report</h4>
+				<h4 class="m-b-0 text-black rtl" *ngIf="inreportspage">
+					<i class="sl-icon-menu font-14"></i> &nbsp;نموذج تحليل امراض الدم</h4>
+				<h4 class="m-b-0 text-black ltr" *ngIf="inpatientpage">
+					<i class="sl-icon-menu font-14"></i> &nbsp;Hematology Request & Report</h4>
+				<h4 class="m-b-0 text-black rtl" *ngIf="inpatientpage">
+					<i class="sl-icon-menu font-14"></i> &nbsp;نموذج تحليل امراض الدم</h4>
+			</div>
+			<div class="card-body">
+				<div style="float:right;margin-bottom: 20px;">
+					<button class="btn btn-info ltr" (click)="print()">
+						<i class="icon-print icon-white i_btn"></i>Print</button>
+				</div>
+				<div style="float:left;margin-bottom: 20px;" class="rtl">
+					<button class="btn btn-info rtl" (click)="print()">
+						<i class="icon-print icon-white i_btn"></i>طباعة</button>
+				</div>
+				<div class="row">
+					<div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;" id="disable">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tbody>
+								<tr class="top">
+									<td colspan="2" align="left" valign="top">
+										<table width="100%">
+											<tbody>
+												<tr>
+													<td width="18%" class="title" style="border: 1px solid #000;">
+														<img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:160px;">
+													</td>
+													<td width="82%" valign="top" style="border: 1px solid #000;">
+
+														<table width="100%" cellpadding="2" cellspacing="2">
+															<tbody>
+																<tr>
+																	<td width="47">
+																		Name :
+																	</td>
+																	<td width="323">
+																		<input type="text" id='name' [(ngModel)]="name" style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+																		/>
+																	</td>
+																	<td width="36">
+																		: الاسم
+																	</td>
+																	<td rowspan="3" style="border: 1px solid #ccc; height: 39px; width: 40px;"></td>
+																</tr>
+																<tr>
+																	<td>&nbsp;</td>
+																	<td>&nbsp;</td>
+																	<td>&nbsp;</td>
+																</tr>
+															</tbody>
+														</table>
+														<table width="100%" cellpadding="2" cellspacing="2">
+															<tbody>
+																<tr>
+																	<td width="18%">
+																		File Number :
+																	</td>
+																	<td width="69%">
+																		<input type="text" value="" id='filenumber' [(ngModel)]="filenumber" style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+																		/>
+																	</td>
+																	<td width="13%" style="text-align: right;"> : رقم الملف </td>
+																</tr>
+															</tbody>
+														</table>
+														<table width="100%" cellpadding="2" cellspacing="2">
+															<tbody>
+																<tr>
+																	<td width="9%">
+																		Date :
+																	</td>
+																	<td width="27%">
+																		<input type="date" [(ngModel)]="date" id='date' style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+																		/>
+																	</td>
+																	<td width="10%" style="text-align: right;"> : التاريخ
+																	</td>
+																	<td width="13%">&nbsp;</td>
+																	<td width="8%">
+																		Age :
+																	</td>
+																	<td width="27%">
+																		<input type="number" [(ngModel)]="age" id='age' style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+																		/>
+																	</td>
+																	<td width="6%" style="text-align: right;">: العمر</td>
+																</tr>
+															</tbody>
+														</table>
+														<table width="100%" cellpadding="2" cellspacing="2">
+															<tbody>
+																<tr>
+																	<td width="16%">
+																		Nationality :
+																	</td>
+																	<td width="74%">
+																		<input type="text" value="" id='nationality' [(ngModel)]="nationality" style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+																		/>
+																	</td>
+																	<td width="10%" style="text-align: right;">: الجنسية</td>
+																</tr>
+															</tbody>
+														</table>
+														<table width="100%" cellpadding="2" cellspacing="2">
+															<tbody>
+																<tr>
+																	<td width="22%">
+																		Gender :
+																	</td>
+																	<td width="34%">
+																		<input type="radio" value="Male" name="radioModel" id='male' (change)="genderchange($event)" />Male | ذكر
+																	</td>
+																	<td width="28%">
+																		<input type="radio" value="Female" name="radioModel" (change)="genderchange($event)" id='female' />Female |انثى
+																	</td>
+																	<td width="16%" style="text-align: right;">: الجنس</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<table width="100%">
+											<tbody>
+												<tr>
+													<td style="font-weight: bold; font-size: 18px; text-align: center;">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border: 1px solid #000;">
+										<table width="100%" cellpadding="2" cellspacing="2">
+											<tbody>
+
+												<tr>
+													<td colspan="4" style="font-size: 20px; font-weight: bold; text-align: center; background-color: #b64fd4; color: #fff; padding: 5px;">
+														Hematology Request & Report &nbsp; &nbsp; &nbsp; نموذج تحليل أمراض الدم </td>
+
+												</tr>
+												<tr>
+													<td colspan="4">
+														<div style="width: 40%; float: left; text-align: center;">
+															<input type="checkbox" value="" id="Routine" [(ngModel)]="Routine" (change)="checkboxchange()" />
+															<label for="Routine">Routine</label>
+														</div>
+														<div style="width: 20%; float: left; text-align: center;">
+															<input type="checkbox" value="" id="Urgent" [(ngModel)]='Urgent' (change)="checkboxchange()" />
+															<label for="Urgent">Urgent</label>
+														</div>
+														<div style="width: 40%; float: left; text-align: center;">
+															<input type="checkbox" value="" id="Preoperative" [(ngModel)]='Preoperative' (change)="checkboxchange()" />
+															<label for="Preoperative">Pre-operative</label>
+														</div>
+													</td>
+
+												</tr>
+												<tr>
+													<td colspan="4">
+													</td>
+												</tr>
+												<tr>
+													<td width="19%">
+														Clinical Comments :
+													</td>
+													<td colspan="3">
+														<input type="text" value="" id='clinicalcoment' [(ngModel)]='clinicalcoment' style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Requested by :
+													</td>
+													<td width="35%">
+														<input type="text" value="" id='requestedby' [(ngModel)]='requestedby' style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+													<td width="20%">
+														Stamp & Signature :
+													</td>
+													<td width="26%">
+														<input type="text" value="" id='stamp' [(ngModel)]='stamp' style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="4" style="height: 10px;">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<table width="100%">
+											<tbody>
+												<tr>
+													<td style="font-weight: bold; font-size: 18px; text-align: center; height: 10px;">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="border: 1px solid #000;">
+										<table width="100%" cellpadding="5" cellspacing="5">
+											<tbody >
+												<tr style="border-bottom: 1px solid #000;">
+													<td colspan="3" style="text-align: center; font-size: 16px; font-weight: bold;">
+														...........Test..........
+													</td>
+												</tr>
+												<tr style="border-bottom: 1px solid #000;border-right: 1px solid #000;">
+													<td width="50%">
+														<input type="checkbox" [(ngModel)]="CBC" (change)="checkboxchange()" id="CBC" />
+														<label for="CBC">CBC</label>:
+													</td>
+													<td colspan="2">
+														<input type="checkbox" value="ESR" id="ESR" [(ngModel)]='ESR' (change)="checkboxchange()" />
+														<label for="ESR">ESR</label>:</td>
+												</tr>
+												<tr style="border-bottom: 1px solid #000;border-right: 1px solid #000;">
+													<td>
+														<input type="checkbox" value="HbA1c" id="HbA1c" [(ngModel)]='HbA1c' (change)="checkboxchange()" />
+														<label for="HbA1c">Hb A1c</label>:
+													</td>
+													<td width="24%" rowspan="2" style="border: 1px solid #000;">
+														<input type="checkbox" value="" id="PT" [(ngModel)]='PT' (change)="checkboxchange()" />
+														<label for="PT">PT</label>:
+													</td>
+													<td width="26%">INR :</td>
+												</tr>
+												<tr style="border-bottom: 1px solid #000;border-right: 1px solid #000;">
+													<td>
+														<input type="checkbox" value="BI.Grop" id="BIGrop" [(ngModel)]='BIGrop' (change)="checkboxchange()" />
+														<label for="BIGrop">BI.Grop</label>
+														: </td>
+													<td>Cons :</td>
+												</tr>
+												<tr style="border-bottom: 1px solid #000;border-right: 1px solid #000;">
+													<td>
+														<input type="checkbox" value="Malaria" [(ngModel)]='Malaria' (change)="checkboxchange()" id="Malaria" />
+														<label for="Malaria">Malaria</label>
+														:</td>
+													<td colspan="2">
+														<input type="checkbox" value="PTT" id="PTT" [(ngModel)]='PTT' (change)="checkboxchange()" />
+														<label for="PTT">PTT
+														</label>
+														:</td>
+												</tr>
+												<tr style="border-bottom: 1px solid #000;border-right: 1px solid #000;">
+													<td>
+														<input type="checkbox" value="BI.time" id="BItime" [(ngModel)]='BItime' (change)="checkboxchange()" />
+														<label for="BItime">BI.time</label>
+														:</td>
+													<td colspan="2">
+														<input type="checkbox" value="CI.time" id="CItime" [(ngModel)]='CItime' (change)="checkboxchange()" />
+														<label for="CItime">CI.time</label> :</td>
+												</tr>
+
+												<tr style="border-bottom: 1px solid #000;">
+													<td colspan="3">
+														<input type="checkbox" value="" style="border: 1px solid #ccc; background-color: #fff; width: 18px; height: 18px;" /> Others :
+														<input type="text" value="" id='Others' [(ngModel)]='Others' style="width: calc(100% - 85px); border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+												</tr>
+												<tr style="border-bottom: 1px solid #000;">
+													<td colspan="3">Remarks :
+														<input type="text" value="" id='remarks' [(ngModel)]='remarks' style="width: calc(100% - 70px); border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+												</tr>
+												<tr>
+													<td>Checked by:
+														<input type="text" value="" id='checkedby' [(ngModel)]='checkedby' style="width: calc(100% - 85px); border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+													<td colspan="2">Stamp & Signature :
+														<input type="text" value="" id='stampsinature' [(ngModel)]='stampsinature' style="width: calc(100% - 130px); border:none; border-bottom: 1px dashed #000; outline: none;"
+														/>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<button class='btn btn-info ltr' style='margin-left:41%' (click)='insert()' *ngIf='insertbutton'>Submit</button>
+						<button class='btn btn-info ltr' style='margin-left:41%' (click)='update()' *ngIf='updatebutton'>Update</button>
+						<button class='btn btn-info rtl' style='margin-left:41%' (click)='insert()' *ngIf='insertbutton'>إرسل</button>
+						<button class='btn btn-info rtl' style='margin-left:41%' (click)='update()' *ngIf='updatebutton'>تحديث</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- -------------------- print --------------------------- -->
+
+<div id="DivIdToPrint" style='display:none'>
+	<div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;">
+		<table cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+				<tr class="top">
+					<td colspan="2" align="left" valign="top">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<td width="18%" class="title" style="border: 1px solid #000;">
+										<img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:160px;">
+									</td>
+									<td width="82%" valign="top" style="border: 1px solid #000;">
+										<table width="100%" cellpadding="2" cellspacing="2">
+											<tbody>
+												<tr>
+													<td width="47">
+														Name :
+													</td>
+													<td width="323">
+														<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{name}}</div>
+													</td>
+													<td width="36">
+														: الاسم
+													</td>
+													<td rowspan="3" style="border: 1px solid #ccc; height: 39px; width: 40px;"></td>
+												</tr>
+												<tr>
+													<td>&nbsp;</td>
+													<td>&nbsp;</td>
+													<td>&nbsp;</td>
+												</tr>
+											</tbody>
+										</table>
+										<table width="100%" cellpadding="2" cellspacing="2">
+											<tbody>
+												<tr>
+													<td width="20%">
+														File Number :
+													</td>
+													<td width="67%">
+														<div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{filenumber}}</div>
+													</td>
+													<td width="13%" style="text-align: right;"> : رقم الملف </td>
+												</tr>
+
+											</tbody>
+										</table>
+										<table width="100%" cellpadding="2" cellspacing="2">
+											<tbody>
+												<tr>
+													<td width="9%">
+														Date :
+													</td>
+													<td width="27%">
+														<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{date}}</div>
+													</td>
+													<td width="10%" style="text-align: right;"> : التاريخ
+													</td>
+													<td width="13%">&nbsp;</td>
+													<td width="10%">
+														Age :
+													</td>
+													<td width="25%">
+														<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{age}}</div>
+													</td>
+													<td width="6%" style="text-align: right;">: العمر</td>
+												</tr>
+											</tbody>
+										</table>
+										<table width="100%" cellpadding="2" cellspacing="2">
+											<tbody>
+												<tr>
+													<td width="17%">
+														Nationality :
+													</td>
+													<td width="72%">
+														<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{nationality}}</div>
+													</td>
+													<td width="10%" style="text-align: right;">: الجنسية</td>
+												</tr>
+											</tbody>
+										</table>
+										<table width="100%" cellpadding="2" cellspacing="2">
+											<tbody>
+												<tr>
+													<td width="22%">
+														Gender :
+													</td>
+													<td width="34%">
+														<input type="checkbox" value="" id="Male1" />
+														<label for="Male">Male | ذكر</label>
+													</td>
+													<td width="28%">
+														<input type="checkbox" value="" id="Famale1" />
+														<label for="Famale">Famale | انثى</label>
+													</td>
+													<td width="16%" style="text-align: right;">: الجنس</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<td style="font-weight: bold; font-size: 18px; text-align: center;">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="border: 1px solid #000;">
+						<table width="100%" cellpadding="2" cellspacing="2">
+							<tbody>
+								<tr>
+									<td colspan="4" style="font-size: 20px; font-weight: bold; text-align: center; background-color: #b64fd4; color: #fff; padding: 5px;">
+										Hematology Request & Report &nbsp; &nbsp; &nbsp; نموذج تحليل أمراض الدم </td>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<div style="width: 40%; float: left; text-align: center;">
+											<input type="checkbox" value="" id="Routine1" />
+											<label for="Routine">Routine</label>
+										</div>
+										<div style="width: 20%; float: left; text-align: center;">
+											<input type="checkbox" value="" id="Urgent1" />
+											<label for="Urgent">Urgent</label>
+										</div>
+										<div style="width: 40%; float: left; text-align: center;">
+											<input type="checkbox" value="" id="Preoperative1" />
+											<label for="Pre-operative">Pre-operative</label>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+									</td>
+								</tr>
+								<tr>
+									<td width="21%">
+										Clinical Comments :
+									</td>
+									<td colspan="3">
+										<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{clinicalcoment}}</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Requested by :
+									</td>
+									<td width="35%">
+										<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{requestedby}}</div>
+									</td>
+									<td width="24%">
+										Stamp & Signature :
+									</td>
+									<td width="20%">
+										<div style="width: 100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{stamp}}</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4" style="height: 10px;">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table width="100%">
+							<tbody>
+								<tr>
+									<td style="font-weight: bold; font-size: 18px; text-align: center; height: 10px;">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table width="100%" border="1" cellpadding="5" cellspacing="5">
+							<tbody>
+								<tr>
+									<td colspan="3" style="text-align: center; font-size: 16px; font-weight: bold;">
+										...........Test..........
+									</td>
+								</tr>
+								<tr>
+									<td width="50%">
+										<input type="checkbox" value="" id="CBC1" />
+										<label for="CBC1">CBC</label>:
+									</td>
+									<td colspan="2">
+										<input type="checkbox" value="" id="ESR1" />
+										<label for="ESR">ESR</label>:</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" value="" id="HbA1c1" />
+										<label for="HbA1c">Hb A1c</label>:
+									</td>
+									<td width="24%" rowspan="2">
+										<input type="checkbox" value="" id="PT1" />
+										<label for="PT">PT</label>:
+									</td>
+									<td width="26%">INR :</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" value="" id="BIGrop1" />
+										<label for="BI.Grop">BI.Grop</label>
+										: </td>
+									<td>Cons :</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" value="" id="Malaria1" />
+										<label for="Malaria">Malaria</label>
+										:</td>
+									<td colspan="2">
+										<input type="checkbox" value="" id="PTT1" />
+										<label for="PTT">PTT
+										</label>
+										:</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" value="" id="BItime1" />
+										<label for="BI.time">BI.time</label>
+										:</td>
+									<td colspan="2">
+										<input type="checkbox" value="" id="CItime1" />
+										<label for="CI.time">CI.time</label> :</td>
+								</tr>
+
+								<tr>
+									<td colspan="3">
+										Others :
+										<div style="width: calc(100% - 84px); display: inline-block; border:none; border-bottom: 1px dashed #000; outline: none;">{{Others}}</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3">Remarks :
+										<div style="width: calc(100% - 84px); display: inline-block; border:none; border-bottom: 1px dashed #000; outline: none;">{{remarks}}</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Checked by:
+										<div style="width: calc(100% - 100px); display: inline-block; border:none; border-bottom: 1px dashed #000; outline: none;">{{checkedby}}</div>
+									</td>
+									<td colspan="2">Stamp & Signature :
+										<div style="width: calc(100% - 150px); display: inline-block; border:none; border-bottom: 1px dashed #000; outline: none;">{{stampsinature}}</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- -------------------------print---------------------------- -->

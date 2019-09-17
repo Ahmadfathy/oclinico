@@ -1,0 +1,175 @@
+<div class="preloader" style="background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Assign Rooms</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>Assign Rooms</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Assign Rooms</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Assign Rooms</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Select Gender</label>
+            <select (change)="genderchange($event.target.value)" class="custom-select col-12" name="gender">
+              <option label="select" disabled></option>
+              <option *ngFor="let item of genders" [value]="item.name">
+                {{item.name}}
+              </option>
+            </select>        
+          </div>
+          <div class="col-md-6">
+              <label>Select Department</label>
+              <select (change)="specchange($event.target.value)" class="custom-select col-12" name="spec">
+                <option label="select" disabled></option>
+                <option *ngFor="let item of listofspecialization" [value]="item.speName">
+                  {{item.speName}}
+                </option>
+              </select>
+            </div>
+        </div>
+        <br>
+        <div align="center">
+          <button (click)="mydata()" class="btn btn-success">Search</button>
+        </div>
+        <br>
+
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>#</th>
+              <th>Doctor Id</th>
+              <th>Doctor Name</th>
+              <th>Department</th>
+              <th>Room No.</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="showdata">
+            <tr *ngFor="let s of roomdetails;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{s.Practitioner_Id}}</td>
+              <td>{{s.Name}}</td>
+              <td>{{s.designation}}</td>
+              <td>{{s.Assign_Rooms}}</td>
+              <td style="display:flex;">
+                <span style="color:red;cursor: pointer" *ngIf="addroom[i]" (click)="room(s,'insert')">&nbsp;&nbsp;&nbsp;Assign Room</span>
+                <span style="color:red;cursor: pointer" *ngIf="assignedrm[i]" (click)="room(s,'update')">&nbsp;&nbsp;&nbsp;Update Room
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="nodata">No Data Found</div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #assignroomno let-modal class="mymodal">
+    <div class="mytemplate">
+      <div class="modal-header" style="background-color: #7996e5;color: white;">
+        <h4 class="modal-title" id="modal-basic-title">Assign Room</h4>
+        <button type="button" style="color: white;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-control-label ltr">Doctor Name</label>
+            <input id="labouroffice" [(ngModel)]="docname" type="text" class="form-control" disabled>
+          </div>
+          <div class="col-md-6">
+            <label class="form-control-label ltr">Department</label>
+            <input id="departmentname" [(ngModel)]="departmentname" type="text" class="form-control" disabled>
+          </div>
+
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group m-b-30">
+              <label class="mr-sm-2 ltr">Room No</label>
+              <select name="title" [(ngModel)]="roomnoinput" class="custom-select mr-sm-2 ltr" (change)="roomchange($event.target.value)">
+                <option label="select" disabled></option>
+                <option *ngFor="let item of roomnumbers" [value]="item.Roomname">{{item.Roomname}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="docdiv">
+          <hr>
+          <p align="center">Doctor Details</p>
+          <div class="row">
+            <div class="col col-2"></div>
+            <div class="col col-4">Doctor Id</div>
+            <div class="col col-2">:</div>
+            <div class="col col-4">{{newdocid}}</div>
+          </div>
+          <div class="row">
+            <div class="col col-2"></div>
+            <div class="col col-4">Doctor Name</div>
+            <div class="col col-2">:</div>
+            <div class="col col-4">{{newdocname}}</div>
+          </div>
+          <div class="row">
+            <div class="col col-2"></div>
+            <div class="col col-4">Department</div>
+            <div class="col col-2">:</div>
+            <div class="col col-4">{{newdept}}</div>
+          </div>
+          <div class="row">
+            <div class="col col-2"></div>
+            <div class="col col-4">Room No</div>
+            <div class="col col-2">:</div>
+            <div class="col col-4">{{newroomno}}</div>
+          </div>
+          <br>
+        </div>
+        <div *ngIf="showbuttons">
+          <div class="row" align="center" style="padding: 10px;">
+            <div col-md-6 [hidden]="inserthide">
+              <button type="button" class="btn btn-warning ltr" (click)="insertclick()">Insert</button>
+            </div>
+            <div col-md-6 [hidden]="updatehide">
+              <button type="button" class="btn btn-warning ltr" (click)="updateclick()">Update</button>
+            </div>
+            <button class="btn btn-info margin ml-2 ltr" (click)="cancel()">
+              <i class="fa fa-ban"></i> Cancel
+            </button>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

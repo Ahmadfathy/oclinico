@@ -1,0 +1,133 @@
+<!-- 
+
+
+<div class="container"> 
+  <div class="row">
+      <div class="col-md-12">
+        
+    <ul id="breadcrumb">
+      <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+      <li><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+    </ul>
+    <div class="text-right justify-content-between">
+  
+      <span> <a  class="nav-link " style="display: inline-block;" routerLink='/AddLaboratory' ><i class="fa fa-fw fa-user"></i> Add</a></span>    
+       
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="container">
+  <h2>Laboratory Details</h2>
+  
+  <table class="table table-hover table-bordered" cellspacing="0">
+    <thead>
+      <tr class="headrow">
+       
+        <th>Patient Name</th>
+        <th>Report Id</th>
+        <th>Transaction Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lab of LaboratoryData">
+       
+        <td>{{lab.Patientname}}</td>
+        <td>{{lab.Report_Id}}</td>
+        <td>{{lab.Transdate}}</td>
+        <td style="display:flex;"> 
+            
+      
+                
+                <span> <a  class="nav-link "  routerLink='/EditLaboratory' [queryParams]="{sno : lab.Sno}"><i class="fa fa-fw fa-edit"></i> Edit </a></span>    
+                 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ -->
+
+ <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+  <div class="spinner" style="margin: 100px auto !important;">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="ltr" id="breadcrumb" style="margin-left: -6%;">
+        <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+        <li class="ltr"><a class="nav-link" >Laboratory Details</a></li>
+      </ul>
+      <ul class="rtl" id="breadcrumb" style="margin-right: -6%;">
+        <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>إعدادات</a></li>
+        <li class="rtl"><a class="nav-link" >تفاصيل المعمل</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Laboratory Details</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل المعمل</h4>
+      </div>
+      <div class="card-body">
+        <div class="text-right justify-content-between">
+          <span>
+            <button routerLink='/AddLaboratory' type="button" class="btn btn-warning ltr">
+              <i class="fa fa-fw fa-user"></i>Add</button>
+            <button routerLink='/AddLaboratory' type="button" class="btn btn-warning rtl">
+              <i class="fa fa-fw fa-user rtl"></i>إضافة</button>
+          </span>
+        </div>
+        <div class="table-responsive">
+          <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered"
+            cellspacing="0">
+            <thead class="ltr">
+              <tr>
+                <th>Patient Name</th>
+                <th>Report Id</th>
+                <th>Transaction Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <thead class="rtl">
+              <tr>
+                <th>اسم المريض</th>
+                <th>معرف التقرير</th>
+                <th>تاريخ العملية</th>
+                <th>الاجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let lab of LaboratoryData">
+                <td>{{lab.Patientname}}</td>
+                <td>{{lab.Report_Id}}</td>
+                <td>{{lab.Transdate}}</td>
+                <td style="display:flex;">
+                  <span>
+                    <a class="nav-link" routerLink='/EditLaboratory' [queryParams]="{sno : lab.Sno}">
+                      <i class="fa fa-pencil-alt text-info"></i>
+                    </a>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

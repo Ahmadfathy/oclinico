@@ -1,0 +1,132 @@
+
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+
+  <h3 class="ltr">Edit Referal</h3>
+  <h3 class="rtl">تعديل الإحالة</h3>
+
+  <div class="container editcontainer"> 
+      <div class="row">
+          <div class="col-md-12">
+            
+        <ul id="breadcrumb" class="aligncls">
+          <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+          <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+          <li class="ltr"><a class="nav-link"  routerLink='/ReferralMasterDetails'><span ></span>Referral Details</a></li>
+          <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+          <li class="rtl"><a class="nav-link"  routerLink='/ReferralMasterDetails'><span ></span>تفاصيل الإحالة</a></li>
+      
+        </ul>
+      </div>
+    </div>
+    </div>
+
+
+<form [formGroup]="editreferal">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Referal</h4>
+                <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تعديل الإحالة</h4>
+              </div>
+            <div class="card-body">
+                
+                <div class="row">
+                      
+                 
+                  <div class="col-md-4" [ngClass]="{'has-error' : formErrors.companyname}">
+                      <label class="form-control-label ltr">Company Name</label>
+                      <label class="form-control-label rtl">اسم الشركة</label>
+                        <input type="text" class="form-control"  formControlName="companyname"  (blur)="checkValidationErrors()">
+                        
+                        <span class="help-block errorcolorcls" *ngIf="formErrors.companyname">
+                          {{formErrors.companyname}}
+                        </span>
+                  
+                </div>
+  
+  
+                <div class="col-md-4" [ngClass]="{'has-error' : formErrors.contatperson}">
+                    <label class="form-control-label ltr">Contact Person</label>
+                    <label class="form-control-label rtl">الشخص الذي يمكن الاتصال به</label>
+                      <input type="text" class="form-control"  formControlName="contatperson"  (blur)="checkValidationErrors()">
+                      <span class="help-block errorcolorcls" *ngIf="formErrors.contatperson">
+                        {{formErrors.contatperson}}
+                      </span>
+                 
+              </div>
+                <div class="col-md-4" [ngClass]="{'has-error' : formErrors.address}">
+                    <label class="form-control-label ltr">Address</label>
+                    <label class="form-control-label rtl">عنوان</label>
+                      <input type="text" class="form-control"  formControlName="address"  (blur)="checkValidationErrors()">
+                      <span class="help-block errorcolorcls" *ngIf="formErrors.address">
+                        {{formErrors.address}}
+                      </span>
+                 
+              </div>
+  
+                 
+                 
+              </div>
+                    
+              <div class="row">
+             
+                
+                <div class="col-md-4" [ngClass]="{'has-error' : formErrors.city}">
+                    <label class="form-control-label ltr">City</label>
+                    <label class="form-control-label rtl">مدينة</label>
+                  <input type="text" class="form-control"  formControlName="city"  (blur)="checkValidationErrors()">
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.city">
+                    {{formErrors.city}}
+                  </span>
+               </div>
+              <div class="col-md-4" [ngClass]="{'has-error' : formErrors.phoneno}">
+                  <label class="form-control-label ltr">Phone No</label>
+                  <label class="form-control-label rtl">رقم الهاتف</label>
+                <input type="text" (keypress)="keyPressphoneno($event)" class="form-control"  formControlName="phoneno"  (blur)="checkValidationErrors()">
+                <span class="help-block errorcolorcls" *ngIf="formErrors.phoneno">
+                  {{formErrors.phoneno}}
+                </span>
+             </div>
+              <div class="col-md-4" [ngClass]="{'has-error' : formErrors.emailid}">
+                  <label class="form-control-label ltr">Email Id</label>
+                  <label class="form-control-label rtl">الايميل</label>
+                <input type="tel" class="form-control"  formControlName="emailid"  (blur)="checkValidationErrors()">
+                <span class="help-block errorcolorcls" *ngIf="formErrors.emailid">
+                  {{formErrors.emailid}}
+                </span>
+             </div>
+  
+  
+               
+              </div>       
+  
+                            <div class="row mt-5">
+                                <div class="col-md-12 text-center submitBtns">
+                                    <button type="submit" class="btn btn-md btn-warning ltr" (click)="editreferalsubmit()" style="margin-right:10px;">
+                                        <i class ="fa fa-check-circle"></i>
+                                         Update</button>
+                                    <button type="submit" class="btn btn-md btn-warning rtl" (click)="editreferalsubmit()" >
+                                        <i class ="fa fa-check-circle"></i>
+                                        تحديث</button>
+                                    <button type="submit" class="btn btn-md btn-success ltr" (click)="editreferalcancle()">
+                                            <i class ="fa fa-ban"></i>
+                                         Cancel</button>
+                                    <button type="submit" class="btn btn-md btn-success rtl" (click)="editreferalcancle()" style="margin-right:10px;">
+                                            <i class ="fa fa-ban"></i>
+                                            إلغاء</button>
+                                </div>
+                            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  </form>
+  

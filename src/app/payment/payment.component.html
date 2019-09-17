@@ -1,0 +1,101 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <h4 class="ltr"> Payment Information</h4>
+    <h4 class="rtl">معلومات الدفع</h4>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/getpayment'> Payment Information</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/getpayment'><span>معلومات الدفع</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<br>
+<br>
+<div class="card">
+
+    <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+            <i class="sl-icon-menu font-14"></i> Payment Information</p>
+        <p class="m-b-0 text-black rtl">
+            <i class="sl-icon-menu font-14"></i> معلومات الدفع</p>
+    </div>
+    <div class="card-body">
+        <!-- <div class="row"> -->
+            <!-- <div class="col-sm-12 text-right mb-3">
+                <a class="btn btn-info text-white " routerLink="/AddPayment">
+                    <i class="fa fa-fw fa-user "></i>
+                    <span class="ltr">Add</span>
+                    <span class="rtl">إضافة</span>
+                </a>
+
+
+            </div> -->
+            <!-- </div> -->
+            <div style="text-align: right !important;margin-right: 60px;">
+                <span class="ltr"> <a class="nav-link"  style="display: inline-block;color: #4798e8;" routerLink="/AddPayment"><i  class="fa fa-fw fa-user"></i> Add</a></span>
+                <span class="rtl" style="float:left;margin-left: 22px;">   <a class="nav-link"  style="display: inline-block;color: #4798e8;" routerLink="/AddPayment"><i  class="fa fa-fw fa-user"></i> إضافة</a></span>
+            </div>
+        
+
+        <table class="table table-hover table-bordered" *ngIf="showdata" id="dataTable" cellspacing="0" style="width:100% ">
+            <!-- *ngIf="showdata"> -->
+            <thead class="ltr" style="background-color: #4a87ee;color: white;">
+                <tr>
+                    <th>Sno</th>
+                    <th>Payment Id</th>
+                    <th>Patient</th>
+                    <th>Invoice</th>
+                    <th>Payment Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <thead class="rtl" style="background-color: #4a87ee;color: white;">
+                <tr>
+                    <th>الرقم التسلسلي</th>
+                    <th>رقم الدفع</th>
+                    <th>التقرير</th>
+                    <th>فاتورة</th>
+                    <th>مبلغ الدفع</th>
+                    <th>تاريخ</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody style="width:100%">
+                <tr *ngFor="let item of getpayments;let i=index;">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{item.PaymentId}}</td>
+                    <td>{{item.First_name}}</td>
+                    <td>{{item.invoiceno}}</td>
+                    <td>{{item.Total}}</td>
+                    <td>{{item.Payment_dttime}}</td>                   
+                    <td>
+                        <span class="fa fa-eye text-info" [routerLink]="['/view-payments']" [queryParams]="{Paymentid:item.PaymentId}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="fa fa-pencil-alt text-info" [routerLink]="['/edit-payments']" [queryParams]="{Paymentid:item.PaymentId}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="nodata">No Data Found</div>
+
+    </div>
+</div>

@@ -1,0 +1,94 @@
+
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+    <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+  
+  <h4 class="ltr">Insurance Details</h4>
+  <h4 class="rtl">Insurance Details</h4>
+
+  <div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link"  routerLink='/settings'>Settings</a></li>
+            <li class="ltr"><a class="nav-link">Insurance Details</a></li>
+            
+            <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+            <li class="rtl"><a class="nav-link"><span>Insurance Details</span></a></li>
+        </ul>
+    </div>
+</div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr">
+            <i class="sl-icon-menu font-14"></i> &nbsp;Insurance Details</h4>
+          <h4 class="m-b-0 text-black rtl">
+            <i class="sl-icon-menu font-14"></i> &nbsp;Insurance Details</h4>
+        </div>
+  
+        <div class="container"> 
+        
+            <div class="text-right justify-content-between">
+              
+                <span class="ltr"> <a  class="nav-link" style="display: inline-block;" routerLink='/AddInsurance' ><i class="fa fa-fw fa-user"></i> Add</a></span>    
+                <span class="rtl"> <a  class="nav-link" style="display: inline-block;" routerLink='/AddInsurance' ><i class="fa fa-fw fa-user"></i> إضافة</a></span>
+              </div>
+          
+          </div>
+  
+        <div class="card-body">
+         
+          <div class="table-responsive">
+            <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered"
+              cellspacing="0">
+              <thead class="headrow ltr">
+                <tr>
+                    <th>Insurance category</th>
+                    <th>Insurance company ID</th>
+                    <th>Insurance company Name</th>
+                    <th>Insurance Phone No</th>
+                    <th>Insurance Type</th>
+                    <th>Trans Date</th>
+                    <th>Edit</th>
+                </tr>
+              </thead>
+              <thead class="headrow rtl">
+                <tr>
+                    <th>فئة التأمين</th>
+                    <th>رقم هوية شركة التأمين</th>
+                    <th>اسم شركة التأمين</th>
+                    <th>رقم هاتف شركة التأمين</th>
+                    <th>نوع التأمين</th>
+                    <th>تاريخ العملية</th>
+                    <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let client of insdetails">
+                      <!-- <td>	<input type="checkbox" [id] = "client.refid" (change)="selcatvalue(client.refid)" ></td> -->
+                      <td>{{client.Insurance_Category}}</td>
+                      <td>{{client.Insurance_CompanyID}}</td>
+                      <td>{{client.Insurance_CompanyName}}</td>
+                      <td>{{client.Insurance_PhoneNo}}</td>
+                      <td>{{client.Insurance_Type}}</td>
+                      <td>{{client.Trans_date}}</td>
+                      <td>
+                        <span><a  class="nav-link"   [routerLink]="['/EditInsurance']" [queryParams]="{insid:client.Sno}"><i class="fa fa-pencil-alt text-info"></i> </a></span>    
+                      </td>
+                      <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditInsurance']" [queryParams]="{insid:client.inscatid}"  style="cursor: pointer;"></i> </td> -->
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

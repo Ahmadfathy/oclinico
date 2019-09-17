@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb" class="aligncls">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li><a class="nav-link" routerLink='/Pharmacy'><span></span>Pharmacy</a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Pharmacy Details</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل الصيدلية</p>
+            </div>
+
+            <form [formGroup]="pharmacyfg">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Registration No.</label>
+                            <input readonly="readonly" formControlName="regval" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Generic name</label>
+                            <input readonly="readonly" formControlName="genname" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Trade name</label>
+                            <input readonly="readonly" formControlName="tradename" type="text" class="form-control">
+                        </div>
+
+                    </div>
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Strength value</label>
+                            <input readonly="readonly" formControlName="strengthval" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Unit of strength</label>
+                            <input readonly="readonly" formControlName="unitstrengthval" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Dosage Form</label>
+                            <input readonly="readonly" formControlName="dosage" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Route of Administration</label>
+                            <input readonly="readonly" formControlName="routeadmin" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">ATC Code 1</label>
+                            <input readonly="readonly" formControlName="atccode1" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">ATC Code 2</label>
+                            <input readonly="readonly" formControlName="atccode2" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Volume</label>
+                            <input readonly="readonly" formControlName="volume" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Unit of volume</label>
+                            <input readonly="readonly" formControlName="unitvolume" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Package type</label>
+                            <input readonly="readonly" formControlName="packagetype" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Package size</label>
+                            <input readonly="readonly" formControlName="packagesize" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Legal status</label>
+                            <input readonly="readonly" formControlName="legalstatus" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Product control</label>
+                            <input readonly="readonly" formControlName="productcontrol" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Public price (SAR)</label>
+                            <input readonly="readonly" formControlName="publicprice" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Shelf-life (mon)</label>
+                            <input readonly="readonly" formControlName="shelflife" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Storage conditions</label>
+                            <input readonly="readonly" formControlName="storageconditions" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Manufacturer name</label>
+                            <input readonly="readonly" formControlName="manufacturername" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Country of Manufacturer</label>
+                            <input readonly="readonly" formControlName="countryofmanufacturer" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Marketing Company</label>
+                            <input readonly="readonly" formControlName="marketingcompany" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------- -->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Nationality</label>
+                            <input readonly="readonly" formControlName="nationality" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">MAH (Agent name)</label>
+                            <input readonly="readonly" formControlName="mah" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Authorization status</label>
+                            <input readonly="readonly" formControlName="authorizationstatus" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-control-label">Marketing status</label>
+                            <input readonly="readonly" formControlName="marketingstatus" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-control-label">Remarks</label>
+                            <textarea readonly="readonly" formControlName="remarks" type="text" class="form-control"></textarea>
+                        </div>
+                        <!-- <div class="col-md-4">
+              <label class="form-control-label">Authorization status</label>
+            <input readonly="readonly" formControlName="invoicenum" type="text" class="form-control">
+          </div> -->
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

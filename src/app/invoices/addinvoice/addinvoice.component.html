@@ -1,0 +1,634 @@
+<!-- <div class="preloader" [hidden]="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div> -->
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+
+            <li class="ltr">
+                <a class="nav-link" routerLink='/Maininvoice'> Invoices</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/Maininvoice'>
+                    <span>الفواتير </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/addinvoice'> Add Invoices</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='addinvoice'>
+                    <span>إضافة الفاتورة </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- <li>
+                    <a class="nav-link" routerLink='/dashboard'>
+                        <span class="fa fa-fw fa-home"> </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link " routerLink='/Maininvoice'>
+                        <span class="ltr"> Invoices</span>
+                        <span class="rtl"><span>الفواتير</span>
+                    </a>
+
+                    <a class="nav-link " routerLink='/Maininvoice'>
+                        <span class="ltr">Add Invoices</span>
+                        <span class="rtl"><span>إضافة الفاتورة</span>
+                    </a>
+
+                </li> -->
+
+
+
+<form [formGroup]="addinvoicefg">
+
+
+    <div class="row ">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="card-title mt-4 ltr">Add Invoice</h3>
+                            <h3 class="card-title mt-4 rtl">إضافة الفاتورة</h3>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                       
+                        <div class="col-md-4">
+                            <label class="form-control-label ltr">Issue Date</label>
+                            <label class="form-control-label rtl">تاريخ الاصدار</label>
+                            <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="dd/mm/yyyy" class="form-control" formControlName="dateval"
+                                (dateTimeInput)="datechange()" (blur)="checkValidationErrors()">
+                            <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.dateval">
+                                {{formErrors.dateval}}
+                            </span>
+                        </div>
+
+
+                        <div class="col-md-4" [ngClass]="{'has-error' :formErrors.patientval}">
+                            <label class="form-control-label ltr">Patient *</label>
+                            <label class="form-control-label rtl">المريض *</label>
+                            <input type="text" (keyup)="patientkeyup($event)" class="form-control" placeholder="Patient" formControlName="patientval"
+                            (blur)="checkValidationErrors()" >
+                            <div *ngIf='showDatapatient' class="pnames">
+                                <div *ngFor='let each of PatientsList'>
+                                    <p (click)="getval($event,each.patient_id)">{{each.Name}}</p>
+                                </div>
+
+                            </div>
+                            <div *ngIf='nopatientname'>
+                                No results found
+                            </div>
+                            <span class="help-block" *ngIf="formErrors.patientval" style="color: red">
+                                {{formErrors.patientval}}
+                              </span>
+                            <span>
+                                <a (click)="CetContact()" style="color:blue;cursor: pointer;">
+                                    <ul class="ltr">Create New Patient</ul>
+                                    <ul class="rtl">Create New Patient</ul>
+                                </a>
+                            </span>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.doctnameval}">
+                                <label class="mr-sm-2 ltr" for="title">Doctor Name *</label>
+                                <label class="mr-sm-2 rtl" for="title">اسم الطبيب *</label>
+
+                                <select value="Select" name="title" formControlName="doctnameval" (change)="doctornamechange($event,'changedoct')" 
+                                class="custom-select mr-sm-2"
+                                    (blur)="checkValidationErrors()">
+                                    <option value="select" selected>-- select --</option>
+                                    <option *ngFor="let i of doctorList" [ngValue]="i.Emp_Id">{{i.First_name}}</option>
+                                </select>
+                                <span class="help-block" *ngIf="formErrors.doctnameval" style="color: red">
+                                    {{formErrors.doctnameval}}
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.appointmentval}">
+                            <label class="form-control-label ltr">Appointment</label>
+                            <label class="form-control-label rtl">موعد</label>
+                            <br>
+
+                            <!-- <textarea type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="appointmentval" (blur)="checkValidationErrors()" (click)="SelectedAppointmentData()"></textarea> -->
+                            <select multiple Value="Select" formControlName="appointmentval" (blur)="checkValidationErrors()" (click)="SelectedAppointmentData($event)"
+                                style="width:225px;height:78px">
+                                <!-- <option selected>--select--</option> -->
+                                <option value="Select">Select All</option>
+                                <option *ngFor="let appointmentdata of applist" [value]="appointmentdata">{{appointmentdata.dt}}</option>
+                            </select>
+
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.appointmentval">
+                                {{formErrors.appointmentval}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.invoicetoval}">
+                            <label class="form-control-label ltr">Invoice To</label>
+                            <label class="form-control-label rtl">فاتورة ل</label>
+                            <textarea type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="invoicetoval" (blur)="checkValidationErrors()"></textarea>
+
+
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.invoicetoval">
+                                {{formErrors.invoicetoval}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.patientinfo}">
+                            <label class="form-control-label ltr">Extra Patient Info</label>
+                            <label class="form-control-label rtl">معلومات المريض الإضافية</label>
+                            <textarea type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="patientinfo" (blur)="checkValidationErrors()"></textarea>
+
+                            <!-- <span class="help-block errorcolorcls" *ngIf="formErrors.patientinfo">
+                                {{formErrors.patientinfo}}
+                            </span> -->
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <!-- --------------------------------- Input Feilds completed----------------- -->
+                    <!-- ---------------------------------Table started------------------------ -->
+                    <div class="row ltr" style="border-top: 1px solid #F2F2F2;padding: 5px;background-color: #3587d8;color:white;">
+                        <div class="col" align="center">Sno.</div>
+                        <div class="col" align="center">Item</div>
+                        <div class="col" align="center">Quantity</div>
+                        <div class="col" align="center">Unit Price</div>
+                        <div class="col" align="center"> Discount(%)</div>
+                        <div class="col" align="center">Discount Amount</div>
+                        <div class="col" align="center">Tax Percentage</div>
+                        <div class="col" align="center">Tax rate</div>
+                        <div class="col" align="center">Total</div>
+                        <div class="col" align="center">Delete</div>
+                    </div>
+
+                    <div class="row rtl" style="border-top: 1px solid #F2F2F2;padding: 5px;background-color: #3587d8;color:white;">
+                        <div class="col" align="center">سنو</div>
+                        <div class="col" align="center">بند/عنصر</div>
+                        <div class="col" align="center">الكمية</div>
+                        <div class="col" align="center">سعر الوحدة</div>
+                        <div class="col" align="center"> خصم(%)</div>
+                        <div class="col" align="center">مقدار الخصم</div>
+                        <div class="col" align="center">نسبة الضريبة</div>
+                        <div class="col" align="center">معدل الضريبة</div>
+                        <div class="col" align="center">مجموع</div>
+                        <div class="col" align="center">حذف</div>
+                    </div>
+                    <br>
+
+                    <div class="addrowcls row " *ngFor="let eachInvoice of allInvoices;let j = index" style="padding:10px 0px;border-bottom:1px solid #efe4e4;">
+                        <div class="col" align="center">
+                            <span>{{j+1}}</span>
+                        </div>
+                        <div class="col" align="center">
+                            <select value="Select" name="title" [id]="'skillname'+j" [(ngModel)]="INVSelect[j]" [ngModelOptions]="{standalone:true}"
+                                (change)="commtablechange($event,j,eachInvoice.selectType, eachInvoice.select )" (blur)="commtablechange($event,j,eachInvoice.selectType, eachInvoice.select )"
+                                style="width: 125px;height:30px;">
+                                <!--  formControlName="selectdrop" -->
+                                <option label="-Select-" disabled></option>
+                                <option *ngFor="let i of eachInvoice.select" [value]="i.Name"> {{i.Name}} </option>
+                            </select>
+
+                            <span class="errorcolorcls ltr" [hidden]="AllErrors[j].select">Please Select Item</span>
+                            <span class="errorcolorcls rtl" [hidden]="AllErrors[j].select">الرجاء اختيار العنصر/البند</span>
+
+                            <!-- <span class="help-block errorcolorcls" style="font-size: 14px;" *ngIf="formErrors.selectdrop">
+                                {{formErrors.selectdrop}}
+                            </span> -->
+                        </div>
+                        <div class="col" align="center">
+                            <input type="number" value="" style="width: 100%;" [(ngModel)]="INVquantity[j]" [ngModelOptions]="{ standalone : true }"
+                                (keyup)='updateInvoice($event,j,"Quantity")' (blur)='updateInvoice($event,j,"Quantity")'>
+
+                            <!-- <span  class="help-block errorcolorcls" style="font-size: 14px;"  *ngIf="formErrors.enterqty">{{formErrors.enterqty}}</span> -->
+                            <!-- formControlName="enterqty" -->
+
+                            <span class="errorcolorcls ltr" [hidden]="AllErrors[j].quantity">Please enter quantity.</span>
+                            <span class="errorcolorcls rtl" [hidden]="AllErrors[j].quantity">الرجاء ادخال الكمية</span>
+                        </div>
+                        <br>
+                        <!-- <span *ngIf="hideqty" class="errmsg">Please enter quantity.</span> -->
+                        <div class="col" align="center">
+                            <input type="number" value="" style="width: 100%;" [(ngModel)]="INVentercost[j]" [ngModelOptions]="{standalone:true}" (keyup)='updateInvoice1($event,j,"Uprice")'
+                                (blur)='updateInvoice1($event,j,"Uprice")'>
+                            <!-- formControlName="entercost" -->
+                            <!-- <span  class="help-block errorcolorcls" style="font-size: 14px;"  *ngIf="formErrors.entercost">{{formErrors.entercost}}</span> -->
+
+                            <span class="errorcolorcls ltr" [hidden]="AllErrors[j].price">Please enter unit price.</span>
+                            <span class="errorcolorcls rtl" [hidden]="AllErrors[j].price">الرجاء ادخال سعر الوحدة</span>
+                        </div>
+
+                        <div class="col" align="center">
+                            <input type="number" value="" style="width: 100%;" [(ngModel)]="INVenterdiscount[j]" [ngModelOptions]="{standalone:true}"
+                                (keyup)='updateInvoice($event,j,"Discount")'>
+                        </div>
+                        <!-- formControlName="enerdiscount" -->
+                        <div class="col" align="center">
+                            <span>{{eachInvoice.idxdiscount}}</span>
+                            <!-- <input type="number" value=""  formControlName="'syf'+i" style="width: 50%;" readonly> -->
+                        </div>
+
+                        <div class="col" align="center">
+                            <input type="text" value="" style="width: 100%;" readonly (keyup)='updateInvoice($event,j,"taxPercentage")'>
+                        </div>
+
+                        <div class="col" align="center">0 </div>
+
+                        <div class="col" align="center">
+                            <span>{{eachInvoice.idxtotal}}</span>
+                        </div>
+                        <div class="col" align="center" (click)="removerow($event,j)">
+                            <a>
+                                <i class="fa fa-trash" style="color:red;"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div class="row ltr" style="float: right;">
+                        <!-- <button type="submit" (click)="add('product')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">+ Product</button> &nbsp; -->
+                        <button type="submit" (click)="add('app')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">+ Appointment</button> &nbsp;
+                        <button type="submit" (click)="add('treat')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">+ Treatment</button> &nbsp;
+                        <button type="submit" (click)="add('services')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">+ Services</button>
+                    </div>
+
+                    <div class="row rtl" style="float: right;">
+                        <!-- <button type="submit" (click)="add('product')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">
+                            المنتجات+</button> &nbsp; -->
+                        <button type="submit" (click)="add('app')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">موعد +</button> &nbsp;
+                        <button type="submit" (click)="add('treat')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">
+                            طبيب / العلاج+</button> &nbsp;
+                        <button type="submit" (click)="add('services')" class="btn btn-md btn-success" style="background-color: #0fb1b1f5;color: white;">
+                            خدمات+</button>
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <textarea rows="3" cols="60"></textarea>
+                        </div>
+
+                        <div class="col ltr">
+                            <p>Total Discount : {{mytotalDiscount}}</p>
+                            <p>Subtotal : {{myTotal}}</p>
+                            <p>Tax : {{totaltaxrate}}</p>
+                            <p>Invoice Total : {{ myTotal}}</p>
+                        </div>
+
+                        <div class="col rtl">
+                            <p>إجمالي الخصم : {{mytotalDiscount}}</p>
+                            <p>المجموع الاولي : {{myTotal}}</p>
+                            <p>ضريبة : {{totaltaxrate}}</p>
+                            <p>إجمالي الفاتورة : {{ myTotal}}</p>
+                        </div>
+                    </div>
+
+                    <!-- ---------------------------------Buttons----------------- -->
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center submitBtns">
+                            <button type="submit" class="btn btn-md btn-warning" (click)="invoicesubmit()" style="margin-right:5px;">
+                                <i class="fa fa-check-circle"></i>
+                                <span class="ltr"> &nbsp; Create</span>
+                                <span class="rtl"> &nbsp; إنشاء</span>
+                            </button>
+                            <button type="submit" class="btn btn-md btn-success" (click)="invoicecancle()">
+                                <i class="fa fa-ban"></i>
+                                <span class="ltr">&nbsp; Cancel</span>
+                                <span class="rtl">&nbsp; إلغاء</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <div style="width: 50%;height: 400px;" [hidden]="showpopup">
+<p>Test create patient</p>
+</div> -->
+
+<!-- -------------------------Create Patient------------------ -->
+
+<ng-template #CreateContact let-modal class="mymodal">
+    <div class="mytemplate">
+        <div class="modal-header" style="background-color: #7996e5;color: white;">
+            <h4 class="modal-title" id="modal-basic-title">Create New Patient</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="createPatientfg" style="    margin: 10px;">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="ltr">Title :</label>
+                            <!-- <label class="rtl">اللقب :</label> -->
+                        </div>
+
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.title}">
+                            <select name="title" formControlName="title" class="custom-select mr-sm-2 ltr" (blur)="patientcheckValidationErrors()" [ngClass]="{'has-error' : patientformErrors.title}">
+                                <option class="ltr" value="" disabled selected> Select </option>
+                                <!-- <option class="rtl" value="" disabled selected> تحديد </option> -->
+                                <option class="ltr" *ngFor="let t of titles" [ngValue]="t">{{t}}</option>
+                               
+                            </select>
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.title">
+                                {{patientformErrors.title}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <p>
+                            <span class="ltr"> Arabic Names*</span>
+                            <!-- <span class="rtl">الأسماء بالعربية</span> -->
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> First Name*</label>
+                            <!-- <label class="form-control-label rtl">الاسم الاول</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.fname}">
+                            <input type="text" dir="rtl" (keypress)="arabic($event)" class="form-control" placeholder="" formControlName="fname" (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.fname">
+                                {{patientformErrors.fname}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> Father Name*</label>
+                            <!-- <label class="form-control-label rtl">اسم الأب</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.fathername}">
+                            <input type="text" dir="rtl" class="form-control " (keypress)="arabic($event)" placeholder="" formControlName="fathername"
+                                (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.fathername">
+                                {{patientformErrors.fathername}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> Last Name*</label>
+                            <!-- <label class="form-control-label rtl">اسم العائلة</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.lname}">
+                            <input type="text" dir="rtl" class="form-control " (keypress)="arabic($event)" placeholder="" formControlName="lname" (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.lname">
+                                {{patientformErrors.lname}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- ---------english names-------- -->
+                    <div class="row">
+                        <p>
+                            <span class="ltr"> English Names*</span>
+                            <!-- <span class="rtl"> الأسماء بالإنجليزية*</span> -->
+                        </p>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> First Name*</label>
+                            <!-- <label class="form-control-label rtl">الاسم الاول</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.engfname}">
+                            <input type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="engfname" (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.engfname">
+                                {{patientformErrors.engfname}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                                <label class="form-control-label ltr">Middle Name*</label>
+                            <!-- <label class="form-control-label rtl"> اسم الاب*</label> -->
+                          
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.engmiddlename}">
+                            <input type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="engmiddlename" (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.engmiddlename">
+                                {{patientformErrors.engmiddlename}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> Last Name*</label>
+                            <!-- <label class="form-control-label rtl">اسم العائلة</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.englastname}">
+                            <input type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="englastname" (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.englastname">
+                                {{patientformErrors.englastname}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> Date of Birth*</label>
+                            <!-- <label class="form-control-label rtl">تاريخ الميلاد</label> -->
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="ltr">Arabic</label>
+                            <!-- <label class="rtl">عربى</label> -->
+                           
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.arabicDob}">
+
+                            <input value={{binddate}} formControlName="arabicDob" placeholder="dd/mm/yyyy" (keyup)="arabicDate($event)" class="form-control DATE"
+                                size=10 maxlength=10 onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                                (blur)="patientcheckValidationErrors()" [ngClass]="{'has-error' : patientformErrors.arabicDob}">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.arabicDob">
+                                {{patientformErrors.arabicDob}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="ltr" >English</label>
+                            <!-- <label class="rtl" >الإنجليزية</label> -->
+                            
+                        </div>
+
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.EnglishDob}">
+                            
+                     <input class="form-control DATE" placeholder="dd/mm/yyyy" value={{arabicbinddate}} (keyup)="english($event)" formControlName="EnglishDob"
+                         size=10 maxlength=10 onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+               (blur)="patientcheckValidationErrors()" [ngClass]="{'has-error' : patientformErrors.EnglishDob}">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.EnglishDob">
+                                {{patientformErrors.EnglishDob}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="ltr">Gender :</label>
+                            <!-- <label class="rtl">الجنس :</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.gender}">
+                            <select formControlName="gender" class="form-control ltr" (blur)="patientcheckValidationErrors()" [ngClass]="{'has-error' : patientformErrors.gender}">
+                                <option value="" disabled selected>Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Others</option>
+                            </select>
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.gender">
+                                {{patientformErrors.gender}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> Mobile*</label>
+                            <!-- <label class="form-control-label rtl">رقم الهاتف المحمول *</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.mobilenum}">
+                            <input type="number" class="form-control" maxlength=10 (keypress)="keyPress($event)" placeholder="" formControlName="mobilenum"
+                                (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.mobilenum">
+                                {{patientformErrors.mobilenum}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr">Email*</label>
+                            <!-- <label class="form-control-label rtl">عنوان البريد الإلكتروني *</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.email}">
+                            <input type="email" class="form-control" placeholder="" formControlName="email" (blur)="patientcheckValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.email">
+                                {{patientformErrors.email}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="ltr">Reminder :</label>
+                            <!-- <label class="rtl">تذكير :</label> -->
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.remainder}">
+                            <select formControlName="remainder" class="form-control ltr" [ngClass]="{'has-error' : patientformErrors.remainder}" (blur)="patientcheckValidationErrors()">
+                                <option value="" disabled selected>Select</option>
+                                <option>SMS</option>
+                                <option>Email</option>
+                            </select>
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.remainder">
+                                {{patientformErrors.remainder}}
+                            </span>
+                        </div>
+                     
+                    </div>
+                    <br>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-control-label ltr"> Note*</label>
+                            <label class="form-control-label rtl"></label>
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error' : patientformErrors.note}">
+                            <textarea type="text" rows="3" cols="60" class="form-control" placeholder="" formControlName="note" (blur)="patientcheckValidationErrors()"></textarea>
+
+                            <span class="help-block errorcolorcls" *ngIf="patientformErrors.note">
+                                {{patientformErrors.note}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+                    <div class="row mt-5">
+                        <!-- <div class="col-md-12 text-center submitBtns"> -->
+                        <button type="submit" class="btn btn-md btn-warning" (click)="createPatient()">
+                            <i class="fa fa-check-circle"></i>
+                            <span class="ltr"> Create</span>
+                            <!-- <span class="rtl">إنشاء</span> -->
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- <div>{{addinvoicefg.status}}</div> -->
+</ng-template>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Modal</button> -->  

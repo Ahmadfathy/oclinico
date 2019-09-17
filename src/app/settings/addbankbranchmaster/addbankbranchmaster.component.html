@@ -1,0 +1,202 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/settings'>Settings</a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/bankbranchdetails'>Bank Branch Details</a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Add Bank Branch</a>
+      </li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+      <li class="rtl">
+        <a class="nav-link" routerLink='/settings'>إعدادات</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/bankbranchdetails'>تفاصيل فرع البنك</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">إضافة فرع البنك</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<form [formGroup]="addbankbranchdetails">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr">
+            <i class="sl-icon-menu font-14"></i> &nbsp;Add Bank Branch</h4>
+          <h4 class="m-b-0 text-black rtl">
+            <i class="sl-icon-menu font-14"></i> &nbsp;إضافة فرع البنك</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Bank Name&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+              <label class="form-control-label rtl">اسم البنك&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.bankname}">
+                <select formControlName="bankname" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option class="ltr" label="select" disabled></option>
+                  <option *ngFor="let item of banknames" [value]="item.Bank_Name">{{item.Bank_Name}}</option>
+                </select>
+                <select formControlName="bankname" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option class="rtl" label="تحديد" disabled></option>
+                  <option *ngFor="let item of banknames" [value]="item.Bank_Name">{{item.Bank_Name}}</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.bankname" style="color: red">
+                  {{formErrors.bankname}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Branch Name&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+              <label class="form-control-label rtl">اسم الفرع&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <input id="branchname" formControlName="branchname" [ngClass]="{'has-error' :formErrors.branchname}" (blur)="checkValidationErrors()"
+                type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.branchname" style="color: red">
+                {{formErrors.branchname}}
+              </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Swift Code&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+              <label class="form-control-label rtl">رمز السرعة&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <input id="swiftcode" formControlName="swiftcode" [ngClass]="{'has-error' :formErrors.swiftcode}" (blur)="checkValidationErrors()"
+                type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.swiftcode" style="color: red">
+                {{formErrors.swiftcode}}
+              </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Country&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+              <label class="form-control-label rtl">بلد&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.country}">
+                <select formControlName="country" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option class="ltr" label="select" disabled></option>
+                  <option *ngFor="let item of countries" [value]="item.Country_Name">{{item.Country_Name}}</option>
+                </select>
+                <select formControlName="country" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option class="rtl" label="تحديد" disabled></option>
+                  <option *ngFor="let item of countries" [value]="item.Country_Name">{{item.Country_Name}}</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.country" style="color: red">
+                  {{formErrors.country}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">City&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+              <label class="form-control-label rtl">مدينة&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <input id="city" formControlName="city" [ngClass]="{'has-error' :formErrors.city}" (blur)="checkValidationErrors()" type="text"
+                class="form-control">
+              <span class="help-block" *ngIf="formErrors.city" style="color: red">
+                {{formErrors.city}}
+              </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Status&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+              <label class="form-control-label rtl">الحالة&nbsp;
+                <i class="fa fa-star mystar"></i>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.status}">
+                <select formControlName="status" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option class="ltr" label="select" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <select formControlName="status" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option class="rtl" label="تحديد" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                  {{formErrors.status}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions text-center submitBtns">
+            <div class="card-body ">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="submit()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                Submit</button>
+              <button type="submit" class="btn btn-md btn-warning rtl" (click)="submit()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                خضع</button>
+              <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/bankbranchdetails']">
+                <i class="fa fa-ban"></i>
+                Cancel</button>
+              <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/bankbranchdetails']">
+                <i class="fa fa-ban"></i>
+                إلغاء</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

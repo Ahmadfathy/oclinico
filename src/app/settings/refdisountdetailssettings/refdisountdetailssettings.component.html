@@ -1,0 +1,87 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+  </div>
+  <h3 class="ltr">Referral Discount Details</h3>
+  <h3 class="rtl">تفاصيل خصم الاحالة</h3>
+
+  <div class="container" style="margin:0px;padding:0px;"> 
+      <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb" style="margin:0px;padding:0px;">
+                <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/settings'>Settings</a></li>
+              <li class="ltr"><a class="nav-link" >Referral Discount Details</a></li>
+              <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+               <li class="rtl"> <a class="nav-link" ><span>تفاصيل خصم الاحالة</span></a></li>
+    
+            </ul>
+        </div>
+      </div>
+    </div> 
+
+
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+              <div class="card-header">
+                  <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Referral Discount Details</p>
+                  <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل خصم الاحالة</p>
+                </div>
+      <div class="container"> 
+      
+        <div class="text-right justify-content-between">
+          
+            <span class="ltr"> <a  class="nav-link" style="display: inline-block;" routerLink='/AddReferralDiscount' ><i class="fa fa-fw fa-user"></i> Add</a></span>    
+            <span class="rtl"> <a  class="nav-link" style="display: inline-block;" routerLink='/AddReferralDiscount' ><i class="fa fa-fw fa-user"></i> إضافة</a></span>
+          </div>
+      
+      </div>
+      
+      <div class="container">
+      <table  class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr">
+              <tr>
+                  <th>Referral Name</th>
+                  <th>Type</th>
+                  <th>Name</th>
+                  <th>Discount Percentage</th>
+                  <th>Trans Date</th>
+                  <th>Edit</th>
+              </tr>
+            </thead>
+        <thead class="headrow rtl">
+          <tr>
+              <th>اسم الاحالة</th>
+              <th>اكتب</th>
+              <th>اسم</th>
+              <th>نسبة الخصم</th>
+              <th>تاريخ العملية</th>
+              <th>تعديل</th>
+          </tr>
+        </thead>
+       
+        <tbody>
+            <tr *ngFor="let client of refdiscountdetails">
+                <!-- <td>	<input type="checkbox" [id] = "client.refid" (change)="selcatvalue(client.refid)" ></td> -->
+                <td>{{client.Referral_Name}}</td>
+                <td>{{client.Type}}</td>
+                <td>{{client.Service_Name}}</td>
+                <td>{{client.Disc_Per}}</td>
+                <td>{{client.TransDate}}</td>
+                <td style="display:flex;"> 
+                  <span><a  class="nav-link"   [routerLink]="['/EditReferralDiscount']" [queryParams]="{Refrral:client.Sno}"><i class="fa fa-pencil-alt text-info"></i> </a></span>    
+                 </td>
+                <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" style="cursor: pointer;"></i> </td> -->
+              </tr>
+        </tbody>
+      </table>
+      </div>
+      
+      </div>
+      </div>
+      </div>
+
+

@@ -1,0 +1,156 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"> <a class="nav-link" routerLink='/clinicinfo'> Clinic Info</a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/clinicinfo'><span>معلومات العيادة</span></a></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Clinic Info</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;معلومات العيادة</p>
+            </div>
+
+            <div class="card-body">
+                <p class='rtl'>هذا هو لوحة الرسائل الداخلية الخاصة بك ، حيث يمكنك كتابة الرسائل إلى الأشخاص الآخرين في حسابك. يمكنك أيضًا تقديم تعليقات ، لذلك فهي مكان رائع للمناقشات. إليك دليل الإعداد ، حيث ستجد بعض الطرق التي يمكنك من خلالها البدء في حساب العيادة
+                    الجديد الخاص بك! قسم دعم العيادة جاهز لمساعدتك! لدينا سنوات من الخبرة في إنشاء عيادتك عبر الإنترنت وجعلها تعمل بكفاءة لك. أرسل لنا رسالة بريد إلكتروني على support@oclinico.com وكذلك نعود إليك بسرعة فائقة! يمكنك أيضا الوصول إلينا عن
+                    طريق الهاتف. استمتع!
+                </p>
+
+                <p class='ltr'>This is your internal message board,where you can write messages to the other people in your account. You can also make comments, so its a great place for discussions. Here's our Guide to Setting Up, where you'll find some of the ways
+                    that you can get started in your new Clinic account! Clinic support department is ready to help you! We have got years of experience in setting up your Clinic online and make it work efficiently for you. Send us an email at support@oclinico.com
+                    and well get back to you super quick! You can also reach us by phone. Enjoy!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-xl-4 offset-xl-2 offset-md-0 col-md-6">
+                <div class="card">
+                    <div class="card-header bg-cyan text-white text-center">
+                        <img src="assets/images/msg1.png" style="width: 50px;" />
+                        <p class="ltr">MESSAGE DETAILS</p>
+                        <p class="rtl">تفاصيل الرسالة</p>
+                    </div>
+                    <div class="card-body">
+                        <ngb-accordion [closeOthers]="true">
+                            <ngb-panel id="msg{{i+1}}" title="{{m.msg_subject}}" *ngFor="let m of msgDetails; let i=index" style="cursor: pointer;">
+                                <ng-template ngbPanelContent class="mycls">
+                                    {{m.Message}}
+
+                                    <p style="text-align: right">
+                                        <span (click)="deletemsg(m.msg_subject)">
+                                                        <a>
+                                                            <i class="fa fa-trash" style="color:red;font-size: 17px;"></i>
+                                                        </a>
+                                                    </span> &nbsp; &nbsp;
+                                        <span (click)="inactivemsg(m.msg_subject)">
+                                                        <a>
+                                                            <i class="fa fa-ban" style="color:#0a88bf;font-size: 17px;" aria-hidden="true"></i>
+                                                        </a>
+                                                    </span>
+                                    </p>
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="card">
+                    <div class="card-header bg-orange text-white text-center">
+                        <img src="assets/images/msg2.png" style="width: 50px;" />
+                        <p class="ltr">DRAFT TREATMENT NOTES</p>
+                        <p class="rtl">صياغة مذكرة علاج</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" *ngFor="let m of draftTreatDetails">
+                            <div class="col">
+                                <span>
+                                                <img src="assets/images/cgreendraft.png" style="width: 55px;">
+                                            </span>
+                                <a [routerLink]="['/treatmentnote']" [queryParams]="{patientidfromCinfo: m.patient_id}">
+                                    <b style="font-weight:bold;">{{m.name}}</b>
+                                </a>
+                            </div>
+                            <div class="col datecol">
+                                <span class="spandate2">{{m.dt}} </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+            <div class="col-md-8">
+        <div style="text-align:center" (click)="show()">
+            <span>
+                            <img src="assets/images/bluearrow.gif" style="width:100px;">
+                            
+                        <button type="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-hand-right"></span>
+            <span class="ltr"> Post a New Message</span>
+            <span class="rtl"> ارسال رسالة جديدة</span>
+            </button>
+            </span>
+        </div>
+
+        <form [formGroup]="registerForm" *ngIf="showform">
+
+                <label class="form-control-label">Subject</label>
+            <div [ngClass]="{'has-error' : formErrors.Subject}">
+               
+                <input type="text" style="width: 73% !important" class="form-control" placeholder="Subject" formControlName="Subject" (blur)="checkValidationErrors()">
+                <span class="help-block errorcolorcls" *ngIf="formErrors.Subject">
+                                {{formErrors.Subject}}
+                            </span>
+            </div>
+            <label class="form-control-label">Message</label>
+            <div [ngClass]="{'has-error' : formErrors.Message}">
+               
+                <!-- <input type="text" class="form-control "  placeholder="Message" formControlName="Message" (blur)="checkValidationErrors()"> -->
+                <textarea id="txtmessage" name="text" cols="40" rows="5" style="height:104px !important;width: 73% !important" class="form-control val"  placeholder="Message" formControlName="Message" (blur)="checkValidationErrors()"></textarea>
+                <span class="help-block errorcolorcls" *ngIf="formErrors.Message">
+                                {{formErrors.Message}}
+                            </span>
+            </div>
+            <label class="form-control-label">Expirity Date</label>
+            <div [ngClass]="{'has-error' : formErrors.ExpirityDate}">
+                
+                <input style="width: 73% !important" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="mm/dd/yyyy" class="form-control" formControlName="ExpirityDate" (dateTimeInput)="datechange()">
+                <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+
+                <span class="help-block errorcolorcls" *ngIf="formErrors.ExpirityDate">
+                                {{formErrors.ExpirityDate}}
+                            </span>
+            </div>
+
+            <br/>
+            <button type="submit" class="btn btn-md btn-warning" (click)="onSubmit()" style="margin-right:10px;">
+                            <i class="fa fa-check-circle"></i>
+                            Submit</button>
+            <button type="submit" class="btn btn-md btn-success" (click)="Cancel()">
+                            <i class="fa fa-check-circle"></i>
+                            Cancel</button>
+
+        </form>
+        <div class="col-md-2"></div>
+    </div>

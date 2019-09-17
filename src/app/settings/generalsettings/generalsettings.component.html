@@ -1,0 +1,297 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+      <li class="ltr"><a class="nav-link">General Settings</a></li>
+
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+      <li class="rtl"><a class="nav-link" routerLink='/settings'>إعدادات</a></li>
+      <li class="rtl"><a class="nav-link">الإعدادات العامة</a></li>    
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;General Settings</h4>
+        <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;الإعدادات العامة</h4>
+      </div>
+      <div class="card-body">
+
+          <div style="text-align: right !important;margin-right: 60px;">
+              <span class="ltr"> 
+                <a class="nav-link" style="display: inline-block;color: #4798e8;cursor: pointer;" (click)="edit()"><i  class="fa fa-fw fa-user"></i> Edit</a>
+              </span>
+              <span class="rtl" style="float:left;margin-left: 22px;">   
+                <a class="nav-link" style="display: inline-block;color: #4798e8;cursor: pointer;" (click)="edit()"><i  class="fa fa-fw fa-user"></i> تعديل</a>
+              </span>
+        </div><br>
+
+        <div class="row">
+          <div class="col-md-4">
+            <label class="form-control-label ltr">Clinic Name&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">اسم العيادة&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="clinicname" disabled [(ngModel)]="clinicname" type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label class="form-control-label ltr">Specialization&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">التخصص&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="spec" disabled [(ngModel)]="spec" type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+        <div class="row p-t-20">
+          <div class="col-md-4">
+            <label class="form-control-label ltr">English Names&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">الأسماء بالإنجليزية&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="inenglish1" disabled [(ngModel)]="inenglish1" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="top: 6px;">
+            <label class="form-control-label ltr"></label>
+            <input id="inenglish2" disabled [(ngModel)]="inenglish2" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="top: 6px;">
+            <label class="form-control-label ltr"></label>
+            <input id="inenglish3" disabled [(ngModel)]="inenglish3" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Arabic Names&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">الأسماء بالعربية&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="inarabic1" dir="rtl" disabled [(ngModel)]="inarabic1" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="top: 6px;"><br>
+            <label class="form-control-label ltr"></label>
+            <input id="inarabic2" dir="rtl" disabled [(ngModel)]="inarabic2" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="top: 6px;"><br>
+            <label class="form-control-label ltr"></label>
+            <input id="inarabic3" dir="rtl" disabled [(ngModel)]="inarabic3" type="text" class="form-control">
+          </div><br>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Website</label>
+            <label class="form-control-label rtl">موقع الكتروني</label>
+            <input id="website" disabled [(ngModel)]="website" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Email ID&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">الايميل&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="email" disabled [(ngModel)]="email" type="email" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Communication Email ID</label>
+            <label class="form-control-label rtl">الاتصال الايميل</label>
+            <input id="comemail" disabled [(ngModel)]="comemail" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Phone No&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">رقم هاتف&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="phno" disabled [(ngModel)]="phno" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Mobile No&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">رقم الهاتف المحمول&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="mobile" disabled [(ngModel)]="mobile" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Clinic No</label>
+            <label class="form-control-label rtl">رقم العيادة</label>
+            <input id="clinicno" disabled [(ngModel)]="clinicno" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Address&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">عنوان&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="address" disabled [(ngModel)]="address" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">City&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">مدينة&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input id="city" disabled [(ngModel)]="city" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Country&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">دولة&nbsp;<i class="fa fa-star mystar"></i></label>
+            <select id="selectid" disabled [(ngModel)]="country" class="custom-select mr-sm-2 ltr">
+              <option class="ltr" label="select" disabled></option>
+              <option *ngFor="let item of countries" [value]="item.Country_Name">{{item.Country_Name}}</option>
+            </select>
+            <!-- <select id="selectid" disabled [(ngModel)]="country" class="custom-select mr-sm-2 rtl">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option *ngFor="let item of countries" [value]="item.Country_Name">{{item.Country_Name}}</option>
+              </select> -->
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Business ID No&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">رقم رخصة العمل&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input disabled id="businessno" [(ngModel)]="businessno" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="width: 50px;height: 50px"><br>
+            <label></label>
+            <img src="{{business_image}}" width="20%" height="100%" style="position: absolute;top: 40px;"
+              onError="this.src='/assets/images/noimgavail.png'"><br><br>
+          </div>
+          <div class="col-md-4"><br>
+            <label></label>
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">National Identification No&nbsp;<i
+                class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">رقم الهوية الوطنية&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input disabled id="nationalno" [(ngModel)]="nationalno" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="width: 50px;height: 50px"><br>
+            <label></label>
+            <img src="{{nin_image}}" width="20%" height="100%" style="position: absolute;top: 40px;"
+              onError="this.src='/assets/images/noimgavail.png'"><br><br>
+          </div>
+          <div class="col-md-4"><br>
+            <label></label>
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Municipal License No&nbsp;<i class="fa fa-star mystar"></i></label>
+            <label class="form-control-label rtl">رقم رخصة البلدية&nbsp;<i class="fa fa-star mystar"></i></label>
+            <input disabled id="muncipalno" [(ngModel)]="muncipalno" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" style="width: 50px;height: 50px"><br>
+            <label></label>
+            <img src="{{muncipal_image}}" width="20%" height="100%" style="position: absolute;top: 40px;"
+              onError="this.src='/assets/images/noimgavail.png'"><br><br>
+          </div>
+          <div class="col-md-4"><br>
+            <label></label>
+          </div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">VAT No</label>
+            <label class="form-control-label rtl">ضريبه القيمه المضافه الرقم</label>
+            <input id="vatno" disabled [(ngModel)]="vatno" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br></div>
+          <div class="col-md-4"><br></div>
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Google Map Url</label>
+            <label class="form-control-label rtl">رابط جوجل ماب</label>
+            <input disabled id="url" [(ngModel)]="url" type="text" class="form-control">
+          </div>
+          <div class="col-md-4"><br></div>
+          <div class="col-md-4"><br></div>
+          <!-- <div class="col col-12"><br>
+            <iframe id="map" [src]='sanitizer.bypassSecurityTrustResourceUrl(mapsurl)'></iframe>
+          </div> -->
+          <div class="col-md-4"><br>
+            <label class="form-control-label ltr">Slot Setting</label>
+            <label class="form-control-label rtl">ضبط الخانة</label>
+          </div>
+          <div class="col-md-4"><br></div>
+          <div class="col-md-4"><br></div>
+
+          <!-- <div class="row"> -->
+          <div class="col-md-3"><br>
+            <label class="form-control-label ltr">First Appointment</label>
+            <label class="form-control-label rtl">الموعد الأولي</label>
+          </div>
+          <div class="col-md-3">
+            <input disabled id="firstapp" style="margin-top: 10px;" value="00:30" type="text"
+              class="form-control myinput">
+          </div>
+          <div class="col-md-3">
+            <label style="margin-top:18px" class="form-control-label ltr">Standard Appointment</label>
+            <label class="form-control-label rtl">موعد اساسي</label>
+          </div>
+          <div class="col-md-3"><br>
+            <input disabled id="standapp" style="margin-top: -10px;" value="00:30" type="text"
+              class="form-control myinput">
+          </div>
+          <div class="col-md-6"><br>
+            <div class="form-group" (change)="selectwise($event.target.value)">
+              <label class="form-control-label ltr">Clinic Timings :</label>
+              <label class="form-control-label rtl">: توقيت العيادة</label>
+              <div class="row">
+                <div class="switch-field ltr">
+                  <input type="radio" [(ngModel)]="scheduletypeinput" id="Day Wise" value="Day Wise" />
+                  <label for="Day Wise">Day Wise</label>
+                  <input type="radio" [(ngModel)]="scheduletypeinput" id="Session Wise" value="Session Wise" />
+                  <label for="Session Wise">Session Wise</label>
+                </div>
+                <div class="switch-field rtl">
+                  <input type="radio" [(ngModel)]="scheduletypeinput" id="Day Wise" value="Day Wise" />
+                  <label for="Day Wise">يوم يوم</label>
+                  <input type="radio" [(ngModel)]="scheduletypeinput" id="Session Wise" value="Session Wise" />
+                  <label for="Session Wise">محدد بالفترة</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+        <!----------------------------   Day Wise -------------------------------->
+        <div class="row"  >
+          <div class="container" *ngIf="timingsdaysif">
+            <!-- <h4 class="m-b-0 text-black ltr">Day Wise Timings</h4> -->
+            <table class="table table-hover table-bordered"  cellspacing="2">
+              <thead class="headrow">
+                <th class="ltr">Sno</th>
+                <th class="ltr">Days</th>
+                <th class="ltr">Start Time</th>
+                <th class="ltr">End Time</th>
+
+                <th class="rtl">سنو</th>
+                <th class="rtl">أيام</th>
+                <th class="rtl">الجلسة الأولى</th>
+                <th class="rtl">الجلسة الأولى</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of daysarray;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{item.days}}</td>
+                  <td>{{item.starttime}}&nbsp;{{item.starttimeformat}}</td>
+                  <td>{{item.endtime}}&nbsp;{{item.endtimeformat}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="container" *ngIf="timingsif">
+            <!-- <h4 class="m-b-0 text-black ltr">Session Wise Timings</h4> -->
+            <table class="table table-hover table-bordered" cellspacing="2">
+              <thead class="headrow">
+                <th class="ltr">Sno</th>
+                <th class="ltr">Days</th>
+                <th class="ltr">Session1 Start</th>
+                <th class="ltr">Session1 End</th>
+                <th class="ltr">Session2 Start</th>
+                <th class="ltr">Session2 End</th>
+                <th class="rtl">سنو</th>
+                <th class="rtl">أيام</th>
+                <th class="rtl">الجلسة الأولى</th>
+                <th class="rtl">الجلسة الأولى</th>
+                <th class="rtl">الجلسة الثانية</th>
+                <th class="rtl">الجلسة الثانية</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of sessionarray;let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{item.days}}</td>
+                  <td>{{item.starttime}}&nbsp;{{item.starttimeformat}}</td>
+                  <td>{{item.endtime}}&nbsp;{{item.endtimeformat}}</td>
+                  <td>{{item.sesstarttime}}&nbsp;{{item.sesstarttimeformat}}</td>
+                  <td>{{item.sesendtime}}&nbsp;{{item.sesendtimeformat}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

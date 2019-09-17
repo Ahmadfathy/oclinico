@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+      <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+      <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <h4 class="ltr"> Appointment Details </h4>
+    <h4 class="rtl">تفاصيل الموعد </h4>
+  </div>
+  <div *ngIf="pay" class="col-md-3">
+    <h5 style="color:red" class="ltr">Payment &nbsp; {{payment}}</h5>
+    <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+  </div>
+</div>
+
+
+
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+
+<div class="row">
+
+
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link"> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link"><span>تفاصيل المريض</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/appoinmentsgrid'> Appointment Details </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/appoinmentsgrid'><span>تفاصيل الموعد</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Appointment Details</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل الموعد</p>
+    </div>
+
+    <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered" id="dataTable" *ngIf="showdata">
+      <thead class="ltr">
+        <tr>
+          <th>When</th>
+          <th>Type</th>
+          <th>Doctor</th>
+          <th>Note</th>
+          <th>View</th>
+        </tr>
+      </thead>
+      <thead class="rtl">
+        <tr>
+          <th>متى</th>
+          <th> نوع</th>
+          <th>طبيب</th>
+          <th>ملحوظة</th>
+          <th>رأي</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let patient of table;let i=index">
+        <tr>
+          <td>{{patient.appointdate}}</td>
+          <td>{{patient.type}}</td>
+          <td>{{patient.practitionerName}}</td>
+          <td>{{patient.description}}</td>
+          <td style="text-align: center">
+            <span class="fa fa-eye text-info" (click)="getapoinments(patient.Appointment_id,i)"></span>
+          </td>
+        </tr>
+        <tr *ngIf="patient.showAppointmentData === 'true'">
+          <td colspan="5" style="width : 100%">{{Viewlog}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="nodata" align="center">
+        <br><br>
+        <img src = "./assets/images/calendar.png" height="100px" width="100px"><br><br>
+        <p>
+          <b>There are no appointments</b>
+        </p>
+    </div>
+
+  </div>
+</div>

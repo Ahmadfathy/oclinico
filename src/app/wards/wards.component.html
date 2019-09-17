@@ -1,0 +1,83 @@
+<!-- <h4 class="ltr">Wards</h4> -->
+<!-- <h4 class="rtl">عنابر</h4><br> -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb">
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" >Wards</a></li>
+         <li class="rtl"> <a class="nav-link "><span>عنابر</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+          <div class="card-header">
+              <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Wards</p>
+              <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;عنابر</p>
+            </div>
+  <div class="container"> 
+  
+    <div class="text-right justify-content-between">
+      
+        <span class="ltr"> <a  class="nav-link" style="display: inline-block;" routerLink='/addwards' ><i class="fa fa-fw fa-user"></i> Add</a></span>    
+        <span class="rtl"> <a  class="nav-link" style="display: inline-block;" routerLink='/addwards' ><i class="fa fa-fw fa-user"></i> إضافة</a></span>
+      </div>
+  
+  </div>
+  
+  <div class="container">
+  <table  class="table table-hover table-bordered" cellspacing="0">
+    <thead class="headrow ltr">
+      <tr >
+        <th >Sno</th>
+        <th >Bed</th>
+        <th >Department</th>
+        <th>Patient Id</th>
+        <th >Name</th>
+        <th >Date</th>
+        <th >Availability</th>
+        <th >&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+      </tr>
+    </thead>
+    <thead class="headrow rtl">
+      <tr >
+        <th >الرقم التسلسلي</th>
+        <th >سرير‎</th>
+        <th >قسم</th>
+        <th >رقم المريض</th>
+        <th >اسم</th>
+        <th >تاريخ</th>
+        <th >المتوفر</th>
+        <th >&nbsp;&nbsp;&nbsp;&nbsp;الاجراءات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of patientdata;let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{item.bed}}</td>
+        <td>{{item.department}}</td>
+        <td>{{item.patientid}}</td>
+        <td>{{item.Name}}</td>
+        <td>{{item.Date}}</td>
+        <td>{{item.availability}}</td>
+        <td style="display:flex;"> 
+          <span> <a  class="nav-link" routerLink="/editwards" ><i class="fa fa-pencil-alt text-info"></i> </a></span>    
+          <!-- <span> <a  class="nav-link" ><i class="fa fa-fw fa-edit"></i> </a></span>     -->
+          <span><a  class="nav-link" routerLink="/view-wards" ><i class="fa fa-fw fa-eye"></i> </a></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  
+  </div>
+  </div>
+  </div>
+  
+  
+  
+  

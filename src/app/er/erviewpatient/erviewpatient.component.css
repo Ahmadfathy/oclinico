@@ -1,0 +1,39 @@
+.form-control {
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+  width: 70%;
+}
+.form-control1{
+border: 1px solid darkgray;
+background: #f2f2f2;
+border-radius: 8px;
+width : 70%;
+}
+
+
+
+li:hover { 
+    background-color: #E0FFFF
+  }
+
+
+  .coin_name{
+padding: 16px
+
+  }
+  .margin{
+    margin-left:8px;
+  }
+  
+.table th {
+  background-color:#4a87ee;
+  color:white;
+}
+.events{
+  margin: 20px 10px;
+  }
+
+  .cls li{
+    cursor: pointer;
+  }

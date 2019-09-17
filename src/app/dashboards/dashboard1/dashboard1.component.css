@@ -1,0 +1,130 @@
+.mainclass {
+    /* background-color: aliceblue; */
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #f9f4f4;
+}
+
+.errorcolorcls {
+    color: red;
+}
+
+.grid1 {
+    background-color: #0f9696;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.grid2 {
+    background-color: #9f469e;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.datecls {
+    background-color: #909c1a;
+    ;
+    border-radius: 116px;
+    text-align: center;
+    margin-right: 42px;
+    margin-left: 42px;
+    padding: 10px;
+    color: white;
+}
+
+.datecls2 {
+    background-color: #133168;
+    border-radius: 116px;
+    text-align: center;
+    margin-right: 42px;
+    margin-left: 42px;
+    padding: 10px;
+    color: white;
+}
+
+.subcls {
+    margin-left: 10px;
+    font-weight: bold;
+    color: darkred;
+}
+
+.datecol {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.datespan {
+    background-color: #407524;
+    color: white;
+    font-weight: 500;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.spandate2 {
+    background-color: #9c7305;
+    color: white;
+    font-weight: 500;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.image-icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.service-icon {
+    background-image: url(/assets/images/icons/customer-service.png);
+}
+
+.credit-icon {
+    background-image: url(/assets/images/icons/payment-method.png);
+}
+
+.totalearnings {
+    background-image: url(/assets/images/icons/investment.png);
+}
+
+.department {
+    background-image: url(/assets/images/icons/hospital.png);
+}
+
+.Patients {
+    background-image: url(/assets/images/icons/patient-icon.png);
+}
+
+.Prescription {
+    background-image: url(/assets/images/icons/clipboard.png);
+}
+
+.Occupied {
+    background-image: url(/assets/images/icons/bedridden.png);
+}
+
+.Surgery {
+    background-image: url(/assets/images/icons/surgery-room.png);
+}
+
+.appointment {
+    background-image: url(/assets/images/icons/schedule.png);
+}
+
+.doctors {
+    background-image: url(/assets/images/icons/doctor.png);
+}
+
+.fbList {
+    background-image: url(/assets/images/icons/hospital-bed.png);
+}
+
+.discharged {
+    background-image: url(/assets/images/icons/discharged.png);
+}

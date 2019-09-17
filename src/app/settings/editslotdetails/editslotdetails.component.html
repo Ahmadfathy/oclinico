@@ -1,0 +1,89 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="ltr" id="breadcrumb" style="margin-left: -6%;">
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/slotdetails'>Slot Settings</a></li>
+        <li class="ltr"><a class="nav-link">Edit Slot Settings</a></li>
+              
+        <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+        <li class="rtl"><a class="nav-link" routerLink='/settings'>إعدادات</a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/slotdetails'>إعدادات الخانة</a></li>
+        <li class="rtl"><a class="nav-link">تعديل إعدادات الخانات</a></li>
+      
+      </ul>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="editslotdetails">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Slot Settings</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تعديل إعدادات الخانات</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Slot Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم البنك&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="slotname" formControlName="slotname" [ngClass]="{'has-error' :formErrors.slotname}"
+              (keypress)="keypress($event)" (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.slotname" style="color: red">
+                {{formErrors.slotname}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Status&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.status}">
+                <select formControlName="status" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option label="select" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <select formControlName="status" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option label="تحديد" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                  {{formErrors.status}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions text-center submitBtns">
+            <div class="card-body ">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="update()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                Update</button>
+                <button type="submit" class="btn btn-md btn-warning rtl" (click)="update()" style="margin-right:10px;">
+                  <i class="fa fa-check-circle"></i>
+                  تحديث</button>
+              <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/slotdetails']">
+                <i class="fa fa-ban"></i>
+                Cancel</button>
+                <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/slotdetails']">
+                  <i class="fa fa-ban"></i>
+                  إلغاء</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

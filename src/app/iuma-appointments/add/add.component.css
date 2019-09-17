@@ -1,0 +1,37 @@
+.loading-icon {
+    position: absolute;
+    right: -100px;
+    top: calc(50% - 0.7em);
+    /* Keep icon in center of input, regardless of the input height */
+    width: 14px;
+    height: 14px;
+    display: none;
+}
+.loading-icon1,.loading-icon2 {
+    position: absolute;
+    right: 22px;
+    top: calc(75% - 0.7em);
+    /* Keep icon in center of input, regardless of the input height */
+    width: 14px;
+    height: 14px;
+    display: none;
+}
+
+.loading-icon img,.loading-icon1 img,.loading-icon2 img {
+    width: 14px;
+    height: 14px;
+}
+.patientDetails {
+    position: absolute;
+    top: 65px;
+    left: 11px;
+    margin: auto;
+    height: auto;
+    overflow-y: scroll;
+    background: #fff;
+    z-index: 99999;
+    width: 288px;
+    cursor: pointer;
+    display: none;
+    height: 100px;
+}

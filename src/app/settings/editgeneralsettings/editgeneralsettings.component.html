@@ -1,0 +1,549 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/generalsettings'>General Settings</a></li>
+      <li class="ltr"><a class="nav-link">Edit General Settings</a></li>
+
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"></span></a></li> -->
+      <li class="rtl"><a class="nav-link" routerLink='/settings'><span>إعدادات</span></a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/generalsettings'>الاعدادات العامة</a></li>
+      <li class="rtl"><a class="nav-link">تعديل الإعدادات العامة</a></li>
+    
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="editsettings">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;General Settings</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;الاعدادات العامة</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Clinic Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم العيادة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="clinicname" formControlName="clinicname" [ngClass]="{'has-error' :formErrors.clinicname}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.clinicname" style="color: red">
+                {{formErrors.clinicname}}
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Specialization&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">التخصص&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="spec" [ngClass]="{'has-error' :formErrors.spec}" (blur)="checkValidationErrors()"
+                formControlName="spec" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.spec" style="color: red">
+                {{formErrors.spec}}
+              </span>
+            </div>
+            <div class="col-md-4">
+            </div>
+          </div>
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <label class="form-control-label ltr">English Names&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الأسماء بالإنجليزية&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="inenglish1" [ngClass]="{'has-error' :formErrors.inenglish1}" (blur)="checkValidationErrors()"
+                formControlName="inenglish1" (keyup)="eng1($event,'engname1')" (keypress)="english($event)" 
+                type="text" class="form-control" >
+              <!-- <span class="help-block" *ngIf="formErrors.inenglish1" style="color: red">
+                {{formErrors.inenglish1}}
+              </span> -->
+              <span class="help-block" *ngIf="engerror" class="ltr" style="color: red">
+                Please enter english names
+              </span>
+              <span class="help-block" *ngIf="engerror" class="rtl" style="color: red">
+                Please enter english names
+              </span>
+            </div>
+            <div class="col-md-4" style="top: 6px;">
+              <label class="form-control-label ltr"></label>
+              <input id="inenglish2" [ngClass]="{'has-error' :formErrors.inenglish2}" (blur)="checkValidationErrors()"
+                formControlName="inenglish2" (keyup)="eng1($event,'engname2')" (keypress)="english($event)" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.inenglish2" style="color: red">
+                {{formErrors.inenglish2}}
+              </span>
+            </div>
+            <div class="col-md-4" style="top: 6px;">
+              <label class="form-control-label ltr"></label>
+              <input id="inenglish3" [ngClass]="{'has-error' :formErrors.inenglish3}" (blur)="checkValidationErrors()"
+                formControlName="inenglish3" (keyup)="eng1($event,'engname3')" (keypress)="english($event)" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.inenglish3" style="color: red">
+                {{formErrors.inenglish3}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Arabic Names&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الأسماء بالعربية&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="inarabic1" [ngClass]="{'has-error' :formErrors.inarabic1}" (blur)="checkValidationErrors()"
+                formControlName="inarabic1" dir="rtl" (keyup)="arb($event,'arb1')" (keypress)="arabic($event)" type="text"
+                class="form-control">
+              <!-- <span class="help-block" *ngIf="formErrors.inarabic1" style="color: red">
+                {{formErrors.inarabic1}}
+              </span> -->
+              <span class="help-block" *ngIf="arabicerror" class="ltr" style="color: red">
+                Please enter arabic names
+              </span>
+              <span class="help-block" *ngIf="arabicerror" class="rtl" style="color: red">
+                Please enter arabic names
+              </span>
+              <span class="help-block" *ngIf="commonerror" class="ltr" style="color: red">
+                Please enter either english or arabic all name fields.
+              </span>
+              <span class="help-block" *ngIf="commonerror" class="rtl" style="color: red">
+                Please enter either english or arabic all name fields.
+              </span>
+            </div>
+            <div class="col-md-4" style="top: 6px;"><br>
+              <label class="form-control-label ltr"></label>
+              <input id="inarabic2" [ngClass]="{'has-error' :formErrors.inarabic2}" (blur)="checkValidationErrors()"
+                formControlName="inarabic2" dir="rtl" (keyup)="arb($event,'arb2')" (keypress)="arabic($event)" type="text"
+                class="form-control">
+              <span class="help-block" *ngIf="formErrors.inarabic2" style="color: red">
+                {{formErrors.inarabic2}}
+              </span>
+            </div>
+            <div class="col-md-4" style="top: 6px;"><br>
+              <label class="form-control-label ltr"></label>
+              <input id="inarabic3" [ngClass]="{'has-error' :formErrors.inarabic3}" (blur)="checkValidationErrors()"
+                formControlName="inarabic3" dir="rtl" (keyup)="arb($event,'arb3')" (keypress)="arabic($event)" type="text"
+                class="form-control">
+              <span class="help-block" *ngIf="formErrors.inarabic3" style="color: red">
+                {{formErrors.inarabic3}}
+              </span>
+            </div><br>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Website</label>
+              <label class="form-control-label rtl">موقع الكتروني</label>
+              <input id="website" formControlName="website" type="text" class="form-control">
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Email ID&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الايميل&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="email" readonly formControlName="email" [ngClass]="{'has-error' :formErrors.email}" (blur)="checkValidationErrors()"
+                type="email" class="form-control">
+              <!-- <span class="help-block" *ngIf="formErrors.email" style="color: red">
+                {{formErrors.email}}
+              </span> -->
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Communication Email ID</label>
+              <label class="form-control-label rtl">الاتصال الايميل</label>
+              <input id="comemail" formControlName="comemail" type="text" class="form-control">
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Phone No&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">رقم هاتف&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="phno" formControlName="phno" maxlength=15 [ngClass]="{'has-error' :formErrors.phno}" (blur)="checkValidationErrors()"
+                (keypress)="keyPress($event)" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.phno" style="color: red">
+                {{formErrors.phno}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Mobile No&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">رقم الهاتف المحمول&nbsp;<i class="fa fa-star mystar"></i></label>
+              <!-- <input id="mobile" (keyup)="mobilecheck()" [ngClass]="{'has-error' :formErrors.mobile}" (blur)="checkValidationErrors()"
+               (keypress)="keyPress($event)" formControlName="mobile" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.mobile" style="color: red">
+                {{formErrors.mobile}}
+              </span> -->
+              <input id="mobileno"  formControlName="mobile" [ngClass]="{'has-error' :formErrors.mobile}"
+                (blur)="checkValidationErrors()" (keyup)="mobilecheck()" (keypress)="keyPress($event)" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.mobile" style="color: red">
+                {{formErrors.mobile}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Clinic No</label>
+              <label class="form-control-label rtl">رقم العيادة</label>
+              <input id="clinicno" formControlName="clinicno" type="text" class="form-control">
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Address&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">عنوان&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="address" formControlName="address" [ngClass]="{'has-error' :formErrors.address}" (blur)="checkValidationErrors()"
+                type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.address" style="color: red">
+                {{formErrors.address}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">City&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">مدينة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="city" formControlName="city" [ngClass]="{'has-error' :formErrors.city}" (blur)="checkValidationErrors()"
+                type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.city" style="color: red">
+                {{formErrors.city}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Country&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">دولة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select id="selectid" [ngClass]="{'has-error' :formErrors.country}" (blur)="checkValidationErrors()"
+                formControlName="country" class="custom-select mr-sm-2 ltr">
+                <option class="ltr" label="select" disabled></option>
+                <option *ngFor="let item of countries" [value]="item.Country_Name">{{item.Country_Name}}</option>
+              </select>
+              <select id="selectid" formControlName="country" class="custom-select mr-sm-2 rtl">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option *ngFor="let item of countries" [value]="item.Country_Name">{{item.Country_Name}}</option>
+              </select>
+              <span class="help-block" *ngIf="formErrors.country" style="color: red">
+                {{formErrors.country}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Business ID No&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">رقم رخصة العمل&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="businessno" formControlName="businessno" [ngClass]="{'has-error' :formErrors.businessno}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.businessno" style="color: red">
+                {{formErrors.businessno}}
+              </span>
+            </div>
+            <div class="col-md-3"><br>
+              <label></label>
+              <img src="{{business_image}}" style="width:50px;height:50px;position: absolute;top: 40px;" onError="this.src='/assets/images/noimgavail.png'"><br><br>
+            </div>
+            <div class="col-md-2"><br>
+              <label></label>
+              <div style="top: 29px;">
+                <input type="file" class="filecls" id="businessid" formControlName="businessid" (change)="fileupload($event,'businessid')"
+                  accept="image/x-png,image/jpeg,image/jpg" name="file" />
+              </div>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">National Identification No&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">رقم الهوية الوطنية&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="nationalno" formControlName="nationalno" [ngClass]="{'has-error' :formErrors.nationalno}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.nationalno" style="color: red">
+                {{formErrors.nationalno}}
+              </span>
+            </div>
+            <div class="col-md-3"><br>
+              <label></label>
+              <img src="{{national_image}}" style="width:50px;height:50px;position: absolute;top: 40px;" onError="this.src='/assets/images/noimgavail.png'"><br><br>
+            </div>
+            <div class="col-md-2"><br>
+              <label></label>
+              <div style="top: 29px;">
+                <input type="file" class="filecls" id="nationalid" formControlName="nationalid" (change)="fileupload($event,'nationalid')"
+                  accept="image/x-png,image/jpeg,image/jpg" name="file" />
+              </div>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Municipal License No&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">رقم رخصة البلدية&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="muncipalno" formControlName="muncipalno" [ngClass]="{'has-error' :formErrors.muncipalno}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.muncipalno" style="color: red">
+                {{formErrors.muncipalno}}
+              </span>
+            </div>
+            <div class="col-md-3"><br>
+              <label></label>
+              <img src="{{muncipal_image}}" style="width:50px;height:50px;position: absolute;top: 40px;" onError="this.src='/assets/images/noimgavail.png'"><br><br>
+            </div>
+            <div class="col-md-2"><br>
+              <label></label>
+              <div style="top: 29px;">
+                <input type="file" class="filecls" id="muncipalid" formControlName="muncipalid" (change)="fileupload($event,'muncipalid')"
+                  accept="image/x-png,image/jpeg,image/jpg" name="file" />
+              </div>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">VAT No</label>
+              <label class="form-control-label rtl">ضريبه القيمه المضافه الرقم</label>
+              <input id="vatno" formControlName="vatno" type="text" class="form-control">
+            </div>
+            <div class="col-md-4"><br></div>
+            <div class="col-md-4"><br></div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Google Map Url</label>
+              <label class="form-control-label rtl">رابط جوجل ماب</label>
+              <input id="url" formControlName="url" type="text" class="form-control">
+            </div>
+            <div class="col-md-4"><br></div>
+            <div class="col-md-4"><br></div>
+            <!-- <div class="col col-12"><br>
+              <iframe id="map" [src]='sanitizer.bypassSecurityTrustResourceUrl(mapsurl)'></iframe>
+            </div> -->
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Slot Setting</label>
+              <label class="form-control-label rtl">ضبط الخانة</label>
+            </div>
+            <div class="col-md-4"><br></div>
+            <div class="col-md-4"><br></div>
+
+            <div class="col-md-3"><br>
+              <label class="form-control-label ltr">First Appointment</label>
+              <label class="form-control-label rtl">الموعد الأولي</label>
+            </div>
+            <div class="col-md-3">
+              <input disabled id="firstapp" style="margin-top: 10px;" value="00:30" type="text" class="form-control myinput"
+                readonly>
+            </div>
+            <div class="col-md-3">
+              <label style="margin-top:18px" class="form-control-label ltr">Standard Appointment</label>
+              <label class="form-control-label rtl">موعد اساسي</label>
+            </div>
+            <div class="col-md-3"><br>
+              <input disabled id="standapp" style="margin-top: -10px;" value="00:30" type="text" class="form-control myinput"
+                readonly>
+            </div>
+
+            <div class="col-md-6"><br>
+              <div class="form-group" (change)="selectwise($event.target.value)">
+                <label class="form-control-label ltr">Clinic Timings</label>
+                <label class="form-control-label rtl">توقيت العيادة</label>
+                <div class="row">
+                  <div class="switch-field ltr">
+                    <input type="radio" formControlName="scheduletypeinput" id="Day Wise" value="Day Wise" />
+                    <label for="Day Wise">Day Wise</label>
+                    <input type="radio" formControlName="scheduletypeinput" id="Session Wise" value="Session Wise" />
+                    <label for="Session Wise">Session Wise</label>
+                  </div>
+                  <div class="switch-field rtl">
+                    <input type="radio" formControlName="scheduletypeinput" id="Day Wise" value="Day Wise" />
+                    <label for="Day Wise">يوم حكيم</label>
+                    <input type="radio" formControlName="scheduletypeinput" id="Session Wise" value="Session Wise" />
+                    <label for="Session Wise">الجلسة الحكيمة</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+        <!----------------------------   Day Wise -------------------------------->
+        <div [hidden]="!daywiseif">
+          <form class="form-horizontal" [formGroup]="myForm">
+            <div formArrayName="rows">
+                    <div class="row" style="border-top: 1px solid #F2F2F2;padding: 5px;">
+                        <div class="col-md-4 ltr" align="center" style="margin-left: -5%">Week</div>
+                        <div class="col-md-4 rtl" align="center" style="margin-left: -5%">أسبوع</div>
+                        <div class="col-md-4 ltr" align="center" style="margin-left: -1%">From Hour/Min</div>
+                        <div class="col-md-4 rtl" align="center" style="margin-left: -1%">من ساعة / دقيقة</div>
+                        <div class="col-md-4 ltr" align="center" style="margin-left: -1%">To Hour/Min</div>
+                        <div class="col-md-4 rtl" align="center" style="margin-left: -1%">إلى ساعة / دقيقة</div>
+                    </div>
+              <br>
+              <div class="row eachDay" *ngFor="let row of myForm.get('rows')['controls']; let i = index"
+                [formGroupName]="i" [ngClass]="{'table-primary': myForm.get('rows').value[i].checkbox_value}" style="border-top: 1px solid #F2F2F2;padding: 10px;">
+                <div class="col-md-4"><input type="checkbox" class="dayName" (change)="checkboxchange(row,row.value.day,i,'daywise')"
+                    [id]='row.value.day' formControlName="checkbox_value">
+                  <span style="margin-left: 19%;">{{row.value.day}}</span></div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <input type="text" class="startTime" [attr.disabled]="myForm.get('rows').value[i].checkbox_value ? null: ''"
+                        formControlName="fromtime" (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'daystart','daywise')"
+                        style="width: 100%;">
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group m-b-30">
+                        <select class="starttimeselect ltr" name="title" formControlName="titleinput" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].fromtime ? null: '')"
+                          (click)="fromtimechange()" (change)="dayclinictimings(i,'daystart','daywise')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+
+                        <select class="starttimeselect rtl" name="title" formControlName="titleinput" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].fromtime ? null: '')"
+                          (click)="fromtimechange()" (change)="dayclinictimings(i,'daystart','daywise')">
+                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <input type="text" class="endTime" [attr.disabled]="myForm.get('rows').value[i].checkbox_value ? null: ''"
+                        formControlName="totime" (keypress)="fromkey($event)" (click)="dayampmchange(i)" (keyup)="fromenter($event,$event.keyCode,i,'dayend','daywise')"
+                        style="width: 100%;">
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group m-b-30">
+                        <select class="endtimeselect ltr" name="title" formControlName="titleinput1" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].totime ? null: '')"
+                          (click)="fromtimechange()" (change)="dayclinictimings(i,'dayend','daywise')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="endtimeselect rtl" name="title" formControlName="titleinput1" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].totime ? null: '')"
+                          (click)="fromtimechange()" (change)="dayclinictimings(i,'dayend','daywise')">
+                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <br>
+        <!-- ................session wise click div........................ -->
+        <div [hidden]="!sessionwiseif">
+          <form class="form-horizontal" [formGroup]="mysessionForm">
+            <div formArrayName="sessionrows">
+              <div class="row" style="border-top: 1px solid #F2F2F2;padding: 5px;">
+                <div class="col ltr" align="center" style="margin-left: -4%">Week</div>
+                <div class="col rtl" align="center" style="margin-left: -4%">أسبوع</div>
+                <div class="col ltr" align="center" style="margin-left: -3%">Session1 Start</div>
+                <div class="col rtl" align="center" style="margin-left: -3%">الجلسة الأولى</div>
+                <div class="col ltr" align="center" style="margin-left: -4%">Session1 End</div>
+                <div class="col rtl" align="center" style="margin-left: -2%">الجلسة الفترة</div>
+                <div class="col ltr" align="center" style="margin-left: -5%">Session2 Start</div>
+                <div class="col rtl" align="center" style="margin-left: -5%">الجلسة الفترة</div>
+                <div class="col ltr" align="center" style="margin-left: -6%">Session2 End</div>
+                <div class="col rtl" align="center" style="margin-left: 1%">الجلسة الفترة</div>
+              </div><br>
+              <div class="row eachsession" *ngFor="let row of mysessionForm.get('sessionrows')['controls']; let i = index"
+                [formGroupName]="i" [ngClass]="{'table-primary': mysessionForm.get('sessionrows').value[i].checkbox_value}"
+                style="border-top: 1px solid #F2F2F2;padding: 10px;">
+                <div class="col"><input type="checkbox" (change)="checkboxsessionchange(sessionrows,row.value.day, i,'seswise')"
+                    class="sessioninput" [id]='row.value.day' [value]="row.value.day" formControlName="checkbox_value">
+                  <span style="margin-left: 19%;">{{row.value.day}}</span>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input class="session1starttime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session1start" (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'ses1start','seswise')"
+                        style="width: 100%;">
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session1startselect ltr" name="title" formControlName="sessionstart1input"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses1start','seswise')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session1startselect rtl" name="title" formControlName="sessionstart1input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses1start','seswise')">
+                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input class="session1endtime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session1end" (keypress)="fromkey($event)" (click)="sessionampmchange(i,'ses1end')"
+                        (keyup)="fromenter($event,$event.keyCode,i,'ses1end','seswise')" style="width: 100%;">
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session1endselect ltr" name="title" formControlName="sessionend1input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses1end','seswise')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session1endselect rtl" name="title" formControlName="sessionend1input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses1end','seswise')">
+                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input class="session2starttime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session2start" (keypress)="fromkey($event)" (click)="sessionampmchange(i,'ses2start')"
+                        (keyup)="fromenter($event,$event.keyCode,i,'ses2start','seswise')" style="width: 100%;">
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session2startselect ltr" name="title" formControlName="sessionstart2input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2start ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses2start','seswise')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session2startselect rtl" name="title" formControlName="sessionstart2input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2start ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses2start','seswise')">
+                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input class="session2endtime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session2end" (keypress)="fromkey($event)" (click)="sessionampmchange(i,'ses2end')"
+                        (keyup)="fromenter($event,$event.keyCode,i,'ses2end','seswise')" style="width: 100%;">
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session2endselect ltr" name="title" formControlName="sessionend2input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2end ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses2end','seswise')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session2endselect rtl" name="title" formControlName="sessionend2input" 
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2end ? null: ''"
+                          (click)="sessionclick()" (change)="sesclinictimings(i,'ses2end','seswise')">
+                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="form-actions text-center submitBtns">
+          <div class="card-body ">
+            <button type="submit" class="btn btn-md btn-warning ltr" (click)="submit()" style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              Update</button>
+            <button type="submit" class="btn btn-md btn-warning rtl" (click)="submit()" style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              تحديث</button>
+            <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/generalsettings']">
+              <i class="fa fa-ban"></i>
+              Cancel</button>
+            <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/generalsettings']">
+              <i class="fa fa-ban"></i>
+              إلغاء</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

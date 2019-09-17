@@ -1,0 +1,176 @@
+<div class="preloader" *ngIf="showLoader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+  </div>
+  
+<div class="row">
+    <h4 class="ltr">Edit Family</h4>
+    <h4 class="rtl">تحرير العائلة</h4>
+</div><br>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link">Edit Family</a></li>
+            <li class="rtl"><a class="nav-link"><span>تحرير العائلة</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<form [formGroup]="editfamily">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Family</h4>
+                    <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تحرير العائلة</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.fname}">
+                                <label class="mr-sm-2 ltr" for="title">Family Members</label>
+                                <label class="mr-sm-2 rtl" for="title">أفراد العائلة</label>
+                                <select name="title" formControlName="fname" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                                    <option value="select" disabled>-- select --</option>
+                                    <option value="Husband">Husband</option>
+                                    <option value="Wife">Wife</option>
+                                    <option value="Son">Son</option>
+                                    <option value="Daughter">Daughter</option>
+                                    <option value="Father">Father</option>
+                                    <option value="Mother">Mother</option>
+                                </select>
+                                <select name="title" formControlName="fname" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                                    <option value="select" disabled>-- اختار --</option>
+                                    <option value="Husband">زوج</option>
+                                    <option value="Wife">زوجة</option>
+                                    <option value="Son">ابن</option>
+                                    <option value="Daughter">ابنه</option>
+                                    <option value="Father">أب</option>
+                                    <option value="Mother">أم</option>
+                                </select>
+                                <span class="help-block errorcolorcls" *ngIf="formErrors.fname">
+                                    {{formErrors.fname}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.nameval}">
+                                <label class="mr-sm-2 ltr" for="title">Name</label>
+                                <label class="mr-sm-2 rtl" for="title">اسم</label>
+                                <input type="text" class="form-control" formControlName="nameval" (blur)="checkValidationErrors()">
+                                <span class="help-block errorcolorcls" *ngIf="formErrors.nameval">
+                                    {{formErrors.nameval}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.doc}">
+                                <label class="mr-sm-2 ltr" for="title">Document</label>
+                                <label class="mr-sm-2 rtl" for="title">المستند</label>
+                                <select name="title" formControlName="doc" (change)="typechange($event)" class="custom-select mr-sm-2 ltr"
+                                    (blur)="checkValidationErrors()">
+                                    <option value="select" disabled>-- select --</option>
+                                    <option value="IDCard">ID Card</option>
+                                    <option value="Passport">Passport</option>
+                                    <option value="Iqama">Iqama</option>
+                                    <option value="Laborlicense">Labor license</option>
+                                </select>
+                                <select name="title" formControlName="doc" (change)="typechange($event)" class="custom-select mr-sm-2 rtl"
+                                    (blur)="checkValidationErrors()">
+                                    <option value="select" disabled>-- اختار --</option>
+                                    <option value="IDCard">الهوية</option>
+                                    <option value="Passport">جواز السفر</option>
+                                    <option value="Iqama">الإقامة</option>
+                                    <option value="Laborlicense">رخصة العمل</option>
+                                </select>
+                                <span class="help-block errorcolorcls" *ngIf="formErrors.doc">
+                                    {{formErrors.doc}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.docnum}">
+
+                            <label class="mr-sm-2 ltr" for="title">Document Number</label>
+                            <label class="mr-sm-2 rtl" for="title">رقم البطاقة</label>
+                            <input type="text" class="form-control" formControlName="docnum" (blur)="checkValidationErrors()">
+
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.docnum">
+                                {{formErrors.docnum}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="mr-sm-2 ltr" for="title">Issue Date</label>
+                            <label class="mr-sm-2 rtl" for="title">تاريخ الاصدار</label>
+                            <!-- (dateTimeInput)="issuedatechange()" -->
+                            <input [owlDateTimeTrigger]="dt3" (blur)="checkValidationErrors()" [owlDateTime]="dt3"
+                                placeholder="mm/dd/yyyy" class="form-control" formControlName="issuedate" [ngClass]="{'has-error' :formErrors.issuedate}">
+                            <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                            <span class="help-block" *ngIf="formErrors.issuedate" style="color: red">
+                                {{formErrors.issuedate}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="mr-sm-2 ltr" for="title">Expire Date</label>
+                            <label class="mr-sm-2 rtl" for="title">تاريخ الانتهاء</label>
+                            <!-- (dateTimeInput)="datechange()" -->
+                            <input [owlDateTimeTrigger]="dt4" (blur)="checkValidationErrors()" [owlDateTime]="dt4"
+                                placeholder="mm/dd/yyyy" class="form-control" formControlName="expdate" [ngClass]="{'has-error' :formErrors.expdate}">
+                            <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+
+                            <span class="help-block" *ngIf="formErrors.expdate" style="color: red">
+                                {{formErrors.expdate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.imagefile}" *ngIf="showimgupload">
+
+                            <label class="mr-sm-2 ltr" for="title"> Image</label>
+                            <label class="mr-sm-2 rtl" for="title"> مرفق</label>
+                            <input type="file" (change)="fileuploadfamily($event)"value='mani' formControlName="imagefile">
+                        </div>
+                        <div class="col-md-4" *ngIf="showimgbind">
+
+                            <label class="mr-sm-2 ltr" for="title"> Image</label>
+                            <label class="mr-sm-2 rtl" for="title"> مرفق</label>
+                            <div style="width:200px;">
+                                <img [src]='image' class="pto" onError="this.src='./assets/images/noimage.png'" alt="IMG">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center submitBtns">
+                            <button type="submit" class="btn btn-md btn-warning ltr" (click)="editfamilysubmit()" style="margin-right:5px;">
+                                <i class="fa fa-check-circle"></i>
+                                Submit </button>
+                            <button type="submit" class="btn btn-md btn-warning rtl" (click)="editfamilysubmit()">
+                                <i class="fa fa-check-circle"></i>
+                                ارسل </button>
+                            <button type="submit" class="btn btn-md btn-success ltr" (click)="cancelfamilysubmit()">
+                                <i class="fa fa-ban"></i>
+                                Cancel</button>
+                            <button type="submit" class="btn btn-md btn-success rtl" style="margin-right:5px;" (click)="cancelfamilysubmit()">
+                                <i class="fa fa-ban"></i>
+                                إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

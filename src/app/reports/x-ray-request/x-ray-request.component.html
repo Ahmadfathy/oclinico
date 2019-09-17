@@ -1,0 +1,792 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'>Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Xray Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>طلب إشاعة</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;X-ray Report</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;
+          <span>طلب إشاعة</span>
+        </h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>#</th>
+              <th>Clinical Date</th>
+              <th>Reffered By</th>
+              <th>Visited On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let xray of xraydetails;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{xray.Clinical_Date}}</td>
+              <td>{{xray.Reffered_by_Dr}}</td>
+              <td>{{xray.ON}}</td>
+              <td style="display:flex;">
+                <span>
+                  <a class="nav-link" (click)="view('View',xray.tran_date,xray.patient_id)" style="cursor: pointer;color:#4a87ee">
+                    <i class="fa fa-eye text-info"></i>
+                  </a>
+                </span>
+                <span>
+                  <a class="nav-link" (click)="view('Edit',xray.tran_date,xray.patient_id)" style="cursor: pointer;color:#4a87ee">
+                    <i class="fa fa-pencil-alt text-info"></i>
+                  </a>
+                </span>
+                <span>
+                  <a class="nav-link" (click)="getprintdata(xray.patient_id,xray.tran_date)" style="cursor: pointer;color:#4a87ee">
+                    <i class="fa fa-print text-info"></i>
+                  </a>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ----------------------- Print ---------------------------- -->
+<div id="DivIdToPrint" style="display: none;">
+  <div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;" id="DivIdToPrint">
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="top">
+          <td colspan="2">
+            <table width="100%" style="border: 1px solid #000; border-radius: 10px;;">
+              <tbody>
+                <tr>
+                  <td width="28%">
+                    <div style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{p1}}</div>
+                    : اسم المريض
+                    <div style="height: 10px;"></div>
+                    <div style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{p2}}</div>
+                    : رقم الملف
+                    <div style="height: 10px;"></div>
+                    <div style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{p3}}</div>
+                    :موعد الفحص
+                  </td>
+                  <td width="48%" class="title" style="text-align: center">
+                    <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;">
+                  </td>
+                  <td width="24%" style="text-align: center;"> المملكة العربية السعودية وزارة التعليم الجامعة الاسلامية بالمدينة المنورة المركز الطبي الجامعي
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="height: 10px;"></td>
+                </tr>
+                <tr>
+                  <td style="position: relative; text-align: center;" colspan="3">
+                    <div style="position: absolute; top: -13px; left: 31%; background-color: #d6f4ff; border: 1px solid #000; border-radius: 5px; padding: 5px; color: #1ba3c5; font-weight: bold; font-size: 20px;">X - RAY REQUEST &nbsp; &nbsp; &nbsp;
+                      <input type="checkbox" value="" id="ct1" />
+                      <label for="ct1">C.T</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; font-size: 18px; text-align: center;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="40%" style="height: 10px;">
+                  </td>
+                  <td width="60%" style="font-weight: bold; font-size: 18px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="border: 1px solid #000; border-radius: 10px;">
+            <table width="100%" cellpadding="2" cellspacing="2">
+              <tbody>
+                <tr>
+                  <td width="15%">
+                    Clinical Date :
+                  </td>
+                  <td colspan="3">
+                    <div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{p4}}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4">
+                    <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Reffered by Dr.
+                  </td>
+                  <td width="47%">
+                    <!-- <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />      -->
+                    <div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{p5}}</div>
+                  </td>
+                  <td width="6%">
+                    ON. :
+                  </td>
+                  <td width="32%">
+                    <!-- <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" /> -->
+                    <div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{p6}}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="height: 10px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="40%" style="height: 10px;">
+                  </td>
+                  <td width="60%" style="font-weight: bold; font-size: 18px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td width="353" valign="top">
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    CHEST
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Chest1" />
+                    <label for="Chest1">Chest</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="P-A1" />
+                    <label for="P-A1">P-A</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Lat1" />
+                    <label for="Lat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="UpperRibs1" />
+                    <label for="UpperRibs1">Upper Ribs</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Ant1" />
+                    <label for="Ant1">Ant</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Post1" />
+                    <label for="Post1">Post</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="LowerRibs1" />
+                    <label for="LowerRibs">Lower Ribs</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Ant21" />
+                    <label for="Ant21">Ant</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Post21" />
+                    <label for="Post21">Post</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    U.T & GIT
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="K.U.B1" />
+                    <label for="K.U.B1">K.U.B.</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Abdomen1" />
+                    <label for="Abdomen1">Abdomen</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="PainGallBladder1" />
+                    <label for="PainGallBladder1">Pain Gall Bladder</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="IVU1" />
+                    <label for="IVU1">I.V.U</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    SKULL
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="Skull1" />
+                    <label for="Skull1">Skull</label>
+                  </td>
+                  <td width="22%">
+                    <input type="checkbox" value="" id="Skull-P-A1" />
+                    <label for="Skull-P-A1">P-A</label>
+                  </td>
+                  <td width="28%">
+                    <input type="checkbox" value="" id="Skull-Lat1" />
+                    <label for="Skull-Lat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Sinuses1" />
+                    <label for="Sinuses1">Sinuses</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Nasopharynx1" />
+                    <label for="Nasopharynx1">Naso pharynx</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Paravertebrad1" />
+                    <label for="Paravertebrad1">Para vertebrad</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="NasalBones1" />
+                    <label for="NasalBones1">Nasal Bones</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="BothMastoids1" />
+                    <label for="BothMastoids1">Both Mastoids</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Mandible1" />
+                    <label for="Mandible1">Mandible</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Mandible-Rt1" />
+                    <label for="Mandible-Rt1">Rt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Mandible-Lt1" />
+                    <label for="Mandible-Lt1">Lt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="T.M.J1" />
+                    <label for="T.M.J1">T.M.J</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="T.M.J-Rt1" />
+                    <label for="T.M.J-Rt1">Rt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="T.M.J-Lt1" />
+                    <label for="T.M.J-Lt1">Lt</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    SPINE
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="CeevicalSpine1" />
+                    <label for="CeevicalSpine1">Ceevical Spine</label>
+                  </td>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="LSSpine1" />
+                    <label for="LSSpine1">L-S Spine</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="DorsalSpine1" />
+                    <label for="DorsalSpine1">Dorsal Spine</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Sacrum1" />
+                    <label for="Sacrum1">Sacrum</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="DLSpine1" />
+                    <label for="DLSpine1">D-L Spine</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Coccyx1" />
+                    <label for="Coccyx1">Coccyx</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="LumberSpine1" />
+                    <label for="LumberSpine1">Lumber Spine</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Sijoints1" />
+                    <label for="Sijoints1">Sacro-illiac joints</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Others1" />
+                    <label for="Others1">Others</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td width="345" valign="top">
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold;  border-bottom: 1px solid #000;">
+                    UPPER LIMB
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Stetnum1" />
+                    <label for="Stetnum1">Stetnum</label>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Clavicle1" />
+                    <label for="Clavicle">Clavicle</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ULPA1" />
+                    <label for="ULPA1">P-A</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ULLat1" />
+                    <label for="ULLat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Scapula1" />
+                    <label for="Scapula1">Scapula</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ScapulaLt1" />
+                    <label for="ScapulaLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ScapulaRt1" />
+                    <label for="ScapulaRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Shoulder1" />
+                    <label for="Shoulder1">Shoulder</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ShoulderLt1" />
+                    <label for="ShoulderLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ShoulderRt1" />
+                    <label for="ShoulderRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Humerus1" />
+                    <label for="Humerus1">Humerus</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HumerusLt1" />
+                    <label for="HumerusLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HumerusRt1" />
+                    <label for="HumerusRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Elbow1" />
+                    <label for="Elbow1">Elbow</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ElbowLt1" />
+                    <label for="ElbowLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ElbowRt1" />
+                    <label for="ElbowRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Forearm1" />
+                    <label for="Forearm1">Forearm</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ForearmLt1" />
+                    <label for="ForearmLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ForearmRt1" />
+                    <label for="ForearmRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Wirst1" />
+                    <label for="Wirst1">Wirst</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="WirstLt1" />
+                    <label for="WirstLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="WirstRt1" />
+                    <label for="WirstRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hand1" />
+                    <label for="Hand1">Hand</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HandLt1" />
+                    <label for="Hand-Lt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HandRt1" />
+                    <label for="Hand-Rt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Fingers1" />
+                    <label for="Fingers1">Fingers</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="FingersLt1" />
+                    <label for="FingersLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="FingersRt1" />
+                    <label for="FingersRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="text-align: center;">
+                    <div style="width: 20%; float: left;">01
+                      <sup>st</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">02
+                      <sup>nd</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">03
+                      <sup>rd</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">04
+                      <sup>th</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">05
+                      <sup>th</sup>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold;  border-bottom: 1px solid #000;">
+                    LOWER LIMB
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Pelvis1" />
+                    <label for="Pelvis1">Pelvis</label>
+                  </td>
+                  <td colspan="2"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="HipJoint1" />
+                    <label for="HipJoint1">Hip Joint</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HipJointPA1" />
+                    <label for="HipJointPA1">P-A</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HipJointLat1" />
+                    <label for="HipJointLat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip11" />
+                    <label for="Hip1"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip11Lt" />
+                    <label for="Hip1Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip11Rt" />
+                    <label for="Hip1Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip21" />
+                    <label for="Hip2"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip21Lt" />
+                    <label for="Hip2Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip21Rt" />
+                    <label for="Hip2Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip31" />
+                    <label for="Hip3"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip31Lt" />
+                    <label for="Hip3Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip31Rt" />
+                    <label for="Hip3Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip41" />
+                    <label for="Hip4"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip41Lt" />
+                    <label for="Hip4Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip41Rt" />
+                    <label for="Hip4Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip51" />
+                    <label for="Hip5"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip51Lt" />
+                    <label for="Hip5Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip51Rt" />
+                    <label for="Hip5Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip61" />
+                    <label for="Hip6"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip61Lt" />
+                    <label for="Hip6Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip61Rt" />
+                    <label for="Hip6Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip71" />
+                    <label for="Hip7"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip71Lt" />
+                    <label for="Hip7Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip71Rt" />
+                    <label for="Hip7Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip81" />
+                    <label for="Hip8"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip81Lt" />
+                    <label for="Hip8Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip81Rt" />
+                    <label for="Hip8Rt">Rt</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    MISCELLANEOUS
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="Ponarama1" />
+                    <label for="Ponarama1">Ponarama</label>
+                  </td>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="Porama" />
+                    <label for="Porama"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Pona" />
+                    <label for="Pona"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="narama" />
+                    <label for="narama"></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="height: 50px;"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

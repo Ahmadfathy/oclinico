@@ -1,0 +1,265 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/reports'> Reports</a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/appointmentschedule'> Appointment Schedule</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/reports'><span>تقارير</span> </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/appointmentschedule'><span>جدول المواعيد</span></a>
+            </li>
+           
+            <!-- <li class="rtl">
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;Appointment Schedule</p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;جدول المواعيد
+                </p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-control-label ltr">Show</label>
+                        <label class="form-control-label rtl">تبين</label>
+                        <br>
+                        <select name="show" id="show" class="form-control ltr" (change)="MyType($event.target.value)">
+                            <option class="ltr" value="Daily">Daily</option>
+                            <option class="ltr" value="Weekly">Weekly</option>
+                            <option class="ltr" value="Monthly">Monthly</option>
+                        </select>
+                        <select name="show" id="show" class="form-control rtl" (change)="MyType($event.target.value)">
+                            <option class="rtl" value="Daily">اليومي
+                            </option>
+                            <option class="rtl" value="Weekly">أسبوعي</option>
+                            <option class="rtl" value="Monthly">شهريا
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-6" *ngIf="Div_FromDate">
+                        <label class="form-control-label ltr">Date</label>
+                        <label class="form-control-label rtl">تاريخ</label>
+                        <br>
+                        <input [owlDateTimeTrigger]="Date" [owlDateTime]="Date" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyFromDate()" [(ngModel)]="Day_FromDate">
+                        <owl-date-time [pickerType]="'calendar'" #Date></owl-date-time>
+                    </div>
+
+
+                    <div class="col-3" *ngIf="Div_Month">
+                        <label class="form-control-label ltr">Month</label>
+                        <label class="form-control-label rtl">شهر
+                        </label>
+                        <br>
+                        <select name="month" id="month" (change)="mymonth($event.target.value)" class="dropdown-toggle-split mm form-control w-100" [(ngModel)]="selectedmonth">
+                            <option *ngFor="let month of months" [value]="month.id">
+                                {{month.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-3" *ngIf="Div_Year">
+                        <label class="form-control-label ltr">Year</label>
+                        <label class="form-control-label rtl">عام</label>
+                        <br>
+                        <select name="year" id="year" class="dropdown-toggle-split yy form-control  w-100" (change)="myyear($event.target.value)" [(ngModel)]="selectedyear">
+                            <option *ngFor="let year of years" [value]="year">
+                                {{year}}
+                            </option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="col-6">
+                        <label class="form-control-label ltr">Doctor</label>
+                        <label class="form-control-label rtl">طبيب</label>
+                        <br>
+                        <input type="text" name="Doctor" id="Doctor" class="form-control" (change)="myDoctor($event.target.value)">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-control-label ltr">Status</label>
+                        <label class="form-control-label rtl">الحالة</label>
+                        <br>
+                        <select name="Status" id="Status" class="form-control ltr" (change)="myStatus($event.target.value)">
+                            <option class="ltr">Select</option>
+                            <option class="ltr" value="UnConfirmed">UnConfirmed</option>
+                            <option class="ltr" value="Confirmed">Confirmed</option>
+                            <option class="ltr" value="Waiting">Waiting</option>
+                            <option class="ltr" value="Canceled">Canceled</option>
+                            <option class="ltr" value="Arrived">Arrived</option>
+                            <option class="ltr" value="NotArrived">NotArrived</option>
+                        </select>
+                        <select name="Status" id="Status" class="form-control rtl" (change)="myStatus($event.target.value)">
+                            <option class="rtl">تحديد</option>
+                            <option class="rtl" value="UnConfirmed">غير مؤكد
+                            </option>
+                            <option class="rtl" value="Confirmed">تم تأكيد
+                            </option>
+                            <option class="rtl" value="Waiting">انتظار</option>
+                            <option class="rtl" value="Canceled">ألغيت
+                            </option>
+                            <option class="rtl" value="Arrived">وصل</option>
+                            <option class="rtl" value="NotArrived">لم يصل
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-md btn-info ltr" (click)="btnSearch()">
+                                <i class="fas fa-search"></i>
+                                Search</button>
+                            <button type="submit" class="btn btn-md btn-info rtl" (click)="btnSearch()">
+                                <i class="fas fa-search"></i>
+                                بحث</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-3 ltr">Heading : {{mainheading}} </h4>
+                <h6 class="card-subtitle ltr">Subheading : {{subheading}}</h6>
+
+                <h4 class="card-title rtl">عنوان : {{mainheading}} </h4>
+                <h6 class="card-subtitle rtl">عنوان فرعي : {{subheading}}</h6>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered" cellspacing="0">
+                            <thead class="headrow ltr bg-info text-white">
+                                <tr>
+                                    <th>Appointment Type</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <thead class="headrow rtl bg-info text-white">
+                                <tr>
+                                    <th>نوع الموعد
+                                    </th>
+                                    <th>عد</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let prd of gvappointmenttypes;let i=index;">
+                                    <td>{{prd.type}}</td>
+                                    <td>{{prd.cnt}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div [hidden]="nodata">No Data Found</div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered" cellspacing="0">
+                            <thead class="headrow ltr bg-info text-white">
+                                <tr>
+                                    <th>Doctor</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <thead class="headrow rtl bg-info text-white">
+                                <tr>
+                                    <th>طبيب</th>
+                                    <th>عد</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let prd of gvpartiner;let i=index;">
+                                    <td>{{prd.name}}</td>
+                                    <td>{{prd.count}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div [hidden]="nodata1">No Data Found</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-3 ltr">Appointments - Details</h4>
+                <h4 class="card-title rtl">المواعيد - التفاصيل</h4>
+                <h6 class="card-subtitle">{{displaydt}}</h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered" cellspacing="0">
+                    <thead class="headrow ltr bg-info text-white">
+                        <tr>
+                            <th>Time</th>
+                            <th>Patient Id</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Appointment Type</th>
+                            <th>PhoneNo</th>
+                            <th>Note</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <thead class="headrow rtl bg-info text-white">
+                        <tr>
+                            <th>زمن</th>
+                            <th>رقم المريض
+                            </th>
+                            <th>صبور</th>
+                            <th>طبيب</th>
+                            <th>نوع الموعد
+                            </th>
+                            <th>رقم الهاتف
+                            </th>
+                            <th>ملحوظة
+                            </th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prd of appointmentsdetails;let i=index;">
+                            <td>{{prd.time}}</td>
+                            <td>{{prd.patientid}}</td>
+                            <td>{{prd.patientname}}</td>
+                            <td>{{prd.practitionerName}}</td>
+                            <td>{{prd.type}}</td>
+                            <td>{{prd.Mobileno}}</td>
+                            <td>{{prd.description}}</td>
+                            <td>{{prd.arrivestatus}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div [hidden]="nodata1">No Data Found</div>
+
+            </div>
+        </div>
+    </div>
+</div>

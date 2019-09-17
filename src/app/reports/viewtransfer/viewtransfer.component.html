@@ -1,0 +1,335 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/reports'>Reports</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/reports'>
+                    <span>تقارير</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/transferreports'>Transfer Patient Report</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/transferreports'>
+                    <span>نموذج تحويل مريض</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link">{{ttype}} Transfer Patient Report</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span>نموذج تحويل مريض</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;{{ttype}} Transfer Patient Report</p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;نموذج تحويل مريض
+                </p>
+            </div>
+            <br>
+            <div class="card-body">
+                <div style="float:right;margin-bottom: 20px;" class="ltr">
+                    <button class="btn btn-info ltr" (click)="print()">
+                        <i class="icon-print icon-white i_btn"></i>Print</button>
+                </div>
+                <div style="float:left;margin-bottom: 20px;" class="rtl">
+                    <button class="btn btn-info rtl" (click)="print()">
+                        <i class="icon-print icon-white i_btn"></i>طباعة</button>
+                </div>
+                <div class="row">
+                    <div class="invoice-box">
+                        <div class="maindiv" style="direction: rtl;">
+                            <div class="top1">
+                                <div class="left">
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 61px);" type="text" value="" [(ngModel)]="firsthval" />
+                                        <div class="textdiv"> الرقم: &nbsp; </div>
+                                    </div>
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 61px);" type="text" value="" [(ngModel)]="secondhval" />
+                                        <div class="textdiv"> التاريخ: &nbsp; </div>
+                                    </div>
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 61px);" type="text" value="" [(ngModel)]="thirdhval" />
+                                        <div class="textdiv"> المرفقات: &nbsp; </div>
+                                    </div>
+                                </div>
+                                <div class="center">
+                                    <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;"> </div>
+                                <div class="right" style="text-align: center;">
+                                    المملكة العربية السعودية
+                                    <br> وزارة التعليم
+                                    <br> الجامعة الاسلامية بالمدينة المنورة
+                                    <br>
+                                    <strong> المركز الطبي الجامعي</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="outer-div">
+                            <div class="inner-div"> نموذج تحويل مريض</div>
+                        </div>
+                        <div class="maindiv" style="direction: rtl;">
+                            <div class="top2">
+                                <div class="maindiv">
+                                    <input type="text" value="" style="width: calc(100% - 120px);" [(ngModel)]="seconddivone" />
+                                    <div class="textdiv1a"> سعادة مدير مستشفى: &nbsp; </div>
+                                </div>
+                                <div class="maindiv">
+                                    <div style="width: 40%; height:auto; float: left;">
+                                        <div class="et"> ارقم الملف الجامعي &nbsp; </div>
+                                        (
+                                        <input type="text" value="" style="width: calc(94% - 110px);" [(ngModel)]="seconddivtwo" />)
+                                    </div>
+                                    <div style="width: 56%; height:auto; float: left; margin-left: 20px;">
+                                        <div class="et"> نرجو تحويل الطالب/الموظف: &nbsp; </div>
+                                        <input type="text" value="" style="width: calc(100% - 162px);" [(ngModel)]="seconddivthree" />
+                                    </div>
+                                </div>
+                                <div class="maindiv">
+                                    <div style="width: 54%; height:auto; float: left;">
+                                        <div class="et"> الى قسم: &nbsp; </div>
+                                        <input style="width: calc(100% - 53px);" type="text" value="" [(ngModel)]="seconddivfour" />
+                                    </div>
+                                    <div style="width: 42%; height:auto; float: right; margin-left: 20px;">
+                                        <div class="et"> جنسيتة : &nbsp; </div>
+                                        <input style="width: calc(100% - 53px);" type="text" value="" [(ngModel)]="seconddivfive" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="maindiv">
+                            <div class="top3">
+                                <div class="maindiv">
+                                    <div class="ftb"> C/O : </div>
+                                    <textarea type="text" rows="4" value="" style="width: 100%;border:dotted 2px black" [(ngModel)]="cof"></textarea>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="maindiv">
+                                    <div class="ftb"> HISTORY : </div>
+                                    <textarea type="text" rows="4" value="" style="width: 100%;border:dotted 2px black" [(ngModel)]="history"></textarea>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="maindiv">
+                                    <div class="ftb"> CLINICAL EXAMINATION : </div>
+                                    <textarea type="text" rows="4" value="" style="width: 100%;border:dotted 2px black" [(ngModel)]="clinicalexamination"></textarea>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="maindiv">
+                                    <div class="ftb"> INVESTIGATION : </div>
+                                    <textarea type="text" rows="4" value="" style="width: 100%;border:dotted 2px black" [(ngModel)]="investigation"></textarea>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="maindiv">
+                                    <div class="ftb"> EXPECTED DIAGNOSIS : </div>
+                                    <textarea type="text" rows="4" value="" style="width: 100%;border:dotted 2px black" [(ngModel)]="diagnosis"></textarea>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="maindiv" style="direction: rtl;">
+                            <div class="top4">
+                                <div style="width: 34%; height:auto; float:left;">
+                                    <div style="width: 100%; height:auto; text-align: center; float:left; font-weight: bold; margin-bottom: 5px;">
+                                        مدير المركز الطبي الجامعي
+                                    </div>
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 52px);" type="text" value="" [(ngModel)]="lastdivone" />
+                                        <div class="textdiv" style="width: 18%;"> االاسم: &nbsp; </div>
+                                    </div>
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 52px);" type="text" value="" [(ngModel)]="lastdivtwo" />
+                                        <div class="textdiv" style="width: 18%;"> التوقيع: &nbsp; </div>
+                                    </div>
+                                </div>
+                                <div style="width: 34%; height:auto; float:left; text-align: center; font-weight: bold;">
+                                    ختم الادارة
+                                </div>
+                                <div style="width: 34%; height:auto; float:right;">
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 100px);" type="text" value="" [(ngModel)]="lastdivthree" />
+                                        <div class="textdiv"> اسم الطبيب: &nbsp; </div>
+                                    </div>
+                                    <div class="maindiv">
+                                        <input style="width: calc(100% - 104px);" type="text" value="" [(ngModel)]="lastdivfour" />
+                                        <div class="textdiv" style="width: 30%;"> توقيع الطبيب: &nbsp; </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear: both;"> </div>
+                    </div>
+                </div>
+            </div>
+            <div align="center">
+                <button class='btn btn-info ltr' (click)='update()' *ngIf='updatebutton'>Update</button>
+                <button class='btn btn-info rtl' (click)='update()' *ngIf='updatebutton'>تحديث</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- --------------------- Print --------------------------- -->
+<div id="DivIdToPrint" style="display:none;">
+    <div style="width: 700px; margin: 0px auto; float: left;">
+        <div style="width: 100%; float: left; height: auto; border: 2px solid #000; border-radius: 20px; padding: 15px 15px 30px 15px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width: 30%;">
+                        <div style="width: 100%; float: left; height: auto;">
+                            <span style="width: calc(100% - 70px); float:left; height: 22px; display: block; border-bottom: 2px dotted #000;">{{firsthval}}</span>
+                            <div style="width: 29%; height: auto; float: right; padding-top: 6px;"> الرقم: &nbsp; </div>
+                        </div>
+
+                        <div style="width: 100%; float: left; height: auto;">
+                            <span style="width: calc(100% - 70px); border: none; float:left; height: 22px; display: block; border-bottom: 2px dotted #000;
+                                    outline: none;">{{secondhval}}</span>
+                            <div style="width: 29%; height: auto; float: right; padding-top: 6px;"> التاريخ: &nbsp; </div>
+                        </div>
+
+                        <div style="width: 100%; float: left; height: auto;">
+                            <span style="width: calc(100% - 70px); border: none; float:left; height: 22px; display: block; border-bottom: 2px dotted #000;
+                                    outline: none;">{{thirdhval}}</span>
+                            <div style="width: 29%; height: auto; float: right; padding-top: 6px;"> المرفقات: &nbsp; </div>
+                        </div>
+                    </td>
+                    <td style="width: 40%; text-align: center;">
+                        <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+                    </td>
+                    <td style="width: 30%; text-align: center;">
+
+                        المملكة العربية السعودية
+                        <br> وزارة التعليم
+                        <br> الجامعة الاسلامية بالمدينة المنورة
+                        <br>
+                        <strong> المركز الطبي الجامعي</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="padding: 0px; text-align: center; height: 27px;">
+            <div style="display: inline-block; padding: 5px 15px; background-color: #ecf9ff; font-weight: bold; border-radius: 5px; border: solid 2px #333; top: -27px; font-size: 26px; position: relative; color: #007cad;">
+                نموذج تحويل مريض</div>
+        </div>
+        <div style="width: 100%; float: left; height: auto;">
+            <div style="width: 100%; float: left; height: auto; border: solid 2px #333; border-radius: 20px 20px 0px 0px; padding: 15px;">
+                <div style="width: 100%; float: left; height: auto;">
+                    <span style="width: calc(100% - 120px); border: none; border-bottom: 2px dotted #000; outline: none; display: block; height: 22px; float: left;">{{seconddivone}}</span>
+                    <div style="height: auto; float: right; text-align: right; width: 145px;"> سعادة مدير مستشفى: &nbsp; </div>
+                </div>
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 54%; height:auto; float: left;">
+                        <div style="height: auto; float: right; padding-top: 10px; text-align: right;"> ارقم الملف الجامعي &nbsp; </div>
+                        <span style="width: calc(90% - 120px); border: none; border-bottom: 2px dotted #000; outline: none; float: left; height: 22px; display: block;">{{seconddivtwo}} </span>
+                    </div>
+                    <div style="width: 42%; height:auto; float: left; margin-left: 20px;">
+                        <div style="height: auto; float: right; padding-top: 10px; text-align: right;"> نرجو تحويل الطالب/الموظف: &nbsp; </div>
+                        <span style="border: none; border-bottom: 2px dotted #000; outline: none; width: calc(100% - 200px); float: left; height: 22px; display: block;">{{seconddivthree}}</span>
+                    </div>
+                </div>
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 54%; height:auto; float: left;">
+                        <div style="height: auto; float: right; padding-top: 6px; text-align: right;"> الى قسم: &nbsp; </div>
+                        <span style="width: calc(100% - 100px); border: none; float: left; display: block; height: 22px; border-bottom: 2px dotted #000; outline: none;">{{seconddivfour}}</span>
+                    </div>
+                    <div style="width: 42%; height:auto; float: right; margin-left: 20px;">
+                        <div style="height: auto; float: right; padding-top: 6px; text-align: right;"> جنسيتة : &nbsp; </div>
+                        <span style="width: calc(100% - 53px); border-bottom: 2px dotted #000; outline: none; float: left; height: 22px;" type="text">{{seconddivfive}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto;">
+            <div style="width: 100%; float: left; height: auto; border: solid 2px #333; border-radius: 0px; padding: 15px; margin: 10px 0px;">
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 100%; font-weight: bold; height: auto; color: #007cad; margin-top: 5px;"> C/O : </div>
+                    <div style="width: 100%; border: none; float: left; display: block; height: 50px; border: 2px dotted #000; outline: none;">{{cof}}</div>
+                    <br />
+                    <br />
+                </div>
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 100%; font-weight: bold; height: auto; color: #007cad; margin-top: 15px;"> HISTORY : </div>
+                    <div style="width: 100%; border: none;float: left; display: block; height: 50px; border: 2px dotted #000; outline: none;">{{history}}</div>
+                    <br />
+                    <br />
+                </div>
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 100%; font-weight: bold; height: auto; color: #007cad; margin-top: 15px;"> CLINICAL EXAMINATION : </div>
+                    <div style="width: 100%; border: none; float: left; display: block; height: 50px; border: 2px dotted #000; outline: none;">{{clinicalexamination}}</div>
+                    <br />
+                    <br />
+                </div>
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 100%; font-weight: bold; height: auto; color: #007cad; margin-top: 15px;"> INVESTIGATION : </div>
+                    <div style="width: 100%; border: none; float: left; display: block; height: 50px; border: 2px dotted #000; outline: none;">{{investigation}}</div>
+                    <br />
+                    <br />
+                </div>
+                <div style="width: 100%; float: left; height: auto;">
+                    <div style="width: 100%; font-weight: bold; height: auto; color: #007cad; margin-top: 15px;"> EXPECTED DIAGNOSIS : </div>
+                    <div style="width: 100%; border: none; float: left; display: block; height: 50px; border: 2px dotted #000; outline: none;">{{diagnosis}}</div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; ">
+            <div style="width: 100%; float: left; height: auto; border: solid 2px #333; border-radius: 0px 0px 20px 20px; padding: 15px;">
+                <div style="width: 34%; height:auto; float:left;">
+                    <div style="width: 100%; height:auto; text-align: center; float:left; font-weight: bold; margin-bottom: 5px;">
+                        مدير المركز الطبي الجامعي
+                    </div>
+                    <div style="width: 100%; float: left; height: auto;">
+                        <span style="width: calc(100% - 52px); border: none; float: left; display: block; height: 22px; border-bottom: 2px dotted #000; outline: none;">{{lastdivone}}</span>
+                        <div style="width: 21%; height: auto; float: right; padding-top: 6px;"> االاسم: &nbsp; </div>
+                    </div>
+                    <div style="width: 100%; float: left; height: auto;">
+                        <span style="width: calc(100% - 52px); border: none; float: left; display: block; height: 22px; border-bottom: 2px dotted #000; outline: none;">{{lastdivtwo}}</span>
+                        <div style="width: 21%; height: auto; float: right; padding-top: 6px;"> التوقيع: &nbsp; </div>
+                    </div>
+                </div>
+                <div style="width: 32%; height:auto; float:left; text-align: center; font-weight: bold;">
+                    ختم الادارة
+                </div>
+                <div style="width: 34%; height:auto; float:right;">
+                    <br>
+                    <div style="width: 100%; float: left; height: auto;">
+                        <span style="width: calc(100% - 82px); border: none; float: left; display: block; height: 22px; border-bottom: 2px dotted #000; outline: none;"
+                            type="text">{{lastdivthree}}</span>
+                        <div style="width: 30%; height: auto; float: right; padding-top: 6px;"> اسم الطبيب: &nbsp; </div>
+                    </div>
+
+                    <div style="width: 100%; float: left; height: auto;">
+                        <span style="width: calc(100% - 81px); border: none;  float: left; display: block; height: 22px; border-bottom: 2px dotted #000; outline: none;">{{lastdivfour}}</span>
+                        <div style="width: 34%; height: auto; float: right; padding-top: 6px;"> توقيع الطبيب: &nbsp; </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

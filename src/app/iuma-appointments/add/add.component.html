@@ -1,0 +1,137 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" ><span class="fa fa-fw fa-user"></span>Add
+          Appointment</a></li>
+      <li class="rtl"><a class="nav-link"><span>إنشاء مستخدم</span><span class="fa fa-fw fa-user"></span></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="modal-body">
+        <h4 class="ltr">Add Appointment</h4>
+        <h4 class="rtl"> إضافة موعد</h4><br>
+
+        <form [formGroup]="addappointment">
+          <div class="card-body">
+              <div class="mt-3">
+                 
+                  <input type="checkbox" formControlName="emergency" (change)="emergencyclick()"><span style="color: red;font-weight: bold">&nbsp;EMERGENCY</span>
+                </div>
+                <br />
+            <div class="row">
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Patient</label>
+                <label class="form-control-label rtl">المريض</label>
+                <input id="patient" class="form-control" autocomplete="off" formControlName="patient" (keyup)="patient()" (blur)="CheckValidationErrors()">
+                <span *ngIf="formErrors.patient" style="color:red">{{formErrors.patient}}</span>
+
+                <div class="patientDetails" (click)="Pdetails()"></div>
+                <div class="patientDetails not">  </div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Sub-Departments</label>
+                <label class="form-control-label rtl">الأقسام/الأدارات</label>
+                  <select name="title" formControlName="departments" class="custom-select mr-sm-2" [(ngModel)]="selecteddepartment"
+                    (change)="departmentschange()" (blur)="CheckValidationErrors()" id="deptid">
+                    <option value="">Select</option>
+                    <option *ngFor="let dept of deptdata" [value]="dept.speName">{{dept.speName}}</option>
+                  </select>
+                  <span *ngIf="formErrors.departments" style="color:red">{{formErrors.departments}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Rooms</label>
+                <label class="form-control-label rtl">رقم الغرفة</label>
+                <select formControlName="rooms" class="custom-select mr-sm-2" [(ngModel)]="selectedroom" (blur)="CheckValidationErrors()" id="roomid">
+                  <option value="">Select</option>
+                  <option *ngFor="let room of roomdata" [value]="room.Emp_Id">{{room.Assign_Rooms}}</option>
+                </select>
+                <span *ngIf="formErrors.rooms" style="color:red">{{formErrors.rooms}}</span>
+              </div>
+            </div><br>
+            
+            <div class="row">
+                <div class="col-md-4">
+                  
+                      <label class="form-control-label ltr">Appointment Types</label>
+                      <select formControlName="appointmenttypes" class="custom-select mr-sm-2 ltr" id="apttypeid"
+                        [(ngModel)]="selectedapptypes">
+                        <option value="">Select</option>
+                        <option *ngFor="let appt of appointmenttypesdata" [value]="appt.Slot_Name">{{appt.Slot_Name}}</option>
+                      </select>
+                      <span *ngIf="formErrors.departments" style="color:red">{{formErrors.departments}}</span>
+    
+                  
+                  </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Date</label>
+                <label class="form-control-label rtl">تاريخ</label>
+                <input type="date" placeholder="mm/dd/yyyy" class="form-control" formControlName="date" (change)="datechange($event)"
+                  (blur)="CheckValidationErrors()" id="dateid">
+                <span *ngIf="formErrors.date" style="color:red">{{formErrors.date}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-control-label ltr"> Available Slots</label>
+                <label class="form-control-label rtl">فتحات متاحة</label>
+                <select formControlName="slots" class="custom-select mr-sm-2 " [(ngModel)]="selectedslots" id="slotid" (change)="slotschange()"
+                  (blur)="CheckValidationErrors()">
+                  <option value="">Select</option>
+                  <option *ngFor="let slots of available_slots" [value]="slots">{{slots}}</option>
+                </select>
+                <!-- <label class="loading-icon2"><img src='assets//images//5.gif'></label> -->
+                <span *ngIf="formErrors.slots" style="color:red">{{formErrors.slots}}</span>
+              </div>
+
+              
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-control-label ltr"> Appointment Status</label>
+                    <label class="form-control-label rtl">حالة التعيين</label>
+                    <select formControlName="status" class="custom-select mr-sm-2 " [(ngModel)]="selectedstatus" id="aptid" (blur)="CheckValidationErrors()">
+                      <option value="">Select</option>
+                      <option value="UnConfirmed">Pending Verification</option>
+                      <option value="Confirmed">Confirmed</option>
+                      <option value="Arrived">Arrived</option>
+                      <option value="Canceled">Canceled</option>
+                    </select>
+                    <span *ngIf="formErrors.status" style="color:red">{{formErrors.status}}</span>
+                  </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Remarks</label>
+                <label class="form-control-label rtl">ملاحظات</label>
+                <input type="text" class="form-control" formControlName="remarks" id="remarksid">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+               
+              <div class="col-md-4">
+                <button class="btn btn-warning ltr" (click)="submit()">Submit</button>
+                <button class="btn btn-warning rtl" (click)="submit()">إرسل</button>
+              </div>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,244 @@
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <ul id="breadcrumb" class="aligncls">
+        <li>
+          <a class="nav-link" routerLink='/dashboard'>
+            <span class="fa fa-fw fa-home"> </span>
+          </a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link" routerLink='/getpayment'>Payment Information</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link" routerLink='/getpayment'><span>  معلومات الدفع </span></a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link ">New Payment </a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link"><span>الدفعة/المدفوع الجديد</span></a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header" style="padding: 15px !important">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp;New Payment</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;الدفعة/المدفوع الجديد</p>
+    </div>
+
+    <div class="row" class="pad">
+      <div class="col-md-4 col-sm-6">
+        <span class="ltr">Business</span>
+        <span class="rtl">العمل</span>
+
+        <div style="font-weight: bold">{{userName}}</div>
+      </div>
+    </div>
+    <div class="row" class="pad">
+      <div class="col-md-4 col-xs-6">
+        <label class="ltr">Patient
+          <strong class="req">*</strong>
+        </label>
+        <label class="rtl">المريض
+          <strong class="req">*</strong>
+        </label>
+        <br>
+        <input type="text" [(ngModel)]="pname" (keyup)="patientkeyup($event)" id="pname" style="width: 100%;height: 37px; border-radius: 3px;">
+        <br>
+        <div *ngIf="pnamehidden" class="errmsg ltr">Patient name required.</div>
+        <div *ngIf="pnamehidden" class="errmsg rtl">مطلوب اسم المريض</div>
+        <br>
+        <div>
+          <div *ngFor="let p of PatientsList" (click)="getval(p.Name, p.patient_id)">
+            <span *ngIf="hidesearch">{{p.Name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row pad">
+
+      <div class="col-md-4 col-xs-6">
+        <span class="ltr">Payment Date
+          <strong class="req">*</strong>
+        </span>
+        <span class="rtl"> المدفوع تاريخ
+          <strong class="req">*</strong>
+        </span>
+        <br>
+        <select class="ds" [value]='day'>
+          <option *ngFor="let d of days" [value]="d">{{d}}</option>
+        </select>
+        &nbsp;
+        <select class="ds" [value]='mon' (change)="changemonth($event)">
+          <option *ngFor="let m of month" [value]="m.monthNum">{{m.monthName}}</option>
+        </select>&nbsp;
+        <select class="ds" [value]='year' (change)="changeyear($event)">
+          <option *ngFor="let Y of years" [value]="Y">{{Y}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <span class="ltr">Time
+          <strong class="req">*</strong>
+        </span>
+        <span class="rtl">وقت
+          <strong class="req">*</strong>
+        </span>
+        <br>
+
+        <select class="ds" [value]='hoursValue'>
+          <option *ngFor="let m of hours" [value]="m">{{m}}</option>
+        </select>&nbsp;
+        <span style="font-weight: bold">:</span>&nbsp;
+        <select class="ds" [value]='minsValue'>
+          <option *ngFor="let t of minutes" [value]="t">{{t}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- payment source -->
+    <div class="row">
+      <div class="col-md-7">
+        <div class="form-horizontal ex_bor">
+          <h4 style="background-color: #85beda; border-bottom: 1px solid #666; padding: 10px;
+          margin: 0px 0px 10px 0px; color: #fff;">
+            Payment Source
+            <strong class="req">*</strong>
+          </h4>
+          <div class="forms">
+            <table class="tables" id="tblpaymentmodes">
+              <tr *ngFor="let p of paymodes">
+
+                <td style="font-weight:bold;" width="32%" class="rppaymode">{{p.Paymodetype_Name}}</td>
+                <td *ngIf="p.Paymodetype_Name=='Credit Card' || p.Paymodetype_Name=='Debit Card' ">
+                  <input type="hidden" class="payid" value="{{p.Paymodetype_ID}}">
+                  <input type="text" class="txtnew creditDebot rpAmnts" value="0" (keyup)='calc($event)' (keypress)="numberOnly($event)" maxlength="10"
+                  />
+                  <input type="text" class="cards creditDebot cardapp" (keyup)='calc($event)' (keypress)="numberOnly($event)" maxlength="16">
+                </td>
+                <td *ngIf="p.Paymodetype_Name!='Credit Card' && p.Paymodetype_Name!='Debit Card' && p.Paymodetype_Name!='Insurance'">
+                  <input type="text" class="newtxt rpAmnts" (keyup)='calc($event)' value="0" (keypress)="numberOnly($event)" maxlength="10">
+                  <input type="hidden" class="payid" value="{{p.Paymodetype_ID}}">
+                </td>
+                <td *ngIf="p.Paymodetype_Name=='Insurance' ">
+                  <input type="text" class="newtxt rpAmnts" value="0" readonly="readonly" />
+                  <input type="hidden" class="payid" value="{{p.Paymodetype_ID}}">
+                </td>
+
+              </tr>
+            </table>
+          </div>
+          <div class="forms">
+            <span class="ltr" style="font-weight:bold;">Payment Total</span>
+            <span class="rtl" style="font-weight:bold;">مجموع الدفع</span>
+            <input type="text" [(ngModel)]="paymentTotal" class="TEXTP" readonly="readonly">
+          </div>
+          <div class="forms">
+            <span class="ltr" style="font-weight:bold;">Notes</span>
+            <span class="rtl" style="font-weight:bold;">ملاحظات</span>
+            <textarea rows="3" cols="60" name="description" class="TEXTt" [(ngModel)]='notes'>                  
+               </textarea>
+          </div>
+          <div class="forms" *ngIf="credit">
+            <label class="ltr" style="color:Green;">Has an Account Credit of</label>
+            <label class="rtl" style="color:Green;">لديه رصيد حساب من </label>
+            <span style="color:red">&nbsp;&nbsp;:{{creamount}}</span>
+          </div>
+          <div class="form-control" style="text-align: center;margin-bottom:17px;">
+            <button type="button" class="btn btn-warning ltr" style="padding:8px;" (click)="btnchcekvaldation()">Save</button> &nbsp;
+            <button type="button" class="btn btn-info ltr" style="padding:8px;" routerLink='/getpayment'>Cancel</button>
+
+            <button type="button" class="btn btn-warning rtl" style="padding:8px;" (click)="btnchcekvaldation()">حفظ</button> &nbsp;
+            <button type="button" class="btn btn-info rtl" style="padding:8px;" routerLink='/getpayment'>إلغاء</button>
+          </div>
+        </div>
+      </div>&nbsp;
+      <div class="col-md-4">
+        <div class="form-horizontal ex_bor">
+          <h4 style="background-color: #85beda; border-bottom: 1px solid #666; padding: 10px;
+            margin: 0px 0px 10px 0px; color: #fff;">
+            Payment Summary
+          </h4>
+          <div class="forms">
+            <span class="ltr" style="font-weight:bold;margin-bottom: 25px">Remaining Payment</span>
+            <span class="rtl" style="font-weight:bold;margin-bottom: 25px">الدفع المتبقي</span>
+            <br>
+            <span style="font-weight: 400"> {{lblblnsremain}} {{this.currency}}</span>
+            <br>
+            <br>
+            <span class="ltr" style="font-weight:bold;margin-bottom: 25px">Outstanding Balance</span>
+            <span class="rtl" style="font-weight:bold;margin-bottom: 25px">الرصيد المتبقي</span>
+            <br>
+            <span style="font-weight: 400"> {{lblOutstandingBalance}} {{this.currency}}</span>
+            <br>
+            <br>
+            <span class="ltr" style="font-weight:bold;margin-bottom: 25px">Payment Applied</span>
+            <span class="rtl" style="font-weight:bold;margin-bottom: 25px">دفع مستعمل</span>
+            <br>
+            <span style="font-weight: 400"> {{lblappliedpaymnt}} {{this.currency}} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="showtable">
+        <div class="table-responsive">
+          <table class="research table table-striped b b-light " id="gv_invoices">
+            <thead class="ltr">
+              <tr class="primary">
+                <th>Sno</th>
+                <th>Invoice No</th>
+                <th>Issued Date</th>
+                <th>Doctor</th>
+                <th>Invoice Total</th>
+                <th>Outstanding Balance</th>
+                <th>Credit Amount</th>
+                <th>Payment Amount</th>
+                <th>Remaining</th>
+
+              </tr>
+            </thead>
+            <thead class="rtl">
+              <tr>
+                <th>الرقم التسلسلي</th>
+                <th>رقم الفاتورة</th>
+                <th>تاريخ الأصدار</th>
+                <th>طبيب</th>
+                <th>مجموع الفاتورة</th>
+                <th>الرصيد المتبقي</th>
+                <th>مبلغ الائتمان</th>
+                <th>مبلغ الدفع</th>
+                <th>متبق</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of getpayments;let i=index;" class="eachdata">
+                <td>{{ i + 1 }}</td>
+                <td>{{item.Invoiceno}}</td>
+                <td>{{item.dt}}</td>
+                <td>{{item.First_name}}</td>
+                <td>{{item.Invoice_tot}}</td>
+                <td class="cssoutstanding">{{item.outstanding}}</td>
+                <td>
+                  <input type="text" class="csscredit form-control" readonly="readonly">
+                </td>
+                <td>
+                  <input type="text" class="form-control csspayamnt" readonly="readonly">
+                </td>
+                <td class="cssremaining">{{item.outstanding}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+          <div style="text-align: center;font-weight:bold;" [hidden]="nodata">No Data Found</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

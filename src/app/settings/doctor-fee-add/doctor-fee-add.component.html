@@ -1,0 +1,86 @@
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<h4 class="ltr">Add Doctor Fee</h4>
+<h4 class="rtl">Add Doctor Fee</h4>
+
+
+  <div class="row">
+      <div class="col-md-12">
+          <ul id="breadcrumb">
+              <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+              <li class="ltr"><a class="nav-link" routerLink='/Doctorfee' >Doctor Fee Details</a></li>
+              <li class="rtl"><a class="nav-link"  routerLink='/settings'><span > إعدادات</span></a></li>
+             <li class="rtl"> <a class="nav-link" routerLink='/Doctorfee'><span>تفاصيل رسوم الطبيب</span></a></li>
+             
+          </ul>
+      </div>
+    </div>
+
+
+<form [formGroup]="doctorfee">
+  <div class="container">
+    <h2>Add Doctor Fee</h2>
+    <table class="table table-hover table-bordered" cellspacing="0">
+      <thead>
+        <tr class="tblrow">
+
+          <!-- <th></th> -->
+          <th>Doctor Name</th>
+          <th>First Appointment</th>
+          <th>Standart Appointment</th>
+
+
+        </tr>
+      </thead>
+      <tbody  formArrayName="doctors" *ngFor="let doctor of formData.controls; let i = index">
+        <tr [formGroupName]="i">
+          <td>
+            <label >
+              <input type="checkbox" formControlName="doctornamecheck"> &nbsp;
+              <input type="text" formControlName="doctorname" style="border: none !important;">
+              <input type="text" formControlName="doctorid" style="display:none">
+              <input type="text" formControlName="firstappid" style="display:none">
+              <input type="text" formControlName="secondappid" style="display:none">
+            </label>
+          </td>
+          <td>
+            <!-- <input type="text" [(ngModel)]="firstappot[i]" [ngModelOptions]="{standalone: true}"> -->
+            <input type="number" class="form-control" id="firstapp" formControlName="firstapp"/>
+
+          </td>
+          <td>
+            <input type="number" class="form-control" id="standardapp" formControlName="standardapp">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <div _ngcontent-c3="" class="col-md-12 text-center submitBtns" >
+      
+        <button type="submit" class="btn btn-md btn-warning ltr" (click)="Submit()" style="margin-right:10px;">
+          <i class ="fa fa-check-circle"></i>
+           Submit</button>
+    <button type="submit" class="btn btn-md btn-success ltr" (click)="Cancle()">
+          <i class ="fa fa-ban"></i>
+       Cancel</button>
+    </div> -->
+
+    <div class="row mt-5">
+      <div class="col-md-12 text-center submitBtns">
+        <button type="submit" class="btn btn-md btn-warning ltr" (click)="Submit()" style="margin-right:10px;">
+          <i class ="fa fa-check-circle"></i>
+           Submit</button>
+    <button type="submit" class="btn btn-md btn-success ltr" (click)="Cancle()">
+          <i class ="fa fa-ban"></i>
+       Cancel</button>
+      </div>
+  </div>
+
+  </div>
+
+</form>

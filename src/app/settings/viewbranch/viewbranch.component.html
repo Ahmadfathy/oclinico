@@ -1,0 +1,282 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/clinicinformation'>Branch Details</a></li>
+      <li class="ltr"><a class="nav-link">View Branch</a></li>
+      
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+      <li class="rtl"><a class="nav-link" routerLink='/settings'>إعدادات</a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/clinicinformation'>تفاصيل الفرع</a></li>
+      <li class="rtl"><a class="nav-link">عرض الفرع</a></li> 
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="container">
+      <table class="table table-hover table-bordered" cellspacing="2">
+        <thead class="headrow">
+          <div class="card-header">
+            <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;View Branch</h4>
+            <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;عرض الفرع</h4>
+          </div>
+        </thead>
+        <tbody>
+          <tr padding>
+            <h4 class="ltr">Branch Name: &nbsp;&nbsp;<span class="spancls">{{branchname}}</span></h4>
+            <h4 class="rtl"> عنوان:&nbsp;&nbsp;<span class="spancls">{{branchname}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Specialization:&nbsp;&nbsp;<span class="spancls"> {{spec}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">First Name: &nbsp;&nbsp;<span class="spancls">{{inenglish1}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr"> Middle Name:&nbsp;&nbsp;<span class="spancls"> {{inenglish2}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr"> Last Name:&nbsp;&nbsp;<span class="spancls"> {{inenglish3}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Arabic First Name:&nbsp;&nbsp;<span class="spancls"> {{inarabic1}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Arabic Father Name:&nbsp;&nbsp;<span class="spancls"> {{inarabic2}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Arabic Last Name:&nbsp;&nbsp;<span class="spancls"> {{inarabic3}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Website:&nbsp;&nbsp;<span class="spancls"> {{website}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Email ID:&nbsp;&nbsp;<span class="spancls"> {{email}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Communication Email:&nbsp;&nbsp;<span class="spancls"> {{comemail}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Country:&nbsp;&nbsp;<span class="spancls">{{country}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">City:&nbsp;&nbsp;<span class="spancls">{{city}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">الاسم الاول: &nbsp;&nbsp;<span class="spancls">{{spec}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">الاسم الاول: &nbsp;&nbsp;<span class="spancls">{{inenglish1}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">الاسم الوسطى:&nbsp;&nbsp;<span class="spancls"> {{inenglish2}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl"> الاسم الوسطى:&nbsp;&nbsp;<span class="spancls"> {{inenglish3}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">الاسم الأول باللغة العربية:&nbsp;&nbsp;<span class="spancls"> {{inarabic1}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">اسم الأب العربي:&nbsp;&nbsp;<span class="spancls"> {{inarabic2}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">اسم العائلة العربية:&nbsp;&nbsp;<span class="spancls"> {{inarabic3}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">جنس:&nbsp;&nbsp;<span class="spancls"> {{website}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">نوع الوثيقة:&nbsp;&nbsp;<span class="spancls"> {{email}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">رقم الوثيقة:&nbsp;&nbsp;<span class="spancls"> {{comemail}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">هوية الموظف:&nbsp;&nbsp;<span class="spancls">{{country}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">كلمه السر:&nbsp;&nbsp;<span class="spancls">{{city}}</span></h4>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col">
+    <div class="container">
+      <table class="table table-hover table-bordered" cellspacing="2">
+        <thead class="headrow">
+          <th class="ltr">Branch Details</th>
+          <th class="rtl">تفاصيل الفرع</th>
+        </thead>
+        <tbody>
+          <tr>
+            <h4 class="ltr">Clinic No:&nbsp;&nbsp;<span class="spancls">{{clinicno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Password:&nbsp;&nbsp;<span class="spancls">{{password}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">First Appointment:&nbsp;&nbsp;<span class="spancls">{{firstapp}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Standard Appointment:&nbsp;&nbsp;<span class="spancls">{{standapp}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">هوية الموظف:&nbsp;&nbsp;<span class="spancls">{{clinicno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">هوية الموظف:&nbsp;&nbsp;<span class="spancls">{{password}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">هوية الموظف:&nbsp;&nbsp;<span class="spancls">{{firstapp}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">كلمه السر:&nbsp;&nbsp;<span class="spancls">{{standapp}}</span></h4>
+          </tr>
+        </tbody>
+        <thead class="headrow">
+          <th class="ltr">Other Details</th>
+          <th class="rtl">تفاصيل الراعي</th>
+        </thead>
+        <tbody>
+          <tr>
+            <h4 class="ltr">Phone No:&nbsp;&nbsp;<span class="spancls">{{phno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Mobile No:&nbsp;&nbsp;<span class="spancls">{{mobile}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Municipal Licence No:&nbsp;&nbsp;<span class="spancls">{{muncipalno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">National Identification No:&nbsp;&nbsp;<span class="spancls">{{nationalno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">Business Identification No:&nbsp;&nbsp;<span class="spancls">{{businessno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="ltr">VAT No:&nbsp;&nbsp;<span class="spancls">{{vatno}}</span></h4>
+          </tr>
+          <!-- <tr>
+            <h4 class="ltr">Clinic Timings:&nbsp;&nbsp;<span class="spancls">{{scheduletype}}</span></h4>
+          </tr> -->
+
+          <tr>
+            <h4 class="rtl">تاريخ البدء:&nbsp;&nbsp;<span class="spancls">{{phno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">رقم الموبايل:&nbsp;&nbsp;<span class="spancls">{{mobile}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">رقم هاتف المنزل:&nbsp;&nbsp;<span class="spancls">{{muncipalno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">راتب:&nbsp;&nbsp;<span class="spancls">{{nationalno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">الحالة:&nbsp;&nbsp;<span class="spancls"> {{businessno}}</span></h4>
+          </tr>
+          <tr>
+            <h4 class="rtl">الحالة:&nbsp;&nbsp;<span class="spancls"> {{vatno}}</span></h4>
+          </tr>
+          <!-- <tr>
+            <h4 class="rtl">توقيت العيادة:&nbsp;&nbsp;<span class="spancls">{{scheduletype}}</span></h4>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div><br>
+<div class="row">
+  <div class="col">
+    <div class="container">
+      <!-- <div class="col-md-6"><br> -->
+      <div class="form-group" (change)="selectwise($event.target.value)">
+        <label class="form-control-label ltr">Clinic Timings :</label>
+        <label class="form-control-label rtl">: توقيت العيادة</label>
+        <div class="row">
+          <div class="switch-field ltr">
+            <input type="radio" [(ngModel)]="scheduletypeinput" id="Day Wise" value="Day Wise" />
+            <label for="Day Wise">Day Wise</label>
+            <input type="radio" [(ngModel)]="scheduletypeinput" id="Session Wise" value="Session Wise" />
+            <label for="Session Wise">Session Wise</label>
+          </div>
+          <div class="switch-field rtl">
+            <input type="radio" [(ngModel)]="scheduletypeinput" id="Day Wise" value="Day Wise" />
+            <label for="Day Wise">يوم يوم</label>
+            <input type="radio" [(ngModel)]="scheduletypeinput" id="Session Wise" value="Session Wise" />
+            <label for="Session Wise">محدد بالفترة</label>
+          </div>
+        </div>
+      </div>
+      <!-- </div>
+      <div class="col-md-6"></div> -->
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="timingsdaysif">
+  <div class="container">
+    <table class="table table-hover table-bordered" cellspacing="2">
+      <thead class="headrow">
+        <th class="ltr">Sno</th>
+        <th class="ltr">Days</th>
+        <th class="ltr">Start Time</th>
+        <th class="ltr">End Time</th>
+
+        <th class="rtl">سنو</th>
+        <th class="rtl">أيام</th>
+        <th class="rtl">الجلسة الأولى</th>
+        <th class="rtl">الجلسة الأولى</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of daysarray;let i=index">
+          <td>{{i+1}}</td>
+          <td>{{item.days}}</td>
+          <td>{{item.starttime}}&nbsp;{{item.starttimeformat}}</td>
+          <td>{{item.endtime}}&nbsp;{{item.endtimeformat}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row" *ngIf="timingsif">
+  <div class="container">
+    <!-- <h4 class="m-b-0 text-black ltr">Session Wise Timings</h4> -->
+    <table class="table table-hover table-bordered" cellspacing="2">
+      <thead class="headrow">
+        <th class="ltr">Sno</th>
+        <th class="ltr">Days</th>
+        <th class="ltr">Session1 Start</th>
+        <th class="ltr">Session1 End</th>
+        <th class="ltr">Session2 Start</th>
+        <th class="ltr">Session2 End</th>
+        <th class="rtl">سنو</th>
+        <th class="rtl">أيام</th>
+        <th class="rtl">الجلسة الأولى</th>
+        <th class="rtl">الجلسة الأولى</th>
+        <th class="rtl">الجلسة الثانية</th>
+        <th class="rtl">الجلسة الثانية</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sessionarray;let i=index">
+          <td>{{i+1}}</td>
+          <td>{{item.days}}</td>
+          <td>{{item.starttime}}&nbsp;{{item.starttimeformat}}</td>
+          <td>{{item.endtime}}&nbsp;{{item.endtimeformat}}</td>
+          <td>{{item.sesstarttime}}&nbsp;{{item.sesstarttimeformat}}</td>
+          <td>{{item.sesendtime}}&nbsp;{{item.sesendtimeformat}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

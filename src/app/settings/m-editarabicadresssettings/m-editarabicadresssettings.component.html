@@ -1,0 +1,135 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner" >
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+
+  <h4 class="ltr">Edit Clinic Address</h4>
+  <h4 class="rtl">تعديل عنوان العيادة</h4>
+
+  
+
+    <div class="row">
+      <div class="col-md-12">
+          <ul id="breadcrumb">
+              <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+              <li class="ltr"><a class="nav-link" routerLink='/ClinicAddressDetails'>Clinic Address Details</a></li>
+              <li class="ltr"><a class="nav-link">Edit Clinic Address</a></li>
+              <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+              <li class="rtl"> <a class="nav-link" routerLink='/ClinicAddressDetails'><span>تفاصيل عنوان العيادة</span></a></li>
+              <li class="rtl"><a class="nav-link"><span>تعديل عنوان العيادة</span></a></li>
+          </ul>
+      </div>
+  </div>
+
+<form [formGroup]="editaddress">
+
+  <div class="row">
+  <div class="col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+          <div class="card-header">
+              <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Clinic Address</h4>
+              <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تعديل عنوان العيادة</h4>
+            </div>
+
+          <div class="card-body">
+              
+              <div class="row">
+                     
+                 <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.clinicbranchname}">
+                      <label class="mr-sm-2 ltr" for="title">Clinic / Branch Name *</label>
+                      <label class="mr-sm-2 rtl" for="title">عيادة / اسم الفرع *</label>
+                       <select name="title" formControlName="clinicbranchname" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                               <option  [value]="select">-- select --</option>
+                               <option *ngFor="let bnames of branchnames" [ngValue]="bnames.Branch_id">{{bnames.Branch_Name}}</option>
+                        </select>
+                       <select name="title" formControlName="clinicbranchname" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                               <option  value="select" disabled>-- اختار --</option>
+                               <option *ngFor="let bnames of branchnames" [ngValue]="bnames.Branch_id">{{bnames.Branch_Name}}</option>
+                        </select>
+                             <span class="help-block errorcolorcls" *ngIf="formErrors.clinicbranchname">
+                               {{formErrors.clinicbranchname}}
+                             </span>
+                   </div>
+               </div>
+               <div class="col-md-4" [ngClass]="{'has-error' : formErrors.arabicclbrname}">
+              
+                  <label class="form-control-label ltr">Clinic/Branch Name(In Arabic) *</label>
+                  <label class="form-control-label rtl">عيادة / اسم فرع (بالعربية) *</label>
+                    <input type="text" class="form-control"  formControlName="arabicclbrname"  (blur)="checkValidationErrors()">
+                   
+                    <span class="help-block errorcolorcls" *ngIf="formErrors.arabicclbrname">
+                      {{formErrors.arabicclbrname}}
+                    </span>
+               
+             </div>
+             <div class="col-md-4" [ngClass]="{'has-error' : formErrors.spelz}">
+              
+                <label class="form-control-label ltr">Specialization(In Arabic) *</label>
+                <label class="form-control-label rtl">التخصص باللغة العربية *</label>
+              <input type="text" class="form-control" formControlName="spelz"  (blur)="checkValidationErrors()">
+             
+              <span class="help-block errorcolorcls" *ngIf="formErrors.spelz">
+                {{formErrors.spelz}}
+              </span>
+         
+           </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4" [ngClass]="{'has-error' : formErrors.address}">
+                        <label class="form-control-label ltr">Address *</label>
+                        <label class="form-control-label rtl">عنوان *</label>
+                      <input type="text" class="form-control"  formControlName="address"  (blur)="checkValidationErrors()">
+                     
+                      <span class="help-block errorcolorcls" *ngIf="formErrors.address">
+                        {{formErrors.address}}
+                      </span>
+                 
+                   </div>
+                   <div class="col-md-4" [ngClass]="{'has-error' : formErrors.city}">
+                      <label class="form-control-label ltr">City *</label>
+                      <label class="form-control-label rtl">مدينة *</label>
+                    <input type="text" class="form-control"  formControlName="city"  (blur)="checkValidationErrors()">
+                   
+                    <span class="help-block errorcolorcls" *ngIf="formErrors.city">
+                      {{formErrors.city}}
+                    </span>
+               
+                 </div>
+                 <div class="col-md-4" [ngClass]="{'has-error' : formErrors.country}">
+                    <label class="form-control-label ltr">Country *</label>
+                    <label class="form-control-label rtl">دولة *</label>
+                  <input type="text" class="form-control"  formControlName="country"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.country">
+                    {{formErrors.country}}
+                  </span>
+             
+               </div>
+                  </div>
+                          <div class="row mt-5">
+                              <div class="col-md-12 text-center submitBtns">
+                                  <button type="submit" class="btn btn-md btn-warning ltr" (click)="editaddresssubmit()" style="margin-right:5px;">
+                                      <i class ="fa fa-check-circle"></i>
+                                       Update </button>
+                                  <button type="submit" class="btn btn-md btn-warning rtl" (click)="editaddresssubmit()" >
+                                      <i class ="fa fa-check-circle"></i>
+                                      تحديث </button>
+                                  <button type="submit" class="btn btn-md btn-success ltr" (click)="editaddresscancle()">
+                                          <i class ="fa fa-ban"></i>
+                                      Cancel</button>
+                                  <button type="submit" class="btn btn-md btn-success rtl" (click)="editaddresscancle()" style="margin-right:5px;">
+                                          <i class ="fa fa-ban"></i>
+                                          إلغاء</button>
+                              </div>
+                          </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  
+  </form>

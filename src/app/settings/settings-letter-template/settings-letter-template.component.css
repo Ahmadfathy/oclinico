@@ -1,0 +1,26 @@
+.headrow{
+  background-color: #4a87ee;
+  color: white;
+}
+/* * {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  } */
+
+ 
+  
+.addgreen{
+    color: white;
+    background-color: #86b347;
+    padding: 2px;
+    font-size: 12px;
+}
+.addorange{
+    color: white;
+    background-color: #fe9600;
+    padding: 2px;
+    font-size: 12px;
+}

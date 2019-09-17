@@ -1,0 +1,74 @@
+.icon {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+}
+
+.appointments {
+    background-image: url(/assets/images/dashboard/appointment.png);
+}
+
+.doctor {
+    background-image: url(/assets/images/dashboard/doctor.jpg);
+}
+
+.freebeds {
+    background-image: url(/assets/images/dashboard/freebeds.jpg);
+}
+
+.discharged {
+    background-image: url(/assets/images/dashboard/discharge.jpg);
+}
+
+.services {
+    background-image: url(/assets/images/dashboard/treated-patient.jpg);
+}
+
+.radiology {
+    background-image: url(/assets/images/dashboard/radiology.jpg);
+}
+
+.laboratory {
+    background-image: url(/assets/images/dashboard/laboratory.jpg);
+}
+
+.departments {
+    background-image: url(/assets/images/dashboard/departments.jpg);
+}
+
+.patients {
+    background-image: url(/assets/images/dashboard/patients.jpg);
+}
+
+.Prescription {
+    background-image: url(/assets/images/dashboard/Prescription.jpg);
+}
+
+.inpatient {
+    background-image: url(/assets/images/dashboard/inpatient.jpg);
+}
+
+.DaySurgery {
+    background-image: url(/assets/images/dashboard/DaySurgery.jpg);
+}
+
+.custombox .card {
+    border-radius: 5px;
+}
+
+.custombox .card-body {
+    padding: 0;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
+    border-radius: 5px;
+}
+
+.custombox h2 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.custombox h2+div {
+    opacity: .7;
+}

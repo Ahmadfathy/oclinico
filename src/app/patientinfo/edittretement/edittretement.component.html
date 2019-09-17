@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+      <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+      <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <h4 class="ltr">Treatment Notes</h4>
+  <h4 class="rtl">ملاحظة العلاج</h4>
+</div>
+<div class="row p-t-20">
+  <div class="col-md-12 ">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link"> Patient Details</a></li>
+      <li class="rtl"><a class="nav-link"><span>تفاصيل المريض</span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/treatmentnote' [queryParams]="{Refrral:patientId}">Treatment
+          Note
+        </a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/treatmentnote' [queryParams]="{Refrral:patientId}"><span>ملاحظة العلاج</span>
+        </a></li>
+      <li class="ltr"><a class="nav-link">Edit Treatment Note</a></li>
+      <li class="rtl"><a class="nav-link"><span>إضافة ملاحظة العلاج</span></a></li>
+    </ul>
+  </div>
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+  <div class="col-md-9">
+    <form [formGroup]="treatmentnote">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; New Treatment Note</p>
+        <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;مذكرة علاج جديدة</p>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label class="ltr">Select Type :</label>
+          <label class="rtl">اختر صنف :</label>
+          <select class="form-control ltr" id="selecttype" formControlName="selecttype" (change)="firstapointment($event.target.value)"
+            (change)='selectAppointment($event)'>
+            <option disabled>Select</option>
+            <option>First Appointment</option>
+            <option>Standard Appointment</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="ltr">Select Appointment :</label>
+          <label class="rtl">حدد موعد :</label>
+          <select class="form-control apid" formControlName="selectaponement">
+            <option disabled>Select</option>
+            < <option *ngFor="let ap of apoinemets" [value]="ap.Appointment_id">{{ap.dt}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label class="ltr"> Temperature</label>
+          <label class="rtl"> درجة الحرارة
+          </label>
+          <input class="form-control" id="Temperature" formControlName="tempture">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="ltr">BP </label>
+          <label class="rtl">الضغط </label>
+          <input class="form-control" id="BP" formControlName="bp">
+        </div>
+        <div class="col-md-4 form-group">
+          <label class="ltr"> Sugar</label>
+          <label class="rtl"> السكر
+          </label>
+          <input class="form-control" id="Sugar" formControlName="sugar">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group">
+          <label for="Weight" class="ltr"> Weight </label>
+          <label for="Weight" class="rtl"> وزن </label>
+          <input class="form-control" id="Weight" formControlName="weight">
+        </div>
+        <div class="col-md-4 form-group">
+          <label for="Height" class="ltr">Height </label>
+          <label for="Height" class="rtl">ارتفاع </label>
+          <input class="form-control" id="Height" formControlName="Height">
+        </div>
+        <div class="col-md-4 form-group">
+          <label for="ALLergy" class="ltr"> ALLergy</label>
+          <label for="ALLergy" class="rtl"> حساسية</label>
+          <input class="form-control" id="ALLergy" formControlName="ALLergy">
+        </div>
+      </div>
+      <div></div>
+      <div class="row" *ngIf="first">
+        <div class="col-md-6 form-group">
+          <label for="Complaint" class="ltr">Present Complaint</label>
+          <label for="Complaint" class="rtl">تقديم الشكوى</label>
+          <textarea class="form-control" id="Complaintpresent" formControlName="Presentcomplainet"></textarea>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="email" class="ltr">Complaint history</label>
+          <label for="email" class="rtl">تاريخ الشكوى</label>
+          <textarea class="form-control" id="Complainthistory" formControlName="complainthistory"></textarea>
+        </div>
+      </div>
+      <div class="row" *ngIf="first">
+        <div class="col-md-6 form-group">
+          <label for="Medical" class="ltr">Medical history</label>
+          <label for="Medical" class="rtl">تاريخ طبى</label>
+          <textarea class="form-control" id="Medicalhistory" formControlName="Medicalhistory"></textarea>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="Medication" class="ltr">Medication</label>
+          <label for="Medication" class="rtl">أدوية</label>
+          <textarea class="form-control" id="Medication" formControlName="Medication"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <label for="Assessment" class="ltr">Assessment</label>
+          <label for="Assessment" class="rtl">تقدير</label>
+          <textarea class="form-control" id="Assessment" formControlName="Assessment"></textarea>
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="Treatment" class="ltr">Treatment</label>
+          <label for="Treatment" class="rtl">علاج </label>
+          <textarea class="form-control" id="Treatment" formControlName="treatmentnote"></textarea>
+        </div>
+        <div class="col-md-6 form-group" *ngIf="first1">
+          <label for="Treatment1" class="ltr">Treatment Plan</label>
+          <label for="Treatment1" class="rtl">الخطة العلاجية</label>
+          <textarea class="form-control" id="Treatmentplan" formControlName="Treatmentplan"></textarea>
+        </div>
+        <div class="col-md-6 form-group" *ngIf="first">
+          <label class="ltr">Cronic Disease</label>
+          <label class="rtl">الخطة العلاجية</label>
+          <textarea class="form-control" id="Cronic" formControlName="cronicdise"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-group" *ngIf="Progress">
+          <label for="Patient" class="ltr">Patient Progress Report</label>
+          <label for="Patient" class="rtl">التقرير المستمر لحالة المريض</label>
+          <textarea class="form-control" id="Progress"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-warning margin ltr" style="float:right" (click)="createtrtement()">
+          <i class="fa fa-check-circle"></i> Save as final
+        </button>
+        <button class="btn btn-warning margin rtl" style="float:right" (click)="createtrtement()">
+          <i class="fa fa-check-circle"></i>حفظ كنهائي
+        </button>
+        <button class="btn btn-info margin ltr" style='float:right' (click)="savedraft()">
+          <i class="fa fa-check-circle"></i> Save as Draft
+        </button>
+        <button class="btn btn-info margin rtl" style='float:right' (click)="savedraft()">
+          <i class="fa fa-check-circle"></i>حفظ كمسودة
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

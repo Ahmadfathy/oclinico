@@ -1,0 +1,110 @@
+<div class="col-md-12">
+    <h4 class="ltr">Communications</h4>
+    <h4 class="rtl">مجال الاتصالات</h4>
+</div>
+
+
+
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="showLoader">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <!-- <div class="col-md-3"><h4 class="ltr">{{patient_name}}</h4> <h4 class="rtl">{{patient_name}}</h4></div> -->
+    <div *ngIf="pay" class="col-md-3">
+        <h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5>
+        <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>تفاصيل المريض</span></a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/communications'> Communications</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/communications'><span>مجال الاتصالات</span></a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Communications</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;مجال الاتصالات</p>
+        </div>
+
+        <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered" id="dataTable" *ngIf="showdata">
+            <thead class="ltr">
+                <tr>
+                    <th>Doctor/Treatment</th>
+                    <th> Doctor Name</th>
+                    <th>Date</th>
+
+                </tr>
+            </thead>
+            <thead class="rtl">
+                <tr>
+                    <th>طبيب / العلاج</th>
+                    <th> اسم الطبيب</th>
+                    <th>التاريخ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let patient of table;let i=index">
+                    <td>{{patient.docortreat}}</td>
+                    <td>{{patient.docname}}</td>
+                    <td>{{patient.Trdt}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="nodata"align="center">
+                <br>
+                <br>
+                <img src="./assets/images/Communication.png" height="100px" width="100px">
+                <br>
+                <br>
+                <p>
+                  <b>There are no communications</b>
+                </p>
+        </div>
+
+    </div>
+</div>

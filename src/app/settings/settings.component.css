@@ -1,0 +1,100 @@
+.headerimgcls {
+    width: 100%;
+    height: 85px;
+    /* background-color: #02abe8; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.settingsmodulediv {
+    width: 98%;
+    border: 1px solid #02abe8;
+    border-radius: 10px;
+    height: 320px;
+}
+
+.settingsmodulediv .nav-link {
+    display: block;
+    padding: 0px 0px 5px 16px !important;
+}
+
+.fa,
+.fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: white;
+}
+
+.imgclass {
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.imgclass:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+#mySettings {
+    opacity: 1;
+}
+
+#mySettings ul {
+    list-style: none;
+    padding: 0px;
+}
+
+#mySettings ul li:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    height: 100%;
+    width: 4px;
+    background: #e9ecef;
+    border-radius: 0.25rem;
+}
+
+::ng-deep [dir="rtl"] #mySettings ul li:before {
+    left: auto;
+    right: -20px;
+}
+
+#mySettings ul li {
+    cursor: pointer;
+    color: #3e5569;
+    position: relative;
+    left: 20px;
+    padding: 10px 0;
+    transition: color 150ms linear;
+}
+
+::ng-deep [dir="rtl"] #mySettings ul li {
+    left: auto;
+    right: 20px;
+}
+
+#mySettings ul li:hover {
+    color: #3587d8;
+}
+
+#mySettings ul li span {
+    position: absolute;
+    left: -25px;
+    color: #e9ecef;
+    background: #8c98b5;
+}
+
+::ng-deep [dir="rtl"] #mySettings ul li span {
+    left: auto !important;
+    right: -25px;
+}
+
+@media only screen and (min-width: 768px) {
+    #mySettings .card-body {
+        min-height: 275px;
+    }
+}

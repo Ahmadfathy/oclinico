@@ -1,0 +1,248 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card  bg-light no-card-border">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="m-r-10">
+                        <img src="{{userimgpath}}" alt="user" width="60" class="rounded-circle" />
+
+                    </div>
+                    <div>
+                        <h3 class="m-b-0">Welcome back! {{username}}</h3>
+                        <span>{{todayWeek}}, {{today | date}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <a routerLink="/patientsummery">patientsummery</a> -->
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <a href="JavaScript: void(0);">
+                        <i class="image-icon appointment"></i>
+                    </a>
+                    <div class="m-l-15 m-t-10">
+                        <h4 class="font-medium m-b-0">{{appointmentscount}}</h4>
+                        <h5><small>APPOINTMENT</small></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <a href="JavaScript: void(0);">
+                        <i class="image-icon doctors"></i>
+                    </a>
+                    <div class="m-l-15 m-t-10">
+                        <h4 class="font-medium m-b-0">{{doctorcount}}</h4>
+                        <h5><small>DOCTORS</small></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <a href="JavaScript: void(0);">
+                        <i class="image-icon fbList"></i>
+                    </a>
+                    <div class="m-l-15 m-t-10">
+                        <h4 class="font-medium m-b-0">{{freebedlistcount}}</h4>
+                        <h5><small>FREE BED LIST</small></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <a href="JavaScript: void(0);">
+                        <i class="image-icon discharged"></i>
+                    </a>
+                    <div class="m-l-15 m-t-10">
+                        <h4 class="font-medium m-b-0">{{dischargecount}}</h4>
+                        <h5><small>DISCHARGED</small></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6 mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card bg-cyan text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon service-icon"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{treatedcount}}</h4>
+                                <h5><small>Treated</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-lg-6">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon department"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{departmentcount}}</h4>
+                                <h5><small>Departments</small></h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon Patients"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{patientcount}}</h4>
+                                <h5><small>Patients</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon Prescription"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{prescriptioncount}}</h4>
+                                <h5><small>Prescription</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon Occupied"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{occupiedcount}}</h4>
+                                <h5><small>In Patient</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-orange text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon Surgery"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{daysurgerycount}}</h4>
+                                <h5><small>Day Surgery</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-orange text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon credit-icon"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{radiologycount}}</h4>
+                                <h5 class="font-medium m-b-0"><small>Radiology</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex no-block align-items-center">
+                            <a href="JavaScript: void(0);">
+                                <i class="image-icon totalearnings"></i>
+                            </a>
+                            <div class="m-l-15 m-t-10">
+                                <h4 class="font-medium m-b-0">{{laboratorycount}}</h4>
+                                <h5><small>Laboratory</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctors Availablity</h4>
+                <h6 class="card-subtitle">Some Description</h6>
+                <canvas height="450px" id="densityChart"></canvas>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Automanger Hospital Managemennt</h4>
+                <h6 class="card-subtitle">Showing status from the last year</h6>
+                <canvas baseChart height="450px" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+                                    </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Reports</h4>
+                <h6 class="card-subtitle">Some Description</h6>
+                <canvas baseChart height="450px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="[{backgroundColor: [ '#fb8c00', '#4798e8']}]">
+                                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+      <li class="ltr"><a class="nav-link">Clinic Information</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+      <li class="rtl"><a class="nav-link" routerLink='/settings'>إعدادات</a></li>
+      <li class="rtl"><a class="nav-link">معلومات العيادة</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card-group m-b-30">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14 ltr"></i> &nbsp;Clinic Information</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14 rtl"></i> &nbsp;معلومات العيادة</h4>
+        </div>
+        <div class="card-body">
+
+            <div style="text-align: right !important;margin-right: 60px;">
+                <span class="ltr"> 
+                  <a class="nav-link" style="display: inline-block;color: #4798e8;cursor: pointer;" routerLink='/addclinicinformation'>
+                    <i  class="fa fa-fw fa-user"></i> Add</a>
+                </span>
+                <span class="rtl" style="float:left;margin-left: 22px;">   
+                  <a class="nav-link" style="display: inline-block;color: #4798e8;cursor: pointer;" routerLink='/addclinicinformation'>
+                    <i  class="fa fa-fw fa-user"></i> إضافة</a>
+                </span>
+          </div><br>
+          <!-- <div class="text-right justify-content-between">
+            <span>
+              <button routerLink='/addclinicinformation' type="button" class="btn btn-warning ltr">
+                <i class="fa fa-fw fa-user"></i>Add</button>
+              <button routerLink='/addclinicinformation' type="button" class="btn btn-warning rtl">
+                <i class="fa fa-fw fa-user rtl"></i>إضافة</button>
+            </span>
+          </div><br><br> -->
+          <div class="row">
+            <div class="col-4" *ngFor="let item of branches;let i=index">
+              <div class="card" style="height:90%;width:100%">
+                <div class="card-header ltr" [ngClass]="(i % 2 == 0) ? 'clbold' : 'clnormal'">
+                  <h4 class="m-b-0 text-black">{{item.Branch_Name}}</h4>
+                  <button class="btn ltr" style="position:absolute;top:10px;right: 20px;float:right;border:none;background:none">
+                    <i class="fa fa-eye ltr" style="cursor:pointer;color:white" (click)="gotoview(item.Branch_id,item.memtype)"></i>&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-fw fa-edit ltr" style="cursor:pointer;color:white" (click)="gotoedit(item.Branch_id,item.memtype)"></i>
+                  </button>
+                </div>
+                <div class="card-header rtl" [ngClass]="(i % 2 == 0) ? 'clbold' : 'clnormal'">
+                  <h4 class="m-b-0 text-black">{{item.Branch_Name}}</h4>
+                  <button class="btn rtl" style="position:absolute;top:10px;left: 20px;float:right;border:none;background:none">
+                    <i class="fa fa-eye rtl" style="cursor:pointer;color:white" (click)="gotoview(item.Branch_id,item.memtype)"></i>&nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-fw fa-edit rtl" style="cursor:pointer;color:white" (click)="gotoedit(item.Branch_id,item.memtype)"></i>
+                  </button>
+                </div>
+                <div class="card-body" style="overflow-y: auto">
+                  <p>{{item.Email}}</p>
+                  <p>{{item.mobileno}}</p>
+                  <p>{{item.Country_Name}}</p>
+                  <p>{{item.city}}</p>
+                  <p>{{item.Address}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

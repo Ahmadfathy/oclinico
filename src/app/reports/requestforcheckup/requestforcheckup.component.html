@@ -1,0 +1,217 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/Reportsforcheckup'>
+          <span></span>Request For Check Up</a>
+      </li>
+
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span> تقارير</span>
+        </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/Reportsforcheckup'>
+          <span>طلب كشف طبي</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Request For Check Up</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;طلب كشف طبي</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>S.no</th>
+              <th>الرقم </th>
+              <th>التاريخ </th>
+              <th>المكرم الدكتور</th>
+              <th>انقطع عن العمل اعتبارا من</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="showdata">
+            <tr *ngFor="let report of table;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{report.LABEL1}}</td>
+              <td>{{report.LABEL2}}</td>
+              <td>{{report.LABEL4}}</td>
+              <td>{{report.LABEL10}}</td>
+
+              <td>
+                <span class="fa fa-eye text-info" (click)="viewreport(report.patient_id,'view',report.tran_date)"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-pencil-alt text-info" (click)="editreport(report.patient_id,'edit',report.tran_date)"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="fa fa-print text-info" (click)="print(report.patient_id,report.tran_date)"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata">No Data Found</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- -------------------------------------print---------------------------------- -->
+
+<div class="invoice-box" id="DivIdToPrint" style="display: none;">
+    <div class="maindiv">
+      <div class="top1">
+        <div class="left">
+          <div class="maindiv">
+            <div style=" width:170px; border:none; 
+                        float:left;color: #000;text-align: right;
+                        border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p1}}</div>
+            <div class="textdiv"> الرقم : &nbsp; </div>
+          </div>
+          <div class="maindiv">
+            <div style=" width:170px; border:none; 
+                   float:left;color: #000;text-align: right;
+                   border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p2}}</div>
+            <div class="textdiv"> التاريخ : &nbsp; </div>
+          </div>
+          <div class="maindiv">
+            <div style=" width:170px; float:left;color: #000;text-align: right; border:none; border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p3}}</div>
+            <div class="textdiv"> المرفقات : &nbsp; </div>
+          </div>
+        </div>
+        <div class="center">
+          <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;"> </div>
+        <div class="right" style="text-align: center;">
+          المملكة العربية السعودية أوزارة التعليم
+          <br>
+          <strong> الجامعة الاسلامية بالمدينة</strong>
+          المنورة الطبي الجامعي
+        </div>
+      </div>
+    </div>
+    <div class="maindiv" style="margin-bottom: 10px;">
+      <div class="top2">
+        <div class="maindiv">
+          <div style="width: 100%; height:auto; float:left; font-weight: bold; text-align: center; font-size: 30px;">
+            طلب كشف طبي
+          </div>
+        </div>
+        <div class="maindiv">
+          <div class="et1" style="width: 16%; float: right;"> المكرم الدكتور: &nbsp; </div>
+          <div style="width: 30%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p4}}
+          </div>
+        </div>
+        <div class="maindiv" style="margin-top: 4%;">
+          <div class="et1" style="width: 26%; float: right; margin-right: 12%;"> السلام عليكم ورحمه الله وبركاته: &nbsp;
+          </div>
+          <!-- <div style="width: 16%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p5}}
+          </div> -->
+        </div>
+        <div class="maindiv">
+          <div class="et1" style="width: 26%; float: right; margin-right: 8%;"> نأمل إجراء الكشف الطبي على: &nbsp; </div>
+          <div style="width: 16%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p6}}
+          </div>
+        </div>
+        <div class="maindiv" style="margin-top: 5%;">
+          <div style="width: 5%; float: right; margin-right: 10%;">
+            <input type="checkbox" id="checkup11" />
+            <label for="checkup11">
+            </label>
+          </div>
+          <div style="width: 10%; float: right;margin-left: 1%;">الموظف /</div>
+          <div style="width: 30%; float: right;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p7}}
+          </div>
+        </div>
+        <div class="maindiv">
+          <div style="width: 5%; float: right; margin-right: 10%;">
+            <input type="checkbox" value="" id="checkup12" />
+            <label for="checkup2"> </label>
+          </div>
+          <div style="width: 10%; float: right; margin-left: 1%;"> المستخدم / </div>
+          <div style="width: 30%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p8}}
+          </div>
+        </div>
+        <div class="maindiv">
+          <div style="width: 5%; float: right; margin-right: 10%;">
+            <input type="checkbox" value="" id="checkup13" />
+            <label for="checkup3"> </label>
+          </div>
+          <div style="width: 10%; float: right; margin-left: 1%;"> العامل / </div>
+          <div style="width: 30%; float: right;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p9}}
+          </div>
+        </div>
+        <div class="maindiv" style="margin: 2% 0 6% 0;">
+          <div class="et1" style="width: 20%; float: right; margin-right: 8%;"> وإفادتنا بالنتيجة علماً بأنة &nbsp; </div>
+          <div class="et1" style="width: 34%; float: right;"> </div>
+        </div>
+        <div class="maindiv">
+          <div style="width: 25px; float: right; margin: 0px 10% 0px 1%;">
+            <input type="checkbox" value="" id="checkup14" />
+            <label for="checkup4"> </label>
+          </div>
+          <div class="et1" style="width: 182px; float: right;"> انقطع عن العمل اعتبارا من: &nbsp; </div>
+          <div class="et1" style="width: 225px; float: right;">
+            <span style="min-height: 25px; width: 45px; border:none; border-bottom: 2px dotted #000; outline: none;color: #000;float:right">{{p10}}</span>
+            <span class="spancls"></span>
+            <span style=" width: 40px; min-height: 25px; border:none; border-bottom: 2px dotted #000; float: right; outline: none;color: #000;">{{p11}}</span>
+            <span class="spancls" style="margin-left: 4%;"></span>
+            <span style=" width: 40px; min-height: 25px; border:none; border-bottom: 2px dotted #000; float: right; outline: none;color: #000;">{{p14}}</span>
+          </div>
+        </div>
+        <div class="maindiv">
+          <div style="width: 32px; float: right; margin: 0px 10% 0px 1%;">
+            <input type="checkbox" value="" id="checkup15" />
+            <label for="checkup5"> </label>
+          </div>
+          <div class="et1" style="width: 20%; float: right;"> قائم بالعمل حتى تاريخه. </div>
+          <div class="et1" style="width: 30%; float: right;"> </div>
+        </div>
+        <div style="width: 48%; height:auto; float:left; margin: 9% 0 4% 0;">
+          <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 20px 0px; text-align: center;">
+            المدير المباشر
+          </div>
+          <div class="maindiv">
+            <div class="et1" style="width: 28%; float: right;"> وظيفتة: </div>
+            <div class="et1" style="width: 68%; float: right; margin-right: 3%;"> المشرف على المركز الطبي</div>
+          </div>
+          <div class="maindiv">
+            <div class="et1" style="width: 22%; float: right;">توقيعة: </div>
+            <div style="width: 60%; float: right; margin-right: 3%;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+              {{p13}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

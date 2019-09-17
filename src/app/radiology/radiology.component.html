@@ -1,0 +1,136 @@
+<!-- <div class="preloader" *ngIf="showLoader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li><a class="nav-link" routerLink='/Patientinfo'> Radiology Details</a></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="text-right">
+            <a class="btn addgreen" routerLink="/addpatient"><i class="fa fa-fw fa-user"></i> Add</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table style="display: table" class="table table-hover table-responsive" id="dataTable" *ngIf="showdata">
+                    <thead>
+                        <tr>
+                            <th>Patientid</th>
+                            <th>Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Mobile No</th>
+                            <th>EmaiL Id</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="width:100%">
+                        <tr *ngFor="let patient of table;let i=index">
+                            <td>{{patient.patient_id}}</td>
+                            <td>{{patient.name}}</td>
+                            <td>{{patient.dob1}}</td>
+                            <td>{{patient.Gender}}</td>
+                            <td>{{patient.MobileNo}}</td>
+                            <td>{{patient.Email}}</td>
+
+                            <td><span class="fa fa-eye text-info" [routerLink]="['/viewradiology']" [queryParams]="{Refrral:patient.patient_id}"></span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div [hidden]="nodata">No Data Found</div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="preloader" *ngIf="isPageloaderVisible">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+      </div>
+      
+          <div class="row">
+            <div class="col-md-12">
+              <ul id="breadcrumb" >
+                <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr"><a class="nav-link" >Radiology Details</a></li>
+                <li class="rtl"><a class="nav-link" ><span>تفاصيل الأشعة</span> </a></li>
+              </ul>
+            </div>
+          </div>
+       
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Radiology Details</h4>
+                <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل الأشعة</h4>
+              </div>
+              <div class="card-body">
+                <!-- <div style="text-align: right !important;margin-right: 60px;">
+                    <span class="ltr"> 
+                      <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addpatient"><i  class="fa fa-fw fa-user"></i> Add</a>
+                    </span>
+                    <span class="rtl" style="float:left;margin-left: 22px;">   
+                      <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addpatient"><i  class="fa fa-fw fa-user"></i> إضافة</a>
+                    </span>
+              </div><br> -->
+                <table class="table table-hover table-bordered " cellspacing="0">
+                  <thead class="ltr" style="background-color: #4a87ee;color: white;">
+                    <tr>
+                            <th>Patientid</th>
+                            <th>Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Mobile No</th>
+                            <th>EmaiL Id</th>
+                            <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <thead class="rtl" style="background-color: #4a87ee;color: white;">
+                    <tr>
+                            <th>رقم المريض</th>
+                            <th>اسم</th>
+                            <th>تاريخ الميلاد</th>
+                            <th>جنس</th>
+                            <th>رقم الهاتف المحمول</th>
+                            <th>عنوان البريد الإلكتروني</th>
+                            <th>الاجراءات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let patient of ptable;let i=index">
+                            <td>{{patient.patient_id}}</td>
+                            <td>{{patient.name}}</td>
+                            <td>{{patient.dob1}}</td>
+                            <td>{{patient.Gender}}</td>
+                            <td>{{patient.MobileNo}}</td>
+                            <td>{{patient.Email}}</td>
+                        <td style="display:flex;">
+                            <span>
+                            <a class="nav-link" [routerLink]="['/viewradiology']" [queryParams]="{Refrral:patient.patient_id}"
+                             style="cursor: pointer;color:#4a87ee"><i class="fa fa-eye text-info"></i> View
+                            </a>
+                            </span>
+                        </td>
+                    </tr>
+                    <div><span>No data found</span></div>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>

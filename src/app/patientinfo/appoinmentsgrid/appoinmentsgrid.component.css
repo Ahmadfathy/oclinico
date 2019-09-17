@@ -1,0 +1,19 @@
+th{
+  background-color: #4a87ee;
+  color: white;
+}
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid #e9ecef;
+}
+li:hover { 
+  background-color: #E0FFFF;
+}
+
+
+
+li {
+  cursor: pointer;
+}

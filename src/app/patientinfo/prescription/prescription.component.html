@@ -1,0 +1,130 @@
+<div class="preloader" *ngIf="showLoader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h4 class="ltr">Prescription Details </h4>
+        <h4 class="rtl">وصفة طبية التفاصيل</h4>
+    </div>
+    <div *ngIf="pay" class="col-md-3">
+        <h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5>
+        <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>تفاصيل المريض</span></a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link">Prescription Details </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>وصفة طبية التفاصيل</span></a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Prescription Details</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;وصفة طبية التفاصيل</p>
+        </div>
+
+
+        <div *ngIf = "showdata">
+            <div style="text-align: right !important">
+                <span class="ltr">
+                    <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addprescription" [queryParams]="{referallid : patientId,ap_id:Ap_id}">
+                        <i class="fa fa-fw fa-user"></i> Add</a>
+                </span>
+                <span class="rtl" style="float:left">
+                    <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addprescription" [queryParams]="{referallid : patientId,ap_id:Ap_id}">
+                        <i class="fa fa-fw fa-user"></i> إضافة</a>
+                </span>
+            </div>
+            <table class="table table-hover table-bordered" cellspacing="0" id="dataTable" *ngIf="showdata">
+                <thead class="ltr">
+                    <tr>
+                        <th>Appointment</th>
+                        <th>Notes</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <thead class="rtl">
+                    <tr>
+                        <th>موعد</th>
+                        <th>ملاحظات</th>
+                        <th>الحالة</th>
+                        <th>أفعال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let patient of table;let i=index">
+                        <td>{{patient.dt}}</td>
+                        <td style="width:35%">{{patient.Notes}}</td>
+                        <td>{{patient.Status}}</td>
+                        <td style="text-align: center">
+                            <!-- Refrral:patient.sno, -->
+                            <span class="fa fa-eye text-info" style="cursor: pointer;" routerLink="/viewprescription" [queryParams]="{Appointment:patient.AppointmentID,Patientid:patient.PatientID,Pagename:'Prescription'}"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="nodata" align="center"><br><br>
+            <img src = "./assets/images/folder-icon.png" height="100px" width="100px"><br><br>
+           <p><b>There is no prescription</b></p>
+           <p> You may not have created any yet. You could 
+            <a routerLink="/addprescription" [queryParams]="{referallid : patientId,ap_id:Ap_id}">
+                <u>create a prescription</u>
+            </a> now.
+           </p>
+        </div>
+
+    </div>
+</div>

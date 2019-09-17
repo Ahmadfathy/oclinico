@@ -1,0 +1,27 @@
+.form-control {
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+
+select{
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+
+li:hover { 
+  background-color:#E0FFFF ;
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid #e9ecef;
+}
+
+
+
+
+

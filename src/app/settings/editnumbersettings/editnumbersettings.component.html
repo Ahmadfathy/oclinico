@@ -1,0 +1,118 @@
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+    <div class="spinner" >
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+
+  <h4 class="ltr">Edit Number Settings</h4>
+  <h4 class="rtl">تعديل إعداد الارقام</h4>
+
+  
+
+
+    <div class="row">
+      <div class="col-md-12">
+          <ul id="breadcrumb">
+              <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/NumberSettings'><span ></span>Number Settings</a></li>
+              <li class="ltr"><a class="nav-link">Edit Number Settings</a></li>
+              <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+              <li class="rtl"><a class="nav-link"  routerLink='/NumberSettings'><span >إعدادات الارقام</span></a></li>
+              <li class="rtl"><a class="nav-link"><span>تعديل إعداد الارقام</span></a></li>
+          </ul>
+      </div>
+  </div>
+
+<form [formGroup]="editnumbersettings">
+
+<div class="row ">
+<div class="col-md-12 col-lg-12 col-xl-12">
+  <div class="card">
+      <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Number Setting</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تعديل إعداد الارقام</h4>
+        </div>
+      <div class="card-body">
+         
+          <div class="row">
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.patientnum}">
+                  <label class="form-control-label ltr">Patient Number *</label>
+                  <label class="form-control-label rtl">عدد المرضى *</label>
+                  <input type="text" class="form-control"  formControlName="patientnum"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.patientnum">
+                    {{formErrors.patientnum}}
+                  </span>
+            </div>
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.appnum}">
+                  <label class="form-control-label ltr">Appointment Number *</label>
+                  <label class="form-control-label rtl">رقم الموعد *</label>
+                  <input type="text" class="form-control"  formControlName="appnum"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.appnum">
+                    {{formErrors.appnum}}
+                  </span>
+            </div>
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.invnum}">
+                  <label class="form-control-label ltr">Invoice Number *</label>
+                  <label class="form-control-label rtl">رقم الفاتورة *</label>
+                  <input type="text" class="form-control"  formControlName="invnum"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.invnum">
+                    {{formErrors.invnum}}
+                  </span>
+            </div>
+            
+           
+           </div>
+          <div class="row">
+              
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.cashrecpt}">
+                  <label class="form-control-label ltr">Cash Reciept *</label>
+                  <label class="form-control-label rtl">إيصال الدفع *</label>
+                  <input type="text" class="form-control"  formControlName="cashrecpt"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.cashrecpt">
+                    {{formErrors.cashrecpt}}
+                  </span>
+            </div>
+            <div class="col-md-4" [ngClass]="{'has-error' : formErrors.expences}">
+                  <label class="form-control-label ltr">Expenses *</label>
+                  <label class="form-control-label rtl">مصروفات *</label>
+                  <input type="text" class="form-control"  formControlName="expences"  (blur)="checkValidationErrors()">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.expences">
+                    {{formErrors.expences}}
+                  </span>
+            </div>
+            
+            
+           
+           </div>
+              
+            <div class="row mt-5">
+               <div class="col-md-12 text-center submitBtns">
+                      <button type="submit" class="btn btn-md btn-warning ltr" (click)="editnumbersettingsubmit()" style="margin-right:5px;">
+                          <i class ="fa fa-check-circle"></i>
+                      Update </button>
+                      <button type="submit" class="btn btn-md btn-warning rtl" (click)="editnumbersettingsubmit()" >
+                          <i class ="fa fa-check-circle"></i>
+                          تحديث </button>
+                      <button type="submit" class="btn btn-md btn-success ltr" (click)="editnumbersettingscancle()">
+                         <i class ="fa fa-ban"></i>
+                          Cancel</button>
+                      <button type="submit" class="btn btn-md btn-success rtl" (click)="editnumbersettingscancle()" style="margin-right:5px;">
+                         <i class ="fa fa-ban"></i>
+                         إلغاء</button>
+                </div>
+            </div>
+      </div>
+  </div>
+</div>
+</div>
+
+</form>

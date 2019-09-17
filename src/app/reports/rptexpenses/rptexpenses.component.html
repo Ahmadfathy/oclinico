@@ -1,0 +1,178 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'><span>تقارير</span> </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/rptexpenses'> Expenses</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/rptexpenses'><span>نفقات</span>
+        </a>
+      </li>
+      <!-- <li class="rtl">
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Expenses </p>
+        <p class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;نفقات
+        </p>
+      </div>
+      <br>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <label class="form-control-label ltr">From Date</label>
+            <label class="form-control-label rtl">من التاريخ
+            </label>
+            <br>
+            <!-- <input type="date" name="FromDate" id="FromDate" class="form-control" (change)="MyFromDate($event.target.value)" [(ngModel)]="Day_FromDate"> -->
+            <input [owlDateTimeTrigger]="FromDate" [owlDateTime]="FromDate" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyFromDate()"
+              [(ngModel)]="Day_FromDate">
+            <owl-date-time [pickerType]="'calendar'" #FromDate></owl-date-time>
+          </div>
+          <div class="col-6">
+            <label class="form-control-label ltr">To Date</label>
+            <label class="form-control-label rtl">حتى الآن
+            </label>
+            <br>
+            <!-- <input type="date" name="ToDate" id="ToDate" class="form-control" (change)="MyToDate($event.target.value)" [(ngModel)]="Day_ToDate"> -->
+            <input [owlDateTimeTrigger]="ToDate" [owlDateTime]="ToDate" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyToDate()"
+              [(ngModel)]="Day_ToDate">
+            <owl-date-time [pickerType]="'calendar'" #ToDate></owl-date-time>
+          </div>
+          <div class="col-6">
+
+            <label class="form-control-label ltr">Category</label>
+            <label class="form-control-label rtl"> الفئة
+            </label>
+            <br>
+            <select name="Status" id="Status" class="form-control" (change)="MyCategory($event.target.value)">
+              <option>Select</option>
+              <option *ngFor="let cat of Categories;" [value]="cat.Category">{{cat.Category}}</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-md btn-info ltr" (click)="btnSearch()">
+                <i class="fas fa-search"></i>
+                Search</button>
+              <button type="submit" class="btn btn-md btn-info rtl" (click)="btnSearch()">
+                <i class="fas fa-search"></i>
+                بحث</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr">
+            <tr>
+              <th>Category</th>
+              <th>Amount(ex.Tax)</th>
+              <th>Tax</th>
+              <th>Total(inc.Tax)</th>
+            </tr>
+          </thead>
+          <thead class="headrow rtl">
+            <tr>
+              <th>الفئة</th>
+              <th>المبلغ (ex.Tax)
+              </th>
+              <th>ضريبة</th>
+              <th>إجمالي (inc.Tax)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of products;let i=index;">
+              <td>{{prd.Category}}</td>
+              <td>{{prd.Sub_total}}</td>
+              <td>{{prd.Tax}}</td>
+              <td>{{prd.Total_Expense_Amount}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata">No Data Found</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <table class="table table-hover table-bordered" cellspacing="0">
+        <thead class="headrow ltr bg-info text-white">
+          <tr>
+            <th>Expense</th>
+            <th>Date</th>
+            <th>Vendor</th>
+            <th>Category</th>
+            <th>Notes</th>
+            <th>Sub-Total</th>
+            <th>Tax</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <thead class="headrow rtl bg-info text-white">
+          <tr>
+            <th>مصروف</th>
+            <th>تاريخ</th>
+            <th>بائع</th>
+            <th>الفئة</th>
+            <th>ملاحظات
+            </th>
+            <th>المجموع الفرعي
+            </th>
+            <th>ضريبة</th>
+            <th>مجموع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let exp of Expense;let i=index;">
+            <td>{{exp.Expense_Id}}</td>
+            <td>{{exp.Trans_date}}</td>
+            <td>{{exp.Vendor}}</td>
+            <td>{{exp.Category}}</td>
+            <td>{{exp.Notes}}</td>
+            <td>{{exp.Sub_total}}</td>
+            <td>{{exp.Tax}}</td>
+            <td>{{exp.Total_Expense_Amount}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div [hidden]="nodata1">No Data Found</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+
+  <h4 class="ltr">Add Treatment Machine</h4>
+  <h4 class="rtl">إضافة آلة العلاج</h4>
+
+
+  <div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+            <li class="ltr"><a class="nav-link"  routerLink='/Treat_MachineDetails'><span ></span>Treatment Machine Details</a></li>
+            
+            <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+            <li class="rtl"><a class="nav-link"  routerLink='/Treat_MachineDetails'><span >تفاصيل آلة العلاج</span></a></li>
+            
+        </ul>
+    </div>
+  </div>
+
+      <form [formGroup]="addtremtmachine">
+      
+      <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Treatment Machine</h4>
+                <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة آلة العلاج</h4>
+              </div>
+
+            <div class="card-body">
+                <div class="row">
+                       
+                        <div class="col-md-4">
+                                <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.treatmantname}">
+                                    <label class="mr-sm-2 ltr" for="title">Treatment Name *</label>
+                                    <label class="mr-sm-2 rtl" for="title">اسم العلاج *</label>
+                                    
+                                          <select value="Select" name="title" formControlName="treatmantname"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                                            <option value="select" disabled>-- select --</option>
+                                            <option *ngFor="let d of treatmantnamearr" [ngValue]="d.Treatment_Id">{{d.Treatment_Name}}</option>
+                                          </select>
+                                          <select value="Select" name="title" formControlName="treatmantname"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                                              <option  value="select" disabled>-- اختار --</option>
+                                            <option *ngFor="let d of treatmantnamearr" [ngValue]="d.Treatment_Id">{{d.Treatment_Name}}</option>
+                                          </select>
+                                          <span class="help-block errorcolorcls" *ngIf="formErrors.treatmantname">
+                                            {{formErrors.treatmantname}}
+                                          </span>
+                                          
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                    <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.machinename}">
+                                        <label class="mr-sm-2 ltr" for="title">Machine Name *</label>
+                                        <label class="mr-sm-2 rtl" for="title">إسم الألة *</label>
+                                        
+                                              <select value="Select" name="title" formControlName="machinename"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                                                <option value="select" disabled>-- select --</option>
+                                                <option *ngFor="let d of machinenamearr" [ngValue]="d.Machine_ID">{{d.Machine_Name}}</option>
+                                              </select>
+                                              <select value="Select" name="title" formControlName="machinename"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                                                  <option  value="select" disabled>-- اختار --</option>
+                                                <option *ngFor="let d of machinenamearr" [ngValue]="d.Machine_ID">{{d.Machine_Name}}</option>
+                                              </select>
+                                              <span class="help-block errorcolorcls" *ngIf="formErrors.machinename">
+                                                {{formErrors.machinename}}
+                                              </span>
+                                              
+                                    </div>
+                                </div>
+                 <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.status}">
+                      <label class="mr-sm-2 ltr" for="title">Status *</label>
+                      <label class="mr-sm-2 rtl" for="title">الحالة *</label>
+                      
+                            <select value="Select" name="title" formControlName="status"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                              <option value="select" disabled>-- select --</option>
+                              <option value="Active" >Active</option>
+                              <option value="Inactive" >InActive</option>
+                            </select>
+                            <select value="Select" name="title" formControlName="status"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                                <option  value="select" disabled>-- اختار --</option>
+                              <option value="Active" >Active</option>
+                              <option value="Inactive" >InActive</option>
+                            </select>
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.status">
+                              {{formErrors.status}}
+                            </span>
+                            
+                  </div>
+                  </div>
+                    </div>
+                    
+                            <div class="row mt-5">
+                                <div class="col-md-12 text-center submitBtns">
+                                    <button type="submit" class="btn btn-md btn-warning ltr" (click)="addtreatmentmachinesbmit()" style="margin-right:5px;">
+                                        <i class ="fa fa-check-circle"></i>
+                                         Submit </button>
+                                    <button type="submit" class="btn btn-md btn-warning rtl" (click)="addtreatmentmachinesbmit()">
+                                        <i class ="fa fa-check-circle"></i>
+                                        إرسل </button>
+                                    <button type="submit" class="btn btn-md btn-success ltr" (click)="addtreatmentmachinecancle()">
+                                            <i class ="fa fa-ban"></i>
+                                        Cancel</button>
+                                    <button type="submit" class="btn btn-md btn-success rtl" (click)="addtreatmentmachinecancle()" style="margin-right:5px;">
+                                            <i class ="fa fa-ban"></i>
+                                            إلغاء</button>
+                                </div>
+                            </div>
+            </div>
+        </div>
+      </div>
+      </div>
+      
+      
+      </form>

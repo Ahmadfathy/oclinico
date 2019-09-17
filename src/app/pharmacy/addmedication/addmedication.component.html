@@ -1,0 +1,147 @@
+<div class="preloader" >
+        <!-- *ngIf="isPageloaderVisible" -->
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<form [formGroup]="Medication">
+  <!-- <p class='rtl'>?سوف أعطي مثالا على ذلك. لا تمانع</p> -->
+  <div class="row">
+      <h4 class="ltr">Add Medication</h4>
+
+      <h4 class="rtl">إضافة الدواء</h4>
+  </div>
+
+  <br>
+
+  <div class="row">
+      <div class="col-md-12" style="margin-left: -37px;">
+          <ul id="breadcrumb">
+              <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+              <li class="ltr">
+                  <a class="nav-link "> Medication Details</a>
+              </li>
+              <li class=" rtl">
+                  <a class="nav-link" routerLink='/expenses'>تفاصيل الدواء</a>
+              </li>
+              <li  class="ltr">
+                  <a class="nav-link">Add Medication</a>
+              </li>
+              <li class="rtl">
+                  <a class="nav-link rtl">إضافة الدواء</a>
+              </li>
+          
+          </ul>
+      </div>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-12 col-lg-12 col-xl-12">
+          <div class="card">
+                  <div class="card-header">
+                          <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Medication Details</p>
+                          <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل الدواء</p>
+                      </div>
+          
+              <div class="card-body">
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h3 class="card-title mt-4 ltr">Medication Details</h3>
+
+                          <h3 class="card-title mt-4 rtl">تفاصيل الدواء</h3>
+                      </div>
+
+                  </div>
+                  <div class="row">
+                    
+                      <div class="col-md-4">
+                          <div class="mt-3">
+                              <div class="form-group m-b-30">
+                                  <label class="mr-sm-2 ltr" for="title">Generic Name<i class="fa fa-star"></i></label>
+                                  <label class="mr-sm-2 rtl" for="title">اسم عام<i class="fa fa-star"></i></label>
+                                  <select formControlName="generic" class="custom-select mr-sm-2 ltr">
+                                      <option [value]=''>Select</option>
+                                      <option *ngFor="let title of titles" [value]="title.value">{{title.text}}</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="mt-3">
+                            <div class="form-group m-b-30">
+                                <label class="mr-sm-2 ltr" for="title">Trade Name<i class="fa fa-star"></i></label>
+                                <label class="mr-sm-2 rtl" for="title">اسم تجاري<i class="fa fa-star"></i></label>
+                                <select formControlName="trade" class="custom-select mr-sm-2 ltr">
+                                    <option [value]=''>Select</option>
+                                    <option *ngFor="let title of titles" [value]="title.value">{{title.text}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-md-4 form-group">
+                        <div class="mt-3">
+                            <label class="form-control-label ltr">Dosage<i class="fa fa-star"></i></label>
+                            <label class="form-control-label rtl">جرعة<i class="fa fa-star"></i></label>
+                            <input type="number" class="form-control" id="dosage" formControlName="dosage" />
+                        </div>
+                    </div>
+                      <div class="col-md-4 form-group">
+                        <div class="mt-3">
+                            <label class="form-control-label ltr">Frequency<i class="fa fa-star"></i></label>
+                            <label class="form-control-label rtl">تكرر<i class="fa fa-star"></i></label>
+                            <input type="number" class="form-control" id="frequency" formControlName="frequency" />
+                        </div>
+                    </div>
+                      <div class="col-md-4 form-group">
+                        <div class="mt-3">
+                            <label class="form-control-label ltr">Duration<i class="fa fa-star"></i></label>
+                            <label class="form-control-label rtl">المدة الافتراضية<i class="fa fa-star"></i></label>
+                            <input type="number" class="form-control" id="duration" formControlName="duration" />
+                        </div>
+                    </div>
+                      <div class="col-md-4 form-group">
+                        <div class="mt-3">
+                            <label class="form-control-label ltr">Day<i class="fa fa-star"></i></label>
+                            <label class="form-control-label rtl">يوم<i class="fa fa-star"></i></label>
+                            <input type="number" class="form-control" id="day" formControlName="day" />
+                        </div>
+                    </div>
+                      <div class="col-md-4 form-group">
+                          <div class="mt-3">
+                              <label class="form-control-label ltr">Quantity<i class="fa fa-star"></i></label>
+                              <label class="form-control-label rtl">الكمية<i class="fa fa-star"></i></label>
+                              <input type="number" class="form-control" id="quantity" formControlName="quantity" />
+                          </div>
+                      </div>
+                      <div class="col-md-4 form-group">
+                        <div class="mt-3">
+                            <label class="form-control-label ltr">Notes</label>
+                            <label class="form-control-label rtl">ملاحظات</label>
+                            <textarea class="form-control" formControlName="notes"></textarea>
+                        </div>
+                    </div>
+                  </div>
+             
+
+
+                
+              </div>
+          </div>
+        
+          <div class="row mt-5">
+              <div class="col-md-12  submitBtns">
+                  <button type="submit" class="btn btn-md btn-warning" (click)="submit()" style="margin-right:10px;">
+                      <i class="fa fa-check-circle"></i>
+                      Submit</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div>
+
+  </div>
+
+</form>

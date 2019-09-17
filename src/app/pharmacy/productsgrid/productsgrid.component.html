@@ -1,0 +1,199 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/products'> Products</a></li>
+            <li class="ltr"><a class="nav-link"> Productsview</a></li>
+            <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+        </ul>
+    </div>
+</div>
+  <form [formGroup]='productsviewForm'>
+    <div class="container" >
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Products</p>
+                          <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+                      </div>
+              <!-- <div class='col-md-4'>
+                  <h4>Product :</h4>
+               
+              </div> -->
+         
+          <div class="card-body">
+      <div class="row">
+        
+    <div class="col-md-4 ">
+    
+          <div class="form-group">
+                  <lable>Generic name</lable>
+                  <input type="text" formControlName="genericname" 
+                  class="form-control"readonly>
+                 
+           </div>
+           <div class="form-group">
+            <lable>Route of Administration</lable>
+            <select type="text" formControlName="Routeofadministration" 
+            class="form-control"readonly>
+                    <option>Select</option>
+                    <option *ngFor="let engname6 of name6" [value]="engname6.ID">{{engname6.NameEn}}</option>
+                    
+        </select>
+        
+     </div>
+     
+    <div class="form-group">
+            <lable>Shelf-life(mon)</lable>
+            <select type="text" formControlName="shelflife" 
+            class="form-control" readonly>
+            <option>Select</option>
+        </select>  
+        
+     </div>
+     
+     
+    <div class="form-group">
+            <lable>Country of Manufacture</lable>
+            <select type="text" formControlName="Countryofmanufacture" 
+            class="form-control" readonly>
+            <option>Select</option>
+            <option *ngFor="let engname7 of name7" [value]="engname7.ID">{{engname7.NameEn}}</option>
+        </select> 
+        
+     </div>
+    
+     <div class="form-group">
+            <lable>MAH(Agent name)</lable>
+            <select type="text" formControlName="Mah" 
+            class="form-control" readonly> 
+            <option>Select</option>
+            <option *ngFor="let engname8 of name8" [value]="engname8.ID">{{engname8.NameEn}}</option>
+        </select>
+        
+     </div>
+    </div>
+    
+    <div class="col-md-4">
+    
+            <div class="form-group">
+                    <lable>Unit of Strength</lable>
+                    <select type="text" formControlName="Unitofstrength" 
+                    class="form-control" readonly>  
+                    <option>Select</option>
+                    <option *ngFor='let engname of names'[value]="engname.ID">{{engname.NameEn}}</option>
+                </select>
+               
+             </div>
+             
+            <div class="form-group">
+                    <lable>Legal status </lable>
+                    <select type="text" formControlName="Legalstatus" 
+                    class="form-control" readonly>
+                    <option *ngFor='let engname9 of name9'[value]="engname9.ID">{{engname9.NameEn}}</option>
+                    <option>Select</option>
+                </select>
+               
+             </div>
+             
+            <div class="form-group">
+                    <lable>Storage Conditoins</lable>
+                    <select type="text" formControlName="Storageconditions" 
+                    class="form-control" readonly> 
+                    <option *ngFor='let engname10 of name10'[value]="engname10.ID">{{engname10.NameEn}}</option>
+                    <option>Select</option>
+        </select> 
+        
+             </div>
+             
+            <div class="form-group">
+                    <lable>Marketing Company</lable>
+                    <select type="text" formControlName="Marketingcompany" 
+                    class="form-control" readonly>
+                    <option>Select</option>
+                    <option *ngFor='let engname11 of name11'[value]="engname11.ID">{{engname11.NameEn}}</option>
+        </select>  
+       
+             </div>
+    
+             <div class="form-group">
+                    <lable>Authorization Status</lable>
+                    <select type="text" formControlName="Authorizationstatus" 
+                    class="form-control" readonly>  
+                    <option>Select</option>
+                    <option *ngFor='let engname12 of name12'[value]="engname12.ID">{{engname12.NameEn}}</option>
+        </select>
+       
+             </div>
+    </div>
+    <div class="col-md-4 ">
+    
+                <div class="form-group">
+                    <lable>Dosage form</lable>
+                    <select type="text" formControlName="Dosageform" 
+                    class="form-control" readonly> 
+                    <option>Select</option>
+                    <option *ngFor="let engname1 of names1" [value]="engname1.ID">{{engname1.NameEn}}</option>
+        </select> 
+       
+             </div>
+             
+            <div class="form-group">
+                    <lable>Product Control </lable>
+                    <select type="text" formControlName="productcontrol" 
+                    class="form-control" readonly>  
+                    <option>Select</option>
+                    <option *ngFor="let engname2 of name2" [value]="engname2.ID">{{engname2.NameEn}}</option>
+        </select>
+       
+             </div>
+             
+            <div class="form-groups">
+                    <lable>Manufacture name</lable>
+                    <select type="text" formControlName="Manucfacturename" 
+                    class="form-control" readonly> 
+                    <option>Select</option>
+                    <option *ngFor="let engname3 of name3" [value]="engname3.ID">{{engname3.Name}}</option>
+        </select> 
+       
+             </div>
+             
+            <div class="form-group">
+                    <lable>Nationality</lable>
+                    <select type="text" formControlName="Nationality" 
+                    class="form-control" readonly>  
+                    <option>Select</option>
+                    <option *ngFor="let engname4 of name4" [value]="engname4.ID">{{engname4.NameEn}}</option>
+        </select>
+        
+             </div>
+    
+             <div class="form-group">
+                    <lable>Marketing status</lable>
+                    <select type="text" formControlName="Marketingstatus" 
+                    class="form-control" readonly> 
+                    <option>Select</option>
+                    <option *ngFor="let engname5 of name5" [value]="engname5.ID">{{engname5.NameEn}}</option>
+                    
+        </select> 
+        
+             </div>
+    
+    
+           </div>
+           </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </form>
+        
+
+
+
+
+
+

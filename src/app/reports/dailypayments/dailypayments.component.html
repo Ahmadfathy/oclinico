@@ -1,0 +1,147 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/reports'> Reports</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/reports'><span>تقارير</span> </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/dailypayments'> Daily Payments</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/dailypayments'><span>المدفوعات اليومية</span>
+                </a>
+            </li>
+            <!-- <li class="rtl">
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;Daily Payments </p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;المدفوعات اليومية
+                </p>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-control-label ltr">Date</label>
+                        <label class="form-control-label rtl">تاريخ</label>
+                        <br>
+                        <!-- <input type="date" name="Date" id="Date" class="form-control" (change)="MyFromDate($event.target.value)" [(ngModel)]="Day_FromDate"> -->
+                        <input [owlDateTimeTrigger]="Date" [owlDateTime]="Date" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyFromDate()"
+                            [(ngModel)]="Day_FromDate">
+                        <owl-date-time [pickerType]="'calendar'" #Date></owl-date-time>
+                    </div>
+                    <div class="col-12">
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-md btn-info ltr" (click)="btnSearch()">
+                                <i class="fas fa-search"></i>
+                                Search</button>
+                            <button type="submit" class="btn btn-md btn-info rtl" (click)="btnSearch()">
+                                <i class="fas fa-search"></i>
+                                بحث</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <label class="form-control-label ltr">Summary</label>
+                <label class="form-control-label rtl">ملخص
+                </label>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered" cellspacing="0">
+                    <thead class="headrow ltr bg-info text-white">
+                        <tr>
+                            <th>Payment Type</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <thead class="headrow rtl">
+                        <tr>
+                            <th>نوع الدفع
+                            </th>
+                            <th>كمية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prd of summary;let i=index;">
+                            <td>{{prd.Paymodetype_Name}}</td>
+                            <td>{{prd.amnt}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div [hidden]="nodata">No Data Found</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <label class="form-control-label ltr">Payment Listing</label>
+                <label class="form-control-label rtl">قائمة الدفع
+                </label>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered" cellspacing="0">
+                    <thead class="headrow ltr bg-info text-white">
+                        <tr>
+                            <th>Payment</th>
+                            <th>Time</th>
+                            <th>Patient</th>
+                            <th>Source(s)</th>
+                            <th>Total</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <thead class="headrow rtl bg-info text-white">
+                        <tr>
+                            <th>دفع</th>
+                            <th>زمن</th>
+                            <th>صبور</th>
+                            <th>المصدر (ق)
+                            </th>
+                            <th>مجموع</th>
+                            <th>ملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prd of payments;let i=index;">
+                            <td>{{prd.PaymentId}}</td>
+                            <td>{{prd.Time}}</td>
+                            <td>{{prd.patient_name}}</td>
+                            <td>{{prd.Sources}}</td>
+                            <td>{{prd.Total}}</td>
+                            <td>{{prd.Notes}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div [hidden]="nodata1">No Data Found</div>
+            </div>
+        </div>
+    </div>
+</div>

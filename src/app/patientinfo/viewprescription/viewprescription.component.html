@@ -1,0 +1,365 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+    <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+    <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <h4 class="ltr">Prescription Details </h4>
+  <h4 class="rtl">وصفة طبية التفاصيل</h4>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link"> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span> تفاصيل المريض</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate' *ngIf="this.frompage != 'Pharmacy'">Advanced Search</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate' *ngIf="this.frompage != 'Pharmacy'">
+          <span>البحث المتقدم</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/prescription' *ngIf="this.frompage != 'Pharmacy'" [queryParams]="{Refrral:prescriptionid}">
+          Prescription Details </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/prescription' *ngIf="this.frompage != 'Pharmacy'" [queryParams]="{Refrral:prescriptionid}">
+          <span>وصفة طبية التفاصيل</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">View Prescription </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>وصفة طبية</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4" *ngIf="ifPharmasist != '3612'">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+
+  <div *ngIf="nodata">No Data Found</div>
+  <div class="col-md-9">
+
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Prescription</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;وصفة طبية</p>
+    </div>
+    <div style="text-align: right !important">
+      <button class=" btn btn-success ltr" (click)="print()">
+        <i class="icon-print icon-white i_btn"></i>Print</button>
+      <button class=" btn btn-success rtl" (click)="print()">
+        <i class="icon-print icon-white i_btn"></i>طباعة</button>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4 mt-4">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;">Patient ID :{{PrescriptionID}}</div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;">رقم المريض :{{PrescriptionID}}</div>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;">Date : {{Trans_date}} </div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;">تاريخ : {{Trans_date}} </div>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;">Patient Name : {{Name}}</div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;">اسم المريض : {{Name}}</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mt-4 mt-4">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;">Age : {{age}} </div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;">العمر : {{age}} </div>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;">Mobile : {{phoneno}} </div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;">الهاتف المحمول : {{phoneno}} </div>
+      </div>
+    </div>
+    <br>
+
+    <div>
+      <div class="col-md-12">
+        <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered">
+          <thead class="ltr">
+            <tr>
+              <th>#</th>
+              <th>Medicine</th>
+              <th>Trade Name</th>
+              <th>Dosage</th>
+              <th>No Of Days</th>
+              <th>Refill</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <thead class="rtl">
+            <tr>
+              <th>#</th>
+              <th>دواء</th>
+              <th>الاسم التجاري</th>
+              <th>الكمية‎</th>
+              <th>عدد أيام</th>
+              <th>اعادة تعبئه</th>
+              <th>الملاحظات</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of tabledata; let i = index">
+
+            <tr>
+              <td>
+                <input type="checkbox" class="myCheckbox" (change)="checkboxchange(i)" [(ngModel)]="check[i]" [disabled]="item.CHECKSTATUS == 'True'">
+              </td>
+              <td>{{item.Medicine}}</td>
+              <td>{{item.tradename}}</td>
+              <td>{{item.Dosage}}</td>
+              <td>{{item.NoOfDays}}</td>
+              <td>{{item.Refill}}</td>
+              <td>{{item.Notes}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-3 submitBtns" *ngIf="this.frompage == 'Pharmacy'">
+        <button type="submit" class="btn btn-md btn-success ltr" (click)="submit()">
+          <i class="fa fa-check-circle"></i>
+          Submit</button>&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-md btn-success rtl" (click)="submit()">
+          <i class="fa fa-check-circle"></i>
+          خضع</button>
+        <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/patientsummery']">
+          <i class="fa fa-ban"></i>
+          Cancel</button>
+        <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/patientsummery']">
+          <i class="fa fa-ban"></i>
+          إلغاء</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <label for="email" class="mar ltr">Medicine usage notes</label>
+        <label for="email" class="mar rtl">ملاحظات استخدام الدواء</label>
+        <div style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;"> {{note}}</div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;">Date:{{Trans_date}}</div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;">تاريخ :{{Trans_date}}</div>
+        <br>
+        <div>
+          <pre>
+      {{Ara_Address}},{{Ara_City}}
+      {{Address}}, {{city}}
+    </pre>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;">Doctor Name :{{Doctor}}</div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;">اسم الطبيب:{{Doctor}}</div>
+        <br>
+        <div class="ltr" style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;">Signature :........</div>
+        <div class="rtl" style="border: solid 1px #e0e0e0;padding: 6px;background-color:#f1f1f1;">التوقيع :........</div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="http://account.oclinico.com/Forms/img/Inter-icon.png" class="imgcls"> {{website}} </div>
+      <div class="col-md-4">
+        <img src="http://account.oclinico.com/Forms/img/mail-icon.png" class="imgcls"> {{email}} </div>
+      <div class="col-md-4">
+        <img src="http://account.oclinico.com/Forms/img/phone-icon.png" class="imgcls"> {{phoneno}} </div>
+    </div>
+    <br>
+  </div>
+</div>
+
+<!-- Print View -->
+<div id="DivIdToPrint" style="display: none;">
+  <div class="invoice-box">
+    <table>
+      <tbody>
+        <tr>
+          <td style="text-align: center">
+            <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+            <p style="font-size: 14px;
+                            margin: 0px;
+                            color: #005a85;
+                            padding: 0;
+                            position: relative;
+                            top: -5px;
+                            font-weight: bold;">المركز الطبي الجامعي</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="information">
+          <td colspan="4">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <strong>Patient Id</strong>
+                    <p>{{PrescriptionID}}</p>
+                  </td>
+                  <td class="text-center">
+                    <strong>Date</strong>
+                    <p>{{Trans_date}}</p>
+                  </td>
+                  <td class="text-center">
+                    <strong>Patient Name</strong>
+                    <p>{{Name}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">
+                    <strong>Age</strong>
+                    <p>{{age}}</p>
+                  </td>
+                  <td class="text-center">
+                    <strong>Mobile Number</strong>
+                    <p>{{phoneno}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="horizontal-row">
+          <td colspan="2">
+            <table>
+              <thead>
+                <tr class="ltr">
+                  <th align="center">Medicine</th>
+                  <th align="center">Tradename</th>
+                  <th align="center">Dosage</th>
+                  <th align="center">No of days</th>
+                  <th align="center">Notes</th>
+                  <th align="center">Refill</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of tabledata">
+                  <td>{{item.Medicine}}</td>
+                  <td>{{item.tradename}}</td>
+                  <td>{{item.Dosage}}</td>
+                  <td>{{item.NoOfDays}}</td>
+                  <td>{{item.Notes}}</td>
+                  <td>{{item.Refill}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="information">
+          <td colspan="12" class="text-center">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Medicine usage notes</strong>
+                    <br>
+                    <div style="border:1px #333 solid;min-height:100px;padding:20px;text-align:justify">{{note}}</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr class="information">
+          <td colspan="3" class="text-center">
+            <table>
+              <tbody>
+                <tr aria-rowspan="3">
+                  <td>
+                    <strong>Doctor Name</strong>
+                    <p>{{Doctor}}</p>
+                  </td>
+                  <td>
+                    <strong>Signature</strong>
+                    <p>__________________</p>
+                  </td>
+                  <td>
+                    <strong>Date</strong>
+                    <p>{{Trans_date}}</p>
+                  </td>
+                  <td>
+                    <strong>Address</strong>
+                    <p>{{Ara_Address}},{{Ara_City}},{{city}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+
+        <tr class="bottom-line">
+          <td colspan="3">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                    <span> {{website}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                    <span> {{email}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                    <span> {{phoneno}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-md-12">
+          <ul id="breadcrumb">
+            <li>
+              <a class="nav-link" routerLink='/dashboard'>
+                <span class="fa fa-fw fa-home"> </span>
+              </a>
+            </li>
+            <li class="ltr">
+              <a class="nav-link" routerLink='/daypatientinfo'>Day Surgery</a>
+            </li>
+            <li class="ltr">
+              <a class="nav-link">View</a>
+            </li>
+      
+            <li class="rtl">
+              <a class="nav-link" routerLink='/daypatientinfo'><span>جراحة اليوم الواحد‎</span></a>
+            </li>
+            <li class="rtl">
+              <a class="nav-link"><span>عرض</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+            <form [formGroup]="pharmacyfg">
+              <div class="card-header">
+                <h4 class="m-b-0 text-black ltr">
+                  <i class="sl-icon-menu font-14"></i> &nbsp;Day Surgery</h4>
+                <h4 class="m-b-0 text-black rtl">
+                  <i class="sl-icon-menu font-14"></i> &nbsp;جراحة اليوم الواحد</h4>
+              </div>
+              <div class="card-body">
+                <div class="row p-t-20">
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Patient Id</label>
+                    <label class="form-control-label rtl">رقم المريض</label>
+                    <input disabled formControlName="regval" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Patient Name</label>
+                    <label class="form-control-label rtl">اسم المريض</label>
+                    <input disabled formControlName="genname" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Gender</label>
+                    <label class="form-control-label rtl">جنس</label>
+                    <input disabled formControlName="tradename" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Date of Birth</label>
+                    <label class="form-control-label rtl">تاريخ الميلاد</label>
+                    <input disabled formControlName="strengthval" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Date of Study</label>
+                    <label class="form-control-label rtl">تاريخ الدراسة</label>
+                    <input disabled formControlName="unitstrengthval" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Date of Report</label>
+                    <label class="form-control-label rtl">تاريخ التقرير</label>
+                    <input disabled formControlName="dosage" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Examination</label>
+                    <label class="form-control-label rtl">الفحص</label>
+                    <input disabled formControlName="routeadmin" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                    <label class="form-control-label ltr">Contact No</label>
+                    <label class="form-control-label rtl">رقم التواصل</label>
+                    <input disabled formControlName="atccode1" type="text" class="form-control">
+                  </div>
+                  <div class="col-md-4"><br>
+                      <label class="form-control-label ltr">Remarks</label>
+                      <label class="form-control-label rtl">ملاحظات</label>
+                      <textarea disabled formControlName="remarks" type="text" class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>

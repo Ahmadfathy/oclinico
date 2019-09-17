@@ -1,0 +1,304 @@
+body{
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+/* INVOCE PRINT CSS */
+.invoice-box {
+    width: 21cm;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    font-size: 16px;
+    line-height: 24px;    
+    color: #555;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  .invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+  }
+  
+  .invoice-box table td {
+    padding: 5px;
+    vertical-align: top;
+  }
+  
+  .invoice-box table tr td:nth-child(2) {
+    text-align: right;
+  }
+  
+  .invoice-box table tr.top table td {
+    padding-bottom: 20px;
+  }
+  
+  .invoice-box table tr.top table td.title {
+    font-size: 45px;
+    line-height: 45px;
+    color: #333;
+  }
+  
+  .invoice-box table tr.information table td {
+    padding-bottom: 40px;
+  }
+  
+  .invoice-box table tr.heading td {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+  }
+  
+  .invoice-box table tr.details td {
+    padding-bottom: 10px;
+  }
+  
+  .invoice-box table tr.item td {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .invoice-box table tr.item.last td {
+    border-bottom: none;
+  }
+  
+  .invoice-box table tr.total td:nth-child(2) {
+    border-top: 2px solid #eee;
+    font-weight: bold;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .bottom-line img {
+    width: 30px;
+ position: relative;
+            top: 10px;
+  }
+  
+  .bottom-line span {
+    opacity: 1;
+  }
+  
+  .horizontal-row {
+    opacity: 1;
+  }
+  
+  .horizontal-row table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  
+  .horizontal-row table td {
+    text-align: center;
+    border: 1px solid #b5b5b5;
+    border-top: none;
+    border: 1px solid #b5b5b5;
+    border-top: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 150px;
+  }
+  
+  .horizontal-row table tr td:nth-child(2) {
+    text-align: left !important;
+  }
+  
+  .horizontal-row thead tr {
+    background-color: #3587d8;
+    color: #fff;
+  }
+  
+  .horizontal-row thead tr th {
+    padding: 5px 10px;
+    font-weight: 400;
+  }
+  
+  @media print {
+    #DivIdToPrint {
+        display: block;
+    }
+    body,
+    .invoice-box {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    .maindiv{
+      width: 100%;
+      float: left;
+      height: auto;
+      margin-bottom: 10px;
+      }
+      
+      .top1{
+      width: 806px;
+      float: left;
+      height: auto;
+      border: solid 2px #333;
+      padding: 15px;
+      }
+      
+      .top2{
+      width: 806px;
+      float: left;
+      height: auto;
+      border: solid 2px #333;
+      padding: 15px;
+      }
+      
+      .top3{
+      width: 806px;
+      float: left;
+      height: auto;
+      border: solid 2px #333;
+      border-radius: 0px;
+      padding: 15px;
+      margin: 10px 0px
+      }
+      
+      .left{
+      width: 35%;
+      height: auto;
+      float: left;
+      }
+      
+      .right{
+      width: 28%;
+      height: auto;
+      float: right;
+      }
+      
+      
+      .center{
+      width: 35%;
+      height: auto;
+      float: left;
+      text-align: center;
+      }
+      
+      .textdiv{
+      width: 33%;
+      height: auto;
+      float: right;
+      padding-top: 6px;
+      }
+      .dotsdiv{
+      width: 72%;
+      height: auto;
+      border-bottom: dotted 2px #333;
+      padding: 0px 2px 2px 2px;
+      float: left;
+      }
+      
+      .et{
+      height: auto;
+      float: right;
+      padding-top: 6px;
+      text-align: right;
+      }
+      .ed{
+      height: auto;
+      border-bottom: dotted 2px #333;
+      padding: 0px 2px 2px 2px;
+      float: left;
+      }
+      
+      .et1{
+      height: auto;
+      padding-top: 6px;
+      text-align: right;
+      }
+      .ed1{
+      height: auto;
+      border-bottom: dotted 2px #333;
+      padding: 0px 2px 2px 2px;
+      }
+      
+      .ftb{ width:100%; font-weight: bold; height: auto;}
+      .ftbdots{ width:100%; font-weight: bold; height: auto; 
+      border-bottom: dotted 2px #333;
+      padding: 0px 2px 2px 2px;
+      float: left;
+      margin-bottom: 18px;
+      font-size: 13px;
+      line-height: 19px;
+      }
+      
+      .spancls:after{
+      content: " ";
+      background-color: #333;
+      position: absolute;
+      height: 16px;
+      width: 2px;
+      transform: rotate(20deg);
+      margin-top: 5px;
+      }
+      
+      .spancls{
+      /* background-color: #333; */
+      margin: 0px 12px;
+      width: 2px;
+      height: 25px;
+      float: right;
+      }
+      
+      
+      
+      input[type=text],
+      input[type=date] {
+          border: none;
+          width: 90%;
+          border-bottom: 1px dashed #6d6d6d;
+          outline: none;
+          box-shadow: none;
+      }
+      
+      input[type=checkbox] {
+          visibility: hidden;
+          opacity: 0;
+          position: absolute;
+      }
+      
+      label {
+          cursor: pointer;
+          padding: 5px;
+      }
+      
+      label:before {
+          content: '\2713';
+          border: 1px solid #000;
+          color: rgba(255, 255, 255, .0);
+          height: 15px;
+          width: 15px;
+          display: inline-block;
+          position: relative;
+          left: -5px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bolder;
+      }
+      
+      input[type=checkbox]:checked+label:before {
+          color: #000;
+      }
+    
+  }

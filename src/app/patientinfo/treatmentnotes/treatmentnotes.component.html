@@ -1,0 +1,302 @@
+<div class="preloader" *ngIf="showLoader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <h4 class="ltr">Treatment Notes</h4>
+        <h4 class="rtl">ملاحظة العلاج</h4>
+    </div>
+
+    <br>
+    <div *ngIf="pay" class="col-md-3">
+        <h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5>
+        <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>تفاصيل المريض</span> </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link">Treatment Note
+                </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>ملاحظة العلاج</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <button style="float:right" type="button" class="btn btn-info ml-2 ltr" [routerLink]="['/addvisitnote']"
+            [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>Add Visit Note</button>
+        <!-- <button style="float:right" type="button" class="btn btn-info ml-2 rtl" [routerLink]="['/addvisitnote']" [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>إضافة مذكرة زيارة</button> -->
+        <button style="float:right" type="button" class="btn btn-warning ltr" routerLink="/addprescription"
+            [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>Create Prescription</button>
+        <!-- <button style="float:right" type="button" class="btn btn-warning rtl" routerLink="/addprescription" [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>إضافة وصفة طبية</button> -->
+    </div>
+    <div class="col-md-12">
+        <!-- <button style="float:right" type="button" class="btn btn-info ml-2 ltr" [routerLink]="['/addvisitnote']" [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>Add Visit Note</button> -->
+        <button style="float:left" type="button" class="btn btn-info ml-2 rtl" [routerLink]="['/addvisitnote']"
+            [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>إضافة مذكرة زيارة</button>
+        <!-- <button style="float:right" type="button" class="btn btn-warning ltr" routerLink="/addprescription" [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>Create Prescription</button> -->
+        <button style="float:left" type="button" class="btn btn-warning rtl" routerLink="/addprescription"
+            [queryParams]="{referallid : patientId}">
+            <i class="lnr lnr-pencil"></i>إضافة وصفة طبية</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<br>
+
+
+<div class="row">
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp;Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Treatment Note Details</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;ملاحظة العلاج التفاصيل</p>
+        </div>
+
+        <div *ngIf="showdata">
+            <div style="text-align: right !important;">
+
+                <span class="ltr">
+                    <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addtreatment"
+                        [queryParams]="{referal:patientId}">
+                        <i class="fa fa-fw fa-user"></i> Add</a>
+                </span>
+                <span class="rtl" stylr="float:left">
+                    <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addtreatment"
+                        [queryParams]="{referallid : patientId}">
+                        <i class="fa fa-fw fa-user"></i> إضافة</a>
+                </span>
+            </div>
+
+            <div class="row" *ngFor="let i of table;let j=index">
+                <div class="col">{{i.Patientname}} : {{i.apponittype}} </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="card" *ngFor="let t of table1">
+                        <div class="card-header" style="margin-bottom: 0px; padding: 0px;" id="dra"
+                            [style.background-color]="t.status == 'Draft' ? '#fcf0c7' : '#DEEEF3'">
+                            <span class="ltr" style="padding: 10px; float: left;font-size: 15px;font-weight: bold;">Initial
+                                Consultation</span>
+                            <span class="rtl" style="padding: 10px; float: left;font-size: 15px;font-weight: bold;">
+                                    المشاورات الأولية</span>
+                            <div style="float:right; margin-left: 7px; border-left: 1px solid #ccc; padding: 10px;">
+                                <span class="fa fa-eye text-info" (click)="open(content,t.Treatment_id)"></span>
+                            </div>
+                            <div style="float:right; padding: 7px;" *ngIf="t.status == 'Draft' ">
+                                <button [routerLink]="['/edittretement']" [queryParams]="{referallid : patientId}"
+                                    class="btn-success">Draft</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <p>
+                                    <i class="fa fa-user m-r-5 m-l-5"></i> {{t.Patientname}}
+                                    <br>
+                                    <i class="fa fa-calendar m-r-5 m-l-5" aria-hidden="true"></i> {{t.apponittype}}</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-5" style="background-color:#f7f7f7; padding:10px;">
+                    <div class="ltr" style="padding:5px;">Next appointment</div>
+                    <div class="rtl" style="padding:5px;">الموعد التالي</div>
+                    <hr>
+                    <div style="padding:5px;">
+                        <table width="100%" *ngFor="let t2 of table2">
+                            <tr>
+                                <td>
+                                    {{t2.apponittype}}
+                                </td>
+                                <td>
+                                    {{t2.Patientname}}
+                                </td>
+                            </tr>
+                        </table>
+                        <div *ngIf="noap">No Appointments</div>
+                    </div>
+                    <hr>
+                    <div class="ltr" style="padding:5px;">Previous appointment</div>
+                    <div class="rtl" style="padding:5px;">التعيين السابق</div>
+                    <hr>
+                    <div style="padding:5px;">
+                        <table width="100%" *ngFor="let t3 of table3">
+                            <tr>
+                                <td>
+                                    {{t3.apponittype}}
+                                </td>
+                                <td>
+                                    {{t3.Patientname}}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="nodata" align="center"><br><br>
+            <img src="./assets/images/folder-icon.png" height="100px" width="100px"><br><br>
+            <p><b>There are no treatment notes</b></p>
+            <p> You may not have created any yet. You could
+                <a routerLink="/addtreatment" [queryParams]="{referal:patientId}">
+                    <u>create a treatment note</u>
+                </a> now.
+            </p>
+        </div>
+
+        <div class="view">
+            <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Treatment View</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <table class="table border">
+                            <thead class="bg-info  text-white">
+                                <tr>
+                                    <th colspan="6" class="ltr">Treatment Note Details</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ltr" *ngFor="let v of viewtable">
+                                <tr height="5">
+                                    <td>Appointment Type</td>
+                                    <td>:</td>
+                                    <td>{{v.AType}}</td>
+
+                                    <td>Temperature</td>
+                                    <td>:</td>
+                                    <td>{{v.Temperature}}</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Bp</td>
+                                    <td>:</td>
+                                    <td>{{v.Bp}}</td>
+
+                                    <td>Sugar</td>
+                                    <td>:</td>
+                                    <td>{{v.Sugar}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Weight</td>
+                                    <td>:</td>
+                                    <td>{{v.Weight}}</td>
+
+                                    <td>Height</td>
+                                    <td>:</td>
+                                    <td>{{v.Height}}</td>
+
+
+                                </tr>
+
+
+                                <tr>
+                                    <td>Presentingcomplaint</td>
+                                    <td>:</td>
+                                    <td>{{v.Presentingcomplaint}}</td>
+
+                                    <td>Complainthistory</td>
+                                    <td>:</td>
+                                    <td>{{v.Complainthistory}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Medicalhistory</td>
+                                    <td>:</td>
+                                    <td>{{v.Medicalhistory}}</td>
+                                    <td>Medication</td>
+                                    <td>:</td>
+                                    <td>{{v.Medication}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Assessment</td>
+                                    <td>:</td>
+                                    <td>{{v.Assessment}}</td>
+                                    <td>Treatment</td>
+                                    <td>:</td>
+                                    <td>{{v.Treatment}}</td>
+                                </tr>
+                                <tr>
+                                    <td>cronicdiseases</td>
+                                    <td>:</td>
+                                    <td>{{v.cronicdiseases}}</td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Cancel</button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

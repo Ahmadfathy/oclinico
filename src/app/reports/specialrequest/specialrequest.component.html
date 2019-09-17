@@ -1,0 +1,270 @@
+<div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb">
+        <li>
+          <a class="nav-link" routerLink='/dashboard'>
+            <span class="fa fa-fw fa-home"> </span>
+          </a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link" routerLink='/reports'>Reports</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link" routerLink='/reports'><span>تقارير</span> </a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link" routerLink='/specialrequest'>Special Request</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link" routerLink='/specialrequest'><span>طلب خاص للعلاج</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Special Request for Treatment</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;طلب خاص للعلاج</h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+            <thead  style="background-color: #4a87ee;color: white;">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Case No</th>
+                <th>Consultant</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let req of reqdetails;let i=index" >
+                <td>{{i+1}}</td>
+                <td>{{req.Name}}</td>
+                <td>{{req.CASE_NO}}</td>
+                <td>{{req.CONSULTANT}}</td>
+                <td style="display:flex;">
+                  <span><a class="nav-link" (click)="view('View',req.tran_date,req.patient_id)" style="cursor: pointer;color:#4a87ee"><i
+                        class="fa fa-eye text-info" ></i></a></span>
+                  <span><a class="nav-link" (click)="view('Edit',req.tran_date,req.patient_id)" style="cursor: pointer;color:#4a87ee"><i
+                    class="fa fa-pencil-alt text-info" ></i></a></span>
+                    <span><a class="nav-link" (click)="getprintdata(req.patient_id,req.tran_date)" style="cursor: pointer;color:#4a87ee"><i
+                        class="fa fa-print text-info" ></i></a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ---------------------- Print ------------------------- -->
+
+<div id="DivIdToPrint" style="display: none;">
+        <div style="width: 768px; margin:0px auto; padding: 30px;">
+            <div style="width: 100%; float: left; height: auto;">
+                <br>
+                <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; padding: 15px;">
+                    <div style="width: 40%; height: auto; float: left;">
+                        <div style="text-align: center;">
+                            Kingdom of Saudi Arabia
+                            <br /> Ministry of Education
+                            <br /> Islamic University of Madina
+                            <br /> University Medical Center
+                        </div>
+                    </div>
+                    <div style="width: 20%; height: auto; float: left; text-align: center;">
+                        <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="max-width:100px;">
+                    </div>
+                    <div style="width: 40%; height: auto; float: right;">
+                        <div style=" text-align: center;">
+                            المملكة العربية السعودية
+                            <br /> وزارة التعليم
+                            <br /> الجامعة الاسلامية بالمدينة المنورة
+                            <br /> <strong>المركز الطبي الجامعي</strong>
+                        </div>
+                    </div>
+                    <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 45px 0px 25px 0px; text-align: center; font-size: 22px;">
+                        SPECIAL REQUESTS FOR TREATMENT
+                    </div>
+                    <div style="width: 100%; float: left; height: auto; margin-bottom: 25px;">
+                        <div style="width: 10%; height: auto; padding-top: 6px; text-align: left; float: left;"> NAME :
+                        </div>
+                        <div style="width: 20%; padding: 0px 2px 0px 2px; float: left; border-bottom: 2px dotted #000;
+                        height: 24px;">{{name}}</div>
+                        <div style="width: 13%; height: auto; padding-top: 6px; text-align: left; float: left;"> CASE NO :
+                        </div>
+                        <div style="width: 10%; padding: 0px 2px 0px 2px; float: left; border-bottom: 2px dotted #000;
+                        height: 24px;">
+                            {{caseno}}</div>
+                        <div style="width: 16%; height: auto; padding-top: 6px; text-align: left; float: left;"> CONSULTANT
+                            : </div>
+                        <div style="width: 28%; padding: 0px 2px 0px 2px; float: left; border-bottom: 2px dotted #000;
+                        height: 24px;">
+                            {{consultant}}</div>
+                    </div>
+                    <div class="maindiv">
+                        <div class="et1" style="width: 15%;"> TREATMENT : </div>
+                        <div class="et1" style="width: 84%;"> </div>
+                    </div>
+                    <div style="width: 100%; float: left; height: auto; margin-bottom: 25px; margin-top: 20px;">
+                        <table id="rtable" style="border: 1px solid #000; border-collapse: collapse; width: 100%;"
+                            cellpadding="5" cellspacing="5">
+                            <tr>
+                                <th width="8%" style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> CODE </th>
+                                <th style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> NAMES </th>
+                                <th width="8%" style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> CODE </th>
+                                <th style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> NAMES </th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div style="position: relative;">
+                                        <input type="checkbox" id="pnebuliser" />
+                                        <label for="nebuliser"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> NEBULISER </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pdressing" />
+                                        <label for="dressing"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">DRESSING & CHANGE</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pbandage" />
+                                        <label for="bandage"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4;">APPLICATION OF ELASTIC BANDAGE</td>
+                                <td style="border: 1px solid #b4b4b4;">
+                                    <div class="round">
+                                        <input type="checkbox" id="piminjection" />
+                                        <label for="iminjection"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4;"> I.M. INJECTION </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pappplaster" />
+                                        <label for="appplaster"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">APPLICATION OF PLASTER
+                                    CAST</td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pivinjection" />
+                                        <label for="ivinjection"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> I.V. INJECTION </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4;">
+                                    <div class="round">
+                                        <input type="checkbox" id="prmvplaster" />
+                                        <label for="rmvplaster"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4;">REMOVE OF PLASTER CAST</td>
+                                <td style="border: 1px solid #b4b4b4;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pdrugs" />
+                                        <label for="drugs"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4;"> DRUGS</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pwound" />
+                                        <label for="wound"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> SUTURE OF WOUND </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pecg" />
+                                        <label for="ecg"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">E C G</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4;">
+                                    <div class="round">
+                                        <input type="checkbox" id="prmvstitches" />
+                                        <label for="rmvstitches"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4;">REMOVE OF STITCHES </td>
+                                <td style="border: 1px solid #b4b4b4;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pcrbandage" />
+                                        <label for="crbandage"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4;">Cre b bandage</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="pvitalsign" />
+                                        <label for="vitalsign"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">Vital signs</td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                    <div class="round">
+                                        <input type="checkbox" id="prbs" />
+                                        <label for="rbs"></label>
+                                    </div>
+                                </td>
+                                <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">R. B. S</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="width: 60%; height:auto; float: right; margin: 8% 0 2% 0; font-size: 14px;">
+                        <div style="width: 130%; float: left; height: auto; margin-bottom: 25px">
+                            <div style="width: 14%; height: auto; padding-top: 6px; text-align: left; float: left;"> DATE :
+                            </div>
+                            <div style="width: 14%; height: auto; padding: 0px 2px 0px 2px; float: left;">
+                                <!-- <div style="width: 20%; height: 24px; float: left; border-bottom: 2px dotted #000;">
+                                    {{date}} /
+                                  </div>
+                                
+                                <div style="width: 20%; height: 24px; float: left; border-bottom: 2px dotted #000;">
+                                    {{month}} /
+                                  </div>
+                                
+                                <div style="width: 20%; height: 24px; float: left; border-bottom: 2px dotted #000;">
+                                     {{year}}
+                                  </div> -->
+                                <div style="width: 87%; height:22px; float: left; border-bottom: 2px dotted #000;">
+                                    {{fdate}}</div>
+                            </div>
+                            <div style="width: 22%; height: auto; padding-top: 6px; text-align: left; float: left;">
+                                SIGNATURE :</div>
+                            <div style="width: 28%; height: 22px; padding: 0px 2px 0px 2px; float: left;border-bottom: 2px dotted #000;">
+                                {{signature}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both;"> </div>
+        </div>
+    </div>

@@ -1,0 +1,86 @@
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb" style="margin-left: -6%;">
+        <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>Settings</a>
+        </li>
+        <li class="ltr"><a class="nav-link" routerLink='/MainTemplate'>Letter Template Details</a></li>
+        <li class="ltr"><a class="nav-link">Add Letter Template Details</a></li>
+      </ul>
+      <ul class="rtl" id="breadcrumb" style="margin-right: -6%;">
+        <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>إعدادات</a>
+        </li>
+        <li class="rtl"><a class="nav-link" routerLink='/MainTemplate'>تفاصيل قالب الرسائل</a></li>
+        <li class="rtl"><a class="nav-link">تعديل تفاصيل المعمل</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="addtemp">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Letter Template Details</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;أضافه تفاصيل المعمل</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Template Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم القالب&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="tname" formControlName="tname"
+                [ngClass]="{'has-error' :formErrors.tname}" (blur)="checkValidationErrors()" type="text"
+                class="form-control">
+
+              <span class="help-block" *ngIf="formErrors.tname" style="color: red">
+                {{formErrors.tname}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Description&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">وصف&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-8">
+                <ckeditor id="addTemp_Descri" [editor]="Editor" placeholder="Enter Description Here" formControlName="addTemp_Descri" 
+                [ngClass]="{'has-error' :formErrors.addTemp_Descri}" (blur)="checkValidationErrors()"></ckeditor>
+              <span class="help-block" *ngIf="formErrors.addTemp_Descri" style="color: red">
+                {{formErrors.addTemp_Descri}}
+              </span>
+            </div>
+          </div><br>
+          <div class="form-actions text-center submitBtns">
+            <div class="card-body ">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="AddTempSubmit()"
+                style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                Submit</button>
+              <button type="submit" class="btn btn-md btn-warning rtl" (click)="AddTempSubmit()"
+                style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                خضع</button>
+              <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/MainTemplate']">
+                <i class="fa fa-ban"></i>
+                Cancel</button>
+              <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/MainTemplate']">
+                <i class="fa fa-ban"></i>
+                إلغاء</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

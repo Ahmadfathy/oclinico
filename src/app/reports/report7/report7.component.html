@@ -1,0 +1,306 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports' *ngIf="inreportspage">Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports' *ngIf="inreportspage">
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate' *ngIf="inpatientpage"> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate' *ngIf="inpatientpage">
+          <span> تفاصيل المريض</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/report7grid' *ngIf="inreportspage">Request For Medical Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/report7grid' *ngIf="inreportspage">
+          <span>طلب تقرير طبي</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" *ngIf="inpatientpage">Request For Medical Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" *ngIf="inpatientpage">
+          <span>طلب تقرير طبي</span>
+        </a>
+      </li>
+      <li class="ltr" *ngIf="inreportspage">
+        <a class="nav-link">{{paramtext}} Request For Medical Report</a>
+      </li>
+      <li class="rtl" *ngIf="inreportspage">
+        <a class="nav-link">
+          <span>طلب تقرير طبي</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr" *ngIf="inreportspage">
+          <i class="sl-icon-menu font-14"></i> &nbsp;{{paramtext}} Request For Medical Report</h4>
+        <h4 class="m-b-0 text-black rtl" *ngIf="inreportspage">
+          <i class="sl-icon-menu font-14"></i> &nbsp;طلب تقرير طبي</h4>
+        <h4 class="m-b-0 text-black ltr" *ngIf="inpatientpage">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Request For Medical Report</h4>
+        <h4 class="m-b-0 text-black rtl" *ngIf="inpatientpage">
+          <i class="sl-icon-menu font-14"></i> &nbsp;طلب تقرير طبي</h4>
+      </div>
+      <div class="card-body">
+        <div style="float:right;margin-bottom: 20px;">
+          <button class="btn btn-info ltr" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>Print</button>
+        </div>
+        <div style="float:left;margin-bottom: 20px;" class="rtl">
+          <button class="btn btn-info rtl" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>طباعة</button>
+        </div>
+        <div class="row">
+          <div class="invoice-box">
+            <div class="maindiv">
+              <div class="top1">
+                <div class="left">
+                  <div class="maindiv">
+                    <input type="text" [(ngModel)]='field1' style="width:calc(100% - 60px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> الرقم : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" [(ngModel)]='field2' style="width:calc(100% - 60px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> التاريخ : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" [(ngModel)]='field4' style="width:calc(100% - 60px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> التوابع : &nbsp; </div>
+                  </div>
+                </div>
+                <div class="center">
+                  <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+                  <br>
+                  <strong> (طلب تقرير طبي ) </strong>
+                </div>
+                <div class="right" style="text-align: center;">
+                  <br> المملكة العربية السعودية
+                  <br> وزارة التعليم
+                  <br> الجامعة الاسلامية بالمدينة المنورة
+                  <br>
+                  <strong> المركز الطبي الجامعي</strong>
+                </div>
+              </div>
+            </div>
+            <div class="maindiv" style="margin-bottom: 10px;">
+              <div class="top2">
+                <br>
+                <div class="maindiv">
+                  <div class="et1" style="width: 20%; float: left; margin-right: 10px; text-align: left;"> وفقة الله </div>
+                  <input type="text" [(ngModel)]='field3' style="width:40%; border:none; float:  left; height: 20px; border-bottom: 2px dotted #000; outline: none;"
+                  />
+                  <div class="et1" style="width: 16%; float: right;"> سعادة مدير &nbsp; </div>
+                </div>
+
+                <div class="maindiv">
+                  <div style="width: 100%; height:auto; float:right; margin: 14px 0px 10px 0px;">
+                    االسلام عليكم ورحمة الله وبركاته
+                    <!-- <input type="text" [(ngModel)]='field3' style="width:40%; border:none; float:  left; height: 20px; border-bottom: 2px dotted #000; outline: none;"
+                    />  -->
+                    وبعد :
+                  </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="ed1" style="width: 14%; float: left;">
+                    <input type="text" [(ngModel)]='field5' style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;" /> </div>
+                  <div class="et1" style="width: 13%; float: left; margin-right: 10px;"> وجنسيتة : &nbsp; </div>
+                  <div class="ed1" style="width: 28%; float: left;">
+                    <input type="text" [(ngModel)]='field6' style="width: 165%;float: left;border:none;border-bottom: 2px dotted;" /> &nbsp; </div>
+                  <div class="et1" style="width: 28%; float: right;"> بناء على مراجعة الموظف &nbsp; : </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 57%; float: left;">
+                    <input type="text" [(ngModel)]='field8' style="width:calc(100% - 304px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    /> وإجراء الكشف الطبي علية </div>
+                  <div class="et1" style="width: 12%; float: left; margin-right: 10px;"> الموافق : </div>
+                  <div class="ed1" style="width: 15%; float: left;">
+                    <input type="text" [(ngModel)]='field7' style="width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    /> </div>
+                  <div class="et1" style="width: 13%; float: right;"> لكم :</div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+                  <div class="et1" style="width: 15%; float: left; margin-right: 10px;"> &nbsp; </div>
+                  <div class="ed1" style="width: 42%; float: left;">
+                    <input type="text" [(ngModel)]='field9' style=" border:none; border-bottom: 2px dotted #000; outline: none;" /> &nbsp; </div>
+                  <div class="et1" style="width: 20%; float: right;"> ورقم ملفه الطبي لديكم : &nbsp; </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+                  <div class="et1" style="width: 80%; float: right;"> عليه نإمل إفادتنا بتقرير طبي بحالنه الصحيه وتحديد مدة الإجازة له إن وجدت . </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> ولكم جزيل الشكر ,,,, </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> والسلام عليكم ورحمه الله وبركاته ,,,, </div>
+                </div>
+
+                <div class="maindiv" style="margin-top: 60px;">
+                  <div style="width: 35%; float: left; height:auto; text-align: center; margin-bottom: 10px;">
+                    المشرف على المركز الطيس الجامعي
+                  </div>
+                  <div style="width: 60%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+                    &nbsp;
+                  </div>
+                  <div class="et1" style="width: 30%; float: left; text-align: center;">
+                    عوض بن مطر المشرافي
+                  </div>
+                  <div style="width: 70%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <button class='btn btn-info ltr' style='margin-left:41%' (click)='insert()' *ngIf='insertbutton'>Submit</button>
+						<button class='btn btn-info ltr' style='margin-left:41%' (click)='update()' *ngIf='updatebutton'>Update</button>
+						<button class='btn btn-info rtl' style='margin-left:41%' (click)='insert()' *ngIf='insertbutton'>إرسل</button>
+						<button class='btn btn-info rtl' style='margin-left:41%' (click)='update()' *ngIf='updatebutton'>تحديث</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- --------------print--------------------- -->
+<div class="invoice-box" id="DivIdToPrint" style="display:none">
+  <div class="maindiv">
+    <div style='width:95.6%; float:left; height: auto; border:solid 2px #333; padding: 15px;'>
+      <div style='width:30%; height:auto; float:left;'>
+        <div style='width: 100%;float: left;height: auto;margin-bottom: 10px'>
+          <div style="width:calc(100% - 75px); height: 26px; float: left; border:none; border-bottom: 2px dotted #000; outline: none;">{{field1}}</div>
+          <div style='width:35%; height:auto; float: right;padding-top: 6px;'> الرقم : &nbsp; </div>
+        </div>
+        <div style='width: 100%; float: left; height: auto; margin-bottom: 10px'>
+          <div style="width:calc(100% - 75px); border:none; height: 26px; float: left; border-bottom: 2px dotted #000; outline: none;">{{field2}}</div>
+          <div style='width:35%; height:auto; float:right; padding-top: 6px;'> التاريخ : &nbsp; </div>
+        </div>
+        <div style='width: 100%;float: left;height: auto;margin-bottom: 10px'>
+          <div style="width:calc(100% - 75px); float: left; height: 26px; border:none; border-bottom: 2px dotted #000; outline: none;">{{field4}}</div>
+          <div style='width: 35%; height: auto; float: right; padding-top: 6px;'> التوابع : &nbsp; </div>
+        </div>
+      </div>
+      <div style="width: 40%; height: auto; float: left; text-align: center;">
+        <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+        <br>
+        <strong> (طلب تقرير طبي ) </strong>
+      </div>
+      <div style="text-align: center;width: 30%; height: auto; float: right;">
+        <br> المملكة العربية السعودية
+        <br> وزارة التعليم
+        <br> الجامعة الاسلامية بالمدينة المنورة
+        <br>
+        <strong> المركز الطبي الجامعي</strong>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="maindiv" style="margin-bottom: 10px;">
+    <div class="top2" style='width:95.6%; float: left;height:auto;border: solid 2px #333;padding: 15px;'>
+      <br>
+      <div class="maindiv">
+        <div class="et1" style="width: 20%; float: left; margin-right: 10px; text-align: left;"> وفقة الله </div>
+        <div class="ed1" style="width: 61%; float: left;"> &nbsp; &nbsp; </div>
+        <div class="et1" style="width: 16%; float: right;"> سعادة مدير &nbsp; </div>
+      </div>
+      <div class="maindiv">
+        <div style="width: 100%; height:auto; text-align: center; margin: 14px 0px 10px 0px;">
+          االسلام عليكم ورحمة الله وبركاته
+          <div style="width:16%; border:none; display: inline-block; height: 20px; border-bottom: 2px dotted #000; outline: none;">{{field3}}</div> وبعد :
+        </div>
+      </div>
+      <div class="maindiv">
+        <div class="ed1" style="width: 14%; float: left;">
+          <div style="width:100%; border:none; height: 26px; border-bottom: 2px dotted #000; outline: none;">{{field5}}</div>
+        </div>
+        <div class="et1" style="width: 13%; float: left; margin-right: 10px;"> وجنسيتة : &nbsp; </div>
+        <div class="ed1" style="width: 43%; float: left;">
+          <div style="width: 100%; height: 26px; float: left;border:none;border-bottom: 2px dotted;">{{field6}}</div>
+        </div>
+        <div class="et1" style="width: 28%; float: right;"> بناء على مراجعة الموظف &nbsp; / </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 57%; float: left;">
+          <div style="width:calc(100% - 200px); height: 26px; float: right; height: 26px; margin-left: 10px; border:none; border-bottom: 2px dotted #000; outline: none;">{{field8}}</div>
+          وإجراء الكشف الطبي علية </div>
+        <div class="et1" style="width: 9%; float: left; margin-right: 10px;"> الموافق : </div>
+        <div class="ed1" style="width: 26%; float: left;">
+          <div style="width: 100%; border:none; height: 26px; border-bottom: 2px dotted #000; outline: none;">{{field7}}</div>
+        </div>
+        <div class="et1" style="width: 6%; float: right;"> لكم :</div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+        <div class="et1" style="width: 23%; float: left; margin-right: 10px;"> &nbsp; </div>
+        <div class="ed1" style="width: 33%; float: left;">
+          <div style=" border:none; border-bottom: 2px dotted #000; outline: none;">{{field9}}</div>
+          &nbsp; </div>
+        <div class="et1" style="width: 22%; float: right;"> ورقم ملفه الطبي لديكم : &nbsp; </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+        <div class="et1" style="width: 80%; float: right;"> عليه نإمل إفادتنا بتقرير طبي بحالنه الصحيه وتحديد مدة الإجازة له إن وجدت . </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> ولكم جزيل الشكر ,,,, </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> والسلام عليكم ورحمه الله وبركاته ,,,, </div>
+      </div>
+      <div class="maindiv" style="margin-top: 60px;">
+        <div style="width: 35%; float: left; height:auto; text-align: center; margin-bottom: 10px;">
+          المشرف على المركز الطيس الجامعي
+        </div>
+        <div style="width: 60%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+          &nbsp;
+        </div>
+        <div class="et1" style="width: 30%; float: left; text-align: center;">
+          عوض بن مطر المشرافي
+        </div>
+        <div style="width: 70%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- -------------print----------------- -->

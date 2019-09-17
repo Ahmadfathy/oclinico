@@ -1,0 +1,88 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul  id="breadcrumb">
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'>Settings</a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/MainFinanceDetail'>Finance Details</a></li>
+        <li class="ltr"><a class="nav-link">Add Finance Details</a></li>
+  
+        <!-- <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li> -->
+        <li class="rtl"><a class="nav-link" routerLink='/settings'>إعدادات</a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/MainFinanceDetail'>تفاصيل المالية</a></li>
+        <li class="rtl"><a class="nav-link">إضافة تفاصيل المالية</a></li>
+      </ul>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="addfinancedetails">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Finance Details</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة تفاصيل المالية</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Pay Mode Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم وضع الدفع&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="paymode" formControlName="paymode" [ngClass]="{'has-error' :formErrors.paymode}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.paymode" style="color: red">
+                {{formErrors.paymode}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Status&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.status}">
+                <select formControlName="status" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option label="select" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <select formControlName="status" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option label="تحديد" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                  {{formErrors.status}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions text-center submitBtns">
+            <div class="card-body ">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="finSubmit()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                Submit</button>
+              <button type="submit" class="btn btn-md btn-warning rtl" (click)="finSubmit()" style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                خضع</button>
+              <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/MainFinanceDetail']">
+                <i class="fa fa-ban"></i>
+                Cancel</button>
+              <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/MainFinanceDetail']">
+                <i class="fa fa-ban"></i>
+                إلغاء</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

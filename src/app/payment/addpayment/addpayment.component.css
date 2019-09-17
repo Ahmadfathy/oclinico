@@ -1,0 +1,63 @@
+  
+   .txtnew{
+    width: 32%;
+    border-radius: 5px;
+    /* margin-left: 7px; */
+   }
+   .cards{
+    width: 32%;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+   }
+   .newtxt{
+    width: 64%;
+    border-radius: 5px;
+    margin-left: 1px;
+    margin-bottom: 10px;
+}    
+.errmsg{
+  color: #ef6e6e;
+}
+.req{
+    color: red;
+}
+.pad{
+  padding: 15px !important;
+}
+.ds{
+  padding: 6px;
+  border-radius: 7px;
+}
+.ex_bor {
+  border: 1px solid #588ea8;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top:10px;
+}
+.forms{
+  margin: 0px 15px !important;
+  margin-bottom: 20px !important;
+}
+.TEXT{
+  width: 44%;
+  border-radius: 5px;
+  margin-left: 100px;
+}
+.TEXTsmall{
+  width: 16%;
+  border-radius: 5px;
+  margin-left: 90px;
+}
+.TEXTP{
+  width: 44%;
+  border-radius: 5px;
+  margin-left: 65px;
+} 
+.TEXTt{
+  width: 44%;
+  border-radius: 5px;
+  margin-left: 124px; 
+}
+
+

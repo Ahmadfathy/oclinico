@@ -1,0 +1,159 @@
+<ul class="patientsidelinks">
+  <li class="list-group-item ltr">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/viewpatient']">
+      <span class="fas fa-lg fa-user"></span>&nbsp;&nbsp;Patient Information </a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/viewpatient']">
+      <span class="fas fa-lg fa-user"></span>&nbsp;&nbsp; معلومات المريض </a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/treatmentnote']">
+      <span class="fas fa-lg fa-stethoscope"></span>&nbsp;&nbsp;Treatment Notes</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/treatmentnote']">
+      <span class="fas fa-lg fa-stethoscope"></span>&nbsp;&nbsp;ملاحظات عن العلاج </a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/laboratory']">
+      <span class="fas fa-lg fa-paperclip"></span>&nbsp;&nbsp;Lab Request </a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/laboratory']">
+      <span class="fas fa-lg fa-paperclip"></span>&nbsp;&nbsp;طلب للمختبر</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/prescription']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-notes-medical"></span>&nbsp;&nbsp;Prescription Details</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/prescription']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-notes-medical"></span>&nbsp;&nbsp;تفاصيل الوصفة الطبية</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/visitnote']">
+      <span class="far fa-lg fa-file-alt"></span>&nbsp;&nbsp;Visit Note Details </a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/visitnote']">
+      <span class="far fa-lg fa-file-alt"></span>&nbsp;&nbsp;تفاصيل زيارة وملاحظاتها </a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/letters']">
+      <span class="fas fa-lg fa-pencil-alt"></span>&nbsp;&nbsp;Letters</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/letters']">
+      <span class="fas fa-lg fa-pencil-alt"></span>&nbsp;&nbsp;الخطابات</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/attachements']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-paperclip"></span>&nbsp;&nbsp;Attachments </a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/attachements']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-paperclip"></span>&nbsp;&nbsp;المرفقات</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/appoinmentsgrid']" [queryParams]="{referallid : patientId}">
+      <span class="far fa-lg fa-calendar-alt"></span>&nbsp;&nbsp;Appointments</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/appoinmentsgrid']" [queryParams]="{referallid : patientId}">
+      <span class="far fa-lg fa-calendar-alt"></span>&nbsp;&nbsp;مواعيد</a>
+  </li>
+  <!-- 
+      <li class="list-group-item ltr">
+        <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/invoices']">
+          <span class="fas fa-lg money-bill-alt"></span>Invoices</a>
+      </li>
+      
+      <li class="list-group-item rtl">
+        <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/invoices']">
+          <span class="fas fa-lg money-bill-alt"></span>الفواتير</a>
+      </li> -->
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [queryParams]="{referallid : patientId}" [routerLink]="['/payments']">
+      <span class="far fa-lg fa-money-bill-alt"></span>&nbsp;&nbsp;Payments </a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/payments']" [queryParams]="{referallid : patientId}">
+      <span class="far fa-lg fa-money-bill-alt"></span>&nbsp;&nbsp;المدفوعات</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/communications']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-comment-dots"></span>&nbsp;&nbsp;Communications</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/communications']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-comment-dots"></span>&nbsp;&nbsp;التواصل/المحادثات</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/xray']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-x-ray"></span>&nbsp;&nbsp;X-Ray</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/xray']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-x-ray"></span>&nbsp;&nbsp;الأشعة</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/procedure']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-procedures"></span>&nbsp;&nbsp;Procedures</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/procedure']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-procedures"></span>&nbsp;&nbsp;الإجراءات</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/admission']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-clipboard-list"></span>&nbsp;&nbsp;Admission Details</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/admission']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-clipboard-list"></span>&nbsp;&nbsp;تفاصيل الدخول</a>
+  </li>
+
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/discharge']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-clipboard"></span>&nbsp;&nbsp;Discharge Details</a>
+  </li>
+
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/discharge']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-clipboard"></span>&nbsp;&nbsp;تفاصيل الخروج</a>
+  </li>
+  <li class="list-group-item ltr">
+    <a class="nav-link" [routerLink]="['/Addfamilydetails']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-clipboard"></span>&nbsp;&nbsp;Add Family</a>
+  </li>
+  <li class="list-group-item rtl">
+    <a class="nav-link" [routerLink]="['/Addfamilydetails']" [queryParams]="{referallid : patientId}">
+      <span class="fas fa-lg fa-clipboard"></span>&nbsp;&nbsp;أضف عائلة</a>
+  </li>
+</ul>

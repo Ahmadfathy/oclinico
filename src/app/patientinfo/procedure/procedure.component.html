@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+    <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+    <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+<div class="col-md-12">
+  <h4 class="ltr">Procedures</h4>
+  <h4 class="rtl">الإجراءات</h4>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link"> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link"><span>تفاصيل المريض</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/procedure'>Procedures </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/procedure'><span>الإجراءات</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Procedure</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;إجراء</p>
+    </div>
+    <br>
+    <div class="table-responsive">
+
+      <table class="table table-bordered">
+        <thead class="ltr">
+          <tr>
+            <th>Sno</th>
+            <th>Date</th>
+            <th>Procedures</th>
+            <th>Count</th>
+            <th>Remark</th>
+          </tr>
+        </thead>
+        <thead class="rtl">
+          <tr>
+            <th>سنو</th>
+            <th>تاريخ</th>
+            <th>الإجراءات</th>
+            <th>عد</th>
+            <th>تعليق</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="mm/dd/yyyy" class="form-control">
+              <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+            </td>
+            <td>
+              <select class="form-control">
+                <option>Select</option>
+                <option>Arthritis</option>
+                <option> Dental decay</option>
+                <option>Osteoporosis</option>
+                <option>Bone cancer.</option>
+              </select>
+            </td>
+            <td>
+              <input value="1" class="form-control">
+            </td>
+            <td>
+              <textarea class="form-control"></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row" style="float:left">
+      <button class="btn btn-warning margin ltr">
+        <i class="fa fa-check-circle"></i> Cancel
+      </button>
+      <button class="btn btn-warning margin rtl">
+        <i class="fa fa-check-circle"></i> إلغاء
+      </button>
+      <button class="btn btn-info margin ltr">
+        <i class="fa fa-check-circle"></i> Add
+      </button>
+      <button class="btn btn-info margin rtl">
+        <i class="fa fa-check-circle"></i> إضافة
+      </button>
+    </div>
+  </div>

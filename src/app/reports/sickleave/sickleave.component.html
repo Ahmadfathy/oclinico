@@ -1,0 +1,681 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'>Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Sickleave Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>تقرير إجازة مرضية</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Sickleave Report</h4>
+        <h4 class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;تقرير إجازة مرضية</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>Sno</th>
+              <th>Patient Name</th>
+              <th>Gender</th>
+              <th>Date of Visit</th>
+              <th>Discharge Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let leave of leavedetails;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{leave.Patient_Name}}</td>
+              <td>{{leave.Gender}}</td>
+              <td>{{leave.Date_of_Visit}}</td>
+              <td>{{leave.Discharge_Date}}</td>
+              <td style="display:flex;">
+                <span>
+                  <a class="nav-link" (click)="view('View',leave.tran_date,leave.patient_id)" style="cursor: pointer;color:#4a87ee">
+                    <i class="fa fa-eye text-info"></i>
+                  </a>
+                </span>
+                <span>
+                  <a class="nav-link" (click)="view('Edit',leave.tran_date,leave.patient_id)" style="cursor: pointer;color:#4a87ee">
+                    <i class="fa fa-pencil-alt text-info"></i>
+                  </a>
+                </span>
+                <span>
+                  <a class="nav-link" (click)="getprintdata(leave.patient_id,leave.tran_date)" style="cursor: pointer;color:#4a87ee">
+                    <i class="fa fa-print text-info"></i>
+                  </a>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-------------------------- Print ----------------------------- -->
+<div id="DivIdToPrint" style="display: none;">
+  <div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;">
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="top">
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="28%" align="left" valign="bottom">
+                    <table width="100%">
+                      <tr>
+                        <td width="39%">
+                          <input type="text" value="" style="width: 100%; border:none;  outline: none; ">
+                        </td>
+                        <td width="1%">:</td>
+                        <td width="60%" align="right"> الرقم</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="text" value="1440/11/18" style="width: 100%; border:none;  outline: none; ">
+                        </td>
+                        <td width="1%">:</td>
+                        <td align="right"> التاريخ</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="text" value="7086" style="width: 100%; border:none;  outline: none; ">
+                        </td>
+                        <td width="1%">:</td>
+                        <td align="right"> رقم البطاقة الصحية </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                  <td width="45%" class="title" style="text-align: center">
+                    <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;">
+
+                  </td>
+                  <td width="27%" style="text-align: center;">
+                    <br> المملكة العربية السعودية
+                    <br> وزارة التعليم
+                    <br> الجامعة الاسلامية بالمدينة المنورة
+
+                    <br>
+                    <strong> المركز الطبي الجامعي</strong>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+
+                <tr>
+                  <td width="40%">
+                    نموذج/ رقم 2
+                  </td>
+                  <td width="60%" style="font-weight: bold; font-size: 18px;">
+                    Sick Leave Report
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="border: 1px solid #000;">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="20%">
+                    Patient Name
+                  </td>
+                  <td colspan="4" style="border:none; border-bottom: 1px dashed #000; outline: none;">
+                    {{pname}}
+                  </td>
+                  <td width="16%" style="text-align: right;">
+                    اسم المريض
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    Medical Record No.
+                  </td>
+                  <td colspan="4">
+                    {{recordno}}
+                  </td>
+                  <td style="text-align: right;">
+                    رقم السجل الطبي
+                  </td>
+
+                </tr>
+                <tr>
+                  <td width="22%">
+                    Gender :
+                  </td>
+                  <td width="34%">
+                    <label for="Male1">
+                      <input type="radio" value="radiomale" id="Male1" name="radioModel1"> Male | ذكر</label>
+                  </td>
+                  <td width="28%">
+
+                    <label for="Female1">
+                      <input type="radio" value="radiofemale" id="Female1" name="radioModel1"> Female | انثى</label>
+                  </td>
+                  <td width="16%" style="text-align: right;">: الجنس</td>
+
+
+                </tr>
+
+                <tr>
+                  <td>
+                    Nationality
+                  </td>
+                  <td>
+                    {{nationality}}
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;">
+                    <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />
+                  </td>
+                  <td style="text-align: right;">
+                    الجنسية </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    Date of Birth
+                  </td>
+                  <td>
+                    {{dob}}
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>
+                    <input type="text" value="1398/07/01" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />
+                  </td>
+                  <td style="text-align: right;">
+                    ت
+                    <span contenteditable="false">اريخ الميلاد </span>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    Occupation
+                  </td>
+                  <td>
+                    {{occupation}}
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td style="text-align: right;">
+                    <input type="text" dir="rtl" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />
+                  </td>
+                  <td style="text-align: right;">
+                    المهنة
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    Place of Work
+                  </td>
+                  <td>
+                    {{workplace}}
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                    <input type="text" value="" style="width:100%; border:none; outline: none;" />
+                  </td>
+                  <td style="text-align: right;">
+                    الجهة
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    Date of Visit
+                  </td>
+                  <td>
+                    {{dateofvisit}}
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td style="text-align: right;">
+                    تاريخ المراجعة
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Admission Date :
+                  </td>
+                  <td>
+                    {{admissiondate}}
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                    <input type="text" value="" style="width:100%; border:none; outline: none;" />
+                  </td>
+                  <td style="text-align: right;">
+                    : تاريخ الدخول
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    Discharge Date :
+                  </td>
+                  <td>
+                    {{dischargedate}}
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                    <input type="text" value="" style="width:100%; border:none; outline: none;" />
+                  </td>
+                  <td style="text-align: right;">: تاريخ الخروج</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="border: 1px solid #000;">
+            <table width="100%" id="recom">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="font-size: 16px; font-weight: bold;">
+                    Recommendation
+                  </td>
+                  <td colspan="3" style="font-size: 16px; font-weight: bold; text-align: right;"> التوصيات</td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="font-size: 12px;">Following Medical Examination, it is recommended</td>
+                  <td colspan="3" style="text-align: right; font-size: 12px;"> بالكشف على المريض نوصي بالآتي:</td>
+                </tr>
+                <tr>
+                  <td width="2%">
+                    <input type="checkbox" value="" id="pstarting" />
+                    <label for="starting"></label>
+                  </td>
+                  <td width="46%">
+                    Sick leave for 1 day(s)
+                  </td>
+                  <td width="10%">&nbsp;</td>
+                  <td width="8%">&nbsp;</td>
+                  <td width="31%" style="text-align: right;"> من إجازة مرضية لمدة: </td>
+                  <td width="3%" style="text-align: right;">
+                    <input type="checkbox" value="" id="pstarting" />
+                    <label for="starting"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="pfromdate" />
+                    <label for="fromdate"></label>
+                  </td>
+                  <td>
+                    Starting from 18/07/2019
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;">اعتبار من 18/07/2019</td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="pfromdate" />
+                    <label for="fromdate"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="pendof" />
+                    <label for="endof"></label>
+                  </td>
+                  <td>
+                    Follow up before end of sick leave
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;">مراجعة الطبيب المعالج قبل إنتهاء إجازتة</td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="endof-lan" />
+                    <label for="endof-lan"></label>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="preasons" />
+                    <label for="reasons"></label>
+                  </td>
+                  <td>
+                    Referral to Medical Committee for following reasons :
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;"> إحالته الى الهيئة الطبية العامة لأحد الاسباب التالية</td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="reasons-lan" />
+                    <label for="reasons-lan"></label>
+                  </td>
+
+                </tr>
+
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="pApproval" />
+                    <label for="Approval"></label>
+                  </td>
+                  <td>
+                    Approval of Sick leave
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;"> اعتماد التقرير الطبي </td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="Approval-lan" />
+                    <label for="Approval-lan"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="pfaculty" />
+                    <label for="faculty"></label>
+                  </td>
+                  <td>
+                    Cannot be treated at this faculty
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;"> من غير الممكن علاجة في المستشفى </td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="faculty-lan" />
+                    <label for="faculty-lan"></label>
+                  </td>
+                </tr>
+                <tr>
+
+                  <td>
+                    <input type="checkbox" value="" id="pdisability" />
+                    <label for="disability"></label>
+                  </td>
+                  <td>Permanent or Partial disability
+                    <br>
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;"> حالتة تدل على عجزة الصحي عن العمل بصورة جزئية او قطعية </td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="disability-lan" />
+                    <label for="disability-lan"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="pothers" />
+                    <label for="Others"></label>
+                  </td>
+                  <td>
+                    Others
+                    <input type="text" value="" style="width:calc(100% - 50px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    />
+                  </td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;">
+                    <input type="text" value="" style="width:calc(100% - 35px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> اخرى </td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="Others-lan" />
+                    <label for="Others-lan"></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="border: 1px solid #000;">
+            <table width="100%">
+              <tbody>
+
+                <tr>
+
+                  <td width="30%">
+                    Treating Physician Name:
+                  </td>
+                  <td width="24%">&nbsp;</td>
+                  <td width="24%">&nbsp;</td>
+                  <td width="22%" style="text-align: right;"> اسم الطبيب المعالج: </td>
+
+                </tr>
+                <tr>
+                  <td>Signature : {{signature1}}
+                  </td>
+                  <td>Badge No : {{badge}}
+                    <td style="text-align: right;">
+                      <input type="text" value="" style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                      /> : شارة رقم</td>
+                    <td style="text-align: right;">
+                      <input type="text" value="" style="width:calc(100% - 50px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                      /> : التوقيع </td>
+                </tr>
+
+                <tr>
+                  <td colspan="2">
+                    Physician Name : {{physicianname}}
+                  </td>
+                  <td colspan="2">
+                    <input type="text" value="" style="width:calc(100% - 62px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : اسم الطبيب</td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    Signature : {{signature2}}
+                  </td>
+                  <td colspan="2">
+                    <input type="text" value="" style="width:calc(100% - 42px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : التوقيع </td>
+                </tr>
+                <tr>
+
+                  <td>Approval by the Manager</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;"> موافقة المدير الطبي </td>
+                </tr>
+                <tr>
+                  <td>
+                    Signature : {{signature3}}
+                  </td>
+                  <td>Date : {{currentdate}}
+                  </td>
+                  <td style="text-align: right;">
+                    <input type="text" value="" style="width:calc(100% - 50px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : تاريخ</td>
+                  <td style="text-align: right;">
+                    <input type="text" value="" style="width:calc(100% - 50px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : التوقيع</td>
+                </tr>
+                <tr>
+                  <td align="right">
+                    <div style="width: 100px; padding: 14px 10px 14px 14px; border: 1px solid #000;">الختم الرسمي</div>
+                  </td>
+                  <td></td>
+                  <td style="text-align: right;"></td>
+                  <td style="text-align: right;"></td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+        </tr>
+
+        <tr>
+          <td colspan="4" style="height: 10px;"></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="21%">
+                    <input type="text" value="" style="width:calc(100% - 50px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : الرقم
+                  </td>
+                  <td width="8%" style="text-align: right;">
+                    المحترم
+                  </td>
+                  <td colspan="3" style="text-align: right;">
+
+                  </td>
+                </tr>
+                <tr>
+                  <td width="21%">
+                    تاريخ
+                    <input type="text" value="" style="width:calc(100% - 170px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> /
+                    <input type="text" value="" style="width:calc(100% - 170px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> /
+                    <input type="text" value="" style="width:calc(100% - 170px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : text
+                  </td>
+                  <td width="8%" style="text-align: right;">
+
+                  </td>
+                  <td width="18%" style="text-align: right;">
+                    : وتاريخ
+                  </td>
+                  <td width="50%" style="text-align: right;">
+                    <br> إشارة الى حالتكم رقم
+                  </td>
+                  <td valign="bottom" width="3%" style="text-align: right;">
+                    <input type="checkbox" value="" id="Oth-lan" />
+                    <label for="Oth-lan"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td style="text-align: right;"></td>
+                  <td style="text-align: right;">&nbsp;</td>
+                  <td colspan="2" style="text-align: right;">: بشأن طلب الكشف الطبي على الموضح إسمة اعلاة </td>
+                </tr>
+                <tr>
+                  <td width="21%">&nbsp;</td>
+                  <td colspan="3" style="text-align: right;">
+                    إشارة الى مراجعة الموضح لديكم والموضح اسمه اعلاه للكشف عليه, تجدون بعالية </td>
+                  <td style="text-align: right;">
+                    <input type="checkbox" value="" id="ers-lan" />
+                    <label for="ers-lan"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="21%">&nbsp;</td>
+                  <td width="8%" style="text-align: right;">&nbsp;</td>
+                  <td colspan="3" style="text-align: right;">
+                    التقرير الصادر بشأنة
+                  </td>
+                </tr>
+                <tr>
+                  <td width="21%">&nbsp;</td>
+                  <td width="8%" style="text-align: right;">&nbsp;</td>
+                  <td width="18%" style="text-align: right;">&nbsp;</td>
+                  <td colspan="2" style="text-align: right;">
+                    المشرف على المركز الطبي الجامعي بالجامعة الاسلامية
+                  </td>
+                </tr>
+                <tr>
+                  <td width="21%">&nbsp;</td>
+                  <td width="8%" style="text-align: right;">&nbsp;</td>
+                  <td width="18%" style="text-align: right;">&nbsp;</td>
+                  <td colspan="2" style="text-align: right;">
+                    <input type="text" value="" style="width:calc(100% - 50px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : اسمة
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="text-align: center;">Test
+                    <input type="text" value="" style="width:calc(100% - 300px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> /
+                    <input type="text" value="" style="width:calc(100% - 295px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> / </td>
+                  <td colspan="2" style="text-align: right;">
+                    التوقيع
+                    <input type="text" value="" style="width:calc(100% - 95px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                    /> : التاريخ
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5" style="height: 40px;"></td>
+                </tr>
+                <tr>
+                  <td width="21%">&nbsp;</td>
+                  <td width="8%" style="text-align: right;">&nbsp;</td>
+                  <td width="18%" style="text-align: right;">&nbsp;</td>
+                  <td width="50%" style="text-align: right;"> </td>
+                  <td width="3%" style="text-align: right;">&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- --------------------------------------------- -->

@@ -1,0 +1,412 @@
+@media print {
+    .invoice-box {
+        width: 768px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+        .invoice-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+
+
+
+    @media print {
+        #DivIdToPrint {
+            display: block;
+        }
+        body,
+        .invoice-box {
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+        }
+    }
+
+
+    .maindiv {
+        width: 100%;
+        float: left;
+        height: auto;
+    }
+
+    .top1 {
+        width: 95.6%;
+        float: left;
+        height: auto;
+        border: solid 2px #333;
+        border-radius: 20px;
+        padding: 15px;
+    }
+
+    .top2 {
+        width: 95.6%;
+        float: left;
+        height: auto;
+        border: solid 2px #333;
+        border-radius: 20px 20px 0px 0px;
+        padding: 15px;
+    }
+
+    .top3 {
+        width: 95.6%;
+        float: left;
+        height: auto;
+        border: solid 2px #333;
+        border-radius: 0px;
+        padding: 15px;
+        margin: 10px 0px
+    }
+
+    .top4 {
+        width: 95.6%;
+        float: left;
+        height: auto;
+        border: solid 2px #333;
+        border-radius: 0px 0px 20px 20px;
+        padding: 15px;
+    }
+
+    .left {
+        width: 25%;
+        height: auto;
+        float: left;
+    }
+
+    .right {
+        width: 25%;
+        height: auto;
+        float: right;
+    }
+
+
+    .center {
+        width: 50%;
+        height: auto;
+        float: left;
+        text-align: center;
+    }
+
+    .textdiv {
+        width: 29%;
+        height: auto;
+        float: right;
+        padding-top: 6px;
+    }
+    .dotsdiv {
+        width: 60%;
+        height: auto;
+        border-bottom: dotted 2px #333;
+        padding: 0px 2px 2px 2px;
+        float: left;
+
+    }
+
+    .outer-div {
+        padding: 0px;
+        text-align: center;
+    }
+    .inner-div {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #ecf9ff;
+        font-weight: bold;
+        border-radius: 5px;
+        border: solid 2px #333;
+        top: -27px;
+        font-size: 26px;
+        position: relative;
+        color: #007cad;
+    }
+
+    .textdiv1 {
+        width: 30%;
+        height: auto;
+        float: right;
+        padding-top: 12px;
+        text-align: right;
+    }
+    .textdiv1a {
+        height: auto;
+        float: right;
+        text-align: right;
+        width: 120px;
+    }
+    .dotsdiv1 {
+        width: 69%;
+        height: auto;
+        border-bottom: dotted 2px #333;
+        padding: 0px 2px 2px 2px;
+        float: left;
+    }
+
+    .et {
+        height: auto;
+        float: right;
+        padding-top: 6px;
+        text-align: right;
+    }
+    .ed {
+        height: auto;
+        border-bottom: dotted 2px #333;
+        padding: 0px 2px 2px 2px;
+        float: left;
+    }
+
+    .ftb {
+        width: 100%;
+        font-weight: bold;
+        height: auto;
+        color: #007cad;
+    }
+    .ftbdots {
+        width: 100%;
+        font-weight: bold;
+        height: auto;
+        border-bottom: dotted 2px #333;
+        padding: 0px 2px 2px 2px;
+        float: left;
+        margin-bottom: 18px;
+        font-size: 13px;
+        line-height: 19px;
+    }
+
+    input {
+        border: none;
+        border-bottom: 2px dotted #000;
+        outline: none;
+
+    }
+}
+
+.invoice-box {
+    width: 21cm;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+
+@media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+
+
+
+@media print {
+    #DivIdToPrint {
+        display: block;
+    }
+    body,
+    .invoice-box {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+    }
+}
+
+
+.maindiv {
+    width: 100%;
+    float: left;
+    height: auto;
+}
+
+.top1 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.top2 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    border-radius: 20px 20px 0px 0px;
+    padding: 15px;
+}
+
+.top3 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    border-radius: 0px;
+    padding: 15px;
+    margin: 10px 0px
+}
+
+.top4 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    border-radius: 0px 0px 20px 20px;
+    padding: 15px;
+}
+
+.left {
+    width: 25%;
+    height: auto;
+    float: left;
+}
+
+.right {
+    width: 25%;
+    height: auto;
+    float: right;
+}
+
+
+.center {
+    width: 50%;
+    height: auto;
+    float: left;
+    text-align: center;
+}
+
+.textdiv {
+    width: 29%;
+    height: auto;
+    float: right;
+    padding-top: 6px;
+}
+
+.dotsdiv {
+    width: 60%;
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+
+}
+
+.outer-div {
+    padding: 0px;
+    text-align: center;
+}
+
+.inner-div {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ecf9ff;
+    font-weight: bold;
+    border-radius: 5px;
+    border: solid 2px #333;
+    top: -27px;
+    font-size: 26px;
+    position: relative;
+    color: #007cad;
+}
+
+.textdiv1 {
+    width: 30%;
+    height: auto;
+    float: right;
+    padding-top: 12px;
+    text-align: right;
+}
+
+.textdiv1a {
+    height: auto;
+    float: right;
+    text-align: right;
+    width: 120px;
+}
+
+.dotsdiv1 {
+    width: 69%;
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+}
+
+.et {
+    height: auto;
+    float: right;
+    padding-top: 6px;
+    text-align: right;
+}
+
+.ed {
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+}
+
+.ftb {
+    width: 100%;
+    font-weight: bold;
+    height: auto;
+    color: #007cad;
+}
+
+.ftbdots {
+    width: 100%;
+    font-weight: bold;
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 19px;
+}
+
+input {
+    border: none;
+    border-bottom: 2px dotted #000;
+    outline: none;
+
+}
+input:disabled {
+    /* color: rgb(84, 84, 84); */
+    cursor: default;
+    background-color: white;
+}
+
+textarea:disabled {
+    /* color: rgb(84, 84, 84); */
+    cursor: default;
+    background-color: white;
+}

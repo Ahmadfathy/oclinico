@@ -1,0 +1,217 @@
+<div class="preloader" *ngIf="showLoader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h4 class="ltr">Letters</h4>
+        <h4 class="rtl">خطاب</h4>
+    </div>
+    <div *ngIf="pay" class="col-md-3">
+        <h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5>
+        <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link">Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span>تفاصيل المريض</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'>
+                    <span>البحث المتقدم</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/letters'>Letters</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/letters'>
+                    <span>خطاب</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+    <!-- <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Letters</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp; خطاب</p>
+        </div>
+        <div *ngIf="showdata">
+            <div style="text-align:right !important">
+                <span class="ltr">
+                    <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addletter" [queryParams]="{referal:patientId}">
+                        <i class="fa fa-fw fa-user"></i> Add</a>
+                </span>
+                <span class="rtl" style="float:left">
+                    <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addletter" [queryParams]="{referal:patientId}">
+                        <i class="fa fa-fw fa-user"></i> إضافة</a>
+                </span>
+            </div>
+            <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered" id="dataTable" *ngIf="showdata">
+                <thead class="ltr">
+                    <tr>
+                        <th> Letter Name</th>
+                        <th>Doctor Name</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <thead class="rtl">
+                    <tr>
+                        <th> اسم الرسالة</th>
+                        <th>اسم الطبيب</th>
+                        <th>تاريخ</th>
+                        <th>أفعال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let patient of table;let i=index">
+                        <td>{{patient.LetterName}}</td>
+                        <td>{{patient.DoctorName}}</td>
+                        <td>{{patient.CredtedDate}}</td>
+                        <td>
+                            <span class="fa fa-eye text-info" [routerLink]="['/viewletters']" [queryParams]="{Refrral:patient.Sno,patientid:patient.Patientid}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <span class="fa fa-pencil-alt text-info" [routerLink]="['/editletters']" [queryParams]="{Refrral:patient.Sno,patientid:patient.Patientid}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="nodata" align="center">
+            <br>
+            <br>
+            <img src="./assets/images/folder-icon.png" height="100px" width="100px">
+            <br>
+            <br>
+            <p>
+                <b>There are no letters</b>
+            </p>
+            <p> You may not have created any yet. You could
+                <a routerLink="/addletter" [queryParams]="{referal:patientId}">
+                    <u>create a letter</u>
+                </a> now.
+            </p>
+        </div>
+
+    </div> -->
+    <section id="mySettings">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <span class="ltr">Reports</span>
+                        <span class="rtl">تقارير</span>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li class="ltr" routerLink="/patient-urinalreport">
+                                <span class="far fa-square"></span>Urinalysis Request & Reports
+                            </li>
+                            <li class="rtl" routerLink="/patient-urinalreport">
+                                <span class="far fa-square"></span>نموذج فحص البول
+                            </li>
+                            <li class="ltr" routerLink="/patient-report8">
+                                <span class="far fa-square"></span>Report for Human Resource</li>
+                            <li class="rtl" routerLink="/patient-report8">
+                                <span class="far fa-square"></span>تقرير للموارد البشرية
+                            </li>
+                            <li class="ltr" routerLink="/patient-requestforcheckup">
+                                <span class="far fa-square"></span>Reports for checkup</li>
+                            <li class="rtl" routerLink="/patient-requestforcheckup">
+                                <span class="far fa-square"></span>طلب كشف طبي</li>
+                            <li class="ltr" routerLink="/patient-sickleavereport">
+                                <span class="far fa-square"></span>Sick Leave Report
+                            </li>
+                            <li class="rtl" routerLink="/patient-sickleavereport">
+                                <span class="far fa-square"></span>تقرير إجازة مرضية
+                            </li>
+                            <li class="ltr" routerLink="/patient-specialrequestfortretment">
+                                <span class="far fa-square"></span>Special Requests for Treatment</li>
+                            <li class="rtl" routerLink="/patient-specialrequestfortretment">
+                                <span class="far fa-square"></span>طلب خاص للعلاج
+                            </li>
+                            <li class="ltr" routerLink="/patient-transferreport">
+                                <span class="far fa-square"></span>Transfer Patient
+                            </li>
+                            <li class="rtl" routerLink="/patient-transferreport">
+                                <span class="far fa-square"></span>نموذج تحويل مريض</li>
+                            <li class="ltr" routerLink="/patient-stoolanalysis">
+                                <span class="far fa-square"></span>Stool Analysis Request & Report</li>
+                            <li class="rtl" routerLink="/patient-stoolanalysis">
+                                <span class="far fa-square"></span>نموذج فحص البراز</li>
+                            <li class="ltr" routerLink="/patient-xray">
+                                <span class="far fa-square"></span>X-Ray Request CT</li>
+                            <li class="rtl" routerLink="/patient-xray">
+                                <span class="far fa-square"></span>طلب إشاعة
+                            </li>
+                            <li class="ltr" routerLink="/hematology">
+                                <span class="far fa-square"></span>Hematology Request & Report</li>
+                            <li class="rtl" routerLink="/hematology">
+                                <span class="far fa-square"></span>نموذج تحليل امراض الدم</li>
+                            <li class="ltr" routerLink="/biochemistryrequest">
+                                <span class="far fa-square"></span>Bio-Chemistry Request</li>
+                            <li class="rtl" routerLink="/biochemistryrequest">
+                                <span class="far fa-square"></span>نموذج تحليل كيمياء الدم</li>
+                            <li class="ltr" routerLink="/report7">
+                                <span class="far fa-square"></span>Request for Medical Report</li>
+                            <li class="rtl" routerLink="/report7">
+                                <span class="far fa-square"></span>طلب تقرير طبي
+                            </li>
+                            <li class="ltr" routerLink="/harmonalassayrequest">
+                                <span class="far fa-square"></span>Harmonal Assay Request</li>
+                            <li class="rtl" routerLink="/harmonalassayrequest">
+                                <span class="far fa-square"></span>نموذج تحليل الهرمونات</li>
+                            <li class="ltr" routerLink="/patient-followup">
+                                <span class="far fa-square"></span>FollowUp</li>
+                            <li class="rtl" routerLink="/patient-followup">
+                                <span class="far fa-square"></span>إشعار مراجعة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

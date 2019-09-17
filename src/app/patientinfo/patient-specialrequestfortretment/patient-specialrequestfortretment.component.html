@@ -1,0 +1,470 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div> -->
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'><span>تفاصيل المريض</span></a>
+            </li>
+            <!-- <li class="ltr">
+                    <a class="nav-link" routerLink='/letters'> Letters </a>
+                  </li>
+                  <li class="rtl">
+                    <a class="nav-link" routerLink='/letters'> حروف </a>
+                  </li> -->
+            <li class="ltr">
+                <a class="nav-link">Special Requests</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>طلب خاص للعلاج</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;Special Requests For Treatment</p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;طلب خاص للعلاج
+                </p>
+            </div>
+            <br>
+            <div class="card-body">
+                <div style="float:right;margin-bottom: 20px;" class="ltr">
+                    <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                </div>
+                <div style="float:left;margin-bottom: 20px;" class="rtl">
+                    <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>طباعة</button>
+                </div>
+                <div class="row">
+                    <div class="invoice-box">
+                        <div class="maindiv">
+                            <br>
+                            <div class="top1">
+                                <div class="left">
+                                    <div style="text-align: center;">
+                                        Kingdom of Saudi Arabia
+                                        <br /> Ministry of Education
+                                        <br /> Islamic University of Madina
+                                        <br /> University Medical Center
+                                    </div>
+                                </div>
+                                <div class="center"> <img src="http://iumc.oclinico.com/assets/images/logo-IU.png"
+                                        style="max-width:100px;"> </div>
+                                <div class="right">
+                                    <div style=" text-align: center;">
+                                        المملكة العربية السعودية
+                                        <br /> وزارة التعليم
+                                        <br /> الجامعة الاسلامية بالمدينة المنورة
+                                        <br /> <strong>المركز الطبي الجامعي</strong>
+                                    </div>
+                                </div>
+                                <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 45px 0px 25px 0px; text-align: center; font-size: 22px;">
+                                    SPECIAL REQUESTS FOR TREATMENT
+                                </div>
+                                <div class="maindiv">
+                                    <div class="et1" style="width: 10%;"> NAME</div>
+                                    <div class="ed1" style="width: 20%;"> <input type="text" [(ngModel)]="name" />
+                                    </div>
+                                    <div class="et1" style="width: 13%;"> CASE NO</div>
+                                    <div class="ed1" style="width: 10%;"> <input type="text" [(ngModel)]="caseno" />
+                                    </div>
+                                    <div class="et1" style="width: 17%;"> CONSULTANT</div>
+                                    <div class="ed1" style="width: 27%;"> <input type="text" [(ngModel)]="consultant" />
+                                    </div>
+                                </div>
+                                <div class="maindiv">
+                                    <div class="et1" style="width: 15%;"> TREATMENT</div>
+                                    <div class="et1" style="width: 84%;"> </div>
+                                </div>
+
+                                <div class="maindiv">
+                                    <table id="rtable">
+                                        <tr>
+                                            <th width="8%"> CODE </th>
+                                            <th> NAMES </th>
+                                            <th width="8%"> CODE </th>
+                                            <th> NAMES </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="nebuliser" [(ngModel)]="reqnebuliser"
+                                                        (change)="changecheckbox($event,'nebuliser')" />
+                                                    <label for="nebuliser"></label>
+                                                </div>
+                                            </td>
+                                            <td> NEBULISER </td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="dressing" [(ngModel)]="reqdressing"
+                                                        (change)="changecheckbox($event,'dressing')" />
+                                                    <label for="dressing"></label>
+                                                </div>
+                                            </td>
+                                            <td>DRESSING & CHANGE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="bandage" [(ngModel)]="reqbandage"
+                                                        (change)="changecheckbox($event,'bandage')" />
+                                                    <label for="bandage"></label>
+                                                </div>
+                                            </td>
+                                            <td>APPLICATION OF ELASTIC BANDAGE</td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="iminjection" [(ngModel)]="reqiminjection"
+                                                        (change)="changecheckbox($event,'iminjection')" />
+                                                    <label for="iminjection"></label>
+                                                </div>
+                                            </td>
+                                            <td> I.M. INJECTION </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="appplaster" [(ngModel)]="reqappplaster"
+                                                        (change)="changecheckbox($event,'appplaster')" />
+                                                    <label for="appplaster"></label>
+                                                </div>
+                                            </td>
+                                            <td>APPLICATION OF PLASTER CAST</td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="ivinjection" [(ngModel)]="reqivinjection"
+                                                        (change)="changecheckbox($event,'ivinjection')" />
+                                                    <label for="ivinjection"></label>
+                                                </div>
+                                            </td>
+                                            <td> I.V. INJECTION </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="rmvplaster" [(ngModel)]="reqrmvplaster"
+                                                        (change)="changecheckbox($event,'rmvplaster')" />
+                                                    <label for="rmvplaster"></label>
+                                                </div>
+                                            </td>
+                                            <td>REMOVE OF PLASTER CAST</td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="drugs" [(ngModel)]="reqdrugs"
+                                                        (change)="changecheckbox($event,'drugs')" />
+                                                    <label for="drugs"></label>
+                                                </div>
+                                            </td>
+                                            <td> DRUGS</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="wound" [(ngModel)]="reqwound"
+                                                        (change)="changecheckbox($event,'wound')" />
+                                                    <label for="wound"></label>
+                                                </div>
+                                            </td>
+                                            <td> SUTURE OF WOUND </td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="ecg" [(ngModel)]="reqecg"
+                                                        (change)="changecheckbox($event,'ecg')" />
+                                                    <label for="ecg"></label>
+                                                </div>
+                                            </td>
+                                            <td>E C G</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="rmvstitches" [(ngModel)]="reqrmvstitches"
+                                                        (change)="changecheckbox($event,'rmvstitches')" />
+                                                    <label for="rmvstitches"></label>
+                                                </div>
+                                            </td>
+                                            <td>REMOVE OF STITCHES </td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" id="crbandage" value="" [(ngModel)]="reqcrbandage"
+                                                        (change)="changecheckbox($event,'crbandage')" />
+                                                    <label for="crbandage"></label>
+                                                </div>
+                                            </td>
+                                            <td>CRE B BANDAGE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="vitalsign" [(ngModel)]="reqvitalsign"
+                                                        (change)="changecheckbox($event,'vitalsign')" />
+                                                    <label for="vitalsign"></label>
+                                                </div>
+                                            </td>
+                                            <td>VITAL SIGNS</td>
+                                            <td>
+                                                <div class="round">
+                                                    <input type="checkbox" value="" id="rbs" [(ngModel)]="reqrbs"
+                                                        (change)="changecheckbox($event,'rbs')" />
+                                                    <label for="rbs"></label>
+                                                </div>
+                                            </td>
+                                            <td>R. B. S</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="width: 60%; height:auto; float: right; margin: 8% 0 2% 0; font-size: 14px;">
+                                    <div class="maindiv">
+                                        <div class="et1" style="width: 12%;"> DATE</div>
+                                        <div class="ed1" style="width: 36%;">
+                                            <input type="text" style="width:100%" [(ngModel)]="fdate" />
+                                            <!-- <span></span> -->
+                                            <!-- <input type="tel" style="width:20%" [(ngModel)]="month"/>
+                                    <span></span>
+                                    <input type="tel" style="width:30%" [(ngModel)]="year"/> -->
+                                        </div>
+                                        <div class="et1" style="width: 23%;"> SIGNATURE</div>
+                                        <div class="ed1" style="width: 28%;"> <input type="text" [(ngModel)]="signature" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear: both;"> </div>
+                        <!-- <div align="center">
+                    <button class='btn btn-info' (click)='update()'*ngIf='updatebutton'>Update</button>
+                  </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="DivIdToPrint" style="display: none;">
+    <div style="width: 768px; margin:0px auto; padding: 30px;">
+        <div style="width: 100%; float: left; height: auto;">
+            <br>
+            <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; padding: 15px;">
+                <div style="width: 40%; height: auto; float: left;">
+                    <div style="text-align: center;">
+                        Kingdom of Saudi Arabia
+                        <br /> Ministry of Education
+                        <br /> Islamic University of Madina
+                        <br /> University Medical Center
+                    </div>
+                </div>
+                <div style="width: 20%; height: auto; float: left; text-align: center;">
+                    <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="max-width:100px;">
+                </div>
+                <div style="width: 40%; height: auto; float: right;">
+                    <div style=" text-align: center;">
+                        المملكة العربية السعودية
+                        <br /> وزارة التعليم
+                        <br /> الجامعة الاسلامية بالمدينة المنورة
+                        <br /> <strong>المركز الطبي الجامعي</strong>
+                    </div>
+                </div>
+                <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 45px 0px 25px 0px; text-align: center; font-size: 22px;">
+                    SPECIAL REQUESTS FOR TREATMENT
+                </div>
+                <div style="width: 100%; float: left; height: auto; margin-bottom: 25px;">
+                    <div style="width: 10%; height: auto; padding-top: 6px; text-align: left; float: left;"> NAME :
+                    </div>
+                    <div style="width: 20%; padding: 0px 2px 0px 2px; float: left; border-bottom: 2px dotted #000;
+                    height: 24px;">{{name}}</div>
+                    <div style="width: 13%; height: auto; padding-top: 6px; text-align: left; float: left;"> CASE NO :
+                    </div>
+                    <div style="width: 10%; padding: 0px 2px 0px 2px; float: left; border-bottom: 2px dotted #000;
+                    height: 24px;">
+                        {{caseno}}</div>
+                    <div style="width: 16%; height: auto; padding-top: 6px; text-align: left; float: left;"> CONSULTANT
+                        : </div>
+                    <div style="width: 28%; padding: 0px 2px 0px 2px; float: left; border-bottom: 2px dotted #000;
+                    height: 24px;">
+                        {{consultant}}</div>
+                </div>
+                <div class="maindiv">
+                    <div class="et1" style="width: 15%;"> TREATMENT : </div>
+                    <div class="et1" style="width: 84%;"> </div>
+                </div>
+                <div style="width: 100%; float: left; height: auto; margin-bottom: 25px; margin-top: 20px;">
+                    <table id="rtable" style="border: 1px solid #000; border-collapse: collapse; width: 100%;"
+                        cellpadding="5" cellspacing="5">
+                        <tr>
+                            <th width="8%" style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> CODE </th>
+                            <th style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> NAMES </th>
+                            <th width="8%" style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> CODE </th>
+                            <th style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> NAMES </th>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div style="position: relative;">
+                                    <input type="checkbox" id="pnebuliser" />
+                                    <label for="nebuliser"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> NEBULISER </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="pdressing" />
+                                    <label for="dressing"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">DRESSING & CHANGE</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4;">
+                                <div class="round">
+                                    <input type="checkbox" id="pbandage" />
+                                    <label for="bandage"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4;">APPLICATION OF ELASTIC BANDAGE</td>
+                            <td style="border: 1px solid #b4b4b4;">
+                                <div class="round">
+                                    <input type="checkbox" id="piminjection" />
+                                    <label for="iminjection"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4;"> I.M. INJECTION </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="pappplaster" />
+                                    <label for="appplaster"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">APPLICATION OF PLASTER
+                                CAST</td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="pivinjection" />
+                                    <label for="ivinjection"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> I.V. INJECTION </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4;">
+                                <div class="round">
+                                    <input type="checkbox" id="prmvplaster" />
+                                    <label for="rmvplaster"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4;">REMOVE OF PLASTER CAST</td>
+                            <td style="border: 1px solid #b4b4b4;">
+                                <div class="round">
+                                    <input type="checkbox" id="pdrugs" />
+                                    <label for="drugs"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4;"> DRUGS</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="pwound" />
+                                    <label for="wound"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;"> SUTURE OF WOUND </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="pecg" />
+                                    <label for="ecg"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">E C G</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4;">
+                                <div class="round">
+                                    <input type="checkbox" id="prmvstitches" />
+                                    <label for="rmvstitches"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4;">REMOVE OF STITCHES </td>
+                            <td style="border: 1px solid #b4b4b4;">
+                                <div class="round">
+                                    <input type="checkbox" id="pcrbandage" />
+                                    <label for="crbandage"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4;">Cre b bandage</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="pvitalsign" />
+                                    <label for="vitalsign"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">Vital signs</td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">
+                                <div class="round">
+                                    <input type="checkbox" id="prbs" />
+                                    <label for="rbs"></label>
+                                </div>
+                            </td>
+                            <td style="border: 1px solid #b4b4b4; background-color: #f9f9f9;">R. B. S</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width: 60%; height:auto; float: right; margin: 8% 0 2% 0; font-size: 14px;">
+                    <div style="width: 130%; float: left; height: auto; margin-bottom: 25px">
+                        <div style="width: 14%; height: auto; padding-top: 6px; text-align: left; float: left;"> DATE :
+                        </div>
+                        <div style="width: 14%; height: auto; padding: 0px 2px 0px 2px; float: left;">
+                            <!-- <div style="width: 20%; height: 24px; float: left; border-bottom: 2px dotted #000;">
+                                {{date}} /
+                              </div>
+                            
+                            <div style="width: 20%; height: 24px; float: left; border-bottom: 2px dotted #000;">
+                                {{month}} /
+                              </div>
+                            
+                            <div style="width: 20%; height: 24px; float: left; border-bottom: 2px dotted #000;">
+                                 {{year}}
+                              </div> -->
+                            <div style="width: 87%; height:22px; float: left; border-bottom: 2px dotted #000;">
+                                {{fdate}}</div>
+                        </div>
+                        <div style="width: 22%; height: auto; padding-top: 6px; text-align: left; float: left;">
+                            SIGNATURE :</div>
+                        <div style="width: 28%; height: 22px; padding: 0px 2px 0px 2px; float: left;border-bottom: 2px dotted #000;">
+                            {{signature}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"> </div>
+    </div>
+</div>
+<div class="text-center mt-3">
+    <button type="submit" class="btn btn-md btn-info ltr" (click)="submit()">
+        Submit</button>
+    <button type="submit" class="btn btn-md btn-info rtl" (click)="submit()">
+        خضع</button>
+</div>

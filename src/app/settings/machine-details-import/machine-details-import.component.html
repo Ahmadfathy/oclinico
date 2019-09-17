@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Import Machine</h2>
+<div class="form-group" id="EditTemplate" >
+
+    <div class="table  borderless">
+     
+             <tr><th><label>Add File*</label></th>  
+              <td>           
+                  <input type="file" #file  name="myFile" (change)="fileEvent($event)">
+               </td></tr>
+    </div>
+  </div>
+
+  <div _ngcontent-c3="" class="col-md-12 text-center submitBtns">
+            <button _ngcontent-c3="" class="btn btn-md btn-warning" type="submit" (click)="Submit()">
+              <i _ngcontent-c3="" class="fa fa-check-circle"></i> Submit</button>
+    
+              <button _ngcontent-c3="" class="btn btn-md btn-success" type="submit">
+              <i _ngcontent-c3="" class="fa fa-ban"></i> Cancel</button></div>
+  </div>

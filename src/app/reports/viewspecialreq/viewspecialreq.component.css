@@ -1,0 +1,226 @@
+.invoice-box {
+    width: 21cm;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+@media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+@media print {
+    #DivIdToPrint {
+        display: block;
+    }
+    body,
+    .invoice-box {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+    }
+}
+.maindiv {
+    width: 100%;
+    float: left;
+    height: auto;
+    margin-bottom: 25px;
+}
+.top1 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    padding: 15px;
+}
+.top2 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    padding: 15px;
+}
+.top3 {
+    width: 95.6%;
+    float: left;
+    height: auto;
+    border: solid 2px #333;
+    border-radius: 0px;
+    padding: 15px;
+    margin: 10px 0px
+}
+.left {
+    width: 40%;
+    height: auto;
+    float: left;
+}
+.right {
+    width: 40%;
+    height: auto;
+    float: right;
+}
+.center {
+    width: 20%;
+    height: auto;
+    float: left;
+    text-align: center;
+}
+.textdiv {
+    width: 24%;
+    height: auto;
+    float: right;
+    padding-top: 6px;
+}
+.dotsdiv {
+    width: 72%;
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+}
+.et {
+    height: auto;
+    float: right;
+    padding-top: 6px;
+    text-align: right;
+}
+.ed {
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+}
+.et1 {
+    height: auto;
+    padding-top: 6px;
+    text-align: left;
+    float: left;
+}
+.ed1 {
+    height: auto;
+    /* border-bottom: dotted 2px #333; */
+    padding: 0px 2px 0px 2px;
+    float: left;
+}
+.ed1 input[type=text] {
+    width: 90%;
+}
+.ed1 input[type=number] {
+    width: 15%;
+}
+.ftb {
+    width: 100%;
+    font-weight: bold;
+    height: auto;
+}
+.ftbdots {
+    width: 100%;
+    font-weight: bold;
+    height: auto;
+    border-bottom: dotted 2px #333;
+    padding: 0px 2px 2px 2px;
+    float: left;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 19px;
+}
+/* span:after {
+    content: " ";
+    background-color: #333;
+    position: absolute;
+    height: 16px;
+    width: 2px;
+    transform: rotate(20deg);
+    margin-top: 5px;
+}
+span {
+    background-color: #333;
+    margin: 0px 6px;
+} */
+#rtable {
+    border-collapse: collapse;
+    width: 100%;
+}
+#rtable td,
+#rtable th {
+    border: 1px solid #b4b4b4;
+    padding: 6px;
+}
+#rtable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#rtable th {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    background-color: #f9f9f9;
+    color: black;
+    font-size: 13px;
+}
+.round {
+    position: relative;
+    /* background: none; */
+    line-height: inherit !important;
+    width: 14px !important;
+    height: 14px !important;
+}
+.round label {
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 14px;
+}
+.round label:after {
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 4px;
+    left: 2px;
+    opacity: 0;
+    position: absolute;
+    top: 2px;
+    transform: rotate(-45deg);
+    width: 8px;
+}
+.round input[type="checkbox"] {
+    visibility: hidden;
+}
+.round input[type="checkbox"]:checked+label {
+    background-color: #66bb6a;
+    border-color: #66bb6a;
+}
+.round input[type="checkbox"]:checked+label:after {
+    opacity: 1;
+}
+input {
+    border: none;
+    border-bottom: dotted 2px #333;
+    outline: none;
+    box-shadow: none;
+}
+input:disabled {
+    /* color: rgb(84, 84, 84); */
+    cursor: default;
+    background-color: white;
+}

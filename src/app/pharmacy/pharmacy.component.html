@@ -1,0 +1,212 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+       
+            <ul id="breadcrumb">
+                <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr">
+                        <a class="nav-link"> Pharmacy Details</a>
+                    </li>
+                    <li class="rtl">
+                        <a class="nav-link"><span>تفاصيل الصيدلية</span></a>
+                    </li>
+            </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;
+                    Pharmacy Details
+                    <!-- Products -->
+                </p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;
+                    تفاصيل الصيدلية
+                    <!-- المنتجات -->
+                </p>
+            </div>
+
+
+            <div class="card-body">
+                <div class="text-right mb-3">
+                    <span class="ltr">
+                        <a  style="display: inline-block;" routerLink='/addproduct'>
+                            <i class="fa fa-fw fa-user"></i> Add</a> &nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span class="rtl">
+                        <a  style="display: inline-block;" routerLink='/addproduct'>
+                            <i class="fa fa-fw fa-user"></i> إضافة</a>&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span class="ltr">
+                        <a  style="display: inline-block;" routerLink='/advancesearch'>
+                            <i class="fa fa-fw fa-user"></i> Search</a>
+                    </span>
+                    <span class="rtl">
+                        <a  style="display: inline-block;" routerLink='/advancesearch'>
+                            <i class="fa fa-fw fa-user"></i> بحث</a>
+                    </span>
+                </div>
+                <table class="table table-hover table-bordered" style ="width : 100% !important" cellspacing="0">
+                    <thead class="headrow ltr">
+                        <tr>
+                            <!-- <th>Sno</th> -->
+                            <th>Name</th>
+                            <th>Supplier</th>
+                            <th>Stock Level</th>
+                            <th>Cost Price (Ex. Tax)</th>
+                            <th>Cost Price (Inc. Tax)</th>
+                            <th>Expire Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <thead class="headrow rtl">
+                        <tr>
+                            <!-- <th>سنو</th> -->
+                            <th>اسم
+                            </th>
+                            <th>المورد</th>
+                            <th>مستوى المخزون
+                            </th>
+                            <th>سعر التكلفة (باستثناء الضريبة)
+                            </th>
+                            <th>سعر التكلفة (ضريبة الشركة)
+                            </th>
+                            <th>تاريخ انتهاء الصلاحية
+                            </th>
+                            <th>الحالة</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prd of persons;let i=index;">
+                            <!-- <td>{{ i + 1 }}</td> -->
+                            <td>{{prd.name}}</td>
+                            <td>{{prd.Supplier}}</td>
+                            <td>{{prd.qty}}</td>
+                            <td>{{prd.Price}}</td>
+                            <td>{{prd.Cost_price}}</td>
+                            <td>{{prd.Expire_date}}</td>
+                            <td>{{prd.Status}}</td>
+                            <td style="display:flex;">
+                                <span>
+                                    <a class="nav-link" (click)="Edit(content,prd.Item_code)" routerLink='/useredit'>
+                                        <i class="fa fa-pencil-alt"></i>
+                                        <!-- <i class="fa fa-pencil-alt text-info"></i>&nbsp;&nbsp;&nbsp;&nbsp; -->
+                                    </a>
+                                </span>
+                                <span>
+                                    <a class="nav-link" (click)="View(content,prd.Item_code)" routerLink='/userview'>
+                                        <i class="fa fa-fw fa-eye"></i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- <h2 class="ltr">Pharmacy Details</h2>
+<h2 class="rtl">تفاصيل الصيدلية</h2><br>
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        </ul>
+
+
+ 
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Pharmacy Details</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل الصيدلية</p>
+            </div>
+
+            <div class="container">
+                <div class="text-right justify-content-between">
+                    <span class="ltr"> <a  class="nav-link" style="display: inline-block;" routerLink='/Addmedication' ><i class="fa fa-fw fa-user"></i> Add</a></span>
+                    <span class="rtl"> <a  class="nav-link" style="display: inline-block;" routerLink='/Addmedication' ><i class="fa fa-fw fa-user"></i> إضافة</a></span>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <table class="table table-hover table-bordered  table-responsive" cellspacing="0">
+                    <thead class="headrow ltr">
+                        <tr>
+                            <th>Registration No</th>
+                            <th>Generic Name</th>
+                            <th>Trade Name</th>
+                            <th>Strength Value</th>
+                            <th>Manufacturer name</th>
+                            <th>Volume</th>
+                            <th>Authorization Status</th>
+                            <th>Patients </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <thead class="headrow rtl">
+                        <tr>
+                            <th>اسم</th>
+                            <th>عنوان وظيفي</th>
+                            <th>تاريخ البدء</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of pharmacydata">
+                         
+                            <td>{{item.reg}}</td>
+                            <td>{{item.gname}}</td>
+                            <td>{{item.tname}}</td>
+                            <td>{{item.svalue}}</td>
+
+                            <td>{{item.manufname}}</td>
+                            <td>{{item.volume}}</td>
+                            <td>{{item.autstatus}}</td>
+                            <td>
+                                <select value="Select" name="title" formControlName="staffpatient" class="custom-select mr-sm-2" (blur)="checkValidationErrors()"> 
+          <option value="select" selected>-- select --</option>
+          <option value="Staff">Rahul </option>
+          <option value="Patient">Raana</option>
+          <option value="Staff">Roshna </option>
+          <option value="Patient">Bharathi</option>
+        </select>
+                            </td>
+                           
+                            <td style="display:flex;">
+
+                               
+                                <span><a  class="nav-link"  routerLink='/ViewPharmacy' ><i class="fa fa-fw fa-eye"></i> </a></span>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div> -->

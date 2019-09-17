@@ -1,0 +1,113 @@
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<h4 class="ltr">Add Insurance Coverage</h4>
+<h4 class="rtl">إضافة تغطية التأمين</h4>
+
+<div class="row">
+  <div class="col-md-12">
+      <ul id="breadcrumb">
+          <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+          <li class="ltr"><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+          <li class="ltr"><a class="nav-link" routerLink='/InsuranCoverageDetails'>Insurance Coverage Details</a></li>
+          <li class="ltr"><a class="nav-link"> Add Insurance Coverage</a></li>
+          <li class="rtl"><a class="nav-link">إضافة تغطية التأمين</a></li>
+          <li class="rtl"><a class="nav-link" routerLink='/InsuranCoverageDetails'>تفاصيل تغطية التأمين</a></li>
+          <li class="rtl"><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> إعدادات</a></li>
+          <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="addinsurancecover">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Insurance Coverage</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة تغطية التأمين</h4>
+        </div>
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Company Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم الشركة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select name="title" formControlName="compname" class="custom-select mr-sm-2"
+                (blur)="checkValidationErrors()"  (change)="typechange($event)">
+                <option label="select" disabled></option>
+                <option *ngFor="let t of insurencecompnames" [ngValue]="t.Insurance_CompanyID">
+                  {{t.Insurance_CompanyName}}</option>
+              </select>
+              <span class="help-block errorcolorcls" *ngIf="formErrors.compname">
+                {{formErrors.compname}}
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Type&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">نوع&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select name="instype" formControlName="instype" class="custom-select mr-sm-2 ltr"
+                  (change)="typechange($event)" (blur)="checkValidationErrors()">
+                  <option label="select" disabled></option>
+                  <option *ngFor="let t of rdtype" [ngValue]="t.typeval">{{t.typename}}</option>
+              </select>
+              <select formControlName="instype" class="custom-select mr-sm-2 rtl" 
+              (blur)="checkValidationErrors()" (change)="typechange($event)">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option *ngFor="let t of rdtype" [ngValue]="t.typeval">{{t.typename}}</option>
+              </select>
+              <span class="help-block errorcolorcls" *ngIf="formErrors.instype">
+                {{formErrors.instype}}
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label ltr">Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select [disabled]="st !='true' " [ngClass]="st == 'true' ? 'enable' : 'disable'" formControlName="incname"
+               class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                <option label="select" disabled></option>
+                <option *ngFor="let t of typenames" [ngValue]="t.ID">{{t.Name}}</option>
+              </select>
+              <select formControlName="incname" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option *ngFor="let t of typenames" [ngValue]="t.ID">{{t.Name}}</option>
+              </select>
+              <span class="help-block errorcolorcls" *ngIf="formErrors.incname">
+                {{formErrors.incname}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Coverage Percentage&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">نسبة التغطية&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="covepercen" formControlName="covepercen" [ngClass]="{'has-error' :formErrors.covepercen}"
+                (blur)="checkValidationErrors()" type="number" class="form-control">
+              <span class="help-block errorcolorcls" *ngIf="formErrors.covepercen" >
+                {{formErrors.covepercen}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions text-center submitBtns">
+          <div class="card-body ">
+            <button type="submit" class="btn btn-md btn-warning ltr" (click)="addinscoversubmit()"
+              style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              Submit</button>
+            <button type="submit" class="btn btn-md btn-warning rtl" (click)="addinscoversubmit()"
+              style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              خضع</button>
+            <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/InsuranCoverageDetails']">
+              <i class="fa fa-ban"></i>
+              Cancel</button>
+            <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/InsuranCoverageDetails']" style="margin-right:10px;">
+              <i class="fa fa-ban"></i>
+              إلغاء</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

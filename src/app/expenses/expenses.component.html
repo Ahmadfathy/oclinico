@@ -1,0 +1,109 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb" style="margin-left: -6%;">
+                <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr"><a class="nav-link" routerLink='/expenses'> Expense Details</a></li>
+                <li class="rtl"><a class="nav-link" routerLink='/expenses'> ألتفاصيل النفقات</a></li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr">
+                <a class="nav-link " routerLink='/expenses'> Expense Details</a>
+            </li>
+            <li class=" rtl">
+                <a class="nav-link" routerLink='/expenses'> تفاصيل النفقات</a>
+            </li>
+        </ul> -->
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr">
+                <a class="nav-link " routerLink='/expenses'> Expense Details</a>
+            </li>
+            <li class=" rtl">
+                <a class="nav-link" routerLink='/expenses'><span>تفاصيل النفقات</span> </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Expense Details</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p>
+            </div>
+
+            <div class="container">
+
+                <div class="text-right justify-content-between">
+
+                    <span class="ltr"> <a class="nav-link" style="display: inline-block;" routerLink='/addexpense'><i
+                                class="fa fa-fw fa-user"></i> Add</a></span>
+                    <span class="rtl"> <a class="nav-link" style="display: inline-block;" routerLink='/addexpense'><i
+                                class="fa fa-fw fa-user"></i> إضافة</a></span>
+                </div>
+
+            </div>
+
+
+            <div class="container">
+                <table class="table table-hover table-bordered" id="dataTable" *ngIf="showdata" cellspacing="0">
+                    <thead class="headrow ltr">
+
+                        <tr>
+                            <th>Sno.</th>
+                            <th>Expense ID</th>
+                            <th>Amount</th>
+                            <th>Vendor</th>
+                            <th>Category</th>
+                            <th>Expense Date</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+                    <thead class="headrow rtl">
+                        <tr>
+                            <th>الرقم التسلسلي</th>
+                            <th>رقم المصاريف/المصروفات</th>
+                            <th>المبلغ</th>
+                            <th>البائع</th>
+                            <th>فئة</th>
+                            <th>تاريخ المصاريف/المصروفات</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let expense of table;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{expense.Expense_Id}}</td>
+                            <td>{{expense.Amount}}</td>
+                            <td>{{expense.Vendor}}</td>
+                            <td>{{expense.Category}}</td>
+                            <td>{{expense.ExpenseDate}}</td>
+
+                            <td><span class="fa fa-eye text-info" [routerLink]="['/viewexpenses']" [queryParams]="{ExpenseID:expense.Expense_Id}"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-pencil-alt text-info" (click)="edit(expense.Expense_Id)"></span>
+                            </td>
+                            <!-- <td><i class="fa fa-fw fa-user" [routerLink]="['/settings/EditReferralDiscount']" [queryParams]="{Refrral:client.refid}" ></i> </td> -->
+                        </tr>
+                    </tbody>
+                    <div [hidden]="nodata">No Data Found</div>
+                </table>
+                
+            </div>
+        </div>
+
+    </div>
+</div>

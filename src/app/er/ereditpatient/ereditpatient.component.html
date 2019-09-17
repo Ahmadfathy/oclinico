@@ -1,0 +1,473 @@
+<form [formGroup]="patient" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <h4 class="ltr">ER-Edit Patient</h4>
+    <h4 class="rtl">تحرير المريض</h4>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <ul id="breadcrumb">
+        <li>
+          <a class="nav-link" routerLink='/dashboard'>
+            <span class="fa fa-fw fa-home"> </span>
+          </a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link" routerLink='/erpatientinfo'>ER-Patient Details</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link" routerLink='/erpatientinfo'> تفاصيل المريض</a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link">ER-Edit Patient</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link"> تحرير المريض</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <p class="m-b-0 text-black ltr">
+            <i class="sl-icon-menu font-14"></i> &nbsp;ER-Edit Patient</p>
+          <p class="m-b-0 text-black rtl">
+            <i class="sl-icon-menu font-14"></i> &nbsp;تحرير المريض</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="card-title mt-4 ltr">Personal Details</h3>
+              <h3 class="card-title mt-4 rtl">تفاصيل شخصية</h3>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.titleinput}">
+                <label class="mr-sm-2 ltr" for="title">Title *</label>
+                <label class="mr-sm-2 rtl" for="title">عنوان *</label>
+                <select name="title" formControlName="titleinput" class="custom-select mr-sm-2" (blur)="checkValidationErrors()" id="title"
+                  [ngClass]="{ 'is-invalid': submitted && f.titleinput.errors }">
+                  <option class="ltr" disabled hidden [value]="nullValue">-- select --</option>
+                  <option class="rtl" value="" disabled selected> اختار </option>
+                  <option class="ltr" *ngFor="let t of title" [ngValue]="t">{{t}}</option>
+                  <option class="rtl" *ngFor="let t1 of titlea" [ngValue]="t1">{{t1}}</option>
+
+                </select>
+                <div *ngIf="submitted && f.titleinput.errors" class="invalid-feedback">
+                  <div class="ltr" *ngIf="f.titleinput.errors.required">Title is required</div>
+                  <div class="rtl" *ngIf="f.titleinput.errors.required">Title is required</div>
+                </div>
+                <span class="help-block" *ngIf="formErrors.titleinput">
+                  {{formErrors.titleinput}}
+                </span>
+              </div>
+            </div>
+            <div class="col-md-4 ">
+              <label class="mr-sm-2 ltr" for="title">Profile Image</label>
+              <label class="mr-sm-2 rtl" for="title">Profile Image</label>
+              <input type="file" (change)="fileupload($event)">
+            </div>
+            <div class="col-md-2">
+              <label class="mr-sm-2 ltr">RegisterId</label>
+              <label class="mr-sm-2 rtl">RegisterId</label>
+              <input type="text" class="form-control" formControlName="rege">
+            </div>
+            <div>{{profil}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="card-title mt-4 ltr">English Names*</h4>
+              <h4 class="card-title mt-4 rtl">أسماء إنجليزية*</h4>
+            </div>
+            <div class="col-md-4 form-group" [ngClass]="{'has-error' : formErrors.firstname}">
+              <label class="form-control-label ltr">First Name</label>
+              <label class="form-control-label rtl">الاسم الاول</label>
+              <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" (blur)="checkValidationErrors()"
+                id="fname" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" (keypress)="alpha($event)">
+              <div class="help-block" *ngIf="formErrors.firstname">
+                Information Valid.
+              </div>
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div class="ltr" *ngIf="f.firstName.errors.required">First Name is required</div>
+                <div class="rtl" *ngIf="f.firstName.errors.required">First Name is required</div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Middle Name</label>
+                <label class="form-control-label rtl"> اسم الاب
+                </label>
+                <input type="text" class="form-control" placeholder="Middle Name" formControlName="MiddleName" [ngClass]="{ 'is-invalid': submitted && f.MiddleName.errors }"
+                  (keypress)="alpha($event)">
+                <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
+                  <div class="ltr" *ngIf="f.MiddleName.errors.required">MiddleName is required</div>
+                  <div class="rtl" *ngIf="f.MiddleName.errors.required"> MiddleName is required
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Last Name</label>
+                <label class="form-control-label rtl">اسم العائلة</label>
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="LastName" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }"
+                  (keypress)="alpha($event)">
+                <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.LastName.errors.required" class="ltr">LastName is required</div>
+                  <div *ngIf="f.LastName.errors.required" class="rtl">LastName is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="card-title mt-4 ltr">Arabic Names*</h4>
+              <h4 class="card-title mt-4 rtl">الاسم بالعربي*</h4>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">First Name</label>
+                <label class="form-control-label rtl">الاسم الاول</label>
+                <input type="text" class="form-control" placeholder="مثالا على ذلك." formControlName="Afirstname" [ngClass]="{ 'is-invalid': submitted && f.Afirstname.errors }"
+                  (keypress)="arabic($event)">
+                <div *ngIf="submitted && f.Afirstname.errors" class="invalid-feedback">
+                  <div *ngIf="f.Afirstname.errors.required" class="ltr">FirstName is required</div>
+                  <div *ngIf="f.Afirstname.errors.required" class="rtl">FirstName is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Father Name</label>
+                <label class="form-control-label rtl"> اسم الأب
+                </label>
+                <input type="text" class="form-control" placeholder="مثالا على ذلك." formControlName="Afathername" [ngClass]="{ 'is-invalid': submitted && f.Afathername.errors }"
+                  (keypress)="arabic($event)">
+                <div *ngIf="submitted && f.Afathername.errors" class="invalid-feedback">
+                  <div *ngIf="f.Afathername.errors.required" class="ltr">Father Name is required</div>
+                  <div *ngIf="f.Afathername.errors.required" class="rtl"> Father Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Last Name</label>
+                <label class="form-control-label rtl">اسم العائلة</label>
+                <input type="text" class="form-control" placeholder="مثالا على ذلك." formControlName="Alastname" [ngClass]="{ 'is-invalid': submitted && f.Alastname.errors }"
+                  (keypress)="arabic($event)">
+                <div *ngIf="submitted && f.Alastname.errors" class="invalid-feedback">
+                  <div *ngIf="f.Alastname.errors.required" class="ltr">LastName is required</div>
+                  <div *ngIf="f.Alastname.errors.required" class="rtl">LastName is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <label class="form-control-label mt-4 ltr">Gender*</label>
+              <label class="form-control-label mt-4 rtl">الجنس*</label>
+
+              <select formControlName="gender" class="form-control ltr" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                <option disabled selected>Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+
+              <select formControlName="gender" class="form-control rtl" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                <option value="" disabled selected>تحديد</option>
+                <option>الذكر
+                </option>
+                <option>إناثا</option>
+              </select>
+              <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required" class="ltr">*Gender is required</div>
+                <div *ngIf="f.gender.errors.required" class="rtl">*Gender is required</div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="form-control-label mt-4 ltr">Marital Status</label>
+              <label class="form-control-label mt-4 rtl">الحالة الإجتماعية</label>
+              <select formControlName="maritalstatus" class="form-control ltr" [ngClass]="{ 'is-invalid': submitted && f.maritalstatus.errors }">
+                <option disabled selected>Select</option>
+                <option *ngFor="let m of matrial">{{m}}</option>
+              </select>
+              <select formControlName="maritalstatus" class="form-control rtl" [ngClass]="{ 'is-invalid': submitted && f.maritalstatus.errors }">
+                <option value="" disabled selected>تحديد</option>
+                <option *ngFor="let m1 of matriala">{{m1}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <h4 class="card-title mt-3 ltr">Date Of Birth*</h4>
+              <h4 class="card-title mt-3 rtl">تاريخ الولادة*</h4>
+              <div class="mt-3">
+                <label class="form-control-label ltr">Arabic Date Of Birth* </label>
+                <label class="form-control-label rtl">تاريخ الميلاد العربي* </label>
+                <input value={{binddate}} placeholder="dd/mm/yyyy" (keyup)="arabice($event)" class="form-control DATE" size=10 maxlength=10
+                  onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                />
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-5">
+                <label class="form-control-label ltr">English Date Of Birth </label>
+                <label class="form-control-label rtl">تاريخ الميلاد الانجليزي </label>
+                <input class="form-control DATE" placeholder="dd/mm/yyyy" value={{arabicbinddate}} (keyup)="english($event)" formControlName="DOB"
+                  size=10 maxlength=10 onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group m-b-30 mt-3">
+                <label class="mr-sm-2 ltr" for="id">Identification Type *</label>
+                <label class="mr-sm-2 rtl" for="id">نوع الهوية *</label>
+                <select name="id" formControlName="idType" class="custom-select mr-sm-2 ltr" id="Identification" [ngClass]="{ 'is-invalid': submitted && f.idType.errors }">
+                  <option disabled hidden [value]="nullValue">-- select --</option>
+                  <option *ngFor="let id of identification" [ngValue]="id">{{id}}</option>
+                </select>
+                <select name="id" formControlName="idType" class="custom-select mr-sm-2 rtl" id="Identification" [ngClass]="{ 'is-invalid': submitted && f.idType.errors }">
+                  <option value="" disabled selected>تحديد</option>
+                  <option *ngFor="let ida of identificationa" [ngValue]="ida">{{ida}}</option>
+                </select>
+                <div *ngIf="submitted && f.idType.errors" class="invalid-feedback">
+                  <div *ngIf="f.idType.errors.required" class="ltr">Identification is required</div>
+                  <div *ngIf="f.idType.errors.required" class="rtl">Identification is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Identification Number </label>
+                <label class="form-control-label rtl">رقم الهوية </label>
+                <input type="text" class="form-control" placeholder=" Number" formControlName="idnumber" [ngClass]="{ 'is-invalid': submitted && f.idnumber.errors }">
+                <div *ngIf="submitted && f.idnumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.idnumber.errors.required" class="ltr">Identification Number is required</div>
+                  <div *ngIf="f.idnumber.errors.required" class="rtl">Identification Number is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Upload ID Proof* </label>
+                <label class="form-control-label rtl">تحميل إثبات الهوية</label>
+                <input type="file" class="f" (change)="fileup($event)">
+                <div *ngIf="days" class="errorcode ltr">Plase Upload File</div>
+                <div *ngIf="days" class="errorcode rtl">Plase Upload File</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="mt-3">
+                <label class="form-control-label ltr">English Expiry Date</label>
+                <label class="form-control-label rtl">تاريخ الانتهاء</label>
+                <input class="form-control DATE" placeholder="dd/mm/yyyy" value={{arabicbinddateex}} (keyup)="englishex($event)" formControlName="iddate"
+                  size=10 maxlength=10 onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Arabic Expiry Date</label>
+                <label class="form-control-label rtl">تاريخ الانتهاء</label>
+                <input value={{binddateex}} placeholder="dd/mm/yyyy" (keyup)="arabicex($event)" class="form-control DATE" size=10 maxlength=10
+                  onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group m-b-30 mt-3">
+                <label class="mr-sm-2 ltr" for="nation">Nationality</label>
+                <label class="mr-sm-2 rtl" for="nation">الجنسية</label>
+                <select class="form-control custom-select" name="nation" formControlName="nationType">
+                  <option checked="">Select</option>
+                  <option *ngFor="let item of countrys" [ngValue]="item.Country_Name">{{item.Country_Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30 mt-3">
+                <label class="mr-sm-2 ltr" for="occup">Occupation</label>
+                <label class="mr-sm-2 rtl" for="occup">المهنة</label>
+                <select name="occup" formControlName="occupType" class="custom-select mr-sm-2" id="Occupation">
+                  <option checked="">select </option>
+                  <option *ngFor="let occup of ocupation">{{occup.Occupation_Name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>{{imageVal}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="card-title mt-4 ltr">Address</h4>
+              <h4 class="card-title mt-4 rtl">العنوان</h4>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Area</label>
+                <label class="form-control-label rtl">المنطقة</label>
+                <input type="text" class="form-control" placeholder="Area Name" id="area" formControlName="Area" [ngClass]="{ 'is-invalid': submitted && f.Area.errors }"
+                  (keypress)="alpha($event)">
+                <div *ngIf="submitted && f.Area.errors" class="invalid-feedback">
+                  <div *ngIf="f.Area.errors.required" class="ltr">Area Name is required</div>
+                  <div *ngIf="f.Area.errors.required" class="rtl">Area Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md- form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Block</label>
+                <label class="form-control-label rtl">الحي</label>
+                <input type="text" class="form-control" placeholder="Block Name" id="block" formControlName="Block">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="m-t-0">
+                <label class="form-control-label ltr">Building</label>
+                <label class="form-control-label rtl">المبنى</label>
+                <input type="text" class="form-control" placeholder="Building Name" id="Building" formControlName="Building">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Street</label>
+                <label class="form-control-label rtl">الشارع</label>
+                <input type="text" class="form-control" placeholder="Street Name" id="Street" formControlName="Street">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Floor</label>
+                <label class="form-control-label rtl">ألدور</label>
+                <input type="text" class="form-control" placeholder="Floor No" id="Floor" formControlName="Floor" (keypress)="keyPress($event)">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">City</label>
+                <label class="form-control-label rtl">المدينة</label>
+                <input type="text" class="form-control" placeholder="City Name" id="City" formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }"
+                  (keypress)="alpha($event)">
+                <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                  <div *ngIf="f.City.errors.required" class="ltr">City Name is required</div>
+                  <div *ngIf="f.City.errors.required" class="rtl">City Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Email</label>
+                <label class="form-control-label rtl">البريد الإلكتروني</label>
+                <input type="email" class="form-control" placeholder="Email Address" id="email" formControlName="Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }"
+                  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                  <div *ngIf="f.Email.errors.required" class="ltr">Email is required</div>
+                  <div *ngIf="f.Email.errors.pattern" class="ltr">Please Enter Valid Email
+                  </div>
+                  <div *ngIf="f.Email.errors.pattern" class="rtl">Please Enter Valid Email
+                  </div>
+                  <div *ngIf="f.Email.errors.required" class="rtl">Email is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Mobile</label>
+                <label class="form-control-label rtl">التليفون المحمول</label>
+                <input type="text" class="form-control" placeholder="Mobile No" formControlName="Mobile" [ngClass]="{ 'is-invalid': submitted && f.Mobile.errors }"
+                  (keypress)="keyPress($event)">
+                <div *ngIf="submitted && f.Mobile.errors" class="invalid-feedback">
+                  <div *ngIf="f.Mobile.errors.required" class="ltr">Mobile No is required</div>
+                  <div *ngIf="f.Mobile.errors.required" class="rtl">Mobile No is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Home Phone</label>
+                <label class="form-control-label rtl">هاتف المنزل</label>
+                <input type="tel" class="form-control" placeholder="Home Phone No" id="homephoneno" formControlName="Home" (keypress)="keyPress($event)">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Work Phone</label>
+                <label class="form-control-label rtl">هاتف العمل</label>
+                <input type="tel" class="form-control" placeholder="Work Phone No" id="workphoneno" formControlName="Work" (keypress)="keyPress($event)">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Emergency Contact</label>
+                <label class="form-control-label rtl">بيانات في حالة الطوارئ</label>
+                <input type="tel" class="form-control" placeholder="Emergency Phone No" id="Emergencyphoneno" formControlName="Emergencyphoneno"
+                  (keypress)="keyPress($event)">
+              </div>
+            </div>
+            <div class="col-md-4 form-group">
+              <div class="mt-3">
+                <label class="form-control-label ltr">Emergency Contact Name</label>
+                <label class="form-control-label rtl">اسم شخص في حالة الطوارىء</label>
+                <input type="text" class="form-control" placeholder="Emergency Contact" id="Emergencycontact" formControlName="Emergencycontact"
+                  (keypress)="alpha($event)">
+              </div>
+            </div>
+            <div class="col-md-4" form-group>
+              <div class="mt-3">
+                <label class="form-control-label ltr">Notes</label>
+                <label class="form-control-label rtl">ملاحظات</label>
+                <textarea class="form-control" placeholder="Your Notes" id="note" formControlName="Notes"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="card-title mt-4 ltr">Communication Preferences</h4>
+              <h4 class="card-title mt-4 rtl">تفضيلات التواصل</h4>
+            </div>
+            <div class="col-md-4">
+              <label class="form-control-label mt-4 ltr">Automated Remainder Type</label>
+              <label class="form-control-label mt-4 rtl">نوع التذكير</label>
+              <select formControlName="selectedItems" class="form-control">
+                <option selected>Select</option>
+                <option *ngFor="let rem of reminder">{{rem}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-12 text-center submitBtns">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="updatepatient('save')">
+                <i class="fa fa-check-circle"></i>
+                Update</button>
+              <button type="submit" class="btn btn-md btn-warning rtl" (click)="updatepatient('save')">
+                <i class="fa fa-check-circle"></i>
+                تحديث</button>
+
+              <button type="submit" class="btn btn-md btn-success ltr" (click)="updatepatient('saveco')">
+                <i class="fa fa-check-circle"></i>
+                Update & Continue</button>
+
+              <button type="submit" class="btn btn-md btn-success rtl" (click)="updatepatient('saveco')">
+                <i class="fa fa-check-circle"></i>
+                تحديث ومتابعة</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

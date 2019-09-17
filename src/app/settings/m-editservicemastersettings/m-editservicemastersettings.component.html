@@ -1,0 +1,116 @@
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    
+    
+      <h4 class="ltr">Edit Service Master</h4>
+      <h4 class="rtl">تعديل إدارة الخدمة</h4>
+      
+
+      <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb">
+                <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+                <li class="ltr"><a class="nav-link" routerLink='/ServiceMasterDetails'>Service Details</a></li>
+                <li class="ltr"><a class="nav-link"> Edit Service Master</a></li>
+                <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+                <li class="rtl"> <a class="nav-link" routerLink='/ServiceMasterDetails'><span>تفاصيل الخدمة</span></a></li>
+                <li class="rtl"><a class="nav-link"><span>تعديل إدارة الخدمة</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+<form [formGroup]="editservicemaster">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card">
+                <div class="card-header">
+                        <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Service Master</h4>
+                        <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تعديل إدارة الخدمة</h4>
+                      </div>
+            <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4" [ngClass]="{'has-error' : formErrors.servcode}">
+                    <!-- <form class="m-t-0"> -->
+                            <label class="form-control-label ltr">Service Code *</label>
+                            <label class="form-control-label rtl">رمز الخدمة *</label>
+                        <input type="text" class="form-control"  formControlName="servcode"  (blur)="checkValidationErrors()">
+                      
+                        <span class="help-block errorcolorcls" *ngIf="formErrors.servcode">
+                          {{formErrors.servcode}}
+                        </span>
+                    <!-- </form> -->
+                  </div>
+                  <div class="col-md-4" [ngClass]="{'has-error' : formErrors.servmastername}">
+                        <label class="form-control-label ltr">Service Master Name *</label>
+                        <label class="form-control-label rtl">اسم إدارة الخدمات *</label>
+                        <input type="text" class="form-control"  formControlName="servmastername"   on-focusout="checkservname($event)"  (blur)="checkValidationErrors()">
+                       
+                        <span class="help-block errorcolorcls" *ngIf="formErrors.servmastername">
+                          {{formErrors.servmastername}}
+                        </span>
+                  </div>
+                  <div class="col-md-4" [ngClass]="{'has-error' : formErrors.servprice}">
+                        <label class="form-control-label ltr">Service Price *</label>
+                        <label class="form-control-label rtl">سعر الخدمة *</label>
+                        <input type="number" class="form-control"  formControlName="servprice"  (blur)="checkValidationErrors()">
+                        <!-- <div class="help-block" *ngIf="formErrors.companyname">
+                            Information Valid.
+                        </div> -->
+                        <span class="help-block errorcolorcls" *ngIf="formErrors.servprice">
+                          {{formErrors.servprice}}
+                        </span>
+                  </div>
+  
+  
+                <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.servstatus}">
+                        <label class="mr-sm-2 ltr" for="title">Status *</label>
+                        <label class="mr-sm-2 rtl" for="title">الحالة *</label>
+                             <select value="Select" name="title" formControlName="servstatus" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                              <option value="select" disabled>Select</option>
+                              <option value="Active"> Active </option>
+                              <option value="InActive"> InActive</option>
+                            </select>
+                             <select value="Select" name="title" formControlName="servstatus" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                              <option value="select" disabled>-- اختار --</option>
+                              <option value="Active"> Active </option>
+                              <option value="InActive"> InActive</option>
+                            </select>
+                     
+                             <span class="help-block" *ngIf="formErrors.servstatus">
+                               {{formErrors.servstatus}}
+                             </span>
+                   </div>
+               </div>
+               
+              </div>
+                    
+                            <div class="row mt-5">
+                                <div class="col-md-12 text-center submitBtns">
+                                    <button type="submit" class="btn btn-md btn-warning ltr" (click)="editservmastersubmit()" style="margin-right:10px;">
+                                        <i class ="fa fa-check-circle"></i>
+                                         Update</button>
+                                    <button type="submit" class="btn btn-md btn-warning rtl" (click)="editservmastersubmit()" >
+                                        <i class ="fa fa-check-circle"></i>
+                                        تحديث</button>
+                                    <button type="submit" class="btn btn-md btn-success ltr" (click)="editservmastercancle()">
+                                            <i class ="fa fa-check-circle"></i>
+                                         Cancel</button>
+                                    <button type="submit" class="btn btn-md btn-success rtl" (click)="editservmastercancle()" style="margin-right:10px;">
+                                            <i class ="fa fa-check-circle"></i>
+                                            إلغاء</button>
+                                </div>
+                            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  </form>

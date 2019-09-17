@@ -1,0 +1,469 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb">
+        <li>
+          <a class="nav-link" routerLink='/dashboard'>
+            <span class="fa fa-fw fa-home"> </span>
+          </a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link" routerLink='/reports'>Reports</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link" routerLink='/reports'>
+            <span>تقارير</span>
+          </a>
+        </li>
+        <li class="ltr">
+          <a class="nav-link">Stool Analysis</a>
+        </li>
+        <li class="rtl">
+          <a class="nav-link"><span>نموذج فحص البراز</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Stool Analysis</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;نموذج فحص البراز</h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+            <thead  style="background-color: #4a87ee;color: white;">
+              <tr>
+                <th>#</th>
+                <th>Patient Name</th>
+                <th>Gender</th>
+                <th>Treated by</th>
+                <th>Date of Visit</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of analysisdetails;let i=index" >
+                <td>{{i+1}}</td>
+                <td>{{s.Name}}</td>
+                <td>{{s.Gender}}</td>
+                <td>{{s.Checked_by}}</td>
+                <td>{{s.Date}}</td>
+                <td style="display:flex;">
+                  <span><a class="nav-link" (click)="view('View',s.tran_date,s.patient_id)" style="cursor: pointer;color:#4a87ee"><i
+                        class="fa fa-eye text-info" ></i></a></span>
+                  <span><a class="nav-link" (click)="view('Edit',s.tran_date,s.patient_id)" style="cursor: pointer;color:#4a87ee"><i
+                    class="fa fa-pencil-alt text-info" ></i></a></span>
+                    <span><a class="nav-link" (click)="getprintdata(s.patient_id,s.tran_date)" style="cursor: pointer;color:#4a87ee"><i
+                      class="fa fa-print text-info" ></i></a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ <!------------------------ Print ---------------------------->
+<div id="DivIdToPrint" style="display: none;">
+    <div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+          <tr class="top">
+            <td colspan="2" align="left" valign="top">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td width="18%" class="title" style="border: 1px solid #000;">
+                      <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:160px;">
+                    </td>
+                    <td width="82%" valign="top" style="border: 1px solid #000;">
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="47">
+                              Name :
+                            </td>
+                            <td width="323">
+                              <span style=" width:calc(120% - 150px); height: 20px;
+                                display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{name}} </span>
+                              <!-- {{name}} -->
+                            </td>
+                            <td width="36">
+                              : الاسم
+                            </td>
+                            <td rowspan="3" style="border: 1px solid #ccc; height: 39px; width: 40px;"></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                        </tbody>
+                      </table>
+  
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="20%">
+                              File Number :
+                            </td>
+                            <td width="67%">
+                              <span style=" width:calc(120% - 150px); height: 20px;
+                                display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{fileno}} </span>
+                              <!-- {{fileno}} -->
+                            </td>
+                            <td width="13%" style="text-align: right;"> : رقم الملف </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="9%" height="20">
+                              Date :
+                            </td>
+                            <td width="29%">
+                              <span style=" width:calc(200% - 150px); height: 20px;
+                                display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{date}} </span>
+                              <!-- {{date}} -->
+                            </td>
+                            <td width="10%" style="text-align: right;"> : التاريخ
+                            </td>
+                            <td width="7%">&nbsp;</td>
+                            <td width="8%">
+                              Age :
+                            </td>
+                            <td width="29%">
+                              <span style=" width:calc(150% - 140px); height: 20px;
+                                display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{age}} </span>
+                              <!-- {{age}} -->
+                            </td>
+                            <td width="8%" style="text-align: right;">: العمر</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="19%">
+                              Nationality :
+                            </td>
+                            <td width="71%">
+                              <span style=" width:calc(120% - 150px); height: 20px;
+                                display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{nationality}} </span>
+                              <!-- {{nationality}} -->
+                            </td>
+                            <td width="10%" style="text-align: right;">: الجنسية</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" cellpadding="2" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="22%">
+                              Gender :
+                            </td>
+                            <td width="34%">
+                              <label for="Male1">
+                                <input type="radio" value="radiomale" id="Male1" name="radioModel1"> Male | ذكر</label>
+                            </td>
+                            <td width="28%">
+                              <label for="Female1">
+                                <input type="radio" value="radiofemale" id="Female1" name="radioModel1"> Female | انثى</label>
+                            </td>
+                            <td width="16%" style="text-align: right;">: الجنس</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td style="font-weight: bold; font-size: 18px; text-align: center;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+  
+          <tr>
+            <td colspan="2" style="border: 1px solid #000;">
+              <table width="100%" cellpadding="2" cellspacing="2">
+                <tbody>
+                  <tr>
+                    <td colspan="4" style="font-size: 20px; font-weight: bold; text-align: center; background-color: #795721; color: #fff; padding: 5px;">
+                      Stool Analysis Request & Report &nbsp; &nbsp; &nbsp; نموذج فحص البراز
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                      <div style="width: 40%; float: left; text-align: center;">
+                        <label for="pRoutinecheck">
+                          <input type="radio" value="radioroutine" id="pRoutinecheck" name="radio2"> Routine
+                        </label>
+                      </div>
+                      <div style="width: 20%; float: left; text-align: center;">
+                        <label for="pUrgentcheck">
+                          <input type="radio" value="radiourgent" id="pUrgentcheck" name="radio2"> Urgent
+                        </label>
+                      </div>
+                      <div style="width: 40%; float: left; text-align: center;">
+                        <label for="pPreoperativecheck">
+                          <input type="radio" value="radiopreop" id="pPreoperativecheck" name="radio2"> Pre-operative
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="19%">
+                      Clinical Comments :
+                    </td>
+                    <td width="35%">
+                      <span style=" width:calc(200% - 0px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{clinicalcomment}} </span>
+                      <!-- {{clinicalcomment}} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Requested by :
+                    </td>
+                    <td width="35%">
+                      <span style=" width:calc(160% - 150px); height: 20px;
+                            display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{requestedby}} </span>
+                      <!-- {{requestedby}} -->
+                    </td>
+                    <td width="20%">
+                      Stamp & Signature :
+                    </td>
+                    <td width="26%">
+                      <span style=" width:calc(100% - 10px); height: 20px;
+                            display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{stampandsign}} </span>
+                      <!-- {{stampandsign}} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" style="height: 10px;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td style="font-weight: bold; font-size: 18px; text-align: center; height: 10px;">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%" style="border-collapse: collapse;" cellpadding="5" cellspacing="5">
+                <tbody>
+                  <tr>
+                    <td width="17%" rowspan="3" style="border: 1px solid #000; text-align: center;">Physical Examination</td>
+                    <td width="17%" style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                      <input type="checkbox" value="" id="pbrowncheck" />
+                      <label for="Brown">Brown</label>
+                    </td>
+                    <td width="16%" style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                      <input type="checkbox" value="" id="pblackcheck" />
+                      <label for="Black">Black</label>
+                    </td>
+                    <td width="20%" style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                      <input type="checkbox" value="" id="pyellowcheck" />
+                      <label for="Yellow">Yellow</label>
+                    </td>
+                    <td width="16%" style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                      <input type="checkbox" value="" id="pgreencheck" />
+                      <label for="Green">Green</label>
+                    </td>
+                    <td width="14%" style="border-top: 1px solid #000; border-bottom: 1px solid #000; border-right: 1px solid #000;">
+                      <input type="checkbox" id="preddishcheck" />
+                      <label for="Reddish">Reddish</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" value="" id="pFormedcheck" />
+                      <label for="Formed">Formed</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" value="" id="pSoftcheck" />
+                      <label for="Soft">Soft</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" value="" id="pSliquidcheck" />
+                      <label for="Sliquid">S.liquid</label>
+                    </td>
+                    <td>
+                      <input type="checkbox" value="" id="pliquidcheck" />
+                      <label for="liquid">liquid</label>
+                    </td>
+                    <td style="border-right: 1px solid #000;">
+                      <input type="checkbox" value="" id="pHardcheck" />
+                      <label for="Hard">Hard</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" style="border-right: 1px solid #000;">
+                      <input type="checkbox" value="" id="pMucuscheck" />
+                      <label for="Mucus">Mucus</label>
+                      <span style=" width:calc(40% - 150px); height: 20px;
+                      display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{mucusval}} </span>
+                      (
+                      <span style="width: 73px; height: 20px; display: inline-block;">{{mucusval1}}</span>)
+                      <!-- {{mucusval}} ({{mucusval1}}) -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6"></td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" style="border: 1px solid #000; text-align: center;">Microscopi Examination</td>
+                    <!-- <td colspan="2" style="border-top: 1px solid #000;">Pus {{pus}} ({{pushpf}})
+                      <small style="font-size: 12px;">HPF</small>
+                    </td> -->
+                    <td colspan="2" style="border-top: 1px solid #000; border:none; outline: none;">Pus
+                      <span style=" width:calc(100% - 160px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{pus}} </span>
+                      (
+                      <span style="width: 73px; height: 20px; display: inline-block;">{{pushpf}}</span>)/
+                      <small style="font-size: 12px;">HPF</small>
+                    </td>
+                    <td colspan="3" style="border-top: 1px solid #000; border-right: 1px solid #000;">
+                      Cysts :
+                      <span>
+                        <input type="checkbox" value="" id="pGiardia" />
+                        <label for="Giardia.Lamb">Black</label>
+                      </span>
+                      <span>
+                        <input type="checkbox" value="" id="pHistolytica" />
+                        <label for="E.Histolytica">Black</label>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+  
+                    <td colspan="2" style="border-top: 1px solid #000; border:none; outline: none;">RBC
+                      <span style=" width:calc(100% - 160px); height: 20px;
+                          display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{rbc}} </span>
+                      (
+                      <span style="width: 73px; height: 20px; display: inline-block;">{{rbchpf}}</span>)/
+                      <small style="font-size: 12px;">HPF</small>
+                    </td>
+                    <!-- <td colspan="2">RBC {{rbc}} ({{rbchpf}})
+                      <small style="font-size: 12px;">HPF</small>
+                    </td> -->
+                    <td colspan="3" style="border-right: 1px solid #000;">Other :
+                      <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{otherexamination}} </span>
+                      <!-- {{otherexamination}} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      Undigested Food :
+                      <span style=" width:calc(113% - 150px); height: 20px;
+                            display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{Undigestedfood}} </span>
+                      <!-- {{Undigestedfood}} -->
+                    </td>
+                    <td colspan="3" style="border-right: 1px solid #000;">Ova :
+                      <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{ova}} </span>
+                      <!-- {{ova}} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">
+                      H.Pylori :
+                      <span style=" width:calc(70% - 150px); height: 20px;
+                      display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{Pilori}} </span>
+                      <!-- {{Pilori}} -->
+                      <label for="negative1">
+                        <input type="radio" value="radionegative" id="negative1" name="radioModel2">Negative</label>
+                      <label for="positive1">
+                        <input type="radio" value="radiopositive" id="positive1" name="radioModel2">Positive</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="border-left: 1px solid #000; border-right: 1px solid #000;">
+                      Occult Blood :
+                      <span style=" width:calc(65% - 150px); height: 20px;
+                      display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{Occultblood}} </span>
+                      <!-- {{Occultblood}} -->
+                      <label for="negative2">
+                        <input type="radio" value="radionegative1" id="negative2" name="radioModel3">Negative</label>
+                      <label for="positive2">
+                        <input type="radio" value="radiopositive1" id="positive2" name="radioModel3">Positive</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="border-bottom: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">Other :
+                      <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{other}} </span>
+                      <!-- {{other}} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="6" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">Remarks:
+                      <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{remarks}} </span>
+                      <!-- {{remarks}} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="border-bottom: 1px solid #000; border-left: 1px solid #000;">Checked by:
+                      <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{checked}} </span>
+                      <!-- {{checked}} -->
+                    </td>
+                    <td colspan="3" style="border-bottom: 1px solid #000; border-right: 1px solid #000;">Stamp & Signature :
+                      <span style=" width:calc(100% - 150px); height: 20px;
+                        display: inline-block; border-bottom: 1px dashed #000; outline: none;">{{signedby}} </span>
+                      <!-- {{signedby}} -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

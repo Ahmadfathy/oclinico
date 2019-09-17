@@ -1,0 +1,430 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/Maininvoice'> Invoice</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/Maininvoice'>
+                    <span> فاتورة</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> View Invoice</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span> عرض الفاتورة</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;Invoice Details</p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;
+                    <span>تفاصيل الفاتورة</span>
+                </p>
+            </div>
+            <div style="margin: 15px;">
+
+                <div class="col-sm-12 mt-5">
+
+                    <div class="text-right">
+                        <button (click)="print()" class="btn addgreen">
+                            <span class="ltr">Print</span>
+                            <span class="rtl">طباعة</span>
+                        </button>&nbsp;
+                        <button (click)="Sendemail()" class="btn addgreen">
+                            <span class="ltr">sendemail</span>
+                            <span class="rtl">ارسل بريد الكتروني</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="Print" style="width:100% !important">
+                    <div style="text-align: center !important">
+                        <img width="120" src="http://graylogic.net/OclinicoAPI/images/invoice-log.png" />
+                    </div>
+                    <p class="clinicname">
+                        <b>{{clinicname}}</b>
+                        <br />
+                        <span>{{clinicidnum}}</span>
+                    </p>
+                    <!-- first div  engilsh -->
+                    <div class="ltr" style="width: 100% !important; margin: 0px auto; font-family: arial; font-size: 14px; color: #212121;">
+                        <div style="font-family: 'Raleway', sans-serif; width: 100%; float: left; height: auto;">
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #eee; border-radius: 6px;
+                                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Date :&nbsp;&nbsp;&nbsp; {{date}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Time :&nbsp;&nbsp;&nbsp; {{time}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Invoice No. :&nbsp;&nbsp;&nbsp; {{invoicenum}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                File Number :&nbsp;&nbsp;&nbsp;{{filenumber}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 228px; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                <!-- Patient Name  -->
+                                &nbsp;&nbsp;&nbsp; {{pname}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Patient Mobile :&nbsp;&nbsp;&nbsp; {{pmobile}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                <!-- Sex. : -->
+                                &nbsp;&nbsp;&nbsp; {{gender}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Age :&nbsp;&nbsp;&nbsp; {{age}}
+                            </div>
+
+
+                            <div style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                    margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Doctor Name :&nbsp;&nbsp;&nbsp; {{pracname}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                    margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Doctor Code :&nbsp;&nbsp;&nbsp; {{doctcode}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                    margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Clinic VAT No :&nbsp;&nbsp;&nbsp; {{clinicvat}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                    margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                Clinic Code :&nbsp;&nbsp;&nbsp; {{cliniccode}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- first div  arabic -->
+
+                    <div class="rtl" style="width: 100% !important; margin: 0px auto; font-family: arial; font-size: 14px; color: #212121;">
+                        <div style="font-family: 'Raleway', sans-serif; width: 100%; float: left; height: auto;">
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                رقم الملف :&nbsp;&nbsp;&nbsp;{{filenumber}}
+                            </div>
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                فاتورة لا :&nbsp;&nbsp;&nbsp; {{invoicenum}}
+                            </div>
+
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                {{time}} : &nbsp;&nbsp;&nbsp; مرة
+                            </div>
+                            <div style="float: left; width: 230px; border: 1px solid #eee; border-radius: 6px;
+                                                margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                تاريخ :&nbsp;&nbsp;&nbsp; {{date}}
+                            </div>
+
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                    margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                {{pname}}
+                                <!-- : &nbsp;&nbsp;&nbsp; -->
+                                <!-- اسم المريض -->
+                            </div>
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                عمر :&nbsp;&nbsp;&nbsp; {{age}}
+                            </div>
+
+                            <div style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                        margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                {{gender}}
+                                <!-- : &nbsp;&nbsp;&nbsp; جنس  -->
+                            </div>
+
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                                    margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                موبايل المريض :&nbsp;&nbsp;&nbsp; {{pmobile}}
+                            </div>
+
+                            <div class="rtl" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                        margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                كود عيادة :&nbsp;&nbsp;&nbsp; {{cliniccode}}
+                            </div>
+
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                تقسيم :&nbsp;&nbsp;&nbsp; {{clinicvat}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                كود الطبيب :&nbsp;&nbsp;&nbsp; {{doctcode}}
+                            </div>
+                            <div class="ltr" style="float: left; width: 230px; border: 1px solid #ddd; border-radius: 6px;
+                            margin-top: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px; font-size: 12px">
+                                اسم الطبيب :&nbsp;&nbsp;&nbsp; {{pracname}}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                    <div style="margin-bottom: 14px; width: 100%; float: left;" class="table-responsive">
+                        <table style="width: 100%; border: 1px solid #ccc; border-collapse: collapse; line-height: 14px;"
+                            id="dataTable" cellpadding="10" cellspacing="10">
+                            <tr class="ltr">
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Sno</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Item</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Quantity</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Unit Price</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Discount</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Discount Amount</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Tax %</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">Total</td>
+                            </tr>
+                            <tr class="rtl">
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">سنو</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">سنو</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">سنو</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">سعر الوحدة
+                                </td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">خصم</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">مقدار الخصم</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">نسبة الضريبة</td>
+                                <td style="text-align: center; color: #fff; background-color: #3587d8;">المجموع</td>
+                            </tr>
+
+                            <tr *ngFor="let t of mytable;let i=index">
+                                <!-- [hidden]="showdata" -->
+                                <td style="border: 1px solid #ccc; text-align: center;">{{i+1}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.Item_Code}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.Quantity}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.Price}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.lbldiscount}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.discount_amnt}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.lbltaxper}}</td>
+                                <td style="border: 1px solid #ccc; text-align: center;">{{t.TotPrice}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div style="clear: both">
+                    </div>
+
+                    <div style="width: 100%; float: left; height: auto; margin-bottom: 20px;">
+                        <div class="ltr" style="float: left; width: 27%; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-bottom: 5px; margin-right: 12px; padding: 3px; font-family: 'Raleway', sans-serif;">
+                            <ul class="ltr" style="list-style: none; padding: 0; margin: 0px; text-align: left; font-size: 12px">
+                                <li style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 5px; background-color: #f1f1f1;
+                                        line-height: 20px">
+                                    <strong class="ltr">Sub - Total amount :</strong>
+                                    {{subtotal}}&nbsp;&nbsp;
+                                    <!-- {{currency}} -->
+                                </li>
+                                <li class="ltr" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 5px; background-color: #f1f1f1;
+                                        line-height: 20px">
+                                    <strong class="ltr">Discount :</strong>
+                                    {{discounttotal}}&nbsp;&nbsp;
+                                    <!-- {{currency}} -->
+                                </li>
+                                <li class="ltr" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 5px; background-color: #f1f1f1;
+                                        line-height: 20px">
+                                    <strong class="ltr">VAT :</strong>
+                                    {{Vatval}}
+
+                                </li>
+                                <li class="ltr" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 0px; background-color: #f1f1f1;
+                                        line-height: 20px; font-size: 12px">
+                                    <strong class="ltr">Grand Total :</strong>
+                                    {{grandtotal}}
+                                    &nbsp;&nbsp;
+                                    <!-- {{currency}} -->
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="rtl" style="float: left; width: 27%; border: 1px solid #ddd; border-radius: 6px;
+                        margin-top: 10px; margin-bottom: 5px; margin-right: 12px; padding: 3px; font-family: 'Raleway', sans-serif;">
+                            <ul class="rtl" style="list-style: none; padding: 0; margin: 0px; text-align: left; font-size: 12px">
+                                <li class="rtl" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 5px; background-color: #f1f1f1;
+                                line-height: 20px">
+
+                                    <strong class="rtl">الفرعية - المبلغ الإجمالي :</strong>
+
+
+
+                                    {{subtotal}}&nbsp;&nbsp;
+                                    <!-- {{currency}} -->
+                                </li>
+                                <li class="rtl" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 5px; background-color: #f1f1f1;
+                                line-height: 20px">
+
+                                    <strong class="rtl">خصم :</strong>
+                                    {{discounttotal}}&nbsp;&nbsp;
+                                    <!-- {{currency}} -->
+                                </li>
+                                <li class="rtl" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 5px; background-color: #f1f1f1;
+                                line-height: 20px">
+
+                                    <strong class="rtl">ضريبة :</strong> {{Vatval}} &nbsp;&nbsp;
+
+                                </li>
+                                <li class="rtl" style="border: 1px solid #eaeaea; padding: 5px 10px; margin-bottom: 0px; background-color: #f1f1f1;
+                                line-height: 20px; font-size: 12px">
+
+                                    <strong class="rtl">المبلغ الإجمالي :</strong>{{grandtotal}}
+                                    &nbsp;&nbsp;
+                                    <!-- {{currency}} -->
+                                </li>
+                            </ul>
+                        </div>
+                        <!--fourth english div-->
+                        <div class="ltr" style="float: left; width: 40%; margin-top: 10px; margin-bottom: 5px; margin-right: 4px;
+                                padding: 3px; font-size: 12px;">
+                            <div class="ltr" style="border: 1px solid #ddd; width: 100%; height: 24px; margin-top: 0px; margin-bottom: 10px;
+                                    margin-right: 0px; padding: 3px; font-size: 12px; font-family: 'Raleway', sans-serif;
+                                    height: auto;">
+                                Note:
+                                <br /> {{note}}
+                            </div>
+
+                            <div class="ltr" style="width: 100%; height: 24px; float: left; border: 1px #ddd solid; margin-top: 10px;
+                                    margin-bottom: 10px; margin-right: 0px; padding: 3px; font-size: 12px; font-family: 'Raleway', sans-serif;">
+                                Patient Signature:</div>
+                            <div class="ltr" style="width: 100%; height: 24px; float: left; border: 1px #ddd solid; margin-top: 10px;
+                                    padding: 3px; font-family: 'Raleway', sans-serif;">
+                                Employee Signature:</div>
+                            <div style="clear: both;">
+                            </div>
+                        </div>
+                        <!--fourth arabic div-->
+                        <div class="rtl" style="float: left; width: 40%; margin-top: 10px; margin-bottom: 5px; margin-right: 4px;
+                                padding: 3px; font-size: 12px; text-align: right;">
+                            <div class="rtl" style="border: 1px solid #ddd; width: 100%; height: 24px; margin-top: 0px; margin-bottom: 10px;
+                                    margin-right: 0px; padding: 3px; font-size: 12px; font-family: 'Raleway', sans-serif;
+                                    height: auto;">
+                                {{note}} : ملاحظة
+                            </div>
+
+                            <div class="rtl" style="width: 100%; height: 24px; float: left; border: 1px #ddd solid; margin-top: 10px;
+                                    margin-bottom: 10px; margin-right: 0px; padding: 3px; font-size: 12px; font-family: 'Raleway', sans-serif;">
+                                : بات . التوقيع </div>
+                            <div class="rtl" style="width: 100%; height: 24px; float: left; border: 1px #ddd solid; margin-top: 10px;
+                                    padding: 3px; font-family: 'Raleway', sans-serif;">
+                                : توقيع الموظف </div>
+                            <div style="clear: both;">
+                            </div>
+                        </div>
+                        <!--close fourth arabic div-->
+                        <div style="float: left; width: 25%; border: 1px solid #ddd; border-radius: 6px;
+                                margin-top: 10px; margin-left: 10px; margin-bottom: 5px; margin-right: 5px; padding: 3px">
+                            <table width="100%" class="table table-striped table-bordered table-advance" style="font-family: 'Raleway', sans-serif;
+                                    font-size: 13px;">
+                                <thead>
+                                    <tr class="ltr">
+                                        <th colspan="3" style="background-color: #f1f1f1; font-size: 13px;">
+                                            Payment By
+                                        </th>
+                                    </tr>
+                                    <tr class="rtl">
+                                        <th colspan="3" style="background-color: #f1f1f1; font-size: 13px;">
+                                            الدفع بواسطة
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="trpayments" *ngIf="paymentsshow" style="background-color: #f9f9f9;display: none">
+                                        <td class="ltr" colspan="3">
+                                            Payments Not Available
+                                        </td>
+                                    </tr>
+
+
+                                    <tr style="background-color: #f9f9f9;" *ngFor="let inv of viewinvoicetotal">
+                                        <td>{{inv.Paymodetype_Name}}
+
+                                        </td>
+                                        <td>
+                                            :
+                                        </td>
+                                        <td>
+                                            <span>
+
+                                                {{inv.Amnt}} {{currency}}
+                                            </span>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                    <div style="margin-top: 10px; width: 100%; float: left; height: auto;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-family: 'Raleway', sans-serif;
+                                        font-size: 12px; line-height: 30px;">
+                            <tr>
+                                <td align="left" valign="top">
+                                    {{myaddress}}
+                                </td>
+                                <td align="right" valign="top">
+                                    {{myarabicaddress}}
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+
+                    <div style="width: 100%; height: auto; float: left;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="6%" align="left" valign="top">
+                                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png" width="30" height="30" />
+                                </td>
+                                <td width="25%" align="left" valign="middle">
+                                    <span>{{mywebsite}}</span>
+                                </td>
+                                <td width="6%" align="left" valign="top">
+                                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png" width="30" height="30" />
+                                </td>
+                                <td width="25%" align="left" valign="middle">
+                                    <span> {{myemail}}</span>
+                                </td>
+                                <td width="6%" align="left" valign="top">
+                                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png" width="30" height="30" />
+                                </td>
+                                <td width="25%" align="left" valign="middle">
+                                    <span>{{mycontact}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,133 @@
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+
+<h4 class="ltr">Edit Insurance Details</h4>
+<h4 class="rtl">Edit Insurance Details</h4>
+
+  <div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/InsuranceDetails'>Insurance Details</a></li>
+            <li class="ltr"><a class="nav-link"> Edit Insurance Details</a></li>
+            <li class="rtl"><a class="nav-link"  routerLink='/settings'><span > إعدادات</span></a></li>
+            <li class="rtl"><a class="nav-link"><span>Edit Insurance Details</span></a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/InsuranceDetails'><span>تفاصيل التأمين</span></a></li>
+          
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="editinsurance">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Insurance Details</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Insurance Details</h4>
+        </div>
+        <div class="card-body">
+          <div class="row p-t-20">
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Category&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">فئة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select formControlName="inscategory" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                <option label="select" disabled></option>
+                <option *ngFor="let t of insucategory" [value]="t.Category_Name">{{t.Category_Name}}</option>
+              </select>
+              <select formControlName="inscategory" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option *ngFor="let t of insucategory" [value]="t.Category_Name">{{t.Category_Name}}</option>
+              </select>
+              <span class="help-block" *ngIf="formErrors.inscategory" style="color: red">
+                {{formErrors.inscategory}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Company Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم الشركة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="compname" formControlName="compname" [ngClass]="{'has-error' :formErrors.compname}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.compname" style="color: red">
+                {{formErrors.compname}}</span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Phone No&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">رقم الهاتف&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="phno" formControlName="phno" [ngClass]="{'has-error' :formErrors.phno}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.phno" style="color: red">
+                {{formErrors.phno}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Email Id&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">البريد الإلكتروني&nbsp;<i class="fa fa-star mystar"></i></label>
+              <input id="emailid" formControlName="emailid" [ngClass]="{'has-error' :formErrors.emailid}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.emailid" style="color: red">
+                {{formErrors.emailid}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Type&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">نوع&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select formControlName="instype" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                <option label="select" disabled></option>
+                <option value="Grade A"> Grade A </option>
+                <option value="Grade B"> Grade B </option>
+              </select>
+              <select formControlName="instype" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option value="Grade A"> Grade A </option>
+                <option value="Grade B"> Grade B </option>
+              </select>
+              <span class="help-block" *ngIf="formErrors.instype" style="color: red">
+                {{formErrors.instype}}
+              </span>
+            </div>
+            <div class="col-md-4"><br>
+              <label class="form-control-label ltr">Status&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+              <select formControlName="status" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                <option label="select" disabled></option>
+                <option value="Active">Active</option>
+                <option value="InActive">Inactive</option>
+              </select>
+              <select formControlName="status" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                <option class="rtl" label="تحديد" disabled></option>
+                <option value="Active">Active</option>
+                <option value="InActive">Inactive</option>
+              </select>
+              <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                {{formErrors.status}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions text-center submitBtns">
+          <div class="card-body ">
+            <button type="submit" class="btn btn-md btn-warning ltr" (click)="editinssubmit()"
+              style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              Update</button>
+            <button type="submit" class="btn btn-md btn-warning rtl" (click)="editinssubmit()">
+              <i class="fa fa-check-circle"></i>
+              تحديث</button>
+            <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/InsuranceDetails']">
+              <i class="fa fa-ban"></i>
+              Cancel</button>
+            <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/InsuranceDetails']" style="margin-right:10px;">
+              <i class="fa fa-ban"></i>
+              إلغاء</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

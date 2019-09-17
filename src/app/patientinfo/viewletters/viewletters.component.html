@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+      <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+      <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+
+<div class="col-md-12">
+    <h4 class="ltr">Letters</h4>
+    <h4 class="rtl">حروف</h4>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr"><a class="nav-link"> Patient Details</a></li>
+      <li class="rtl"><a class="nav-link"><span>تفاصيل المريض</span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a></li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/letters' [queryParams]="{Refrral:patientId}">Letters </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/letters' [queryParams]="{Refrral:patientId}"><span>حروف</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link"> View Letter </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link"><span>عرض الرسالة</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+  <div class="col-md-9">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Letters</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;حروف</p>
+    </div>
+    <div style="text-align: right !important">
+      <button class=" btn btn-success ltr" (click)="print()">
+        <i class="icon-print icon-white i_btn"></i>Print</button>
+      <button class=" btn btn-success rtl" (click)="print()">
+        <i class="icon-print icon-white i_btn"></i>طباعة</button>
+    </div>
+    <div *ngFor="let patient of table">
+      <div [innerHTML]="description"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="DivIdToPrint" style="display: none;">
+  <div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="top">
+          <td colspan="2">
+            <table>
+              <tbody>
+                <tr>
+                  <td style="text-align: center">
+                    <img src="assets//images/invoice-log.png" style="width:100%; max-width:150px;">
+                    <p style="font-size: 14px;
+                              margin: 0px;
+                              color: #005a85;
+                              padding: 0;
+                              position: relative;
+                              top: -5px;
+                              font-weight: bold;">المركز الطبي الجامعي</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr class="information">
+          <td colspan="12">
+            <table>
+              <tbody>
+                <tr>
+                  <td >
+                    <div *ngFor="let patient of table">
+                      <div [innerHTML]="description"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <br>
+        <br>
+        <tr class="bottom-line">
+          <td colspan="3">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/Inter-icon.png">
+                    <span> {{mywebsite}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/mail-icon.png">
+                    <span> {{myemail}}</span>
+                  </td>
+                  <td class="text-center">
+                    <img src="http://account.oclinico.com/Forms/img/phone-icon.png">
+                    <span> {{mycontact}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

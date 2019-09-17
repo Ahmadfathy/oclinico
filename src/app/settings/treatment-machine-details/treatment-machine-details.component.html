@@ -1,0 +1,94 @@
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<h4 class="ltr">Treatment Machine Details</h4>
+<h4 class="rtl">تفاصيل آلة العلاج</h4>
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+      <ul id="breadcrumb">
+          <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+          <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+          <li class="ltr"><a class="nav-link" >Treatment Machine Details</a></li>
+           
+           <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+           <li class="rtl"> <a class="nav-link " ><span>تفاصيل آلة العلاج</span></a></li>
+        
+      </ul>
+  </div>
+</div>
+  
+
+
+  <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Treatment Machine Details</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل آلة العلاج</p>
+              </div>
+    <div class="container"> 
+    
+      <div class="text-right justify-content-between">
+        
+          <span class="ltr"> <a  class="nav-link" style="display: inline-block;" routerLink='/Add_Treat_MachineDetails' ><i class="fa fa-fw fa-user"></i> Add</a></span>    
+          <span class="rtl"> <a  class="nav-link" style="display: inline-block;" routerLink='/Add_Treat_MachineDetails' ><i class="fa fa-fw fa-user"></i> إضافة</a></span>
+        </div>
+    
+    </div>
+    
+    <div class="container">
+    <table  class="table table-hover table-bordered" cellspacing="0">
+        <thead class="headrow ltr">
+            <tr >
+                <th>Treatment Name</th>
+                <th>Machine Name</th>
+                 <th>Status</th>
+                 <th>Transaction Date</th>
+                <th>Edit</th>
+            </tr>
+          </thead>
+      <thead class="headrow rtl">
+        <tr >
+          
+            <th>اسم العلاج</th>
+            <th>إسم الألة</th>
+             <th>الحالة</th>
+             <th>تاريخ العملية</th>
+            <th>تعديل</th>
+        </tr>
+      </thead>
+     
+      <tbody>
+          <tr *ngFor="let t of treatmechineData">
+         
+              <td>{{t.Treatment_Name}}</td>
+              <td>{{t.Machine_Name}}</td>
+              <td>{{t.Status}}</td>
+              <td>{{t.Trans_date}}</td>
+              <td style="display:flex;"> 
+                  
+                
+                <span><a  class="nav-link"   [routerLink]="['/Edit_Treat_MachineDetails']" [queryParams]="{id:t.sno}"><i class="fa fa-pencil-alt text-info"></i> </a></span>          
+              </td>
+            </tr>
+      </tbody>
+    </table>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  
+  
+  
+    
+    
+  
+  

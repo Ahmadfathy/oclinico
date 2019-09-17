@@ -1,0 +1,36 @@
+.form-control {
+    border: 1px solid darkgray;
+    background: #f2f2f2;
+    border-radius: 8px;
+  }
+  th{
+    background-color:  #4a87ee;
+    color: white;
+  }
+  li{
+    padding: 4px;
+  }
+
+  #save{
+    background:    #1588ef;
+background:    linear-gradient(#1588ef, #4498e5);
+border-radius: 5px;
+padding:       5px 47px;
+color:         #ffffff;
+display:       inline-block;
+font:          normal bold 17px/1 "Ubuntu", sans-serif;
+text-align:    center;
+text-shadow:   1px 1px #000000;  
+  }
+
+  #update{
+    background:    #1588ef;
+    background:    linear-gradient(#1588ef, #4498e5);
+    border-radius: 5px;
+    padding:       5px 47px;
+    color:         #ffffff;
+    display:       inline-block;
+    font:          normal bold 17px/1 "Ubuntu", sans-serif;
+    text-align:    center;
+    text-shadow:   1px 1px #000000;      
+  }

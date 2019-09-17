@@ -1,0 +1,406 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/reports'> Reports</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/Reportsforcheckup'><span></span>Request For Check Up</a></li>
+
+      <li class="rtl"><a class="nav-link" routerLink='/reports'><span> تقارير</span></a></li>
+      <li class="rtl"><a class="nav-link" routerLink='/Reportsforcheckup'><span>طلب كشف طبي</span></a></li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Request For Check Up</h4>
+        <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;طلب كشف طبي</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div style="float:right;margin-bottom: 20px;" class="ltr">
+                  <button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+                </div>
+                <div style="float:left;margin-bottom: 20px;" class="rtl">
+                  <button class="btn btn-info rtl" (click)="print()"><i class="icon-print icon-white i_btn"></i>طباعة</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="invoice-box">
+          <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="direction: rtl;">
+
+            <div class="top1">
+
+              <div class="left">
+
+                <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                  <input type="text" [(ngModel)]="p1" value=" ل " style=" width:170px; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                  <!--                            <div class="dotsdiv"> ل </div>-->
+                  <div style="width: 33%; height: auto; float: right; padding-top: 6px;"> الرقم : &nbsp; </div>
+                </div>
+
+                <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                  <input type="text" [(ngModel)]="p2" value=" ل " style=" width:170px; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                  <!--                                <div class="dotsdiv"> ل </div>-->
+                  <div style="width: 33%; height: auto; float: right; padding-top: 6px;"> التاريخ : &nbsp; </div>
+                </div>
+
+
+                <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                  <input type="text" [(ngModel)]="p3" value=" ل " style=" width:170px; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                  <!--                            <div class="dotsdiv">  ل </div>-->
+                  <div style="width: 33%; height: auto; float: right; padding-top: 6px;"> المرفقات : &nbsp; </div>
+                </div>
+              </div>
+
+              <div class="center"> <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;">
+              </div>
+              <div class="right" style="text-align: center;">
+                المملكة العربية السعودية
+                أوزارة التعليم
+                <br>
+                <strong> الجامعة الاسلامية بالمدينة المنورة</strong>
+                المركز الطبي الجامعي
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="direction: rtl; margin-bottom: 10px;">
+
+            <div class="top2">
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="width: 100%; height:auto; float:left; font-weight: bold; text-align: center; font-size: 30px;">
+                  طلب كشف طبي
+                </div>
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 16%; float: right;"> المكرم الدكتور: &nbsp; </div>
+                <div style="width: 30%; float: right;">
+                  <input type="text" [(ngModel)]="p4" value=" ل " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                </div>
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="margin-top: 4%;">
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 26%; float: right; margin-right: 12%;"> السلام عليكم ورحمه الله وبركاته:
+                  &nbsp; </div>
+                <!-- <div style="width: 16%; float: right;">
+                  <input type="text" [(ngModel)]="p5" value=" ل " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                </div> -->
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 26%; float: right; margin-right: 8%;"> نأمل إجراء الكشف الطبي على:
+                  &nbsp; </div>
+                <div style="width: 16%; float: right;">
+                  <input type="text" [(ngModel)]="p6" value=" ل " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                </div>
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="margin-top: 5%;">
+                <div style="width: 5%; float: right; margin-right: 10%;"> <input type="checkbox" value="check1" id="checkup1"
+                    [(ngModel)]="checkval" (change)="checkboxchange($event,'checkup1')" /><label for="checkup1">
+                  </label>
+
+                </div>
+                <div style="width: 10%; float: right; margin-left: 1%;">الموظف /</div>
+                <div style="width: 30%; float: right;"> <input type="text" value=" ل " [(ngModel)]="p7" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                </div>
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="width: 5%; float: right; margin-right: 10%; margin-left: 1%;"> <input type="checkbox" value="check2"
+                    id="checkup2" [(ngModel)]="checkval2" (change)="checkboxchange($event,'checkup2')" /><label for="checkup2">
+                  </label></div>
+                <div style="width: 10%; float: right;"> المستخدم / </div>
+                <div style="width: 30%; float: right;"> <input type="text" value=" ل " [(ngModel)]="p8" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                </div>
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="width: 5%; float: right; margin-right: 10%;"> <input type="checkbox" value="check3" id="checkup3"
+                    [(ngModel)]="checkval3" (change)="checkboxchange($event,'checkup3')" /><label for="checkup3">
+                  </label></div>
+                <div style="width: 10%; float: right; margin-left: 1%;"> العامل / </div>
+                <div style="width: 30%; float: right;">
+                  <input type="text" value=" ل " [(ngModel)]="p9" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                </div>
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="margin: 2% 0 6% 0;">
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 20%; float: right; margin-right: 8%;"> وإفادتنا بالنتيجة علماً بأنة
+                  &nbsp; </div>
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 34%; float: right;"> </div>
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="width:32px; float: right; margin: 0px 10% 0px 1%;"> <input type="checkbox" value="check4"
+                    id="checkup4" [(ngModel)]="checkval4" (change)="checkboxchange($event,'checkup4')" /><label for="checkup4">
+                  </label></div>
+
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 172px; float: right;"> انقطع عن العمل اعتبارا من: &nbsp; </div>
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 320px; float: right;">
+                  <input type="number" value=" ل " [(ngModel)]="p10" style=" width:25px; float: right; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                  <span class="spancls"></span><input type="number" [(ngModel)]="p11" value=" ل " style=" width: 25px; float: right; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                  <span class="spancls" style="margin-left: 4%;"></span>
+                  <input type="number" value=" ل " [(ngModel)]="p14" style=" width: 25px; border:none; float: right; border-bottom: 2px dotted #000; outline: none;" />
+                   </div>
+
+              </div>
+
+              <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                <div style="width: 32px; float: right; margin-right: 10%; margin-left: 1%;"> <input type="checkbox"
+                    value="check5" id="checkup5" [(ngModel)]="checkval5" (change)="checkboxchange($event,'checkup5')" /><label
+                    for="checkup5"> </label></div>
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 20%; float: right;"> قائم بالعمل حتى تاريخه. </div>
+                <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 30%; float: right;"> </div>
+
+              </div>
+
+              <div style="width: 48%; height:auto; float:left; margin: 9% 0 4% 0;">
+
+                <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 20px 0px; text-align: center;">
+                  المدير المباشر
+                </div>
+
+                <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                  <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 28%; float: right;"> وظيفتة: </div>
+                  <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 68%; float: right; margin-right: 3%;"> المشرف على المركز الطبي</div>
+
+                </div>
+
+                <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+                  <div class="et1" style="width: 22%; float: right;">توقيعة: </div>
+                  <div style="width: 60%; float: right; margin-right: 3%;">
+                    <input type="text" [(ngModel)]="p13" value=" ل " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center">
+            <button type="submit" class="btn btn-info ltr" (click)="submit()" style="margin-top:10px;"  *ngIf="buttonshow">
+              
+              Update</button>
+            <button type="submit" class="btn btn-info rtl" (click)="submit()" style="margin-top:10px;"  *ngIf="buttonshow">
+              
+              تحديث</button>
+          </div>
+          <div style="clear: both;"> </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- -------------------------print----------------------------------- -->
+
+
+<div class="invoice-box" id="DivIdToPrint" style="display: none;">
+  <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px; direction: rtl;">
+
+    <div style="width: 806px; float: left; height: auto; border: solid 2px #333; padding: 15px;">
+
+      <div style="width: 35%; height: auto; float: left;">
+
+        <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style=" width:170px; border:none; 
+                  float:left;color: #000;text-align: right;
+                  border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p1}}</div>
+
+          <div style="width: 33%; height: auto; float: right; padding-top: 6px;"> الرقم : &nbsp; </div>
+        </div>
+
+        <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+
+          <div style=" width:170px; border:none; float:left;color: #000;text-align: right; border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p2}}</div>
+          <div style="width: 33%; height: auto; float: right; padding-top: 6px;"> التاريخ : &nbsp; </div>
+        </div>
+
+
+        <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style=" width:170px; float:left;color: #000;text-align: right; border:none; border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p3}}</div>
+          <div style="width: 33%; height: auto; float: right; padding-top: 6px;"> المرفقات : &nbsp; </div>
+        </div>
+      </div>
+
+      <div style="width: 35%; height: auto; float: left; text-align: center;"> <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;"> </div>
+
+      <div style="text-align: center; width: 28%; height: auto; float: right;">
+        المملكة العربية السعودية
+        أوزارة التعليم
+        <br>
+        <strong> الجامعة الاسلامية بالمدينة المنورة</strong>
+        المركز الطبي الجامعي
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px; direction: rtl; margin-bottom: 10px;">
+
+
+    <div style="width: 806px; float: left; height: auto; border: solid 2px #333; padding: 15px;">
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 100%; height:auto; float:left; font-weight: bold; text-align: center; font-size: 30px;">
+          طلب كشف طبي
+        </div>
+      </div>
+
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 16%; float: right;"> المكرم الدكتور: &nbsp; </div>
+        <div style="width: 30%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p4}}
+        </div>
+
+      </div>
+
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="margin-top: 4%;">
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 26%; float: right; margin-right: 12%;"> السلام عليكم ورحمه الله وبركاته: &nbsp;
+        </div>
+        <!-- <div style="width: 16%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p5}}
+        </div> -->
+
+      </div>
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 26%; float: right; margin-right: 8%;"> نأمل إجراء الكشف الطبي على: &nbsp; </div>
+        <div style="width: 16%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p6}}
+        </div>
+
+      </div>
+
+
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="margin-top: 5%;">
+        <div style="width: 5%; float: right; margin-right: 10%;"> <input type="checkbox" id="checkup11" /><label for="checkup11">
+          </label></div>
+
+        <div style="width: 10%; float: right;margin-left: 1%;">الموظف /</div>
+        <div style="width: 30%; float: right;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p7}}
+        </div>
+
+      </div>
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 5%; float: right; margin-right: 10%;"> <input type="checkbox" value="" id="checkup12" /><label
+            for="checkup2"> </label></div>
+        <div style="width: 10%; float: right; margin-left: 1%;"> المستخدم / </div>
+        <div style="width: 30%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p8}}
+        </div>
+
+      </div>
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 5%; float: right; margin-right: 10%;"> <input type="checkbox" value="" id="checkup13" /><label
+            for="checkup3"> </label></div>
+        <div style="width: 10%; float: right; margin-left: 1%;"> العامل / </div>
+        <div style="width: 30%; float: right;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p9}}
+        </div>
+
+      </div>
+
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;" style="margin: 2% 0 6% 0;">
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 20%; float: right; margin-right: 8%;"> وإفادتنا بالنتيجة علماً بأنة &nbsp; </div>
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 34%; float: right;"> </div>
+
+      </div>
+
+
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 25px; float: right; margin: 0px 10% 0px 1%;"> <input type="checkbox" value="" id="checkup14" /><label
+            for="checkup4"> </label></div>
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 182px; float: right;"> انقطع عن العمل اعتبارا من: &nbsp; </div>
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 225px; float: right;">
+          <span style="min-height: 25px; width: 45px; border:none; border-bottom: 2px dotted #000; outline: none;color: #000;float:right">{{p10}}</span>
+          <span class="spancls"></span>
+          <span style=" width: 40px; min-height: 25px; border:none; border-bottom: 2px dotted #000; float: right; outline: none;color: #000;">{{p11}}</span>
+
+          <span class="spancls" style="margin-left: 4%;"></span>
+          <span style=" width: 40px; min-height: 25px; border:none; border-bottom: 2px dotted #000; float: right; outline: none;color: #000;">{{p14}}</span>
+          14ه </div>
+
+      </div>
+
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 32px; float: right; margin: 0px 10% 0px 1%;"> <input type="checkbox" value="" id="checkup15" /><label
+            for="checkup5"> </label></div>
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 20%; float: right;"> قائم بالعمل حتى تاريخه. </div>
+        <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 30%; float: right;"> </div>
+
+      </div>
+
+
+
+
+      <div style="width: 48%; height:auto; float:left; margin: 9% 0 4% 0;">
+
+        <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 20px 0px; text-align: center;">
+          المدير المباشر
+        </div>
+
+        <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 28%; float: right;"> وظيفتة: </div>
+          <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 68%; float: right; margin-right: 3%;"> المشرف على المركز الطبي</div>
+
+        </div>
+
+
+        <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="height: auto; padding-top: 6px; text-align: right;" style="width: 22%; float: right;">توقيعة: </div>
+          <div style="width: 60%; float: right; margin-right: 3%;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p13}}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div style="clear: both;"> </div>
+
+</div>

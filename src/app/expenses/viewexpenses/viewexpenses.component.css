@@ -1,0 +1,28 @@
+
+
+
+  .table-hover td{
+    border-left: 1px solid #ddd;
+  }
+.table{
+  width: 100%;
+  display: table;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  /* border-collapse: separate; */
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+table th{
+  background-color: #4a87ee;
+  color: white;
+  text-align: center;  
+  border-left: 1px solid #ddd;
+}
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  /* text-align: left; */
+  /* vertical-align: top; */
+  border-top: 1px solid #ddd;
+}

@@ -1,0 +1,74 @@
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+  </div>
+  <h4 class="ltr">Follow Ups</h4>
+  <h4 class="rtl">موعد متابع</h4>
+
+  
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb">
+                <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+                <li class="ltr"><a class="nav-link" >Follow Ups</a></li>
+                
+                <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+                <li class="rtl"> <a class="nav-link "><span>موعد متابع</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+              <div class="card-header">
+                  <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Follow Ups</p>
+                  <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;موعد متابع</p>
+                </div>
+      <div class="container"> 
+      
+        <div class="text-right justify-content-between">
+          
+            <span class="ltr"> <a  class="nav-link" style="display: inline-block;" routerLink='/AddFollowUps' ><i class="fa fa-fw fa-user"></i> Add</a></span>    
+            <span class="rtl"> <a  class="nav-link" style="display: inline-block;" routerLink='/AddFollowUps' ><i class="fa fa-fw fa-user"></i> إضافة</a></span>
+          </div>
+      
+      </div>
+      
+      <div class="container">
+      <table  class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr">
+              <tr>
+                  <th>Doctor</th>
+                  <th>No.of Days</th>
+              </tr>
+            </thead>
+        <thead class="headrow rtl">
+          <tr >
+              
+             <th>طبيب</th>
+             <th>لا أيام</th>
+          </tr>
+        </thead>
+       
+        <tbody>
+            <tr *ngFor="let client of followupdetails">
+                <!-- <td>	<input type="checkbox" [id] = "client.refid" (change)="selcatvalue(client.refid)" ></td> -->
+                <td>{{client.Doctor}}</td>
+                <td>{{client.Follow_Days}}</td>
+              </tr>
+        </tbody>
+      </table>
+      </div>
+      
+      </div>
+      </div>
+      </div>
+
+

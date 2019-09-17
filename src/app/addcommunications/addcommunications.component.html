@@ -1,0 +1,269 @@
+<!-- <div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+  <div class="spinner" style="margin: 100px auto !important;">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div> -->
+<!-- <h3 class="ltr">Add Communication</h3>
+<h3 class="rtl">إضافة المحادثات</h3> -->
+
+<div class="container editcontainer"> 
+  <div class="row">
+      <div class="col-md-12">
+        
+    <ul id="breadcrumb" class="aligncls">
+      <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+      <li class="rtl"><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> إعدادات</a></li>
+      <li class="ltr"><a class="nav-link"  routerLink='/Communication'><span ></span>Communications</a></li>
+      <li class="rtl"><a class="nav-link"  routerLink='/Communication'><span ></span>التواصل</a></li>
+  
+    </ul>
+  </div>
+</div>
+</div>
+
+
+
+<form [formGroup]="addcommunication">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12">
+          <div class="card">
+              <div class="card-header">
+                  <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Communication</h4>
+                  <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة المحادثات</h4>
+                </div>
+              <div class="card-body">
+                  <div class="row">
+                                         
+                     
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.clinicname}">
+                          <label class="form-control-label ltr">Clinic Name</label>
+                          <label class="form-control-label rtl">اسم العيادة</label>
+                          <input type="text" class="form-control" disabled placeholder="clinic name" formControlName="clinicname"  (blur)="checkValidationErrors()">
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.clinicname">
+                            {{formErrors.clinicname}}
+                          </span>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6" [ngClass]="{'has-error' : formErrors.smsemail}">
+                        <label class="mr-sm-2" for="title">&nbsp;</label>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio11" name="smsemail" class="custom-control-input" value = "sms" formControlName="smsemail"  (change) = "radioselection($event)">
+                            <label class="custom-control-label" for="customRadio11">SMS</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio22" name="smsemail" class="custom-control-input" value = "email" formControlName="smsemail" (change) = "radioselection($event)">
+                            <label class="custom-control-label" for="customRadio22">Email</label>
+                        </div>
+                        <span class="help-block errorcolorcls" *ngIf="formErrors.smsemail">
+                            {{formErrors.smsemail}}
+                          </span>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.staffpatient}">
+                              <label class="mr-sm-2 ltr" for="title">Select Staff/Patient</label>
+                              <label class="mr-sm-2 rtl" for="title">حدد الموظفين / المريض</label>
+                              
+                                    <select value="Select" name="title" formControlName="staffpatient"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                                      <option value="select" disabled>-- select --</option>
+                                      <option value="Staff">Staff </option>
+                                      <option value="Patient">Patient</option>
+                                    </select>
+                                    <select value="Select" name="title" formControlName="staffpatient"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                                        <option value="select" disabled>-- اختار --</option>
+                                      <option value="Staff">Staff </option>
+                                      <option value="Patient">Patient</option>
+                                    </select>
+                                    <span class="help-block errorcolorcls" *ngIf="formErrors.staffpatient">
+                                      {{formErrors.staffpatient}}
+                                    </span>
+                                    <span class="errorcolorcls" *ngIf="showerrorpationt">Please Select Staff/Patient</span>
+                          </div>
+                      </div>
+                   </div>
+                   <div class="row" *ngIf="showstaff">
+                      <div class="col-md-6">
+                          <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.staffval}">
+                              <label class="mr-sm-2 ltr" for="title">Select Staff</label>
+                              <label class="mr-sm-2 rtl" for="title">حدد الموظفين</label>
+                              
+                                    <select value="Select" name="title" formControlName="staffval"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" (change)="staffchange($event)"> 
+                                      <option value="select" disabled>-- select --</option>
+                                      <option value="manager">manager</option>
+                                      <option value="Doctor">Doctor</option>
+                                      <option value="Warehouse Manager">Warehouse Manager</option>
+                                      <option value="LAB">LAB</option>
+                                    </select>
+                                    <select value="Select" name="title" formControlName="staffval"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" (change)="staffchange($event)"> 
+                                        <option value="select" disabled>-- اختار --</option>
+                                      <option value="manager">manager</option>
+                                      <option value="Doctor">Doctor</option>
+                                      <option value="Warehouse Manager">Warehouse Manager</option>
+                                      <option value="LAB">LAB</option>
+                                    </select>
+                                    <span class="help-block errorcolorcls" *ngIf="formErrors.staffval">
+                                      {{formErrors.staffval}}
+                                    </span>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="row" *ngIf="patientinf">
+                            <div class="col-md-6">
+                              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.doctreat}">
+                                <label class="mr-sm-2 ltr" for="title">Select Doctor/Treatment</label>
+                                <label class="mr-sm-2 rtl" for="title">حدد الدكتور / العلاج</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio12" name="doctreat" class="custom-control-input" value = "Doctor" formControlName="doctreat"  (change) = "doctreatselection($event)">
+                                    <label class="custom-control-label" for="customRadio12">Doctor</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio23" name="doctreat" class="custom-control-input" value = "Treatment" formControlName="doctreat" (change) = "doctreatselection($event)" >
+                                    <label class="custom-control-label" for="customRadio23">Treatment</label>
+                                </div>
+                                <span class="help-block errorcolorcls" *ngIf="formErrors.doctreat">
+                                    {{formErrors.doctreat}}
+                                  </span>
+                                </div>
+                            </div>
+
+                       
+                      </div>
+                      <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.branchname}">
+                                    <label class="mr-sm-2 ltr" for="title">Branches</label>
+                                    <label class="mr-sm-2 rtl" for="title">الفروع</label>
+                                    <span class="p-b-5" *ngFor="let bval of branchnames">
+                                           
+                                            <!-- <div class="custom-control custom-radio">
+                                                    <input type="checkbox" id="customRadio22" name="smsemail" class="custom-control-input" value = "email" formControlName="smsemail" (change) = "radioselection($event)">
+                                                    <label class="custom-control-label" for="customRadio22">Email</label>
+                                                </div> -->
+
+                                            <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" [id]="bval.Branch_id" name="branchname" (change)="selcatvalue(bval.Branch_id)" class="custom-control-input" value ={{bval.Branch_id}} formControlName="branchname">
+                                                    <label class="custom-control-label" for={{bval.Branch_id}}>{{bval.Branch_Name}}</label>
+                                            </div>
+                                           
+                                            <!-- <div class="custom-control custom-checkbox custom-control-inline" style="width:100%;text-transform: uppercase">
+                                                <input type="checkbox" class="custom-control-input" [id] = "mcat.CatId" (change)="selcatvalue(mcat.CatId)" [checked] = "mcat.CatId == checkedval">
+                                                <label class="custom-control-label" for =  {{bval.Branch_id}}>{{bval.Branch_Name}}</label>
+                                        </div> -->
+                                    </span>
+                                    <span class="help-block errorcolorcls" *ngIf="formErrors.branchname">
+                                            {{formErrors.branchname}}
+                                          </span> 
+                                </div>
+                            </div>
+                          </div>
+                   <div class="row" *ngIf="showmob">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.mobno}">
+                          <label class="form-control-label ltr">Mobile No</label>
+                          <label class="form-control-label rtl">رقم الهاتف المحمول</label>
+                          <textarea type="text" class="form-control"  formControlName="mobno"  (blur)="checkValidationErrors()"></textarea>
+                          
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.mobno">
+                            {{formErrors.mobno}}
+                          </span>
+                      </div>
+                    </div>
+                   <div class="row" *ngIf="showmailinfo">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.mto}">
+                          <label class="form-control-label ltr">To</label>
+                          <label class="form-control-label rtl">الى</label>
+                          <textarea type="text" class="form-control"  formControlName="mto"  (blur)="checkValidationErrors()"></textarea>
+                          
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.mto">
+                            {{formErrors.mto}}
+                          </span>
+                      </div>
+                    </div>
+                   <div class="row" *ngIf="showmailinfo">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.subject}">
+                          <label class="form-control-label ltr">Subject</label>
+                          <label class="form-control-label rtl">موضوع</label>
+                          <textarea type="text" class="form-control"  formControlName="subject"  (blur)="checkValidationErrors()"></textarea>
+                          
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.subject">
+                            {{formErrors.subject}}
+                          </span>
+                      </div>
+                    </div>
+                   <div class="row" *ngIf="showmob">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.msg}">
+                          <label class="form-control-label ltr">Message</label>
+                          <label class="form-control-label rtl">الرسالة</label>
+                          <textarea type="text" class="form-control"  formControlName="msg"  (keyup)="meslength()" (blur)="checkValidationErrors()"></textarea>
+                          
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.msg">
+                            {{formErrors.msg}}
+                          </span><br>
+                          <span class="ltr">Message Text Count &nbsp;:&nbsp;{{msgcountval}}</span><br>
+                          <span class="rtl">عدد الرسائل النصية &nbsp;:&nbsp;{{msgcountval}}</span><br>
+                          <span class="ltr">No.of Messages &nbsp;:&nbsp;{{noofmsgs}}</span>
+                          <span class="rtl">عدد الرسائل &nbsp;:&nbsp;{{noofmsgs}}</span>
+                      </div>
+                    </div>
+                   <div class="row" *ngIf="showmailinfo">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.msgmail}">
+                          <label class="form-control-label ltr">Message</label>
+                          <label class="form-control-label rtl">الرسالة</label>
+                          <textarea type="text" class="form-control"  formControlName="msgmail"  (blur)="checkValidationErrors()"></textarea>
+                          
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.msgmail">
+                            {{formErrors.msgmail}}
+                          </span>
+                      </div>
+                    </div>
+                   <div class="row" *ngIf="showmob">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.avlmsg}">
+                          <label class="form-control-label ltr">Available Messages</label>
+                          <label class="form-control-label rtl">الرسائل المتاحة</label>
+                          <input type="text" class="form-control" disabled  formControlName="avlmsg"  (blur)="checkValidationErrors()">
+                          
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.avlmsg">
+                            {{formErrors.avlmsg}}
+                          </span>
+                    </div>
+                    </div>
+                   <div class="row" *ngIf="showmob">
+                      <div class="col-md-6" [ngClass]="{'has-error' : formErrors.sendmsg}">
+                          <label class="form-control-label ltr">sending Messages</label>
+                          <label class="form-control-label rtl">إرسال الرسائل</label>
+                          <!-- <text type="text" class="form-control"  formControlName="sendmsg"  (blur)="checkValidationErrors()"> -->
+                                <input type="text" class="form-control" disabled  formControlName="sendmsg"  (blur)="checkValidationErrors()">
+                          <span class="help-block errorcolorcls" *ngIf="formErrors.sendmsg">
+                            {{formErrors.sendmsg}}
+                          </span>
+                    </div>
+                    </div>
+                
+                <div class="row mt-5">
+                    <div class="col-md-12 text-center submitBtns">
+                        <button type="submit" class="btn btn-md btn-warning ltr" (click)="addcommunicationsubmit()" style="margin-right:10px;">
+                            <i class ="fa fa-check-circle"></i>
+                             Submit</button>
+                        <button type="submit" class="btn btn-md btn-warning rtl" (click)="addcommunicationsubmit()" >
+                            <i class ="fa fa-check-circle"></i>
+                            إرسل</button>
+                        <button type="submit" class="btn btn-md btn-success ltr" (click)="addcommunicationcancle()">
+                                <i class ="fa fa-ban"></i>
+                             Cancel</button>
+                        <button type="submit" class="btn btn-md btn-success rtl" (click)="addcommunicationcancle()" style="margin-right:10px;">
+                                <i class ="fa fa-ban"></i>
+                                إلغاء</button>
+                    </div>
+                </div>  
+              </div>
+          </div>
+      </div>
+    </div>
+   
+    </form>

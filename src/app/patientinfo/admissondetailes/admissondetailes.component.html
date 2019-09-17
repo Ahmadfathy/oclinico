@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+<div class="col-md-12">
+        <h4 class="ltr">Admission Details</h4>
+        <h4 class="rtl">تفاصيل القبول</h4>
+    </div>
+
+<div class="row p-t-20"> 
+    <div class="col-md-12 ">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link"> Patient Details</a></li>
+            <li class="rtl"><a class="nav-link"><span>تفاصيل المريض</span></a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a></li>
+            <li class="ltr"><a class="nav-link">Admission Details</a></li>
+            <li class="rtl"><a class="nav-link"><span>تفاصيل القبول</span></a></li>
+        </ul>
+    </div>
+    <div class="col-md-3  pl-lg-4">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+            </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+   
+  <div class="col-md-9">
+        <div class="card-header">
+                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; Admission Details</p>
+                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل القبول</p>
+              </div>
+
+    <div class="row">
+<div class="form-group col-md-4">
+    <label class="ltr">Request For</label>
+    <label class="rtl">طلب ل</label>
+    <select class="form-control">
+      <option>Select</option>
+      <option>Day Surgery</option>
+      <option>ER</option>
+    </select>
+</div>
+
+<div class="form-group col-md-4">
+    <label class="ltr">Request Remark</label>
+    <label class="rtl">طلب ملاحظة</label>
+    <input class="form-control">
+</div>
+<div class="form-group col-md-4">
+    <label class="ltr">Esto length of stay</label>
+    <label class="rtl">استو طول الإقامة</label>
+    <input class="form-control">
+</div>
+</div>
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label class="ltr">Reason</label>
+        <label class="rtl">السبب</label>
+        <input class ="form-control"id="Temperature">
+    </div>
+    <div class="col-md-4 form-group">
+        <label class="ltr">Expected day of Admission</label>
+        <label class="rtl">يوم القبول المتوقع</label>
+        <input [owlDateTimeTrigger]="dt3"[owlDateTime]="dt3" placeholder="mm/dd/yyyy"class ="form-control"id="BP">
+        <owl-date-time [pickerType]="'calendar'" #dt3 ></owl-date-time>
+    </div>
+    <div class="col-md-4 form-group">
+        <label class="ltr">Discharge Date</label>
+        <label class="rtl">تاريخ التفريغ</label>
+        <input [owlDateTimeTrigger]="dt4"[owlDateTime]="dt4" placeholder="mm/dd/yyyy" class ="form-control"id="Sugar">
+        <owl-date-time [pickerType]="'calendar'" #dt4 ></owl-date-time>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label class="ltr"> Package</label>
+        <label class="rtl"> صفقة</label>
+        <select class ="form-control">
+          <option>select</option>
+          <option>1000</option>
+          <option>2000</option>
+          <option>3000</option>
+          <option>4000</option>
+          <option>5000</option>
+          </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label class="ltr">Procedure</label>
+        <label class="rtl">إجراء</label>
+        <input class ="form-control"id="Height">
+    </div>
+    
+</div>
+<div></div>
+
+
+  <div class="row">
+      <button class="btn btn-warning margin ltr"style="float:right">
+          <i class="fa fa-check-circle"></i> Cancel
+       </button>
+       <button class="btn btn-warning margin rtl"style="float:right">
+          <i class="fa fa-check-circle"></i> إلغاء
+       </button>
+      <button class="btn btn-info margin ltr" style='float:right'>
+          <i class="fa fa-check-circle"></i>  Save 
+       </button>
+       <button class="btn btn-info margin rtl" style='float:right'>
+          <i class="fa fa-check-circle"></i>  حفظ
+       </button>
+       
+  </div>
+
+
+
+  </div>
+
+
+  </div>
+
+  
+     

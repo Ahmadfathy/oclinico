@@ -1,0 +1,598 @@
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb">
+                <li>
+                    <a class="nav-link" routerLink='/dashboard'>
+                        <span class="fa fa-fw fa-home"> </span>
+                    </a>
+                </li>
+                <li class="ltr">
+                    <a class="nav-link">Common Data</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="card">
+
+
+  <div class="card-header">
+    <p>Common Data</p>
+  </div>
+  <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+              <ul style="padding:0px;">
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="viewurinalreport('unitofstrenth')">
+                      <span></span>&nbsp;Unit of Strength</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="dosageform('dosageform')">
+                      <span></span>&nbsp;Dosage Form</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="routeadmination('routeadmin')">
+                      <span></span>&nbsp;Route of Administration</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="volume('Volume')">
+                      <span></span>&nbsp;Volume </a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="unitvolume('unitvolume')">
+                      <span></span>&nbsp;Unit of Volume</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="packagetype('Packagetype')">
+                      <span></span>&nbsp;Package type</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="stroagecondation('stroagecondation')">
+                      <span></span>&nbsp;Storage conditions</a>
+                  </li>
+                  <li class="list-group-item"style='display:none'>
+                    <a class="nav-link">
+                      <span></span>&nbsp;Manufacturer name</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="countrymanufature('countrymanufature')">
+                      <span></span>&nbsp;Country of Manufacturer</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="marketingcompany('Marketingcompany')">
+                      <span></span>&nbsp;Marketing company</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="nationality('Nationality')">
+                      <span></span>&nbsp;Nationality</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="Agentname('agentname')">
+                      <span></span>&nbsp;MAH(Ajent name)</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link"(click)="legalstatus('Legalstatus')">
+                      <span></span>&nbsp;Legal status</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="nav-link">
+                      <span></span>&nbsp;Product control</a>
+                  </li>
+                  <li class="list-group-item">
+                     
+                          <a class="nav-link">
+                            <span></span>&nbsp;Authorization status</a>
+                        </li>
+                        <li class="list-group-item">
+                    <a class="nav-link">
+                      <span></span>&nbsp;Marketing status</a>
+                    </li>                      
+                </ul>
+
+          </div>
+          <div class="col-md-9">
+              <form [formGroup]="CommonDataForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+
+                  <div class='col-md-4'>
+                      <div class="form-group">
+                      <label>Arabic Name</label>
+                      <input type="text" formControlName="ArabicName" class="form-control"
+                          [ngClass]="{'is-invalid': submitted && f.ArabicName.errors}" />
+                      <div *ngIf="submitted && f.ArabicName.errors" class="invalid-feedback">
+                          <div *ngIf="f.ArabicName.errors.required">ArabicName is required</div>
+                      </div>
+                  </div>
+                  </div>
+          
+                  <div class='col-md-4'>
+                          <div class="form-group">
+                          <label>English Name</label>
+                          <input type="text" formControlName="EnglishName" class="form-control"
+                              [ngClass]="{'is-invalid': submitted && f.EnglishName.errors}" />
+                          <div *ngIf="submitted && f.EnglishName.errors" class="invalid-feedback">
+                              <div *ngIf="f.EnglishName.errors.required">EnglishName is required</div>
+                          </div>
+                      </div>
+                      </div>
+          
+          
+                  
+                  <div class='col-md-4'>
+                    <br> 
+                          <div class="form-group">
+                      <button class="btn btn-primary"(click)='insertdata()'id='save'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='unitinsertdata()'id='save1'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='dosageinsertdata()'id='save2'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='routeadmininsertdata()'id='save3'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='volumeinsertdata()'id='save4'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='unitvolumeinsertdata()'id='save5'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='packagetypeinsertdata()'id='save6'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='storageinsertdata()'id='save7'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='countrymanufatureinsertdata()'id='save9'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='marketingcompanyinsertdata()'id='save10'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='nationalityinsertdata()'id='save11'style='margin-top: 11px;'>Save</button>
+                      <button class="btn btn-primary"(click)='agentnameinsertdata()'id='save12'style='margin-top: 11px;'>Save</button>
+                      
+                      <button class="btn btn-primary"(click)='update()'id='update'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='unitupdate()'id='unitupdateupdate'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='dosageupdate()'id='update2'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='routeadminupdate()'id='update3'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='volumeupdate()'id='update4'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='unitvolumeupdate()'id='update5'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='packagetypeupdate()'id='update6'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='storageupdate()'id='update7'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='countrymanufatureupdate()'id='update9'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='marketingcompanyupdate()'id='update10'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='nationalityupdate()'id='update11'style='margin-top: 11px;'>Update</button>
+                      <button class="btn btn-primary"(click)='agentupdate()'id='update12'style='margin-top: 11px;'>Update</button>
+                      
+
+               </div>
+              </div>
+              </div>
+
+           
+            </form>
+
+            <div style='display:none'>
+
+                <table class='table table-bordered table-striped'>
+                    <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>Arabic Name</th>
+                        <th>English Name</th>
+                      
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <tr *ngFor='let t of table; let i=index'>
+                  <td>{{i+1}}</td>
+                  <td>{{t.NameAr}}</td>
+                  <td>{{t.NameEn}}</td>
+                
+                  <td>
+                      <a style="color:#4798e8 ">
+                      <span class='fa fa-pencil-alt text-info'(click)='edit(t.ID)'></span>
+                      </a>
+                      </td>
+                      <td>
+                          <a style="color:#4798e8 ">
+                          <span class='fa fa-fw fa-trash'(click)='deletedata(t.ID)'></span>
+                          </a>
+                      </td>
+                </tr>
+              </tbody>
+                  </table>
+            </div>
+
+            <div *ngIf='unitofstrenth'>
+
+              <table class='table table-bordered table-striped'>
+                  <thead>
+                  <tr>
+                      <th>S.no</th>
+                      <th>Arabic Name</th>
+                      <th>English Name</th>
+                      <!-- <th>Parent</th> -->
+                      <th>Edit</th>
+                      <th>Delete</th>
+                  </tr>
+                </thead>
+            <tbody>
+              <tr *ngFor='let t of table; let i=index'>
+                <td>{{i+1}}</td>
+                <td>{{t.NameAr}}</td>
+                <td>{{t.NameEn}}</td>
+                <!-- <td>{{t.ParentID}}</td> -->
+                <td>
+                    <a style="color:#4798e8 ">
+                    <span class='fa fa-pencil-alt text-info'(click)='unitedit(t.ID)'></span>
+                    </a>
+                    </td>
+                    <td>
+                        <a style="color:#4798e8 ">
+                        <span class='fa fa-fw fa-trash'(click)='unitdeletedata(t.ID)'></span>
+                        </a>
+                    </td>
+              </tr>
+            </tbody>
+                </table>
+          </div>
+
+
+          <div *ngIf='dosageforme'>
+
+            <table class='table table-bordered table-striped'>
+                <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Arabic Name</th>
+                    <th>English Name</th>
+                    <!-- <th>Parent</th> -->
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+              </thead>
+          <tbody>
+            <tr *ngFor='let t of table; let i=index'>
+              <td>{{i+1}}</td>
+              <td>{{t.NameAr}}</td>
+              <td>{{t.NameEn}}</td>
+              <!-- <td>{{t.ParentID}}</td> -->
+              <td>
+                  <a style="color:#4798e8 ">
+                  <span class='fa fa-pencil-alt text-info'(click)='dosageedit(t.ID)'></span>
+                  </a>
+                  </td>
+                  <td>
+                      <a style="color:#4798e8 ">
+                      <span class='fa fa-fw fa-trash'(click)='dosagedeletedata(t.ID)'></span>
+                      </a>
+                  </td>
+            </tr>
+          </tbody>
+              </table>
+        </div>
+
+
+        <div *ngIf='routeadmin'>
+
+          <table class='table table-bordered table-striped'>
+              <thead>
+              <tr>
+                  <th>S.no</th>
+                  <th>Arabic Name</th>
+                  <th>English Name</th>
+                  <!-- <th>Parent</th> -->
+                  <th>Edit</th>
+                  <th>Delete</th>
+              </tr>
+            </thead>
+        <tbody>
+          <tr *ngFor='let t of table; let i=index'>
+            <td>{{i+1}}</td>
+            <td>{{t.NameAr}}</td>
+            <td>{{t.NameEn}}</td>
+            <!-- <td>{{t.ParentID}}</td> -->
+            <td>
+                <a style="color:#4798e8 ">
+                <span class='fa fa-pencil-alt text-info'(click)='routeadminedit(t.ID)'></span>
+                </a>
+                </td>
+                <td>
+                    <a style="color:#4798e8 ">
+                    <span class='fa fa-fw fa-trash'(click)='routeadmindeletedata(t.ID)'></span>
+                    </a>
+                </td>
+          </tr>
+        </tbody>
+            </table>
+      </div>
+
+      <div *ngIf='volumes'>
+
+        <table class='table table-bordered table-striped'>
+            <thead>
+            <tr>
+                <th>S.no</th>
+                <th>Arabic Name</th>
+                <th>English Name</th>
+                <!-- <th>Parent</th> -->
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+          </thead>
+      <tbody>
+        <tr *ngFor='let t of table; let i=index'>
+          <td>{{i+1}}</td>
+          <td>{{t.NameAr}}</td>
+          <td>{{t.NameEn}}</td>
+          <!-- <td>{{t.ParentID}}</td> -->
+          <td>
+              <a style="color:#4798e8 ">
+              <span class='fa fa-pencil-alt text-info'(click)='volumeedit(t.ID)'></span>
+              </a>
+              </td>
+              <td>
+                  <a style="color:#4798e8 ">
+                  <span class='fa fa-fw fa-trash'(click)='volumedelete(t.ID)'></span>
+                  </a>
+              </td>
+        </tr>
+      </tbody>
+          </table>
+    </div>
+
+    <div *ngIf='unitvolumes'>
+
+      <table class='table table-bordered table-striped'>
+          <thead>
+          <tr>
+              <th>S.no</th>
+              <th>Arabic Name</th>
+              <th>English Name</th>
+              <!-- <th>Parent</th> -->
+              <th>Edit</th>
+              <th>Delete</th>
+          </tr>
+        </thead>
+    <tbody>
+      <tr *ngFor='let t of table; let i=index'>
+        <td>{{i+1}}</td>
+        <td>{{t.NameAr}}</td>
+        <td>{{t.NameEn}}</td>
+        <!-- <td>{{t.ParentID}}</td> -->
+        <td>
+            <a style="color:#4798e8 ">
+            <span class='fa fa-pencil-alt text-info'(click)='unitvolumeedit(t.ID)'></span>
+            </a>
+            </td>
+            <td>
+                <a style="color:#4798e8 ">
+                <span class='fa fa-fw fa-trash'(click)='unitvolumedelete(t.ID)'></span>
+                </a>
+            </td>
+      </tr>
+    </tbody>
+        </table>
+  </div>
+
+  <div *ngIf='Packagetype'>
+
+    <table class='table table-bordered table-striped'>
+        <thead>
+        <tr>
+            <th>S.no</th>
+            <th>Arabic Name</th>
+            <th>English Name</th>
+            <!-- <th>Parent</th> -->
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+      </thead>
+  <tbody>
+    <tr *ngFor='let t of table; let i=index'>
+      <td>{{i+1}}</td>
+      <td>{{t.NameAr}}</td>
+      <td>{{t.NameEn}}</td>
+      <!-- <td>{{t.ParentID}}</td> -->
+      <td>
+          <a style="color:#4798e8 ">
+          <span class='fa fa-pencil-alt text-info'(click)='packagetypeedit(t.ID)'></span>
+          </a>
+          </td>
+          <td>
+              <a style="color:#4798e8 ">
+              <span class='fa fa-fw fa-trash'(click)='packagetypedelete(t.ID)'></span>
+              </a>
+          </td>
+    </tr>
+  </tbody>
+      </table>
+</div>
+<div *ngIf='Stroagecondation'>
+
+  <table class='table table-bordered table-striped'>
+      <thead>
+      <tr>
+          <th>S.no</th>
+          <th>Arabic Name</th>
+          <th>English Name</th>
+          <!-- <th>Parent</th> -->
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr *ngFor='let t of table; let i=index'>
+    <td>{{i+1}}</td>
+    <td>{{t.NameAr}}</td>
+    <td>{{t.NameEn}}</td>
+    <!-- <td>{{t.ParentID}}</td> -->
+    <td>
+        <a style="color:#4798e8 ">
+        <span class='fa fa-pencil-alt text-info'(click)='storageedit(t.ID)'></span>
+        </a>
+        </td>
+        <td>
+            <a style="color:#4798e8 ">
+            <span class='fa fa-fw fa-trash'(click)='stroagedelete(t.ID)'></span>
+            </a>
+        </td>
+  </tr>
+</tbody>
+    </table>
+</div>
+<div *ngIf='Countrymanufature'>
+
+  <table class='table table-bordered table-striped'>
+      <thead>
+      <tr>
+          <th>S.no</th>
+          <th>Arabic Name</th>
+          <th>English Name</th>
+          <!-- <th>Parent</th> -->
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr *ngFor='let t of table; let i=index'>
+    <td>{{i+1}}</td>
+    <td>{{t.NameAr}}</td>
+    <td>{{t.NameEn}}</td>
+    <!-- <td>{{t.ParentID}}</td> -->
+    <td>
+        <a style="color:#4798e8 ">
+        <span class='fa fa-pencil-alt text-info'(click)='countrymanfatureedit(t.ID)'></span>
+        </a>
+        </td>
+        <td>
+            <a style="color:#4798e8 ">
+            <span class='fa fa-fw fa-trash'(click)='countrymanufaturedelete(t.ID)'></span>
+            </a>
+        </td>
+  </tr>
+</tbody>
+    </table>
+    
+</div>
+
+
+<div *ngIf='Marketingcompany'>
+
+  <table class='table table-bordered table-striped'>
+      <thead>
+      <tr>
+          <th>S.no</th>
+          <th>Arabic Name</th>
+          <th>English Name</th>
+          <!-- <th>Parent</th> -->
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr *ngFor='let t of table; let i=index'>
+    <td>{{i+1}}</td>
+    <td>{{t.NameAr}}</td>
+    <td>{{t.NameEn}}</td>
+    <!-- <td>{{t.ParentID}}</td> -->
+    <td>
+        <a style="color:#4798e8 ">
+        <span class='fa fa-pencil-alt text-info'(click)='marketingcompanyedit(t.ID)'></span>
+        </a>
+        </td>
+        <td>
+            <a style="color:#4798e8 ">
+            <span class='fa fa-fw fa-trash'(click)='marketingcompanydelete(t.ID)'></span>
+            </a>
+        </td>
+  </tr>
+</tbody>
+    </table>
+    
+</div>
+
+<div *ngIf='Nationality'>
+
+  <table class='table table-bordered table-striped'>
+      <thead>
+      <tr>
+          <th>S.no</th>
+          <th>Arabic Name</th>
+          <th>English Name</th>
+          <!-- <th>Parent</th> -->
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr *ngFor='let t of table; let i=index'>
+    <td>{{i+1}}</td>
+    <td>{{t.NameAr}}</td>
+    <td>{{t.NameEn}}</td>
+    <!-- <td>{{t.ParentID}}</td> -->
+    <td>
+        <a style="color:#4798e8 ">
+        <span class='fa fa-pencil-alt text-info'(click)='nationalityedit(t.ID)'></span>
+        </a>
+        </td>
+        <td>
+            <a style="color:#4798e8 ">
+            <span class='fa fa-fw fa-trash'(click)='nationalitydelete(t.ID)'></span>
+            </a>
+        </td>
+  </tr>
+</tbody>
+    </table>
+    
+</div>
+
+<div *ngIf='agentname'>
+
+  <table class='table table-bordered table-striped'>
+      <thead>
+      <tr>
+          <th>S.no</th>
+          <th>Arabic Name</th>
+          <th>English Name</th>
+          <!-- <th>Parent</th> -->
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+<tbody>
+  <tr *ngFor='let t of table; let i=index'>
+    <td>{{i+1}}</td>
+    <td>{{t.NameAr}}</td>
+    <td>{{t.NameEn}}</td>
+    <!-- <td>{{t.ParentID}}</td> -->
+    <td>
+        <a style="color:#4798e8 ">
+        <span class='fa fa-pencil-alt text-info'(click)='agentnameedit(t.ID)'></span>
+        </a>
+        </td>
+        <td>
+            <a style="color:#4798e8 ">
+            <span class='fa fa-fw fa-trash'(click)='agentdelete(t.ID)'></span>
+            </a>
+        </td>
+  </tr>
+</tbody>
+    </table>
+    
+</div>
+
+<div *ngIf='nodata'>Nodata Fund</div>
+
+          </div>
+        </div>
+ </div>
+</div>
+</div> 
+
+
+
+
+     
+
+  

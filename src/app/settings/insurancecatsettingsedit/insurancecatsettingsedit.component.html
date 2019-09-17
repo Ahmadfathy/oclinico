@@ -1,0 +1,117 @@
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<h4 class="ltr">Edit Health Insurance Category</h4>
+<h4 class="rtl">تحرير فئة التامين الصحي</h4>
+
+
+
+  <div class="row">
+      <div class="col-md-12">
+          <ul id="breadcrumb">
+              <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+              <li class="ltr"><a class="nav-link"  routerLink='/InsuranceCategoryDetails'><span ></span>Insurance Category Details</a></li>
+              
+              <li class="rtl"><a class="nav-link"  routerLink='/settings'><span> إعدادات</span></a></li>
+              <li class="rtl"><a class="nav-link"  routerLink='/InsuranceCategoryDetails'><span >تفاصيل فئة التأمين</span></a></li>
+          </ul>
+      </div>
+  </div>
+<form [formGroup]="editinscat">
+
+  <div class="row">
+  <div class="col-md-12 col-lg-12 col-xl-12">
+    <div class="card">
+          <div class="card-header">
+            <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Health Insurance Category
+            </h4>
+            <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تحرير فئة التامين الصحي</h4>
+                </div>
+        <div class="card-body">
+            
+            <div class="row">
+              <div class="col-md-4" [ngClass]="{'has-error' : formErrors.instype}">
+                <!-- <form class="m-t-0"> -->
+                  <label class="form-control-label ltr">Insurance Type&nbsp;*</label>
+                  <label class="form-control-label rtl">نوع التأمين&nbsp;*</label>
+                  <select formControlName="instype" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                    <option label="select" disabled></option>
+                    <option *ngFor="let t of insurtypedata" [value]="t.Type_Name">{{t.Type_Name}}</option>
+                  </select>
+                  <select formControlName="instype" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                    <option class="rtl" label="تحديد" disabled></option>
+                    <option *ngFor="let t of insurtypedata" [value]="t.Type_Name">{{t.Type_Name}}</option>
+                  </select>
+                  <span class="help-block" *ngIf="formErrors.instype" style="color: red">
+                    {{formErrors.instype}}
+                  </span>
+                <!-- </form> -->
+            </div>
+              
+             <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.helthinscat}">
+                <label class="form-control-label ltr">Health Insurance Category&nbsp;*</label>
+              <label class="form-control-label rtl">اسم البنك&nbsp;*</label>
+              <input id="helthinscat" formControlName="helthinscat" [ngClass]="{'has-error' :formErrors.helthinscat}"
+                  (blur)="checkValidationErrors()" type="text" class="form-control">
+                <span class="help-block" *ngIf="formErrors.helthinscat" style="color: red">
+                  {{formErrors.helthinscat}}
+                </span>
+                        
+              </div>
+          </div>
+          <div class="col-md-4" [ngClass]="{'has-error' : formErrors.status}">
+            <!-- <form class="m-t-0"> -->
+              <label class="form-control-label ltr">Status&nbsp;*</label>
+                <label class="form-control-label rtl">الحالة&nbsp;*</label>
+                <select formControlName="status" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option label="select" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <select formControlName="status" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option label="تحديد" disabled></option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">Inactive</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                  {{formErrors.status}}
+                </span>
+            <!-- </form> -->
+        </div>
+
+                </div>
+                
+                        <div class="row mt-5">
+                            <div class="col-md-12 text-center submitBtns">
+                                <button type="submit" class="btn btn-md btn-warning ltr" (click)="editinscatsubmit()" style="margin-right:5px;">
+                                    <i class ="fa fa-check-circle"></i>
+                                     Submit </button>
+                                <button type="submit" class="btn btn-md btn-warning rtl" (click)="editinscatsubmit()" >
+                                    <i class ="fa fa-check-circle"></i>
+                                    إرسل </button>
+                                <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/InsuranceCategoryDetails']">
+                                        <i class ="fa fa-ban"></i>
+                                    Cancel</button>
+                                <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/InsuranceCategoryDetails']" style="margin-right:5px;">
+                                        <i class ="fa fa-ban"></i>
+                                        إلغاء</button>
+                            </div>
+                        </div>
+        </div>
+    </div>
+  </div>
+  </div>
+  
+  
+  
+  </form>
+
+
+  

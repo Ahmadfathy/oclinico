@@ -1,0 +1,98 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<div class="row">
+    <h4 class="ltr">Patient Details</h4>
+    <h4 class="rtl">تفاصيل المريض</h4>
+</div>
+
+<!-- <div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/Patientinfo'> Patient Details</a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/Patientinfo'> تفاصيل المريض</a></li>
+        </ul>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-md-12">
+           
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/Patientinfo'> Patient Details</a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/Patientinfo'><span> تفاصيل المريض</span></a></li>
+
+    </ul>
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-header">
+        <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Patient Details</p>
+        <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل المريض</p>
+    </div>
+    <div class="card-body">
+        <div class="text-right">
+            <span class="ltr"> <a class="nav-link"  style="display: inline-block;color: #4798e8;" routerLink="/addpatient"><i  class="fa fa-fw fa-user"></i> Add</a></span>
+            <span class="rtl">   <a class="nav-link"  style="display: inline-block;color: #4798e8;" routerLink="/addpatient"><i  class="fa fa-fw fa-user"></i> إضافة</a></span>
+
+        <!-- <span class="ltr"> <a class="nav-link"  style="display: inline-block;color: #4798e8;" routerLink="/autocomplate"><i  class="fa fa-fw fa-user"></i>Search</a></span> 
+             <span class="rtl"> <a class="nav-link"  style="display: inline-block;color: #4798e8;" routerLink="/autocomplate"><i  class="fa fa-fw fa-user"></i>Search</a></span>  -->
+
+    </div>
+
+    <table class="table table-hover table-bordered responsive" *ngIf="showdata" id="dataTable" cellspacing="0" style="width:100% ">
+        <thead class="ltr">
+            <tr>
+                <th>Sno.</th>
+                <th>Patientid</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Mobile No</th>
+                <th>Email Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <thead class="rtl">
+            <tr>
+                <th>الرقم التسلسلي</th>
+                <th>رقم الملف</th>
+                <th>اسم</th>
+                <th>تاريخ الميلاد</th>
+                <th>جنس</th>
+                <th>رقم الهاتف المحمول</th>
+                <th>الايميل</th>
+                <th>الافعال</th>
+            </tr>
+        </thead>
+
+        <tbody style="width:100%">
+            <tr *ngFor="let patient of persons;let i=index" [style.color]="patient.status1 == 'pending' ? 'red' : 'green'">
+                <td>{{i+1}}</td>
+                <td>{{patient.patient_id}}</td>
+                <td>{{patient.name}}</td>
+                <td>{{patient.dob1}}</td>
+                <td>{{patient.Gender}}</td>
+                <td>{{patient.MobileNo}}</td>
+                <td>{{patient.Email}}</td>
+                <td><span class="fa fa-eye text-info" routerLink='/viewpatient' [queryParams]="{Refrral:patient.patient_id}"></span>&nbsp;&nbsp;&nbsp;
+                    <span class="fa fa-pencil-alt text-info" [routerLink]="['/editpatient']" [queryParams]="{Refrral:patient.patient_id}"></span>&nbsp;&nbsp;&nbsp;
+                </td>
+
+
+            </tr>
+
+        </tbody>
+    </table>
+    <div *ngIf="nodata">No Data Found</div>
+</div>

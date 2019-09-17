@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Oclinico</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <app-root></app-root>
+    <script>
+        var ALERT_TITLE = "Alert!";
+        var ALERT_BUTTON_TEXT = "Ok";
+        if (document.getElementById) {
+            window.alert = function(txt) {
+                createCustomAlert(txt)
+            }
+        }
+
+        function createCustomAlert(txt) {
+            d = document;
+            if (d.getElementById("modalContainer")) return;
+            mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+            mObj.id = "modalContainer";
+            mObj.style.height = d.documentElement.scrollHeight + "px";
+            alertObj = mObj.appendChild(d.createElement("div"));
+            alertObj.id = "alertBox";
+            if (d.all && !window.opera)
+                alertObj.style.visiblity = "visible";
+            h1 = alertObj.appendChild(d.createElement("h1"));
+            h1.appendChild(d.createTextNode(ALERT_TITLE));
+            msg = alertObj.appendChild(d.createElement("p"));
+            msg.innerHTML = txt;
+            btn = alertObj.appendChild(d.createElement("a"));
+            btn.id = "closeBtn";
+            btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+            btn.href = "#";
+            btn.focus();
+            btn.onclick = function() {
+                removeCustomAlert();
+                return !1
+            };
+            alertObj.style.display = "block"
+        }
+
+        function removeCustomAlert() {
+            document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"))
+        }
+    </script>
+</body>
+
+</html>

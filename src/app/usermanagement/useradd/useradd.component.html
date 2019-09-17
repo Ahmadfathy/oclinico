@@ -1,0 +1,1251 @@
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+<ul id="breadcrumb" >
+  <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+  <li class="ltr"><a class="nav-link"  routerLink='/usercreate'><span   
+    class="fa fa-fw fa-user"></span>User Creation</a></li>
+    <li class="rtl"><a class="nav-link"  routerLink='/usercreate'><span>إنشاء مستخدم</span><span class="fa fa-fw fa-user"></span></a></li>
+    <li class="ltr"><a class="nav-link">Add User</a></li>
+    <li class="rtl"><a class="nav-link"><span > إضافة مستخدم</span></a></li>
+</ul>
+</div>
+</div>
+
+<div class="row">
+<div class="col">
+  <div class="card">
+    <!-- <form [formGroup]="subform"> -->
+    <form [formGroup]="patient">
+      <div class="card-body">
+          <h6 class="card-title rtl">إضافة المستخدمين والأطباء</h6>
+        <h6 class="card-title ltr">Add and Doctors English</h6>
+        <ngb-tabset  (tabChange)="beforeChange($event)"  #tabs>
+          <!-- ..................first tab ........................................................... -->
+          <!-- <ngb-tab class="eachTabPane ltr" title="Basic Information 1" id="basic1" > -->
+              <ngb-tab class="eachTabPane ltr" id="basic1" >
+              <ng-template ngbTabTitle ><b class="ltr">Basic Information 1</b>
+                <b class="rtl">معلومات أساسية 1</b>
+              </ng-template>
+             
+            <ng-template ngbTabContent>
+              <h4 class="p-t-20 ltr">Personal Details</h4>
+              <h4 class="p-t-20 rtl">تفاصيل شخصية</h4>
+              <div class="row">
+                <div class="col-md-4"><br>
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.tinput}">
+                    <label class="mr-sm-2 ltr" for="title">Title&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <label class="mr-sm-2 rtl" for="title">اللقب&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <select  formControlName="tinput" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" >
+                       <option  class="ltr" label="select" disabled></option>
+                      <option *ngFor="let title of titles"  [value]="title">{{title}}</option>
+                    </select>
+                    <select  formControlName="tinput" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" >
+                        <option  class="ltr" label="اختر" disabled></option>
+                       <option *ngFor="let title of titles1"  [value]="title">{{title}}</option>
+                     </select>
+                    <span class="help-block" *ngIf="formErrors.tinput" style="color: red">
+                      {{formErrors.tinput}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">English Names&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <label class="form-control-label rtl">الأسماء بالإنجليزية&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <input id="englishname"  (keyup)="eng1($event,'engname1')" (keypress)="english($event)" formControlName="Englishinput" 
+                    type="text" class="form-control">
+                     <span class="help-block ltr" *ngIf="engerror" style="color: red"  >
+                        English Names are required
+                  </span> 
+                  <span class="help-block rtl" *ngIf="engerror" style="color: red"  >
+                      الأسماء الإنجليزية مطلوبة  
+                     </span> 
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label"></label>
+                  <input id="english"  (keyup)="eng1($event,'engname2')" (keypress)="english($event)" formControlName="Englishinput1"  
+                  type="text"  class="form-control" style="margin-top: 8px">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label"></label>
+                  <input id="english_name"  (keyup)="eng1($event,'engname3')" (keypress)="english($event)" formControlName="Englishinput2"  
+                    type="text" class="form-control" style="margin-top: 8px">
+                </div>
+              </div><br>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Arabic Names&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <label class="form-control-label rtl">الأسماء بالعربية&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <input id="arabicname" dir="rtl" (keypress)="arabic($event)" (keyup)="arb($event,'arb1')" formControlName="titleinput" 
+                    type="text" class="form-control">
+                    <span class="help-block ltr" *ngIf="arabicerror" style="color: red">
+                        Arabic Names are required
+                     </span> 
+                     <span class="help-block rtl" *ngIf="arabicerror" style="color: red">
+                        عربالأسماء مطلو
+                     </span> 
+                     <span class="help-block ltr" *ngIf="commonerror" style="color: red">
+                      Please enter either english or arabic all name fields.
+                     </span> 
+                     <span class="help-block rtl" *ngIf="commonerror" style="color: red">
+                      يرجى إدخال إما الإنجليزية أو العربية جميع حقول الاسم.
+                     </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label"></label>
+                  <input id="arabicname1" dir="rtl" (keypress)="arabic($event)" (keyup)="arb($event,'arb2')" formControlName="tinput1" 
+                  type="text" class="form-control" style="margin-top: 8px">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label"></label>
+                  <input id="arabicname2" dir="rtl" (keypress)="arabic($event)"  (keyup)="arb($event,'arb3')" formControlName="titleinput2" 
+                  type="text" class="form-control" style="margin-top: 8px">
+                </div>
+              </div><br>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.genderinput}">
+                    <label class="mr-sm-2 ltr" for="item">Gender&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <label class="mr-sm-2 rtl" for="item">جنس&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <select  formControlName="genderinput" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" >
+                      <option label="select" disabled></option>
+                      <option *ngFor="let item of genders"  [value]="item.name">{{item.name}}</option>
+                    </select>
+                    <select   formControlName="genderinput" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                    <option label="اختر" disabled></option>
+                    <option *ngFor="let item of genders1"  [value]="item.name">{{item.name}}</option>
+                  </select>
+                    <span class="help-block" *ngIf="formErrors.genderinput" style="color: red">
+                      {{formErrors.genderinput}}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.docinput}">
+                    <label class="mr-sm-2 ltr" for="document">Document Type&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <label class="mr-sm-2 rtl" for="document">نوع المستند&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <select formControlName="docinput" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" >
+                        <option label="select" disabled></option>
+                      <option *ngFor="let document of documenttypes"  [value]="document.Documenttype">{{document.Documenttype}}</option>
+                    </select> 
+                  <select  formControlName="docinput" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" (change)="documentchange($event.target.value)">
+                        <option label="اختر" disabled></option>
+                      <option *ngFor="let document of documenttypes"  [value]="document.Arabicnames">{{document.Arabicnames}}</option>
+                    </select>
+                    <span class="help-block" *ngIf="formErrors.docinput" style="color: red">
+                      {{formErrors.docinput}}
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Doc Number&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <label class="form-control-label rtl">رقم الوثيقة&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <input   type="text" id="docname" formControlName="docnoinput" [ngClass]="{'has-error' :formErrors.docnoinput}"
+                    (blur)="checkValidationErrors()"  class="form-control">
+                  <span class="help-block" *ngIf="formErrors.docnoinput" style="color: red">
+                    {{formErrors.docnoinput}}
+                  </span>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.departmentinput}">
+                    <label class="mr-sm-2 ltr" for="item">Department&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <label class="mr-sm-2 rtl" for="item">الإدارات&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <select   formControlName="departmentinput" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" >
+                        <option label="select" disabled></option>
+                      <option *ngFor="let item of departments"  [value]="item.DeptName">{{item.DeptName}}</option>
+                    </select>
+                    <select   formControlName="departmentinput" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" >
+                        <option label="اختر" disabled></option>
+                      <option *ngFor="let item of departments"  [value]="item.ArabicName">{{item.ArabicName}}</option>
+                    </select>
+                    <span class="help-block" *ngIf="formErrors.departmentinput" style="color: red">
+                      {{formErrors.departmentinput}}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Profession of Residence</label>
+                  <label class="form-control-label rtl">المهنة في بلد الإقامة</label>
+                  <input  id="profres" formControlName="professionofres" type="text" class="form-control">
+                  <span class="help-block" *ngIf="formErrors.professionofres" style="color: red">
+                    {{formErrors.professionofres}}
+                  </span>
+                </div>
+                  <div class="col-md-4">
+                      <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.jobinput}">
+                        <label class="mr-sm-2 ltr" for="title">Job Title&nbsp;<i class="fa fa-star mystar"></i></label>
+                        <label class="mr-sm-2 rtl" for="title">المسمى الوظيفي&nbsp;<i class="fa fa-star mystar"></i></label>
+                        <select   formControlName="jobinput"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" [(ngModel)]="jbtitle" (change)="jobtitlechange(jbtitle)">
+                            <option label="select" disabled></option>
+                          <option *ngFor="let title of jobtitles"  [value]="title.role_name">{{title.role_name}}</option>
+                        </select>
+                        <select  formControlName="jobinput" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" [(ngModel)]="jbtitle" (change)="jobtitlechange(jbtitle)">
+                            <option label="اختر" disabled></option>
+                          <option *ngFor="let title of jobtitles" [value]="title.Arabicnames">{{title.Arabicnames}}</option>
+                        </select>
+                        <span class="help-block" *ngIf="formErrors.jobinput" style="color: red">
+                          {{formErrors.jobinput}}
+                        </span>
+                      </div>
+                    </div>
+
+              </div>
+              <div class="row" [hidden]="specializationrowhide">
+                <div class="col-md-4">
+                    <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.speciatization}">
+                      <label class="mr-sm-2 ltr" for="item">Sub-Department&nbsp;<i class="fa fa-star mystar"></i></label>
+                      <label class="mr-sm-2 rtl" for="item">قسم فرعى&nbsp;<i class="fa fa-star mystar"></i></label>
+                      <select   formControlName="speciatization" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" >
+                          <option label="select" disabled></option>
+                        <option *ngFor="let item of listofspecialization"  [value]="item.speName">{{item.speName}}</option>
+                      </select>
+                      <select   formControlName="speciatization" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" >
+                          <option label="اختر" disabled></option>
+                        <option *ngFor="let item of listofspecialization"  [value]="item.speNameArabic">{{item.speNameArabic}}</option>
+                      </select>
+                      <!-- <span class="help-block" *ngIf="formErrors.speciatization" style="color: red">
+                        {{formErrors.speciatization}}
+                      </span> -->
+                      <span class="help-block ltr" *ngIf="engspecialization" style="color: red">
+                        Sub-Department is required
+                      </span>
+                      <span class="help-block rtl" *ngIf="engspecialization" style="color: red">
+                        القسم الفرعي مطلوب                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-control-label ltr">Sub-Department in Arabic&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <label class="form-control-label rtl">القسم الفرعي باللغة العربية&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <input id="sparabic" dir="rtl" (keypress)="arabic($event)"  formControlName="spearabicinput" 
+                      type="text" class="form-control">
+                      <!-- <span class="help-block" *ngIf="formErrors.spearabicinput" style="color: red">
+                        {{formErrors.spearabicinput}}
+                      </span> -->
+                      <span class="help-block ltr" *ngIf="arbspecialization" style="color: red">
+                        Sub-Department is required
+                       </span>
+                       <span class="help-block rtl" *ngIf="arbspecialization" style="color: red">
+                        القسم الفرعي مطلوب               </span>
+                     
+                  </div>
+            </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Sponser Name</label>
+                  <label class="form-control-label rtl">اسم الكفيل</label>
+                  <input  id="sponser" formControlName="sponserinput" type="text" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.sponserinput" style="color: red">
+                    {{formErrors.sponserinput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="reporting">Reporting To</label>
+                    <label class="mr-sm-2 rtl" for="reporting">تقديم التقارير إلى</label>
+                    <select  formControlName="reportinginput"  name="title" class="custom-select mr-sm-2 ltr" [(ngModel)]="reportname" (change)="reportingtochange(reportname)" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let reporting of jobtitles"  [value]="reporting.role_name" >{{reporting.role_name}}</option>
+                    </select>
+                    <select  formControlName="reportinginput"  name="title" class="custom-select mr-sm-2 rtl" [(ngModel)]="reportname" (change)="reportingtochange(reportname)">
+                        <option label="اختر" disabled></option>
+                       <option *ngFor="let reporting of jobtitles"  [value]="reporting.Arabicnames">{{reporting.Arabicnames}}</option>
+                     </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr">Hierarchy</label>
+                    <label class="mr-sm-2 rtl">التسلسل الهرمي</label>
+                    <select  formControlName="hierachyinput" class="custom-select mr-sm-2 ltr" >
+                       <option label="select" disabled></option>
+                      <option *ngFor="let hi of hierarchy" [value]="hi.name">{{hi.name}}</option>
+                    </select>
+                    <select  formControlName="hierachyinput" class="custom-select mr-sm-2 rtl" >
+                        <option label="اختر" disabled [value]="select"></option>
+                        <option *ngFor="let hi of hierarchy" [value]="hi.name">{{hi.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Hire Date&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <label class="form-control-label rtl">تاريخ التوظيف&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <!-- <input type="date" id="hiredate" formControlName="hireinput" [ngClass]="{'has-error' :formErrors.hireinput}"
+                    (blur)="checkValidationErrors()" class="form-control" /> -->
+                    <input [owlDateTimeTrigger]="dt3" (blur)="checkValidationErrors()"  [owlDateTime]="dt3" placeholder="mm/dd/yyyy" class="form-control" formControlName="hireinput" [ngClass]="{'has-error' :formErrors.hireinput}">
+                    <owl-date-time [pickerType]="'calendar'" #dt3 ></owl-date-time>
+                    <span class="help-block" *ngIf="formErrors.hireinput" style="color: red">
+                    {{formErrors.hireinput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Start Date&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <label class="form-control-label rtl">تاريخ البدء&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <input [owlDateTimeTrigger]="dt4" (blur)="checkValidationErrors()" (dateTimeInput)="startdatechange()" [owlDateTime]="dt4" placeholder="mm/dd/yyyy" class="form-control" formControlName="Startdateinput" [ngClass]="{'has-error' :formErrors.Startdateinput}" >
+                  <owl-date-time [pickerType]="'calendar'"  #dt4 ></owl-date-time>
+                  <!-- <input type="date" id="Startdate"   formControlName="Startdateinput" [ngClass]="{'has-error' :formErrors.Startdateinput}"
+                    (blur)="checkValidationErrors()" class="form-control" /> -->
+                 <span class="help-block" *ngIf="formErrors.Startdateinput" style="color: red">
+                    {{formErrors.Startdateinput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Mobile No&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <label class="form-control-label rtl">رقم الهاتف المحمول&nbsp;<i class="fa fa-star mystar"></i></label>
+                  <input id="mobileno"  formControlName="mobileinput" [ngClass]="{'has-error' :formErrors.mobileinput}"
+                    (blur)="checkValidationErrors()"   (keypress)="keyPress($event)" type="text" class="form-control">
+                  <span class="help-block" *ngIf="formErrors.mobileinput" style="color: red">
+                    {{formErrors.mobileinput}}
+                  </span>
+                </div>
+              </div><br>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Home Phone No</label>
+                  <label class="form-control-label rtl">رقم هاتف المنزل</label>
+                  <input id="docnumber1" formControlName="homephoneinput" type="number" class="form-control" [ngClass]="{'has-error' :formErrors.homephoneinput}" (blur)="checkValidationErrors()" />
+                  <span class="help-block" *ngIf="formErrors.homephoneinput" style="color: red">
+                      {{formErrors.homephoneinput}}
+                    </span>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Salary</label>
+                  <label class="form-control-label rtl">الراتب</label>
+                  <input id="docnumber1"   formControlName="salaryinput" type="number" class="form-control" />
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.Statusinput}">
+                    <label class="mr-sm-2 ltr" for="item" for="item">Status&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <label class="mr-sm-2 rtl" for="item" for="item">الحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+                    <select  formControlName="Statusinput" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()" >
+                       <option label="select" disabled></option>
+                      <option *ngFor="let item of statusarr" [value]="item">{{item}}</option>
+                    </select>
+                    <select  formControlName="Statusinput" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()" >
+                        <option label="اختر" disabled></option>
+                       <option *ngFor="let item of statusarr1" [value]="item">{{item}}</option>
+                     </select>
+                    <span class="help-block" *ngIf="formErrors.Statusinput" style="color: red">
+                      {{formErrors.Statusinput}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4" [hidden]="colorhide">
+                    <div  [ngClass]="{'has-error' : formErrors.treat_color}">
+                          <label class="form-control-label ltr">Color *</label><br>
+                          <label class="form-control-label rtl">اللون *</label><br>
+                              <input type="color"style="float:left;margin-right:5px;width:20%;"   class="form-control" placeholder="Choose color" formControlName="colorinput" (change)="changeColor()" >
+                          {{colorcode}}
+                          <span class="help-block" *ngIf="colorchoose" style="color: red">
+                             Color is required.
+                            </span>
+                      </div>
+                  </div>
+              <!-- <div class="row" [hidden]="previousfields"> -->
+                <div class="col-md-4" [hidden]="doctorcode_previousfields">
+                  <label class="form-control-label ltr">Doctor Code</label>
+                  <label class="form-control-label rtl">كود الطبيب</label>
+                  <input id="doctorcode" formControlName="doctorcode" type="text" class="form-control"/>
+                </div>
+                <div class="col-md-4" [hidden]="previousfields">
+                  <label class="form-control-label ltr">Password</label>
+                  <label class="form-control-label rtl">كلمه السر</label>
+                  <input id="pwd" formControlName="pwd" type="text" class="form-control"/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col"><br>
+                  <!-- <p class="titles"><b>User Timings</b></p> -->
+
+
+                  <div class="form-group"  (change)="selectwise($event.target.value)">
+                    <label class="control-label ltr">User Timings</label>
+                    <label class="control-label rtl">توقيت المستخدم</label>
+                    <div class="row">
+                      
+                          <div class="switch-field ltr">
+                              <input type="radio" formControlName="scheduletypeinput" id="Day Wise"  value="Day Wise" />
+                              <label for="Day Wise">Day Wise</label>
+                              <input type="radio" formControlName="scheduletypeinput" id="Session Wise"  value="Session Wise" />
+                              <label for="Session Wise">Session Wise</label>
+                            </div>
+                            <div class="switch-field rtl">
+                                <input type="radio" formControlName="scheduletypeinput" id="Day Wise"  value="Day Wise" />
+                                <label for="Day Wise">يوم يوم</label>
+                                <input type="radio" formControlName="scheduletypeinput" id="Session Wise"  value="Session Wise" />
+                                <label for="Session Wise">محدد بالفترة</label>
+                              </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col"><br>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customcheck3">
+                    <label class="custom-control-label ltr" for="customcheck3">Application to Other Branch</label>
+                    <label class="custom-control-label rtl" for="customcheck3">تطبيق على فرع آخر</label>
+                  </div>
+                </div>
+                <div class="col"><br></div>
+              </div><br>
+              <!-- ................day wise click div........................ -->
+              <div [hidden]="!daywiseif">
+                <form class="form-horizontal" [formGroup]="myForm">
+                <div formArrayName="rows">
+                      <div class="row" style="border-top: 1px solid #F2F2F2;padding: 5px;">
+                          <div class="col-md-4 ltr" align="center" style="margin-left: -5%">Week</div>
+                          <div class="col-md-4 rtl" align="center" style="margin-left: -5%">أسبوع</div>
+                          <div class="col-md-4 ltr" align="center" style="margin-left: -1%">From Hour/Min</div>
+                          <div class="col-md-4 rtl" align="center" style="margin-left: -1%">من ساعة / دقيقة</div>
+                          <div class="col-md-4 ltr" align="center" style="margin-left: -1%">To Hour/Min</div>
+                          <div class="col-md-4 rtl" align="center" style="margin-left: -1%">إلى ساعة / دقيقة</div>
+                        </div><br>
+                        <div class="row eachDay"  *ngFor="let row of myForm.controls.rows.controls; let i = index" [formGroupName]="i" [ngClass]="{'table-primary': myForm.get('rows').value[i].checkbox_value}" style="border-top: 1px solid #F2F2F2;padding: 10px;">
+                            <div class="col-md-4"><input type="checkbox" class="dayName"  (change) = "checkboxchange(row,row.value.day, i)" [id] = 'row.value.day' formControlName="checkbox_value">
+                           <span style="margin-left: 19%;">{{row.value.day}}</span></div>
+                          <div class="col-md-4">
+                             <div class="row">
+                                <div class="col-md-4">
+                                    <input  type="text" class="startTime" [attr.disabled]="myForm.get('rows').value[i].checkbox_value ? null: ''" formControlName="fromtime" 
+                                    (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'fromtime')" style="width: 100%;">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group m-b-30">
+                                        <select class="starttimeselect ltr" name="title" formControlName="titleinput" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].fromtime ? null: '')" 
+                                            (click)="fromtimechange()" (change)="daywisestarttimechange(i)">
+                                          <option disabled hidden [value]="nullValue">-- select --</option>
+                                                <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                              </select>
+                                              
+                                              <select class="starttimeselect rtl" name="title" formControlName="titleinput" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].fromtime ? null: '')" 
+                                              (click)="fromtimechange()" (change)="daywisestarttimechange(i)">
+                                                  <option disabled hidden [value]="nullValue">-- اختر --</option>
+                                                        <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                      </select>
+                                            </div>
+                                </div>
+                             </div>
+                             </div> 
+                            <div class="col-md-4">
+                                <div class="row">
+                                   <div class="col-md-4">
+                                      <input  type="text" class="endTime" [attr.disabled]="myForm.get('rows').value[i].checkbox_value ? null: ''" formControlName="totime"
+                                      (keypress)="fromkey($event)" (click)="dayampmchange(i)"  (keyup)="fromenter($event,$event.keyCode,i,'totime')" style="width: 100%;">
+                               
+                                   </div>
+                                   <div class="col-md-4">
+                                      <div class="form-group m-b-30">
+                                          <select class="endtimeselect ltr" name="title" formControlName="titleinput1" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].totime ? null: '')"
+                                          (click)="fromtimechange()" (change)="daywiseendtimechange(i)">
+                                            <option disabled hidden [value]="nullValue">-- select --</option>
+                                                  <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                                                </select>
+                                                <select class="endtimeselect rtl" name="title" formControlName="titleinput1" [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].totime ? null: '')"
+                                                (click)="fromtimechange()" (change)="daywiseendtimechange(i)">
+                                                    <option disabled hidden [value]="nullValue">-- اختر --</option>
+                                                          <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                        </select>
+                                              </div> 
+                                   </div>
+                                </div>
+                                </div> 
+                  </div>
+                </div>
+                  </form>
+
+                  <!-- <div (click) = 'getDataDays()'>Get Data</div> -->
+                </div>
+              <br>
+              <!-- ............................................. -->
+              <!-- ................session wise click div........................ -->
+              <div [hidden]="!sessionwiseif">
+                <form class="form-horizontal" [formGroup]="mysessionForm" (ngSubmit)="onCreateProduct()">
+                  <div formArrayName="sessionrows">
+                    <div class="row" style="border-top: 1px solid #F2F2F2;padding: 5px;">
+                      <div class="col ltr" align="center" style="margin-left: -4%">Week</div>
+                      <div class="col rtl" align="center" style="margin-left: -4%">أسبوع</div>
+                      <div class="col ltr" align="center" style="margin-left: -3%">Session1 Start</div>
+                      <div class="col rtl" align="center" style="margin-left: -3%">الجلسة الأولى</div>
+                      <div class="col ltr" align="center" style="margin-left: -4%">Session1 End</div>
+                      <div class="col rtl" align="center" style="margin-left: -2%">الجلسة الفترة</div>
+                      <div class="col ltr" align="center" style="margin-left: -5%">Session2 Start</div>
+                      <div class="col rtl" align="center" style="margin-left: -5%">الجلسة الفترة</div>
+                      <div class="col ltr" align="center" style="margin-left: -6%">Session2 End</div>
+                      <div class="col rtl" align="center" style="margin-left: 1%">الجلسة الفترة</div>
+                    </div><br>
+                          <div class="row eachsession" *ngFor="let row of mysessionForm.controls.sessionrows.controls; let i = index" [formGroupName]="i" [ngClass]="{'table-primary': mysessionForm.get('sessionrows').value[i].checkbox_value}" style="border-top: 1px solid #F2F2F2;padding: 10px;">
+                              <div class="col"><input type="checkbox"  (change) = "checkboxsessionchange(sessionrows,row.value.day, i)"  class="sessioninput" [id] = 'row.value.day' [value]="row.value.day" formControlName="checkbox_value">
+                             <span style="margin-left: 19%;">{{row.value.day}}</span>
+                            </div>
+                             <div class="col">
+                               <div class="row">
+                                  <div class="col-md-5">
+                                      <input class="session1starttime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''" formControlName="session1start" 
+                                      (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'s1start')" style="width: 100%;">
+                              
+                                  </div>
+                                  <div class="col-md-5">
+                                      <div class="form-group m-b-30">
+                                          <select class="session1startselect ltr" name="title" formControlName="sessionstart1input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''"
+                                          (click)="sessionclick('s1start')" (change)="sessionwiss1starttimechange(i)">
+                                                  <option disabled hidden [value]="nullValue">-- select --</option>
+                                                  <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                </select>
+                                                <select class="session1startselect rtl" name="title" formControlName="sessionstart1input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''"
+                                                (click)="sessionclick('s1start')" (change)="sessionwiss1starttimechange(i)">
+                                                    <option disabled hidden [value]="nullValue">-- اختر --</option>
+                                                    <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                  </select>
+                                              </div>
+                                  </div>
+                               </div>
+                               </div>
+                               <div class="col">
+                                  <div class="row">
+                                     <div class="col-md-5">
+                                        <input  class="session1endtime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''" formControlName="session1end"
+                                         (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'s1end')" (click)="sessionampmchange(i,'ses1end')" style="width: 100%;">
+                                 
+                                     </div>
+                                     <div class="col-md-5">
+                                        <div class="form-group m-b-30">
+                                            <select class="session1endselect ltr" name="title" formControlName="sessionend1input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1end ? null: ''"
+                                            (click)="sessionclick('s1end')"  (change)="sessionwiss1endtimechange(i)">
+                                                    <option disabled hidden [value]="nullValue">-- select --</option>
+                                                    <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                                                  </select>
+                                                  <select class="session1endselect rtl" name="title" formControlName="sessionend1input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1end ? null: ''"
+                                                  (click)="sessionclick('s1end')" (change)="sessionwiss1endtimechange(i)">
+                                                      <option disabled hidden [value]="nullValue">-- اختر --</option>
+                                                      <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                    </select>
+                                                </div> 
+                                     </div>
+                                  </div>
+                                  </div>
+                                  <div class="col">
+                                    <div class="row">
+                                       <div class="col-md-5">
+                                           <input  class="session2starttime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''" formControlName="session2start" 
+                                          (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'s2start')" (click)="sessionampmchange(i,'ses2start')" style="width: 100%;">
+                                   
+                                       </div>
+                                       <div class="col-md-5">
+                                           <div class="form-group m-b-30">
+                                               <select class="session2startselect ltr" name="title" formControlName="sessionstart2input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2start ? null: ''"
+                                               (click)="sessionclick('s2start')" (change)="sessionwiss2starttimechange(i)">
+                                                       <option disabled hidden [value]="nullValue">-- select --</option>
+                                                       <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                     </select>
+                                                     <select class="session2startselect rtl" name="title" formControlName="sessionstart2input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2start ? null: ''"
+                                                     (click)="sessionclick('s2start')" (change)="sessionwiss2starttimechange(i)">
+                                                        <option disabled hidden [value]="nullValue">-- اختر --</option>
+                                                        <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                      </select>
+                                                   </div>
+                                       </div>
+                                    </div>
+                                    </div>
+                                    <div class="col">
+                                       <div class="row">
+                                          <div class="col-md-5">
+                                             <input  class="session2endtime" type="text" [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''" formControlName="session2end"
+                                               (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode,i,'s2end')" (click)="sessionampmchange(i,'ses2end')" style="width: 100%;">
+                                      
+                                          </div>
+                                          <div class="col-md-5">
+                                             <div class="form-group m-b-30">
+                                                 <select class="session2endselect ltr" name="title" formControlName="sessionend2input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2end ? null: ''"
+                                                 (click)="sessionclick('s2end')"  (change)="sessionwiss2endtimechange(i)">
+                                                         <option disabled hidden [value]="nullValue">-- select --</option>
+                                                         <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                       </select>
+                                                       <select class="session2endselect rtl" name="title" formControlName="sessionend2input" style="width: 110%;" [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2end ? null: ''"
+                                                       (click)="sessionclick('s2end')"  (change)="sessionwiss2endtimechange(i)">
+                                                          <option disabled hidden [value]="nullValue">-- اختر --</option>
+                                                          <option *ngFor="let t of title"  [value]="t">{{t}}</option>
+                                                        </select>
+                                                     </div> 
+                                          </div>
+                                       </div>
+                                       </div>
+                    </div>
+                  </div>
+                    </form>
+
+
+              </div><br>
+              <!-- ............................................. -->
+              <div class="row">
+                <button type="button" class="btn btn-warning ltr" (click)="bsic1save()">Save</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="bsic1save()">حفظ</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="submit()">Save&Continue</button>
+                <button type="button" class="btn btn-warning rtl" (click)="submit()">حفظ ومتابعة</button>
+              </div>
+
+            </ng-template>
+          </ngb-tab>
+          <!-- ..................basic info 1 end.......................................................... -->
+          <!-- ....................basic info 2 start............................... -->
+          <ngb-tab class="eachTabPane" id="basic2">
+            <ng-template ngbTabTitle><b class="ltr">Basic Information 2</b>
+              <b class="rtl">معلومات أساسية 2</b>
+            </ng-template>
+            <ng-template ngbTabContent><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Labour Office No</label>
+                  <label class="form-control-label rtl">مكتب العمل رقم</label>
+                  <input id="labouroffice" formControlName="laborofficeinput" type="text" class="form-control" [ngClass]="{'has-error' : formErrors.laborofficeinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.laborofficeinput" style="color: red">
+                      {{formErrors.laborofficeinput}}
+                    </span>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Date of Birth</label>
+                  <label class="form-control-label rtl">تاريخ الميلاد</label>
+                  <!-- <input type="date" formControlName="dateofbirthinput" id="dateofbirth" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt5"  [owlDateTime]="dt5" placeholder="mm/dd/yyyy" class="form-control" formControlName="dateofbirthinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt5 ></owl-date-time>
+                
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Place of Birth</label>
+                  <label class="form-control-label rtl">مكان الولادة</label>
+                  <input id="pob" type="text" formControlName="placeofbirthinput" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.placeofbirthinput" style="color: red">
+                    {{formErrors.placeofbirthinput}}
+                  </span>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Religion</label>
+                  <label class="form-control-label rtl">الدين</label>
+                  <input id="religion" formControlName="religioninput" type="text" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.religioninput" style="color: red">
+                    {{formErrors.religioninput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="nation">Nationality</label>
+                    <label class="mr-sm-2 rtl" for="nation">الجنسية</label>
+                    <select name="title"  formControlName="nationinput"  class="custom-select mr-sm-2">
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let nation of countries"  [value]="nation.Country_Name">{{nation.Country_Name}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="marital">Marital Status</label>
+                    <label class="mr-sm-2 rtl" for="marital">الحالة الإجتماعية</label>
+                    <select name="title" formControlName="maritalinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let marital of maritalstatus"  [value]="marital">{{marital}}</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Email Id</label>
+                  <label class="form-control-label rtl">الايميل</label>
+                  <input id="emailid" formControlName="emailidinput" [ngClass]="{'has-error' :formErrors.emailidinput}"  (blur)="checkValidationErrors()" type="text" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.emailidinput" style="color: red">
+                      {{formErrors.emailidinput}}
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="job">Job Type</label>
+                    <label class="mr-sm-2 rtl" for="job">نوع العمل</label>
+                    <select name="title"  formControlName="jobtypeinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let job of jobtypes" [value]="job">{{job}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="pos">Positions Level</label>
+                    <label class="mr-sm-2 rtl" for="pos">مستوى المنصب</label>
+                    <select name="title"  formControlName="positionlevelinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let pos of positions"  [value]="pos">{{pos}}</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="sal">Salary Payable Way</label>
+                    <label class="mr-sm-2 rtl" for="sal">طريقة دفع الراتب</label>
+                    <select name="title"  formControlName="salarypayableinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let sal of salary"  [value]="sal">{{sal}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="name">Bank Name</label>
+                    <label class="mr-sm-2 rtl" for="name">اسم البنك</label>
+                    <select name="title"   formControlName="banknameinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let name of banknames"  [value]="name.Bank_Name">{{name.Bank_Name}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="branch">Branch Name</label>
+                    <label class="mr-sm-2 rtl" for="branch">اسم الفرع</label>
+                    <select name="title" formControlName="branchnameinput" class="custom-select mr-sm-2" >
+                      <option disabled label="Please Select Branch Name" [value]="select"></option>
+                      <option *ngFor="let branch of branchnames"  [value]="branch.Bank_Branch_ID">{{branch.Bank_Branch_Name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Account Number</label>
+                  <label class="form-control-label rtl">رقم الحساب</label>
+                  <input id="accno" formControlName="accountnoinput" type="number" class="form-control"  [ngClass]="{'has-error' :formErrors.accountnoinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.accountnoinput" style="color: red">
+                      {{formErrors.accountnoinput}}
+                    </span>
+                </div>
+              </div><br>
+              <h3 style="color:gray" class="ltr">Address Info</h3><br>
+              <h3 style="color:gray" class="rtl">معلومات العنوان</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Area</label>
+                  <label class="form-control-label rtl">منطقة</label>
+                  <input id="area" formControlName="areainput" type="text" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Block</label>
+                  <label class="form-control-label rtl">منع</label>
+                  <input id="block" formControlName="blockinput" type="number" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Building</label>
+                  <label class="form-control-label rtl">المبنى</label>
+                  <input id="building" formControlName="buildinginput" type="text" class="form-control" />
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Street</label>
+                  <label class="form-control-label rtl">شارع</label>
+                  <input id="street" formControlName="streetinput" type="text" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Floor</label>
+                  <label class="form-control-label rtl">أرضية</label>
+                  <input id="floor" formControlName="floorinput" type="text" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">City</label>
+                  <label class="form-control-label rtl">مدينة</label>
+                  <input id="city" formControlName="cityinput" type="text" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.cityinput" style="color: red">
+                    {{formErrors.cityinput}}
+                  </span>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="country">Country</label>
+                    <label class="mr-sm-2 rtl" for="country">دولة</label>
+                    <input id="contry" formControlName="countryinput" type="text" class="form-control" disabled/>
+                    <!-- <select name="title"  formControlName="countryinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option> 
+                     <option *ngFor="let country of countries"  [value]="country.Country_Name">{{country.Country_Name}}</option>
+                    </select> -->
+                  </div>
+                </div>
+              </div><br>
+              <div class="row">
+                <button type="button" class="btn btn-warning ltr" (click)="info2_previous()">Previous</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="info2_previous()">السابق</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="info2save()">Save</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="info2save()">حفظ</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="ifo2submit()">Save&Continue</button>
+                <button type="button" class="btn btn-warning rtl" (click)="ifo2submit()">حفظ ومتابعة</button>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <!-- ....................basic info 2 end............................... -->
+          <!-- ....................documents start............................... -->
+          <ngb-tab class="eachTabPane" id="document">
+            <ng-template ngbTabTitle><b class="ltr">Documents</b>
+              <b class="rtl">مستندات</b></ng-template>
+            <ng-template ngbTabContent><br>
+              <h3 style="color:gray" class="ltr">Documents</h3><br>
+              <h3 style="color:gray" class="rtl">مستندات</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="item">Document Type</label>
+                    <label class="mr-sm-2 rtl" for="item">نوع الوثيقة</label>
+                    <select name="title" formControlName="documentypeinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let item of documenttypes"  [value]="item.Documenttype">{{item.Documenttype}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Number</label>
+                  <label class="form-control-label rtl">رقم</label>
+                  <input id="city" formControlName="numberinput" type="text" class="form-control" [ngClass]="{'has-error' :formErrors.numberinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.numberinput" style="color: red">
+                      {{formErrors.numberinput}}
+                    </span>
+                
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Upload Document</label>
+                  <label class="form-control-label rtl">تحميل المستند</label>
+                  <input id="uploaddoc" formControlName="uploaddocinput" type="file" class="form-control" style="border:none" (change)="fileupload($event,'uploaddocument')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                  <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Date of Issue</label>
+                  <label class="form-control-label rtl">تاريخ المسألة</label>
+                  <!-- <input type="date" formControlName="dateofissueinput" id="dateofissue" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt6"  [owlDateTime]="dt6" placeholder="mm/dd/yyyy" class="form-control" formControlName="dateofissueinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt6 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Expire Date</label>
+                  <label class="form-control-label rtl">تاريخ انتهاء الصلاحية</label>
+                  <!-- <input type="date" formControlName="expiredateinput" id="expiredate" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt12"  [owlDateTime]="dt12" placeholder="mm/dd/yyyy" class="form-control" formControlName="expiredateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt12 ></owl-date-time>
+                </div>
+              </div><br>
+              <h3 style="color:gray" class="ltr">Degree Information</h3><br>
+              <h3 style="color:gray" class="rtl">معلومات الدرجة</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Degree</label>
+                  <label class="form-control-label rtl">الدرجة العلمية</label>
+                  <input id="degree" formControlName="degreeinput" type="text" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">University</label>
+                  <label class="form-control-label rtl">جامعة</label>
+                  <input id="university" formControlName="universityinput" type="text" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">GPA</label>
+                  <label class="form-control-label rtl">المعدل التراكمي</label>
+                  <input id="gpa" formControlName="gpainput" type="number" class="form-control" [ngClass]="{'has-error' :formErrors.gpainput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.gpainput" style="color: red">
+                      {{formErrors.gpainput}}
+                    </span>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Date of Graduation</label>
+                  <label class="form-control-label rtl">تاريخ التخرج</label>
+                  <!-- <input type="date" formControlName="dateofgraduationinput" id="dateofissue" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt7"  [owlDateTime]="dt7" placeholder="mm/dd/yyyy" class="form-control" formControlName="dateofgraduationinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt7 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Degree Certificate</label>
+                  <label class="form-control-label rtl">درجة الشهادة</label>
+                  <input id="degreecertificate" formControlName="degreecertificateinput" type="file" class="form-control" style="border:none" (change)="fileupload($event,'degreecertificate')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                  <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+
+                </div>
+              </div><br>
+              <h3 style="color:gray" class="ltr">Training Courses</h3><br>
+              <h3 style="color:gray" class="rtl">دورات تدريبية</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Name of Course</label>
+                  <label class="form-control-label rtl">اسم بالطبع</label>
+                  <input id="nameofcourse" formControlName="nameofcourseinput" type="text" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.nameofcourseinput" style="color: red">
+                    {{formErrors.nameofcourseinput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Place of Issue</label>
+                  <label class="form-control-label rtl">مكان صدوره</label>
+                  <input id="placeofissue" formControlName="placeofissueinput" type="text" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.placeofissueinput" style="color: red">
+                    {{formErrors.placeofissueinput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Start Date</label>
+                  <label class="form-control-label rtl">تاريخ البدء</label>
+                  <!-- <input type="date" formControlName="startdate_input" id="startdate" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt8"  [owlDateTime]="dt8" placeholder="mm/dd/yyyy" class="form-control" formControlName="startdate_input" >
+                  <owl-date-time [pickerType]="'calendar'" #dt8 ></owl-date-time>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">End Date</label>
+                    <label class="form-control-label rtl">تاريخ الانتهاء</label>
+                  <!-- <input type="date" formControlName="enddateinput" id="enddate" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt9"  [owlDateTime]="dt9" placeholder="mm/dd/yyyy" class="form-control" formControlName="enddateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt9 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Course Certificate</label>
+                  <label class="form-control-label rtl">شهادة الدورة</label>
+                  <input id="coursecertificate" formControlName="coursecertificateinput" type="file" class="form-control" style="border:none" (change)="fileupload($event,'coursecertificate')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                  <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+                </div>
+                <div class="col-md-4"><br>
+                    <label class="form-control-label"></label>
+                    <button type="button" class="btn btn-warning ltr" (click)="addclickdocuments()" style="margin-left: 10%;margin-top: 3%;"><i class="fa fa-fw fa-user" ></i>Add</button>
+                    <button type="button" class="btn btn-warning rtl" (click)="addclickdocuments()" style="margin-left: 10%;margin-top: 3%;"><i class="fa fa-fw fa-user" ></i>إضافة</button>
+              </div>
+              </div>
+              <div [hidden]="docaddclickhide" >
+                  <h3 style="color:gray" class="ltr">Documents</h3><br>
+                 <h3 style="color:gray" class="rtl">مستندات</h3><br>
+              <div class="row docaddrowcls" formArrayName="docadd" *ngFor=" let item of patient.get('docadd')['controls']; let i=index">
+                  <div class="col-md-4" [formGroupName]="i">
+                    <label class="form-control-label ltr">Document Name</label>
+                    <label class="form-control-label rtl">اسم الملف</label>
+                    <input [id]="'adddocname'+i"  formControlName="adddocname" type="text" class="form-control docnamecls" />
+                  </div>
+                  <div class="col-md-4" [formGroupName]="i">
+                      <label class="form-control-label ltr">End Date</label>
+                        <label class="form-control-label rtl">تاريخ الانتهاء</label>
+                      <input [owlDateTimeTrigger]="dt20"  [owlDateTime]="dt20" placeholder="mm/dd/yyyy" [id]="'addenddateinput'+i" class="form-control addenddatecls" formControlName="addenddateinput" >
+                      <owl-date-time [pickerType]="'calendar'" #dt20 ></owl-date-time>
+                    </div>
+                    <div class="col-md-3" [formGroupName]="i">
+                        <label class="form-control-label"></label>
+                        <input [id]="'choosefileinput'+i" formControlName="choosefileinput" type="file" class="form-control addchoosefilecls" style="border:none" (change)="fileupload($event,'choosefile')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                        <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+                      </div>
+                      <div class="col-md-1"><br><br>
+                        <span style="color:blue" (click)="docdeleteclick(i)">Delete</span>
+                      </div>
+                </div>
+                </div>
+              <br>
+              <div class="row">
+                <button type="button" class="btn btn-warning ltr" (click)="document_previous()">Previous</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="document_previous()">سابق</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="documentsave()">Save</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="documentsave()">حفظ</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="documentsubmit()">Save&Continue</button>
+                <button type="button" class="btn btn-warning rtl" (click)="documentsubmit()">حفظ ومتابعة</button>
+              </div>
+
+
+            </ng-template>
+          </ngb-tab>
+          <!-- ....................documents end............................... -->
+          <!-- ....................health insurance start............................... -->
+          <ngb-tab class="eachTabPane" id="healthinsurance">
+            <ng-template ngbTabTitle><b class="ltr">Health Insurance / Social Security</b>
+              <b class="rtl">التأمين الصحي /الضمان الاجتماعي</b></ng-template>
+            <ng-template ngbTabContent><br>
+              <h3 style="color:gray" class="ltr">Health Insurance / Social Security</h3><br>
+              <h3 style="color:gray" class="rtl">التأمين الصحي /الضمان الاجتماعي</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Social Security Number</label>
+                  <label class="form-control-label rtl">رقم الضمان الاجتماعية</label>
+                  <input id="socialsecurityno" formControlName="socialsecurityinput" type="text" class="form-control" [ngClass]="{'has-error' :formErrors.socialsecurityinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.socialsecurityinput" style="color: red">
+                      {{formErrors.socialsecurityinput}}
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Date of Registration</label>
+                  <label class="form-control-label rtl">تاريخ التسجيل</label>
+                  <!-- <input type="date" formControlName="dateofreginput" id="dateofreg" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt10"  [owlDateTime]="dt10" placeholder="mm/dd/yyyy" class="form-control" formControlName="dateofreginput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt10 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Place of Registration</label>
+                  <label class="form-control-label rtl">مكان التسجيل</label>
+                  <input id="placeofreg" formControlName="placeofreginput" type="text" class="form-control" />
+                
+                </div>
+              </div><br>
+              <h3 style="color:gray" class="ltr">Health Insurance</h3><br>
+              <h3 style="color:gray" class="rtl">التأمين الصحي</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="health">Health Insurance</label>
+                    <label class="mr-sm-2 rtl" for="health">التأمين الصحي</label>
+                    <select name="title" formControlName="healthinsuranceinput" class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                       <option *ngFor="let item of hicompanyname"  [value]="item.Category_Name">{{item.Category_Name}}</option>
+                      </select>
+                       <!-- <option *ngFor="let health of healthinsurance" [value]="health.Type_Name">{{health.Type_Name}}</option>
+                    </select> -->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="item">Health Insurance Company Name</label>
+                    <label class="mr-sm-2 rtl" for="item">اسم شركة التأمين الصحي</label>
+                    <select name="title"  formControlName="healthincompanyinput" class="custom-select mr-sm-2" >
+                      <option disabled  label="Please Select Insurance Name" [value]="select"></option>
+                      <option *ngFor="let item of hicompanyname"  [value]="item.Category_Name">{{item.Category_Name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Issued Date</label>
+                  <label class="form-control-label rtl">تاريخ الأصدار</label>
+                  <!-- <input type="date" formControlName="issueddateinput" id="dateofreg" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt11"  [owlDateTime]="dt11" placeholder="mm/dd/yyyy" class="form-control" formControlName="issueddateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt11 ></owl-date-time>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Expiry Date</label>
+                  <label class="form-control-label rtl">تاريخ الانتهاء</label>
+                  <!-- <input type="date" formControlName="expirydateinput" id="expirydate" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt12"  [owlDateTime]="dt12" placeholder="mm/dd/yyyy" class="form-control" formControlName="expirydateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt12 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="item">Insurance Type</label>
+                    <label class="mr-sm-2 rtl" for="item">نوع التأمين</label>
+                    <select name="title" formControlName="insurancetypeinput"  class="custom-select mr-sm-2" >
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let health of healthinsurance"  [value]="health.Type_Name">{{health.Type_Name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Insurance Number</label>
+                  <label class="form-control-label rtl">رقم التأمين</label>
+                  <input type="text" formControlName="insurancenoinput" id="insuranceno" class="form-control"  [ngClass]="{'has-error' :formErrors.insurancenoinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.insurancenoinput" style="color: red">
+                      {{formErrors.insurancenoinput}}
+                    </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Insurance Copy</label>
+                  <label class="form-control-label rtl">نسخة من التأمين</label>
+                  <input id="coursecertificate" formControlName="insurancecopyinput" type="file" class="form-control" style="border:none" (change)="fileupload($event,'insurancecopy')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                  <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+                </div>
+              </div><br>
+              <div class="row">
+                <button type="button" class="btn btn-warning ltr" (click)="health_previous()">Previous</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="health_previous()">السابق</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="insurancesave()">Save</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="insurancesave()">حفظ</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning ltr" (click)="insurancesubmit()">Save&Continue</button>
+                <button type="button" class="btn btn-warning rtl" (click)="insurancesubmit()">حفظ ومتابعة</button>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <!-- ....................health insurance end............................... -->
+          <!-- ....................vehicle start............................... -->
+          <ngb-tab class="eachTabPane" id="vehicle">
+            <ng-template ngbTabTitle><b class="ltr">Vehicle</b>
+              <b class="rtl">مركبة</b></ng-template>
+            <ng-template ngbTabContent><br>
+              <h3 style="color:gray" class="ltr">Vehicle</h3><br>
+              <h3 style="color:gray" class="rtl">مركبة</h3><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Model Year</label>
+                  <label class="form-control-label rtl">سنة صنع المركبة</label>
+                  <input id="modelyear" formControlName="modelyearinput" type="number" class="form-control" />
+                  <span class="help-block" *ngIf="formErrors.modelyearinput" style="color: red">
+                    {{formErrors.modelyearinput}}
+                  </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Make</label>
+                  <label class="form-control-label rtl">المصنع</label>
+                  <input type="text" formControlName="makeinput" id="make" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Model</label>
+                  <label class="form-control-label rtl">المركبة</label>
+                  <input id="model" formControlName="modelinput" type="text" class="form-control" />
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">VIN Number</label>
+                  <label class="form-control-label rtl">رقم الهيكل للسيارة</label>
+                  <input id="vinno" formControlName="vinnoinput" type="text" class="form-control"  [ngClass]="{'has-error' :formErrors.vinnoinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.vinnoinput" style="color: red">
+                      {{formErrors.vinnoinput}}
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Miles</label>
+                  <label class="form-control-label rtl">الاميال/الكيلومترات</label>
+                  <input type="number" formControlName="milesinput" id="miles" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Plate Number</label>
+                  <label class="form-control-label rtl">رقم اللوحة</label>
+                  <input id="plateno" formControlName="platenoinput" type="text" class="form-control" [ngClass]="{'has-error' :formErrors.platenoinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.platenoinput" style="color: red">
+                      {{formErrors.platenoinput}}
+                    </span>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Licence Number</label>
+                  <label class="form-control-label rtl">رقم الرخصة</label>
+                  <input id="licenceno" formControlName="licencenoinput" type="text" class="form-control" [ngClass]="{'has-error' :formErrors.licencenoinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.licencenoinput" style="color: red">
+                      {{formErrors.licencenoinput}}
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Licence Expiration Date</label>
+                  <label class="form-control-label rtl">تاريخ انتهاء صلاحية الرخصة</label>
+                  <!-- <input type="date" id="licenceexdate" formControlName="licenceexdateinput" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt13"  [owlDateTime]="dt13" placeholder="mm/dd/yyyy" class="form-control" formControlName="licenceexdateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt13 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Licence Attachment</label>
+                  <label class="form-control-label rtl">ارفاق الرخصة</label>
+                  <input id="coursecertificate" formControlName="licenceattachementinput" type="file" class="form-control" style="border:none" (change)="fileupload($event,'licenceattachment')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                  <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-b-30">
+                    <label class="mr-sm-2 ltr" for="item">Insurance Company</label>
+                    <label class="mr-sm-2 rtl" for="item">شركه التامين</label>
+                    <select name="title" formControlName="insurancecomptinput"class="custom-select mr-sm-2">
+                       <option label="select" disabled [value]="select"></option>
+                      <option *ngFor="let item of insurancecompany"  [value]="item">{{item}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Policy Number</label>
+                  <label class="form-control-label rtl">رقم وثيقة التامين</label>
+                  <input id="licenceno" formControlName="plicynoinput" type="text" class="form-control" [ngClass]="{'has-error' :formErrors.plicynoinput}" (blur)="checkValidationErrors()"/>
+                  <span class="help-block" *ngIf="formErrors.plicynoinput" style="color: red">
+                      {{formErrors.plicynoinput}}
+                    </span>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Expiration Date</label>
+                  <label class="form-control-label rtl">تاريخ إنتهاء الصلاحية</label>
+                  <!-- <input type="date" id="exdate" formControlName="exdateinput" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt14"  [owlDateTime]="dt14" placeholder="mm/dd/yyyy" class="form-control" formControlName="exdateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt14 ></owl-date-time>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Insurance Attachment</label>
+                  <label class="form-control-label rtl">مرفق التأمين</label>
+                  <input id="coursecertificate" formControlName="insuranceattachmentinput" type="file" class="form-control" style="border:none" (change)="fileupload($event,'insuranceattachment')" accept="image/jpeg,image/jpg,image/png,image/gif">
+                  <p>Upload only .jpeg or .jpg or .png or .gif&nbsp;&nbsp;<i class="mdi mdi-camera-off" style="color:black;font-size: 22px;"></i></p>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Assign Date</label>
+                  <label class="form-control-label rtl">تاريخ التعيين</label>
+                  <!-- <input type="date" formControlName="assigndateinput" id="assigndate" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt15"  [owlDateTime]="dt15" placeholder="mm/dd/yyyy" class="form-control" formControlName="assigndateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt15 ></owl-date-time>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-control-label ltr">Return Date</label>
+                  <label class="form-control-label rtl">تاريخ العودة</label>
+                  <!-- <input type="date" formControlName="returndateinput" id="returndate" class="form-control" /> -->
+                  <input [owlDateTimeTrigger]="dt16"  [owlDateTime]="dt16" placeholder="mm/dd/yyyy" class="form-control" formControlName="returndateinput" >
+                  <owl-date-time [pickerType]="'calendar'" #dt16 ></owl-date-time>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <!-- <form class="mt-3"> -->
+                    <label class="form-control-label ltr">Notes</label>
+                    <label class="form-control-label rtl">ملاحظات</label>
+                    <textarea class="form-control" formControlName="notesinput" id="notesinput" type="text" placeholder="Your Notes"></textarea>
+                  <!-- </form> -->
+                </div>
+              </div><br>
+              <div class="row">
+                <button type="button" class="btn btn-warning ltr" (click)="vehicle_previous()">Previous</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl" (click)="vehicle_previous()">السابق</button>&nbsp;&nbsp;&nbsp;
+                <!-- <button type="button" class="btn btn-warning ltr"(click)="vehiclesave()">Save</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-warning rtl"(click)="vehiclesave()">حفظ</button>&nbsp;&nbsp;&nbsp; -->
+                <button type="button" class="btn btn-warning ltr" (click)="vehiclesubmit()">Submit</button>
+                <button type="button" class="btn btn-warning rtl" (click)="vehiclesubmit()">إرسل</button>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <!-- ....................vehicle end............................... -->
+
+        </ngb-tabset>
+
+
+      </div>
+    </form>
+  </div>
+</div>
+</div>

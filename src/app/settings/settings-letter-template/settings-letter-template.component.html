@@ -1,0 +1,77 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="ltr" id="breadcrumb" style="margin-left:-6%">
+        <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>Settings</a></li>
+        <li class="ltr"><a class="nav-link">Letter Template Details</a></li>
+      </ul>
+      <ul class="rtl" id="breadcrumb" style="margin-right:-6%">
+        <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>إعدادات</a></li>
+        <li class="rtl"><a class="nav-link">تفاصيل قالب الرسائل</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Letter Template Details</h4>
+        <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل قالب الرسائل</h4>
+      </div>
+      <div class="card-body">
+        <div class="text-right justify-content-between">
+          <span>
+              <button routerLink='/ViewTemplate' type="button" class="btn btn-warning ltr">
+                <i class="fa fa-fw fa-user ltr"></i>Add</button>
+                <button routerLink='/ViewTemplate' type="button" class="btn btn-warning rtl">
+                  <i class="fa fa-fw fa-user rtl"></i>إضافة</button>
+          </span>
+        </div>
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="ltr">
+            <tr>
+              <th>Template ID</th>
+              <th>Template Name</th>
+              <th>Trans Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <thead class="rtl">
+            <tr>
+              <th>رقم هوية النموذج</th>
+              <th>اسم النموذج</th>
+              <th>تاريخ العملية</th>
+              <th>الحالة</th>
+              <th>الاجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of LetterTempArray">
+              <td>{{i.Lettertemplate_ID}}</td>
+              <td>{{i.Lettertemplate_Name}}</td>
+              <td>{{i.TransDate}}</td>
+              <td>{{i.Status}}</td>
+              <td style="display:flex;">
+                <span><a class="nav-link " style="cursor: pointer;color:#4a87ee" (click)="edit('Edit',i.Sno)"><i
+                      class="fa fa-pencil-alt text-info"></i></a></span> &nbsp;
+                <span><a class="nav-link " style="cursor: pointer;color:#4a87ee" (click)="edit('View',i.Sno)"><i
+                      class="fa fa-fw fa-eye"></i></a></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

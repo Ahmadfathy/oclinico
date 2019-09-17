@@ -1,0 +1,275 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9" *ngIf="isPageloaderVisible">
+        <div class="spinner" style="margin: 100px auto !important;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    <form [formGroup]="expenses">
+        <!-- <p class='rtl'>?سوف أعطي مثالا على ذلك. لا تمانع</p> -->
+        <div class="row" *ngIf="addexpense">
+            <h4 class="ltr">Add Expense</h4>
+    
+            <h4 class="rtl">مصروف</h4>
+        </div>
+        <div class="row" *ngIf="editexpense">
+            <h4 class="ltr">Edit Expense</h4>
+    
+            <h4 class="rtl">تعديل المصروف</h4>
+        </div>
+        <br>
+    
+        <div class="row">
+            <div class="col-md-12" >
+                <ul id="breadcrumb">
+                    <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                    <li class="ltr">
+                        <a class="nav-link " routerLink='/expenses'> Expense Details</a>
+                    </li>
+                    <li class=" rtl">
+                        <a class="nav-link" routerLink='/expenses'>تفاصيل المصاريف/المصروفات</a>
+                    </li>
+                    <li *ngIf="addexpense" class="ltr">
+                        <a class="nav-link" routerLink='/addexpense'>Add Expense</a>
+                    </li>
+                    <li *ngIf="addexpense" class="rtl">
+                        <a class="nav-link rtl" routerLink='/addexpense'>إضافة حساب</a>
+                    </li>
+                    <li *ngIf="editexpense" class="ltr">
+                        <a class="nav-link ltr">Edit Expense</a>
+                    </li>
+                    <li *ngIf="editexpense" class="rtl">
+                        <a class="nav-link rtl">تعديل المصروف</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="row">
+    
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+                        <div class="card-header">
+                                <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Expense Details</p>
+                                <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل المصاريف/المصروفات</p>
+                            </div>
+                
+                    <div class="card-body" [hidden]="show">
+    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="card-title mt-4 ltr">Expense Details</h3>
+    
+                                <h3 class="card-title mt-4 rtl">تفاصيل المصاريف/المصروفات</h3>
+                            </div>
+    
+                            <div class="col-md-4 form-group">
+                                <div class="mt-3">
+                                    <label class="form-control-label ltr">Expense Date<i class="fa fa-star"></i></label>
+                                    <label class="form-control-label rtl">تاريخ المصاريف/المصروفات<i class="fa fa-star"></i></label>
+                                    
+                                    <input  [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="mm/dd/yyyy" class="form-control" 
+                                    formControlName="expensedate" (dateTimeInput)="datechange()">
+                                          <owl-date-time [pickerType]="'calendar'" #dt3 ></owl-date-time>
+                                    
+                                    <!-- <input type="date" class="form-control" formControlName="expensedate" [ngClass]="{'has-error':formErrors.expensedate}"
+                                        (blur)="CheckValidationErrors()" /> -->
+                                </div>
+                                <span *ngIf="formErrors.expensedate" style="color:red">{{formErrors.expensedate}}</span>
+                            </div>
+    
+                            <div class="col-md-4 form-group">
+                                <div class="mt-3">
+                                    <label class="form-control-label ltr">Vendor<i class="fa fa-star"></i></label>
+                                    <label class="form-control-label rtl">بائع<i class="fa fa-star"></i></label>
+                                    <input type="text" class="form-control" id="vendor" formControlName="Vendor" [ngClass]="{'has-error':formErrors.Vendor}"
+                                        (blur)="CheckValidationErrors()" (keydown)="eventhandler($event)"/>
+                                </div>
+                                <span *ngIf="formErrors.Vendor" style="color:red">{{formErrors.Vendor}}</span>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <div class="mt-3">
+                                    <label class="form-control-label ltr">Category<i class="fa fa-star"></i></label>
+                                    <label class="form-control-label rtl">الفئة<i class="fa fa-star"></i></label>
+                                    <input type="text" class="form-control" id="category" formControlName="Category" (blur)="CheckValidationErrors()"
+                                        (keydown)="eventhandler($event)" />
+                                </div>
+                                <span *ngIf="formErrors.Category" style="color:red">{{formErrors.Category}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <div class="mt-3">
+                                    <label class="form-control-label ltr">Total Expense Amount(including tax)<i class="fa fa-star"></i></label>
+                                    <label class="form-control-label rtl">المبلغ الإجمالي للمصاريف (بما في ذلك الضرائب)<i class="fa fa-star"></i></label>
+                                    <input type="float" class="form-control" id="totalexpense" formControlName="totalexpamount"
+                                        (blur)="CheckValidationErrors()" (keydown)="eventhandler($event)" (change)="taxamount($event)" />
+                                </div>
+                                <span *ngIf="formErrors.totalexpamount" style="color:red">{{formErrors.totalexpamount}}</span>
+                            </div>
+    
+                            <div class="col-md-4">
+    
+                                <div class="mt-3">
+                                    <div class="form-group m-b-30">
+                                        <label class="mr-sm-2 ltr" for="title">Tax<i class="fa fa-star"></i></label>
+                                        <label class="mr-sm-2 rtl" for="title">عنوان<i class="fa fa-star"></i></label>
+                                        <select formControlName="tax" class="custom-select mr-sm-2 ltr" (blur)="CheckValidationErrors()" (change)="taxamountselect($event)">
+                                            <option [value]=''>Select</option>
+                                            <option *ngFor="let title of titles" [value]="title.value">{{title.text}}</option>
+                                        </select>
+                                        <select formControlName="tax" class="custom-select mr-sm-2 rtl" (blur)="CheckValidationErrors()">
+                                            <option class="ltr" [value]=''>تحديد</option>
+                                            <option *ngFor="let title of titles" [value]="title.value">{{title.text}}</option>
+                                        </select>
+                                        <span *ngIf="formErrors.tax" style="color:red">{{formErrors.tax}}</span>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <div class="mt-3">
+                                    <label class="form-control-label ltr">Tax Total<i class="fa fa-star"></i></label>
+                                    <label class="form-control-label rtl">مجموع الضرائب<i class="fa fa-star"></i></label>
+                                    <input type="float" class="form-control" id="taxTotal" formControlName="taxtotal"
+                                        (blur)="CheckValidationErrors()" (keydown)="eventhandler($event)" />
+                                </div>
+                                <span *ngIf="formErrors.taxtotal" style="color:red">{{formErrors.taxtotal}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <div class="mt-3">
+                                    <label class="form-control-label ltr">Notes</label>
+                                    <label class="form-control-label rtl">ملاحظات</label>
+                                    <textarea class="form-control" formControlName="notes"></textarea>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                        <!-- Table data -->
+                        <div formArrayName='expenseEdit' *ngIf='tableexpenses'>
+                            <table class="table table-hover table-responsive" id="dataTable">
+                                <thead class="ltr">
+                                    <tr >
+                                        <th>Products</th>
+                                        <th>Unit Cost Price(Ex.Tax)</th>
+                                        <th>Quantity</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <thead class="rtl">
+                                        <tr >
+                                                <th>منتجات</th>
+                                                <th>سعر تكلفة الوحدة (مثال: الضريبة)</th>
+                                                <th>كمية</th>
+                                                <th></th>
+                                            </tr>
+                                </thead>
+    
+                                <tbody style="width:100%">
+                                    <tr *ngFor=" let expenseedit of expenses.get('expenseEdit').controls; let i=index"
+                                        [formGroupName]="i">
+                                        <td><br>
+                                            <div class="col-md-8">
+                                                <!-- <div class="form-group m-b-30"> -->
+                                                <select name="title" formControlName="products" class="custom-select mr-sm-2">
+                                                    <option [value]="select" selected>-- select --</option>
+                                                    <option *ngFor="let t of productsdata" [value]="t.Name">{{t.Name}}</option>
+    
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-md-5 form-group">
+                                                <div class="mt-3">
+                                                    <input type="text" class="form-control" id="unitCost" formControlName="unitcost" (keydown)="eventhandler1($event,i)"/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-md-5 form-group">
+                                                <div class="mt-3">
+                                                    <input type="text" class="form-control" id="Quantity" formControlName="quantity" (keydown)="eventhandler1($event,i)"/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <br> <i class="fas fa-times-circle" title="Delete Products" style="font-size:20px;color:#333333"
+                                                (click)="removeproducts(i)"></i>
+                                        </td>
+                                    </tr>
+    
+                                </tbody>
+    
+                            </table>
+                            <br>
+                            <div class="submitBtns" style="float:right">
+                                <button type="submit" class="btn btn-md btn-warning" (click)="addproducts()">
+                                    <i class="fa fa-check-circle"></i>
+                                    Add Product</button>
+                            </div>
+    
+                        </div>
+                        <!-- Table data end -->
+                       
+                    </div>
+                    <div [hidden]="nodata">No Data Found</div>
+                </div>
+                <div class="row mt-5" *ngIf="editexpense">
+                    <div class="col-md-12  submitBtns">
+                        <button type="submit" class="btn btn-md btn-warning" (click)="update(content1)" style="margin-right:10px;">
+                            <i class="fa fa-check-circle"></i>
+                            Update</button>
+                        <button type="submit" class="btn btn-md btn-success" (click)="cancle()">
+                            <i class="fa fa-ban"></i>
+                            Cancel</button>
+                    </div>
+                </div>
+                <div class="row mt-5" *ngIf="addexpense">
+                    <div class="col-md-12  submitBtns">
+                        <button type="submit" class="btn btn-md btn-warning" (click)="submit(content)" style="margin-right:10px;">
+                            <i class="fa fa-check-circle"></i>
+                            Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+    
+        </div>
+        <div class="row" style="display:none">
+                <div class="col-md-6">
+                <div class="card">
+                <div class="card-body">
+                <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-body">
+                <p>Inserted Successfully</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="d('Cross click')">Ok</button>
+                </div>
+                </ng-template>
+                </div>
+                </div>
+                </div>
+                </div>
+                
+                <div class="row" style="display:none">
+                <div class="col-md-6">
+                <div class="card">
+                <div class="card-body">
+                <ng-template #content1 let-c="close" let-d="dismiss">
+                <div class="modal-body">
+                <p>Updated Successfully</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="d('Cross click')">Ok</button>
+                </div>
+                </ng-template>
+                </div>
+                </div>
+                </div>
+                </div>
+    </form>

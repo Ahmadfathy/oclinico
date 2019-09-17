@@ -1,0 +1,198 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <!-- <li class="ltr">
+        <a class="nav-link" routerLink='/product'> Products</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/product'>
+          <span>المنتجات</span>
+        </a>
+      </li> -->
+      <li class="ltr">
+          <a class="nav-link" routerLink='/Pharmacy'> 
+              <!-- routerLink='/product' -->
+              Pharmacy
+              <!-- Products -->
+          </a>
+      </li>
+      <li class="rtl">
+          <a class="nav-link" routerLink='/Pharmacy'>
+              <span>
+                      صيدلية. 
+                  <!-- المنتجات -->
+              </span>
+          </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/viewproduct'> View Medication
+          <!-- Product -->
+        </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/viewproduct'>
+          <span>
+               عرض الدواء      
+            <!-- عرض المنتج -->
+          </span>
+        </a>
+      </li>
+      <!-- <li class="rtl">
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <p class="m-b-0 text-black ltr">
+      <i class="sl-icon-menu font-14"></i> &nbsp;
+      <!-- Products -->
+      View Medication
+    </p>
+    <p class="m-b-0 text-black rtl">
+      <i class="sl-icon-menu font-14"></i> &nbsp;
+      عرض الدواء
+      <!-- المنتجات -->
+    </p>
+  </div>
+  <div class="card-body">
+    <div class="col-md-12 text-right mt-2">
+      <button type="submit" class="btn btn-warning ltr" (click)="EditProduct()">
+        <i class="fa fa-check-circle"></i>
+        Edit</button>&nbsp;
+      <button type="submit" class="btn btn-warning rtl" (click)="EditProduct()">
+        <i class="fa fa-check-circle"></i>
+        تعديل</button>&nbsp;
+    </div>
+
+    <div class="tab-content mt-2">
+      <div role="tabpanel">
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-hover table-bordered">
+              <tbody>
+                <tr>
+                  <td class="ltr">Item Code</td>
+                  <td class="rtl">رمز الصنف </td>
+                  <td>{{ItemCode}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Serial Number</td>
+                  <td class="rtl">الرقم التسلسلي </td>
+                  <td>{{SerialNumber}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Supplier</td>
+                  <td class="rtl">المورد </td>
+                  <td>{{Supplier}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Cost Price(Ex. Tax) </td>
+                  <td class="rtl">سعر التكلفة (باستثناء الضريبة)</td>
+                  <td>{{Price}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Tax</td>
+                  <td class="rtl">ضريبة</td>
+                  <td>{{Tax}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Cost Price </td>
+                  <td class="rtl">سعر التكلفة </td>
+                  <td>{{CostPrice}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Expire Date</td>
+                  <td class="rtl">انتهاء الصلاحية </td>
+                  <td>{{ExpireDate}}</td>
+                </tr>
+                <tr>
+                  <td class="ltr">Stock Level </td>
+                  <td class="rtl">مستوى المخزون </td>
+                  <td>{{StockLevel}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-6">
+            <label class="ltr" style="font-weight: bold">Notes</label>
+            <label class="rtl" style="font-weight: bold">ملاحظات</label>
+            <textarea class="form-control" name="Notes" id="Notes" [(ngModel)]="Notes" readonly cols="40" rows="8"></textarea>
+          </div>
+
+
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-warning ltr" (click)="AdjustStockLevel()">
+              <i class="fa fa-check-circle"></i>
+              Adjust Stock Level</button>&nbsp;
+            <button type="submit" class="btn btn-warning rtl" (click)="AdjustStockLevel()">
+              <i class="fa fa-check-circle"></i>
+              ضبط مستوى المخزون</button>&nbsp;
+          </div>
+
+          <div class="col-md-12 mt-2">
+            <table class="table table-hover table-bordered" cellspacing="0">
+              <thead class="headrow ltr">
+                <tr>
+                  <th>Adjustment Type</th>
+                  <th>Quantity </th>
+                  <th>Adjusted Date </th>
+                  <th>Adjusted By </th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <thead class="headrow rtl">
+                <tr>
+                  <th>نوع التعديل
+                  </th>
+                  <th>الكمية </th>
+                  <th>تاريخ التعديل
+                  </th>
+                  <th>ضبط بواسطة
+                  </th>
+                  <th>الملاحظات
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prd of products;let i=index;">
+                  <!-- <td>{{ i + 1 }}</td> -->
+                  <td>{{prd.Transtype}}</td>
+                  <td>{{prd.qty}}</td>
+                  <td>{{prd.date}}</td>
+                  <td>{{prd.Name}}</td>
+                  <td>{{prd.Notes}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

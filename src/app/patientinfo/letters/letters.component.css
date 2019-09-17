@@ -1,0 +1,57 @@
+th{background-color:#4a87ee;
+color: white;}
+
+#mySettings {
+    opacity: 1;
+}
+
+#mySettings ul {
+    list-style: none;
+    padding: 0px;
+}
+
+#mySettings ul li:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    height: 100%;
+    width: 4px;
+    background: #e9ecef;
+    border-radius: 0.25rem;
+}
+
+::ng-deep [dir="rtl"] #mySettings ul li:before {
+    left: auto;
+    right: -20px;
+}
+
+#mySettings ul li {
+    cursor: pointer;
+    color: #3e5569;
+    position: relative;
+    left: 20px;
+    padding: 10px 0;
+    transition: color 150ms linear;
+}
+
+::ng-deep [dir="rtl"] #mySettings ul li {
+    left: auto;
+    right: 20px;
+}
+
+#mySettings ul li:hover {
+    color: #3587d8;
+}
+
+#mySettings ul li span {
+    position: absolute;
+    left: -25px;
+    color: #e9ecef;
+    background: #8c98b5;
+}
+
+::ng-deep [dir="rtl"] #mySettings ul li span {
+    left: auto !important;
+    right: -25px;
+}

@@ -1,0 +1,482 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate'> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate'>
+          <span> تفاصيل المريض</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">FollowUp</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/followup'>
+          <span>إشعار مراجعة</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;FollowUp</p>
+        <p class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;إشعار مراجعة
+        </p>
+      </div>
+      <br>
+      <div class="card-body">
+        <div style="float:right;margin-bottom: 20px;">
+          <button class="btn btn-info ltr" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>Print</button>
+        </div>
+        <div style="float:left;margin-bottom: 20px;" class="rtl">
+          <button class="btn btn-info rtl" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>طباعة</button>
+        </div>
+        <div class="row">
+          <div class="invoice-box">
+            <div class="maindiv">
+              <div class="top1">
+                <div class="left">
+                  <div class="maindiv">
+                    <input type="text" value="" [(ngModel)]="field1" style="width:calc(100% - 66px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> الرقم : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="number" value="" [(ngModel)]="field2" style="width:calc(100% - 180px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field3" style="width:calc(100% - 180px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field4" style="width:calc(100% - 145px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> التاريخ : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" value="" [(ngModel)]="field5" style="width:calc(100% - 80px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> المرفقات : &nbsp; </div>
+                  </div>
+                </div>
+
+                <div class="center">
+                  <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+                </div>
+                <div class="right" style="text-align: center;">
+                  <br> المملكة العربية السعودية
+                  <br> وزارة التعليم
+                  <br> الجامعة الاسلامية بالمدينة المنورة
+                  <br>
+                  <strong> المركز الطبي الجامعي</strong>
+                </div>
+              </div>
+            </div>
+            <div class="outer-div">
+              <div class="inner-div"> إشعار مراجعة </div>
+            </div>
+            <div class="maindiv" style="margin-bottom: 10px;">
+              <div class="top2">
+                <div class="maindiv">
+                  <div class="et1" style="width: 20%; float: left; margin-right: 10px; text-align: center;"> حفظة الله
+                  </div>
+                  <input type="text" [(ngModel)]="field6" value="" style="width:calc(100% - 290px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                  />
+                  <div class="et1" style="width: 16%; float: right;"> المكرم مدير : &nbsp; </div>
+                </div>
+
+                <div class="maindiv">
+                  <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 25px 0px; text-align: center;">
+                    السلام عليكم ورحمه الله وبركاته
+                  </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width: 28%; float: left;">
+                    <input type="text" value="" [(ngModel)]="field7" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 13%; float: left; margin-right: 10px;"> برقم ملف : &nbsp; </div>
+                  <div style="width: 40%; float: left;">
+                    <input type="text" value="" [(ngModel)]="field8" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 15%; float: right;"> نفيدكم بأن المريض: &nbsp; </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width: 20%; float: left;">
+                    <input type="number" value="" [(ngModel)]="field9" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field10" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field11" style="width:20%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 6%; float: left; margin-right: 10px;"> الموافق </div>
+                  <div style="width: 45%; float: left;">
+                    <input type="text" value="" [(ngModel)]="field12" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 27%; float: right;"> قد راجع المركز الطبي الجامعي يوم : </div>
+                </div>
+                <div class="maindiv">
+                  <div class="et1" style="width: 20%; float: left;">
+                    <input type="number" value="" [(ngModel)]="field13" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field14" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field15" style="width:20%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 6%; float: left; margin-right: 10px;"> الموافق </div>
+                  <div style="width: 51%; float: left;">
+                    <input type="text" value="" [(ngModel)]="field16" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 21%; float: right;"> قحدد له موعد المراجعة يوم : &nbsp; </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 20%; float: left;">
+                    <input type="number" value="" [(ngModel)]="field17" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field18" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field19" style="width:20%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 6%; float: left; margin-right: 10px;"> الموافق </div>
+                  <div style="width: 18%; float: left; margin-right: 10px;">
+                    <input type="text" value="" [(ngModel)]="field20" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 4%; float: left; margin-right: 10px;"> يوم: </div>
+                  <div style="width: 33%; float: left;">
+                    <input type="text" value="" [(ngModel)]="field21" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 15%; float: right;"> تم تحويلة لمستشفى : &nbsp; </div>
+                </div>
+
+                <div class="maindiv">
+                  <div class="et1" style="width: 26%; float: left; margin-right: 10px;"> وأعطي العلاج اللازم, </div>
+                  <div style="width: 60%; float: left; margin-right: 10px;">
+                    <input type="text" value="" [(ngModel)]="field22" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 10%; float: right;"> ويعاني من : &nbsp; </div>
+                </div>
+
+                <div class="maindiv" style="margin-bottom: 20%;">
+                  <div class="et1" style="width: 20%; float: left;">
+                    <input type="number" value="" [(ngModel)]="field23" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field24" style="width:15%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span>/</span>
+                    <input type="number" value="" [(ngModel)]="field25" style="width:20%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 6%; float: left; margin-right: 10px;"> الموافق </div>
+                  <div style="width: 14%; float: left; margin-right: 10px;">
+                    <input type="text" value="" [(ngModel)]="field26" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 12%; float: left; margin-right: 10px;"> وذلك من يوم: </div>
+                  <div style="width: 30%; float: left;">
+                    <input type="text" value="" [(ngModel)]="field27" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                  <div class="et1" style="width: 14%; float: right;"> ويحتاج راحة مدة : &nbsp; </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width: 100%; height:auto;font-weight: bold; margin-bottom: 10px;">
+                  <span style="float: right">ملاحظة:</span>                    
+                  </div>
+                  <div class="et1" style="width: 100%; float: right;"> أي فراغ لا يعبأ أو يلغى فإنه يجعل الإشعار لاغياً
+                  </div>
+                  <div class="et1" style="width: 100%; float: right;"> يسر المركز الطبي الجامعي موافاتكم بالتقرير الطبي عند طلبكم
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="maindiv">
+              <div class="top4">
+                <div style="width: 35%; height:auto; float:left;">
+                  <div style="width: 100%; height:auto; float:left; font-weight: bold; margin-bottom: 10px; text-align: center;">
+                    مدير المركز الطبي الجامعي
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" value="" [(ngModel)]="field28" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> الاسم : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" value="" [(ngModel)]="field29" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> التوقيع : &nbsp; </div>
+                  </div>
+                </div>
+                <div style="width: 29%; height:auto; float:left; font-weight: bold; text-align: center; margin-bottom: 10px;">
+                  ختم الإدارة
+                </div>
+                <div style="width: 35%; height:auto; float:right;">
+                  <div style="width: 100%; height:auto; float:left; font-weight: bold; margin-bottom: 10px; text-align: center;">
+                    الطبيب المعالج
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" value="" [(ngModel)]="field30" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> الاسم : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" value="" [(ngModel)]="field31" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> التوقيع : &nbsp; </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---------------------------------- Print --------------------------------------- -->
+<div id="DivIdToPrint" style="display: none;">
+  <div style="padding: 30px; border: 1px solid #eee; width:768px; margin:0px auto; font-size: 16px;">
+    <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+      <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; border-radius: 20px; padding: 15px;">
+        <div style="width: 30%; height: auto; float: left;">
+          <div style="width:calc(100% - 66px); border:none; float:left; min-height: 30px;text-align: right;color: #000;
+          border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+            {{field1}}
+          </div>
+          <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> الرقم : &nbsp; </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <span style="width:calc(100% - 180px); border:none; border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+              {{field2}}
+            </span>
+            <span style="width:calc(100% - 180px); border:none; border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+              {{field3}}
+            </span>
+            <span style="width:calc(100% - 145px); border:none; border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+              {{field4}}
+            </span>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> التاريخ : &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div type="text" value="" style="width:calc(100% - 80px); border:none; min-height: 30px; border-bottom: 2px dotted #000; outline: none;">
+              {{field5}}</div>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> المرفقات : &nbsp; </div>
+          </div>
+        </div>
+
+        <div style="width: 40%; height: auto; float: left; text-align: center;">
+          <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+        </div>
+        <div style="text-align: center; width: 30%; height: auto; float: right;">
+          <br> المملكة العربية السعودية
+          <br> وزارة التعليم
+          <br> الجامعة الاسلامية بالمدينة المنورة
+          <br>
+          <strong> المركز الطبي الجامعي</strong>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 0px; text-align: center;">
+      <div style="display: inline-block; padding: 5px; background-color: #fff; font-size: 30px; border-radius: 5px; 
+      border: solid 2px #333; top: -30px; position: relative;">
+        إشعار مراجعة </div>
+    </div>
+    <div class="maindiv" style=" margin-bottom: 10px;">
+      <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; border-radius: 20px 20px 0px 0px; padding: 15px;">
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="height: auto; padding-top: 6px; width: 20%; float: left; margin-right: 10px; text-align: center;">
+            حفظة الله </div>
+            <span style=" width:calc(80% - 150px); height: 20px;
+            display: inline-block; border-bottom: 2px dotted #000; outline: none;">{{field6}} </span>
+          <!-- <span style="width:calc(100% - 290px); border:none; border-bottom: 2px dotted #000; outline: none;">
+            {{field6}}</span> -->
+          <div style="width: 16%; float: right; height: auto; padding-top: 6px; text-align: right;"> المكرم مدير : &nbsp; </div>
+        </div>
+
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 25px 0px; text-align: center;">
+            السلام عليكم ورحمه الله وبركاته
+          </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="width: 28%; float: left;">
+            <div type="text" value="" style="width:100%; border:none; min-height: 30px; border-bottom: 2px dotted #000; outline: none;">
+              {{field7}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 13%; float: left; margin-right: 10px;">
+            برقم ملف : &nbsp; </div>
+          <div style="width: 40%; float: left;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field8}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 15%; float: right;"> نفيدكم بأن المريض: &nbsp; </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="width: 20%; float: left;">
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field9}}</span>
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field10}}</span>
+            <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field11}}</span>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 6%; float: left; margin-right: 10px;">
+            الموافق </div>
+          <div style="width: 45%; float: left;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field12}}
+            </div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 27%; float: right;"> قد راجع المركز الطبي الجامعي يوم : </div>
+        </div>
+
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="height: auto; padding-top: 6px; text-align: right;  width: 20%; float: left;">
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field13}}</span>
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field14}}</span>
+            <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field15}}</span>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right;  width: 6%; float: left; margin-right: 10px;">
+            الموافق </div>
+          <div style="width: 51%; float: left;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field16}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right;  width: 21%; float: right;"> قحدد له موعد المراجعة يوم : &nbsp; </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="height: auto; padding-top: 6px; text-align: right;  width: 20%; float: left;">
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field17}}</span>
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field18}}</span>
+            <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field19}}</span>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right;  width: 6%; float: left; margin-right: 10px;">
+            الموافق </div>
+          <div style="width: 18%; float: left; margin-right: 10px;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field20}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 4%; float: left; margin-right: 10px;">
+            يوم: </div>
+          <div style="width: 33%; float: left;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field21}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 15%; float: right;"> تم تحويلة لمستشفى : &nbsp; </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 26%; float: left; margin-right: 10px;">
+            وأعطي العلاج اللازم, </div>
+          <div style="width: 60%; float: left; margin-right: 10px;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field22}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 10%; float: right;"> ويعاني من : &nbsp;
+          </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px; margin-bottom: 20%;">
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 20%; float: left;">
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;"> {{field23}}</span>
+            <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field24}}</span>
+            <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field25}}</span>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 6%; float: left; margin-right: 10px;">
+            الموافق </div>
+          <div style="width: 14%; float: left; margin-right: 10px;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field26}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 12%; float: left; margin-right: 10px;">
+            وذلك من يوم: </div>
+          <div style="width: 30%; float: left;">
+            <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field27}}</div>
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 14%; float: right;"> ويحتاج راحة مدة : &nbsp; </div>
+        </div>
+        <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+          <div style="width: 100%; height:auto; float:right; font-weight: bold; margin-bottom: 10px;">
+            ملاحظة:
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 100%; float: right;"> أي فراغ لا يعبأ أو يلغى فإنه يجعل الإشعار لاغياً
+          </div>
+          <div style="height: auto; padding-top: 6px; text-align: right; width: 100%; float: right;"> يسر المركز الطبي الجامعي موافاتكم بالتقرير الطبي عند طلبكم
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width: 100%; float: left; height: auto; margin-bottom: 10px; ">
+      <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; border-radius: 0px 0px 20px 20px; padding: 15px;">
+        <div style="width: 35%; height:auto; float:left;">
+          <div style="width: 100%; height:auto; float:left; font-weight: bold; margin-bottom: 10px; text-align: center;">
+            مدير المركز الطبي الجامعي
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field28}}</div>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> الاسم : &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field29}}</div>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> التوقيع : &nbsp; </div>
+          </div>
+        </div>
+        <div style="width: 29%; height:auto; float:left; font-weight: bold; text-align: center; margin-bottom: 10px;">
+          ختم الإدارة
+        </div>
+        <div style="width: 35%; height:auto; float:right;">
+          <div style="width: 100%; height:auto; float:left; font-weight: bold; margin-bottom: 10px; text-align: center;">
+            الطبيب المعالج
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field30}}</div>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> الاسم : &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field31}}</div>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> التوقيع : &nbsp; </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center mt-3">
+  <button type="submit" class="btn btn-md btn-info ltr" (click)="submit()">
+    Submit</button>
+  <button type="submit" class="btn btn-md btn-info rtl" (click)="submit()">
+    خضع</button>
+</div>

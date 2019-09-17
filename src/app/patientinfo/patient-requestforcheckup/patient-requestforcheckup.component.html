@@ -1,0 +1,349 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate'>Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate'>
+          <span>تفاصيل المريض</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">Request For Check-up</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>طلب كشف طبي</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Request For Check-up</p>
+        <p class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;طلب كشف طبي
+        </p>
+      </div>
+      <br>
+      <div class="card-body">
+        <div style="float:right;margin-bottom: 20px;" class="ltr">
+          <button class="btn btn-info ltr" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>Print</button>
+        </div>
+        <div style="float:left;margin-bottom: 20px;" class="rtl">
+          <button class="btn btn-info rtl" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>طباعة</button>
+        </div>
+        <br>
+        <div class="row">
+          <div class="invoice-box">
+            <div class="maindiv">
+              <div class="top1">
+                <div class="left">
+                  <div class="maindiv">
+                    <input type="text" [(ngModel)]="p1" value="  " style=" width:170px; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> الرقم : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" [(ngModel)]="p2" value="  " style=" width:170px; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> التاريخ : &nbsp; </div>
+                  </div>
+                  <div class="maindiv">
+                    <input type="text" [(ngModel)]="p3" value="  " style=" width:170px; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <div class="textdiv"> المرفقات : &nbsp; </div>
+                  </div>
+                </div>
+                <div class="center">
+                  <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;"> </div>
+                <div class="right" style="text-align: center;">
+                  المملكة العربية السعودية أوزارة التعليم
+                  <br>
+                  <strong> الجامعة الاسلامية بالمدينة</strong>
+                  المنورة الطبي الجامعي
+                </div>
+              </div>
+            </div>
+            <div class="maindiv" style=" margin-bottom: 10px;">
+              <div class="top2">
+                <div class="maindiv">
+                  <div style="width: 100%; height:auto; float:left; font-weight: bold; text-align: center; font-size: 30px;">
+                    طلب كشف طبي
+                  </div>
+                </div>
+                <div class="maindiv">
+                  <div class="et1" style="width: 16%; float: right;"> المكرم الدكتور: &nbsp; </div>
+                  <div style="width: 30%; float: right;">
+                    <input type="text" [(ngModel)]="p4" value="  " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                </div>
+                <div class="maindiv" style="margin-top: 4%;">
+                  <div class="et1" style="width: 26%; float: right; margin-right: 12%;"> السلام عليكم ورحمه الله وبركاته: &nbsp;
+                  </div>
+                  <div style="width: 16%; float: right;">
+                    <!-- <input type="text" [(ngModel)]="p5" value="  " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    /> -->
+                  </div>
+                </div>
+                <div class="maindiv">
+                  <div class="et1" style="width: 26%; float: right; margin-right: 8%;"> نأمل إجراء الكشف الطبي على: &nbsp; </div>
+                  <div style="width: 16%; float: right;">
+                    <input type="text" [(ngModel)]="p6" value="" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                </div>
+                <div class="maindiv" style="margin-top: 5%;">
+                  <div style="width: 5%; float: right; margin-right: 10%;">
+                    <input type="checkbox" value="" id="checkup1" [(ngModel)]="checkval" (change)="checkboxchange($event,'checkup1')" />
+                    <label for="checkup1"> </label>
+                  </div>
+                  <div style="width: 10%; float: right; margin-left: 1%;">الموظف /</div>
+                  <div style="width: 30%; float: right;">
+                    <input type="text" value="" [(ngModel)]="p7" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width: 5%; float: right; margin-right: 10%; margin-left: 1%;">
+                    <input type="checkbox" value="" id="checkup2" [(ngModel)]="checkval2" (change)="checkboxchange($event,'checkup2')" />
+                    <label for="checkup2">
+                    </label>
+                  </div>
+                  <div style="width: 10%; float: right;"> المستخدم / </div>
+                  <div style="width: 30%; float: right;">
+                    <input type="text" value=" " [(ngModel)]="p8" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width: 5%; float: right; margin-right: 10%;">
+                    <input type="checkbox" value="" id="checkup3" [(ngModel)]="checkval3" (change)="checkboxchange($event,'checkup3')" />
+                    <label for="checkup3"> </label>
+                  </div>
+                  <div style="width: 10%; float: right; margin-left: 1%;"> العامل / </div>
+                  <div style="width: 30%; float: right;">
+                    <input type="text" value=" " [(ngModel)]="p9" style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                </div>
+                <div class="maindiv" style="margin: 2% 0 6% 0;">
+                  <div class="et1" style="width: 20%; float: right; margin-right: 8%;"> وإفادتنا بالنتيجة علماً بأنة &nbsp; </div>
+                  <div class="et1" style="width: 34%; float: right;"> </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width:32px; float: right; margin: 0px 10% 0px 1%;">
+                    <input type="checkbox" value="" id="checkup4" [(ngModel)]="checkval4" (change)="checkboxchange($event,'checkup4')" />
+                    <label for="checkup4"> </label>
+                  </div>
+                  <div class="et1" style="width: 172px; float: right;"> انقطع عن العمل اعتبارا من: &nbsp; </div>
+                  <div class="et1" style="width: 320px; float: right;">
+                    <input type="number" value=" " [(ngModel)]="p10" style=" width:25px; float: right; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span class="spancls"></span>
+                    <input type="number" [(ngModel)]="p11" value="  " style=" width: 25px; float: right; border:none; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                    <span class="spancls" style="margin-left: 4%;"></span>
+                    <input type="number" value=" " [(ngModel)]="p14" style=" width: 25px; border:none; float: right; border-bottom: 2px dotted #000; outline: none;"
+                    />
+                  </div>
+                </div>
+                <div class="maindiv">
+                  <div style="width: 32px; float: right; margin-right: 10%; margin-left: 1%;">
+                    <input type="checkbox" value="" id="checkup5" [(ngModel)]="checkval5" (change)="checkboxchange($event,'checkup5')" />
+                    <label for="checkup5">
+                    </label>
+                  </div>
+                  <div class="et1" style="width: 20%; float: right;"> قائم بالعمل حتى تاريخه. </div>
+                  <div class="et1" style="width: 30%; float: right;"> </div>
+                </div>
+                <div style="width: 48%; height:auto; float:left; margin: 9% 0 4% 0;">
+                  <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 20px 0px; text-align: center;">
+                    المدير المباشر
+                  </div>
+                  <div class="maindiv">
+                    <div class="et1" style="width: 28%; float: right;"> وظيفتة: </div>
+                    <div class="et1" style="width: 68%; float: right; margin-right: 3%;"> المشرف على المركز الطبي</div>
+                  </div>
+                  <div class="maindiv">
+                    <div class="et1" style="width: 22%; float: right;">توقيعة: </div>
+                    <div style="width: 60%; float: right; margin-right: 3%;">
+                      <input type="text" [(ngModel)]="p13" value="  " style=" width: 100%; border:none; border-bottom: 2px dotted #000; outline: none;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center mt-3">
+  <button type="submit" class="btn btn-md btn-success ltr" (click)="submit()">
+    <i class="fa fa-check-circle"></i>
+    Submit</button>
+  <button type="submit" class="btn btn-md btn-success rtl" (click)="submit()">
+    <i class="fa fa-check-circle"></i>
+    خضع</button>
+</div>
+
+
+<!-- ------------------ Print -------------------- -->
+
+<div class="invoice-box" id="DivIdToPrint" style="display: none;">
+  <div class="maindiv">
+    <div class="top1">
+      <div class="left">
+        <div class="maindiv">
+          <div style=" width:170px; border:none; 
+                      float:left;color: #000;text-align: right;
+                      border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p1}}</div>
+          <div class="textdiv"> الرقم : &nbsp; </div>
+        </div>
+        <div class="maindiv">
+          <div style=" width:170px; border:none; 
+                 float:left;color: #000;text-align: right;
+                 border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p2}}</div>
+          <div class="textdiv"> التاريخ : &nbsp; </div>
+        </div>
+        <div class="maindiv">
+          <div style=" width:170px; float:left;color: #000;text-align: right; border:none; border-bottom: 2px dotted #000; outline: none;min-height: 30px;">{{p3}}</div>
+          <div class="textdiv"> المرفقات : &nbsp; </div>
+        </div>
+      </div>
+      <div class="center">
+        <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;"> </div>
+      <div class="right" style="text-align: center;">
+        المملكة العربية السعودية أوزارة التعليم
+        <br>
+        <strong> الجامعة الاسلامية بالمدينة</strong>
+        المنورة الطبي الجامعي
+      </div>
+    </div>
+  </div>
+  <div class="maindiv" style="margin-bottom: 10px;">
+    <div class="top2">
+      <div class="maindiv">
+        <div style="width: 100%; height:auto; float:left; font-weight: bold; text-align: center; font-size: 30px;">
+          طلب كشف طبي
+        </div>
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 16%; float: right;"> المكرم الدكتور: &nbsp; </div>
+        <div style="width: 30%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p4}}
+        </div>
+      </div>
+      <div class="maindiv" style="margin-top: 4%;">
+        <div class="et1" style="width: 26%; float: right; margin-right: 12%;"> السلام عليكم ورحمه الله وبركاته: &nbsp;
+        </div>
+        <!-- <div style="width: 16%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p5}}
+        </div> -->
+      </div>
+      <div class="maindiv">
+        <div class="et1" style="width: 26%; float: right; margin-right: 8%;"> نأمل إجراء الكشف الطبي على: &nbsp; </div>
+        <div style="width: 16%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p6}}
+        </div>
+      </div>
+      <div class="maindiv" style="margin-top: 5%;">
+        <div style="width: 5%; float: right; margin-right: 10%;">
+          <input type="checkbox" id="checkup11" />
+          <label for="checkup11">
+          </label>
+        </div>
+        <div style="width: 10%; float: right;margin-left: 1%;">الموظف /</div>
+        <div style="width: 30%; float: right;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p7}}
+        </div>
+      </div>
+      <div class="maindiv">
+        <div style="width: 5%; float: right; margin-right: 10%;">
+          <input type="checkbox" value="" id="checkup12" />
+          <label for="checkup2"> </label>
+        </div>
+        <div style="width: 10%; float: right; margin-left: 1%;"> المستخدم / </div>
+        <div style="width: 30%; float: right; border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p8}}
+        </div>
+      </div>
+      <div class="maindiv">
+        <div style="width: 5%; float: right; margin-right: 10%;">
+          <input type="checkbox" value="" id="checkup13" />
+          <label for="checkup3"> </label>
+        </div>
+        <div style="width: 10%; float: right; margin-left: 1%;"> العامل / </div>
+        <div style="width: 30%; float: right;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+          {{p9}}
+        </div>
+      </div>
+      <div class="maindiv" style="margin: 2% 0 6% 0;">
+        <div class="et1" style="width: 20%; float: right; margin-right: 8%;"> وإفادتنا بالنتيجة علماً بأنة &nbsp; </div>
+        <div class="et1" style="width: 34%; float: right;"> </div>
+      </div>
+      <div class="maindiv">
+        <div style="width: 25px; float: right; margin: 0px 10% 0px 1%;">
+          <input type="checkbox" value="" id="checkup14" />
+          <label for="checkup4"> </label>
+        </div>
+        <div class="et1" style="width: 182px; float: right;"> انقطع عن العمل اعتبارا من: &nbsp; </div>
+        <div class="et1" style="width: 225px; float: right;">
+          <span style="min-height: 25px; width: 45px; border:none; border-bottom: 2px dotted #000; outline: none;color: #000;float:right">{{p10}}</span>
+          <span class="spancls"></span>
+          <span style=" width: 40px; min-height: 25px; border:none; border-bottom: 2px dotted #000; float: right; outline: none;color: #000;">{{p11}}</span>
+          <span class="spancls" style="margin-left: 4%;"></span>
+          <span style=" width: 40px; min-height: 25px; border:none; border-bottom: 2px dotted #000; float: right; outline: none;color: #000;">{{p14}}</span>
+        </div>
+      </div>
+      <div class="maindiv">
+        <div style="width: 32px; float: right; margin: 0px 10% 0px 1%;">
+          <input type="checkbox" value="" id="checkup15" />
+          <label for="checkup5"> </label>
+        </div>
+        <div class="et1" style="width: 20%; float: right;"> قائم بالعمل حتى تاريخه. </div>
+        <div class="et1" style="width: 30%; float: right;"> </div>
+      </div>
+      <div style="width: 48%; height:auto; float:left; margin: 9% 0 4% 0;">
+        <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 20px 0px; text-align: center;">
+          المدير المباشر
+        </div>
+        <div class="maindiv">
+          <div class="et1" style="width: 28%; float: right;"> وظيفتة: </div>
+          <div class="et1" style="width: 68%; float: right; margin-right: 3%;"> المشرف على المركز الطبي</div>
+        </div>
+        <div class="maindiv">
+          <div class="et1" style="width: 22%; float: right;">توقيعة: </div>
+          <div style="width: 60%; float: right; margin-right: 3%;border:none; border-bottom: 2px dotted #000; outline: none;color:#000;text-align: right;min-height: 30px;">
+            {{p13}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

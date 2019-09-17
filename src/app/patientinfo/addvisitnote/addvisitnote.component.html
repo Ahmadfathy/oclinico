@@ -1,0 +1,148 @@
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <h4 class="ltr">Visit Note Details</h4>
+    <h4 class="rtl">زيارة ملاحظة التفاصيل</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span> تفاصيل المريض</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'>
+                    <span>البحث المتقدم</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/visitnote' [queryParams]="{Refrral:patientId}">Visit Note Details </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/visitnote' [queryParams]="{Refrral:patientId}">زيارة
+                    <span>ملاحظة التفاصيل</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link">Add Visit Note </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span>إضافة زيارة ملاحظة</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3  pl-lg-4">
+
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Add Visit Note</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;إضافة ملاحظة زيارة</p>
+        </div>
+
+        <form [formGroup]="addvisitnote" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="ltr">Doctor</label>
+                    <label class="rtl">طبيب</label>
+                    <select class="form-control" formControlName="doctor" [ngClass]="{ 'is-invalid': submitted && f.doctor.errors }" (change)='selectAppointment($event)'>
+                        <option *ngFor="let item of doctors" [value]="item.Emp_Id">{{item.First_name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.doctor.errors" class="invalid-feedback">
+                        <div *ngIf="f.doctor.errors.required" class="ltr">Please Select Doctor</div>
+                        <div *ngIf="f.doctor.errors.required" class="rtl">Please Select Doctor</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="ltr">Appoinment</label>
+                    <label class="rtl">موعد</label>
+                    <select class="form-control apoint" formControlName="appoinment" (focusout)="focusout($event.target.value)">
+                        <option selected>Select</option>
+                        <option *ngFor="let i of apoinemets">{{i.dt}}</option>
+                    </select>
+                    <div *ngIf="apoinment" class="errorcode ltr">Please Select Appointment</div>
+                    <div *ngIf="apoinment" class="errorcode rtl">Please Select Appointment</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="ltr">Visit Date</label>
+                    <label class="rtl">تاريخ الزيارة</label>
+                    <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="mm/dd/yyyy" class="form-control" formControlName="visitdate"
+                        [ngClass]="{ 'is-invalid': submitted && f.visitdate.errors }">
+                    <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                    <div *ngIf="submitted && f.visitdate.errors" class="invalid-feedback">
+                        <div *ngIf="f.visitdate.errors.required" class="ltr">Please Enter Visit Date</div>
+                        <div *ngIf="f.visitdate.errors.required" class="rtl">Please Enter Visit Date</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="ltr">Notes</label>
+                    <label class="rtl">ملاحظات</label>
+                    <textarea type="text" class="form-control" formControlName="note" [ngClass]="{ 'is-invalid': submitted && f.note.errors }"></textarea>
+                    <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+                        <div *ngIf="f.note.errors.required" class="ltr">
+                            Please Enter Notes</div>
+                        <div *ngIf="f.note.errors.required" class="rtl">
+                            Please Enter Notes</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <button class="btn btn-warning margin ltr" style="float:right" (click)="createvisitenote()">
+                    <i class="fa fa-check-circle"></i> Add
+                </button>
+                <button class="btn btn-warning margin rtl" style="float:right" (click)="createvisitenote()">
+                    <i class="fa fa-check-circle"></i> إضافة
+                </button>
+                <button class="btn btn-info margin ml-2 ltr" style='float:right' routerLink='/visitnote' [queryParams]="{referal:patientId}">
+                    <i class="fa fa-ban"></i> Cancel
+                </button>
+                <button class="btn btn-info margin ml-2 rtl" style='float:right' routerLink='/visitnote' [queryParams]="{referal:patientId}">
+                    <i class="fa fa-ban"></i> إلغاء
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

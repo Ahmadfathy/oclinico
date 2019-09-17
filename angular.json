@@ -1,0 +1,157 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "oclinico": {
+            "root": "",
+            "sourceRoot": "src",
+            "projectType": "application",
+            "prefix": "app",
+            "schematics": {},
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.app.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.css",
+                            "node_modules/c3/c3.min.css",
+                            "node_modules/ng2-slim-loading-bar/style.css",
+                            "src/assets/vendor/css-chart.css",
+                            "node_modules/@swimlane/ngx-datatable/release/index.css",
+                            "node_modules/@swimlane/ngx-datatable/release/themes/material.css",
+                            "node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+                            "src/assets/scss/style.scss",
+                            "node_modules/@fullcalendar/core/main.css",
+                            "node_modules/@fullcalendar/daygrid/main.css",
+                            "node_modules/@fullcalendar/timegrid/main.css",
+                            "node_modules/@fullcalendar/list/main.css",
+                            "node_modules/ng-pick-datetime/assets/style/picker.min.css",
+                            "src/assets/fullcalendar/css/fullcalendar.min.css",
+                            "src/assets/fullcalendar/css/fullcalendardaygrid.min.css",
+                            "src/assets/fullcalendar/css/fullcalendartimegrid.min.css",
+                            "src/assets/fullcalendar/css/flatpicker.css",
+                            "src/assets/libs/flatpickr.min.css"
+                        ],
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "src/assets/vendor/sparkline.js",
+                            "src/assets/fullcalendar/js/moment.js",
+                            "src/assets/fullcalendar/js/fullcalendarmain.js",
+                            "src/assets/fullcalendar/js/fullcalendarcore.min.js",
+                            "src/assets/fullcalendar/js/fullcalendarInteraction.min.js",
+                            "src/assets/fullcalendar/js/fullcalendardaygrid.min.js",
+                            "src/assets/fullcalendar/js/fullcalendartimeGrid.min.js",
+                            "src/assets/fullcalendar/js/fullcalendarresourceCommon.min.js",
+                            "src/assets/fullcalendar/js/fullcalendarresourceDayGrid.min.js",
+                            "src/assets/fullcalendar/js/fullcalendarresourceTimeGrid.min.js",
+                            "src/assets/fullcalendar/js/locales.js",
+                            "src/assets/fullcalendar/js/popper.js",
+                            "src/assets/fullcalendar/js/tooltip.js",
+                            "src/assets/fullcalendar/js/jquery.plugin.js",
+                            "src/assets/fullcalendar/js/jquery.datepick.js",
+                            "src/assets/fullcalendar/js/flatpicker.js",
+                            "src/assets/fullcalendar/js/flatpickerar.js"
+
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "oclinico:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "oclinico:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "oclinico:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.spec.json",
+                        "karmaConfig": "src/karma.conf.js",
+                        "styles": [
+                            "src/styles.css"
+                        ],
+                        "scripts": [],
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "src/tsconfig.app.json",
+                            "src/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        },
+        "oclinico-e2e": {
+            "root": "e2e/",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "e2e/protractor.conf.js",
+                        "devServerTarget": "oclinico:serve"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": "e2e/tsconfig.e2e.json",
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "oclinico"
+}

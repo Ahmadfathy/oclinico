@@ -1,0 +1,318 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+  <div class="spinner" style="margin: 100px auto !important;">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="ltr" id="breadcrumb" style="margin-left: -6%;">
+        <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+        <li class="ltr"><a class="nav-link">Add To Another Branch</a></li>
+      </ul>
+      <ul class="rtl" id="breadcrumb" style="margin-right: -6%;">
+        <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>إعدادات</a></li>
+        <li class="rtl"><a class="nav-link">إضافة إلى فرع آخر</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="assigntoanother">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add To Another Branch</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة إلى فرع آخر</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">User&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم البنك&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="user" formControlName="user" [ngClass]="{'has-error' :formErrors.user}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.user" style="color: red">
+                {{formErrors.user}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Another Branch&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.branch}">
+                <select formControlName="branch" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option class="ltr" label="select" disabled></option>
+                  <option *ngFor="let item of branchnames" [value]="item.Bank_Branch_Name">{{item.Bank_Branch_Name}}</option>
+                </select>
+                <select formControlName="branch" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option class="rtl" label="تحديد" disabled></option>
+                  <option *ngFor="let item of branchnames" [value]="item.Bank_Branch_Name">{{item.Bank_Branch_Name}}</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.branch" style="color: red">
+                  {{formErrors.branch}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6"><br>
+              <div class="form-group" (change)="selectwise($event.target.value)">
+                <label class="form-control-label ltr">Slot Type&nbsp;<i class="fa fa-star mystar"></i></label>
+                <label class="form-control-label rtl">توقيت المستخدم&nbsp;<i class="fa fa-star mystar"></i></label>
+                <div class="row">
+                  <div class="switch-field ltr">
+                    <input type="radio" formControlName="scheduletypeinput" id="Day Wise" value="Day Wise" />
+                    <label for="Day Wise">Day Wise</label>
+                    <input type="radio" formControlName="scheduletypeinput" id="Session Wise" value="Session Wise" />
+                    <label for="Session Wise">Session Wise</label>
+                  </div>
+                  <div class="switch-field rtl">
+                    <input type="radio" formControlName="scheduletypeinput" id="Day Wise" value="Day Wise" />
+                    <label for="Day Wise">يوم حكيم</label>
+                    <input type="radio" formControlName="scheduletypeinput" id="Session Wise" value="Session Wise" />
+                    <label for="Session Wise">الجلسة الحكيمة</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="daywiseif">
+          <form class="form-horizontal" [formGroup]="myForm" id="myform">
+            <div formArrayName="rows">
+              <div class="row" style="border-top: 1px solid #F2F2F2;padding: 5px;">
+                <div class="col-md-4 ltr" align="center" style="margin-left: -5%">Week</div>
+                <div class="col-md-4 rtl" align="center" style="margin-left: -5%">أسبوع</div>
+                <div class="col-md-4 ltr" align="center" style="margin-left: -1%">From Hour/Min</div>
+                <div class="col-md-4 rtl" align="center" style="margin-left: -1%">من ساعة / دقيقة</div>
+                <div class="col-md-4 ltr" align="center" style="margin-left: -1%">To Hour/Min</div>
+                <div class="col-md-4 rtl" align="center" style="margin-left: -1%">إلى ساعة / دقيقة</div>
+              </div><br>
+              <div class="row eachDay" *ngFor="let row of myForm.controls.rows.controls; let i = index"
+                [formGroupName]="i" [ngClass]="{'table-primary': myForm.get('rows').value[i].checkbox_value}"
+                style="border-top: 1px solid #F2F2F2;padding: 10px;">
+                <div class="col-md-4">
+                  <input type="checkbox" class="dayName" [id]='row.value.day'
+                    formControlName="checkbox_value">
+                  <span style="margin-left: 19%;">{{row.value.day}}</span></div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <input  type="text" class="startTime"
+                        [attr.disabled]="myForm.get('rows').value[i].checkbox_value ? null: ''"
+                        formControlName="fromtime" (keypress)="fromkey($event)"
+                        (keyup)="fromenter($event,$event.keyCode)" style="width: 100%;">
+
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group m-b-30">
+                        <select class="starttimeselect ltr" name="title" formControlName="titleinput"
+                          [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].fromtime ? null: '')">
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+
+                        <select class="starttimeselect rtl" name="title" formControlName="titleinput"
+                          [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].fromtime ? null: '')"
+                          id="slctdrp">
+                          <option disabled hidden [value]="nullValue">-- تحديد --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <input  type="text" class="endTime"
+                        [attr.disabled]="myForm.get('rows').value[i].checkbox_value ? null: ''" formControlName="totime"
+                        (keypress)="fromkey($event)" (keyup)="fromenter($event,$event.keyCode)" style="width: 100%;">
+
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group m-b-30">
+                        <select class="endtimeselect ltr" name="title" formControlName="titleinput1"
+                          [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].totime ? null: '')">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="endtimeselect rtl" name="title" formControlName="titleinput1"
+                          [attr.disabled]="(myForm.get('rows').value[i].checkbox_value ? null: '') || (myForm.get('rows').value[i].totime ? null: '')">
+                          <option disabled hidden [value]="nullValue">-- تحديد --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <br>
+        <!-- ................session wise click div........................ -->
+        <div *ngIf="sessionwiseif">
+          <form class="form-horizontal" id="mysessionForm" [formGroup]="mysessionForm">
+            <div formArrayName="sessionrows">
+              <div class="row" style="border-top: 1px solid #F2F2F2;padding: 5px;">
+                <div class="col ltr" align="center" style="margin-left: -4%">Week</div>
+                <div class="col rtl" align="center" style="margin-left: -4%">أسبوع</div>
+                <div class="col ltr" align="center" style="margin-left: -3%">Session1 Start</div>
+                <div class="col rtl" align="center" style="margin-left: -3%">الجلسة الأولى</div>
+                <div class="col ltr" align="center" style="margin-left: -4%">Session1 End</div>
+                <div class="col rtl" align="center" style="margin-left: -4%">الجلسة الأولى</div>
+                <div class="col ltr" align="center" style="margin-left: -5%">Session2 Start</div>
+                <div class="col rtl" align="center" style="margin-left: -5%">الجلسة الثانية</div>
+                <div class="col ltr" align="center" style="margin-left: -6%">Session2 End</div>
+                <div class="col rtl" align="center" style="margin-left: -6%">الجلسة الثانية</div>
+              </div><br>
+              <div class="row eachsession"
+                *ngFor="let row of mysessionForm.controls.sessionrows.controls; let i = index" [formGroupName]="i"
+                [ngClass]="{'table-primary': mysessionForm.get('sessionrows').value[i].checkbox_value}"
+                style="border-top: 1px solid #F2F2F2;padding: 10px;">
+                <div class="col">
+                  <input type="checkbox" class="sessioninput" [id]='row.value.day' [value]="row.value.day"
+                    formControlName="checkbox_value">
+                  <span style="margin-left: 19%;">{{row.value.day}}</span>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input class="session1starttime" type="text"
+                        [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session1start" (keypress)="fromkey($event)"
+                        (keyup)="fromenter($event,$event.keyCode)" style="width: 100%;">
+
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session1startselect ltr" name="title" formControlName="sessionstart1input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [ngValue]="t" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session1startselect rtl" name="title" formControlName="sessionstart1input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1start ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- تحديد --</option>
+                          <option *ngFor="let t of title" [ngValue]="t" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input  class="session1endtime" type="text"
+                        [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session1end" (keypress)="fromkey($event)"
+                        (keyup)="fromenter($event,$event.keyCode)" style="width: 100%;">
+
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session1endselect ltr" name="title" formControlName="sessionend1input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1end ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session1endselect rtl" name="title" formControlName="sessionend1input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session1end ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- تحديد --</option>
+                          <option *ngFor="let t of title" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input  class="session2starttime" type="text"
+                        [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session2start" (keypress)="fromkey($event)"
+                        (keyup)="fromenter($event,$event.keyCode)" style="width: 100%;">
+
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session2startselect ltr" name="title" formControlName="sessionstart2input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2start ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [ngValue]="t" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session2startselect rtl" name="title" formControlName="sessionstart2input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2start ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- تحديد --</option>
+                          <option *ngFor="let t of title" [ngValue]="t" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <input  class="session2endtime" type="text"
+                        [attr.disabled]="mysessionForm.get('sessionrows').value[i].checkbox_value ? null: ''"
+                        formControlName="session2end" (keypress)="fromkey($event)"
+                        (keyup)="fromenter($event,$event.keyCode)" style="width: 100%;">
+                    </div>
+                    <div class="col-md-5">
+                      <div class="form-group m-b-30">
+                        <select class="session2endselect ltr" name="title" formControlName="sessionend2input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2end ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- select --</option>
+                          <option *ngFor="let t of title" [ngValue]="t" [value]="t">{{t}}</option>
+                        </select>
+                        <select class="session2endselect rtl" name="title" formControlName="sessionend2input"
+                          style="width: 110%;"
+                          [attr.disabled]="(mysessionForm.get('sessionrows').value[i].checkbox_value ? null: '') || mysessionForm.get('sessionrows').value[i].session2end ? null: ''">
+                          <option disabled hidden [value]="nullValue">-- تحديد --</option>
+                          <option *ngFor="let t of title" [ngValue]="t" [value]="t">{{t}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <hr> -->
+        <div class="form-actions text-center submitBtns">
+          <div class="card-body ">
+            <button type="submit" class="btn btn-md btn-warning ltr" (click)="submit()" style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              Submit</button>
+            <button type="submit" class="btn btn-md btn-warning rtl" (click)="submit()" style="margin-right:10px;">
+              <i class="fa fa-check-circle"></i>
+              خضع</button>
+            <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/settings']">
+              <i class="fa fa-ban"></i>
+              Cancel</button>
+            <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/settings']">
+              <i class="fa fa-ban"></i>
+              إلغاء</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

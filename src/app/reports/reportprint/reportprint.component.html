@@ -1,0 +1,216 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link"  routerLink='/reports'> Reports</a></li>
+            <li class="ltr"><a class="nav-link"  routerLink='/report8'><span ></span>Report For Human Resource</a></li>
+            
+            <li class="rtl"><a class="nav-link"  routerLink='/reports'><span>تقارير</span></a></li>
+            <li class="rtl"><a class="nav-link"  routerLink='/report8'><span >تقرير للموارد البشرية</span></a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- ------------------------------Grid Binding --------------------------------- -->
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Report For Human Resource</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تقرير للموارد البشرية</h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+            <thead style="background-color: #4a87ee;color: white;">
+                <tr>
+                    <th>الرقم</th>
+                    <th>التاريخ </th>  
+                    <th>التوابع </th>
+                    <th>حفظه الله</th>
+                     <th>Actions</th>
+                     </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let report of table;let i=index" [hidden]="showdata">
+                    <td>{{report.LABELLABEL1}}</td>
+                    <td>{{report.LABELLABEL2}}</td>
+                    <td>{{report.LABELLABEL3}}</td>
+                    <td>{{report.LABELLABEL5}}</td>
+                  
+                    <td><span class="fa fa-eye text-info" (click)="view('View',report.patient_id,report.tran_date)">
+                </span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-pencil-alt text-info"  (click)="view('Edit',report.patient_id,report.tran_date)"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-print text-info" (click)="print(report.patient_id,report.tran_date)"></span>
+                    </td>
+                </tr>
+            </tbody>
+           
+          </table>
+          <div [hidden]="nodata">No Data Found</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- ------------------------------grid binding------------------------------------ -->
+
+
+<div class="invoice-box" id="DivIdToPrint" style="display: none;">
+  <div class="maindiv123" style="direction: rtl; width: 920px;">
+      
+          <div class="top1">
+      
+            <div class="left">
+      
+              <div class="maindiv">
+                <div style="width:73%; border:none; float:left;
+                      min-height: 30px;text-align: right;color: #000;
+                      border-bottom: 2px dotted #000; outline: none;">{{p1}}</div>
+                <div class="textdiv"> الرقم : &nbsp; </div>
+              </div>
+      
+              <div class="maindiv">
+                <div style="width:73%; border:none; float:left;
+                          min-height:30px;text-align: right;color: #000;
+                          border-bottom: 2px dotted #000; outline: none;">{{p2}}</div>
+                <div class="textdiv"> التاريخ : &nbsp; </div>
+              </div>
+      
+              <div class="maindiv">
+                <div style="width:73%; border:none; float:left;
+                              min-height:30px;text-align: right;color: #000;
+                              border-bottom: 2px dotted #000; outline: none;">{{p3}}</div>
+                <div class="textdiv"> التوابع : &nbsp; </div>
+              </div>
+            </div>
+      
+            <div class="center"> <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;"></div>
+            <div class="right" style="text-align: center;">
+              <br> المملكة العربية السعودية
+              <br> وزارة التعليم
+              <br> الجامعة الاسلامية بالمدينة المنورة
+              <br><strong> المركز الطبي الجامعي</strong>
+            </div>
+      
+          </div>
+      
+        </div>
+      
+        <div class="maindiv" style="direction: rtl; margin-bottom: 10px;">
+      
+          <div class="top2" style="width: 858px;">
+            <br>
+      
+            <div class="maindiv" style=" width: 820px;">
+              <div class="et1" style="width: 8%; float: left; margin-right: 10px; text-align: left;"> حفظه الله </div>
+              <div class="ed1" style="width: 54%; float: left;border-bottom: 2px dotted #000; outline: none;color: #000;text-align: right;min-height: 22px;">
+                {{p4}}
+              </div>
+              <div class="et1" style="width: 35%; float: right;"> سعادة مدير عام الإدراة العامة للموارد البشرية </div>
+            </div>
+      
+            <div class="maindiv">
+              <div class="et1" style="width: 37%; float: left; margin: 14px 10px 10px 0px;  text-align: right;">
+      
+                وبعد :<div style="width:86%; border:none; border-bottom: 2px dotted #000; outline: none;color: #000;float: left;min-height: 22px;">{{p5}}</div>
+      
+              </div>
+              <div style="width: 30%; height:auto; float:left; margin: 14px 0px 10px 0px; text-align: center;">
+      
+                السلام عليكم ورحمة الله وبركاته
+                <div style="min-height: 22px;  width:23%; border:none; border-bottom: 2px dotted #000; outline: none;color: #000;float: left;">{{p6}}</div>
+      
+              </div>
+              <div class="et1" style="width: 30%; float: left; margin: 14px 10px 10px 0px; text-align: right;">
+                <div style="width:100%; border:none;float: right; border-bottom: 2px dotted #000; outline: none;min-height: 22px;color: #000">{{p7}}</div>
+      
+              </div>
+            </div>
+      
+      
+            <div class="maindiv">
+              <div class="ed1" style="width: 17%; float: left; border-bottom: 2px dotted #000; outline: none;color: #000;min-height: 22px;text-align: right">
+                {{p8}}
+              </div>
+              <div class="et1" style="width: 6%; float: left; margin-right: 10px;"> برقم: &nbsp; </div>
+              <div class="ed1" style="width: 41%; float: left;border-bottom: 2px dotted #000; outline: none;min-height: 22px;color: #000;
+                  text-align:right;">
+                {{p9}}
+              </div>
+              <div class="et1" style="width: 33%; float: right;"> برفقته تقرير بإجازة مرضية صادرة من &nbsp; : </div>
+            </div>
+      
+            <div class="maindiv">
+              <div class="ed1" style="width: 18%; float: left;border-bottom: 2px dotted #000; outline: none;color: #000;text-align: right;min-height: 22px;">
+                {{p10}}
+              </div>
+              <div class="et1" style="width: 13%; float: left;"> ورقمة الوظيفي : </div>
+              <div class="ed1" style="width: 30%; float: left;border-bottom: 2px dotted #000; outline: none;color: #000;text-align: right;min-height: 22px;">
+              
+                {{p11}}
+              </div>
+              <div class="et1" style="width: 5%; float: left; margin-right: 10px;"> بإسم : </div>
+              <div style="width: 23%; float: left;color: #000;text-align: right;min-height: 22px;border-bottom: 2px dotted #000; outline: none;">
+                {{p12}}
+              </div>
+              <div class="et1" style="width: 8%; float: right;"> وتاريخ :</div>
+            </div>
+      
+            <div class="maindiv">
+              <div class="et1" style="width: 20%; float: left;"> &nbsp; </div>
+      
+              <div class="et1" style="width: 80%; float: right;"> اعليه نأمل توجيه من ترون باكمال اللازم حسب المتبع . </div>
+            </div>
+      
+            <div class="maindiv" style="margin-top: 40px;">
+              <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> وفقكم الله ,,,,
+              </div>
+            </div>
+      
+            <div class="maindiv">
+              <div class="et1" style="width: 100%; float: left; margin-right: 10px;text-align: center;"> والسلام عليكم ورحمة
+                الله وبركاته ,,,, </div>
+            </div>
+      
+            <div class="maindiv" style="margin-top: 60px;">
+      
+              <div style="width: 35%; float: left; height:auto; text-align: center; margin-bottom: 10px;">
+                المشرف على المركز الطبي الجامعي
+              </div>
+      
+              <div style="width: 60%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+                &nbsp;
+              </div>
+      
+              <div class="et1" style="width: 30%; float: left; text-align: center;">
+                عوض بن مطر المشرافي
+      
+              </div>
+      
+              <div style="width: 70%; float: left; height:auto; text-align: left; margin-bottom: 10px;">
+      
+                &nbsp;
+      
+              </div>
+      
+      
+            </div>
+      
+          </div>
+      
+        </div>
+      
+        <div class="maindiv" style="direction: rtl;">
+     
+        </div>
+      
+        <div style="clear: both;"> </div>
+      
+      </div>

@@ -1,0 +1,24 @@
+.errorcode{
+    color:#ef6e6e;
+    font-size: 90%;
+   
+}
+
+.form-control {
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+
+select{
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+
+
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+    -webkit-appearance: none;
+    }
+

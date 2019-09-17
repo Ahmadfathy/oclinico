@@ -1,0 +1,265 @@
+<div class="preloader" style="background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1.8" style="margin-top: 7px;">Select Role:</div>
+  <div class="col-md-2">
+    <div class="form-group m-b-30">
+      <select class="custom-select mr-sm-2" (change)="rolechange($event.target.value)" [(ngModel)] = "rolename">
+        <option label="select" disabled></option>
+        <option *ngFor="let role of selectroles" [value]="role.role_name">{{role.role_name}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<ngb-tabset style="justify-content: flex-end !important;">
+  <ngb-tab title="Main Menu Setting" id="mainmenu">
+    <ng-template ngbTabContent> <br>
+    
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- <form #regForm='ngForm' (ngSubmit)="Register(regForm)" >   -->
+          
+              <table  id="dataTable" style="width: 100%;display: table" class="table table-hover table-responsive">
+                  <thead style="width: 100%;">
+                  <tr>
+                    <th>Sno</th>
+                    <th>Menu name</th>
+                    <th>submenu name</th>
+                    <th>Add</th>
+                    <th>Edit</th> 
+                    <th>View</th>
+                    <th>Download</th>
+                    <th>Print</th>
+                    <th>Import</th>
+                    <th>Export</th>
+                  </tr>
+                  </thead>
+                  <tbody style="width: 100%;">
+                  <tr *ngFor='let eachMainMenuSetting of mainMenuSettings;let i = index' class="rowcls">
+                    <td>{{i+1}}</td>
+                    <td><input type='checkbox' [checked] = "eachMainMenuSetting.FinalStatus == 'True' " (change)='activateRow($event,i,"mainMenuSettings" , eachMainMenuSetting, "mainmenu") '>
+                      &nbsp;&nbsp;{{eachMainMenuSetting.menu_name}}</td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu != null ' colspan="8">
+                      <table id="dataTable" style="width: 100%;display: table" class="table table-hover table-responsive">
+                        <thead style="width: 100%;">
+                        <tr>
+                          <th>submenu name</th>
+                          <th>Add</th>
+                          <th>Edit</th>
+                          <th>View</th>
+                          <th>Download</th>
+                          <th>Print</th>
+                          <th>Import</th>
+                          <th>Export</th>
+                        </tr>
+                        </thead>
+                        <tbody style="width: 100%;">
+                        <tr *ngFor='let subMenu of eachMainMenuSetting.subrolemenu;let j=index;' class="subcheckboxrow" >
+                          <td><input type='checkbox'   [checked] = "eachMainMenuSetting.FinalStatus == 'True' && subMenu.FinalStatus == 'True' "  class="subformchkbk"   [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " (change)='activatesubRow($event,j,"eachMainMenuSetting",subMenu,eachMainMenuSetting.menuid,i) '>&nbsp;&nbsp;{{subMenu.menu_name}}</td>
+                          <td><input type='checkbox'  [checked] = "subMenu.Add_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus  == 'False' ||  eachMainMenuSetting.FinalStatus == 'False' " class="addsubchkbx"  (change)='checkIt(i,"Add_Sts","mainMenuSettings",j , eachMainMenuSetting.menuid)'></td>
+                          <td><input type='checkbox'  [checked] = "subMenu.Edit_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True'  " [disabled] = "subMenu.FinalStatus == 'False' ||  eachMainMenuSetting.FinalStatus == 'False' "class="editsubchkbx"  (change)='checkIt(i,"Edit_Sts","mainMenuSettings",j,eachMainMenuSetting.menuid)'></td>
+                          <td><input type='checkbox' [checked] = "subMenu.View_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' || eachMainMenuSetting.FinalStatus == 'False' "  class="viewsubchkbx"  (change)='checkIt(i,"View_Sts","mainMenuSettings",j,eachMainMenuSetting.menuid)'></td>
+                          <td><input type='checkbox'  [checked] = "subMenu.Download_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' ||  eachMainMenuSetting.FinalStatus == 'False' " class="downloadsubchkbx"  (change)='checkIt(i,"Download_Sts","mainMenuSettings",j,eachMainMenuSetting.menuid)'></td>
+                          <td><input type='checkbox' [checked] = "subMenu.Print_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' || eachMainMenuSetting.FinalStatus == 'False' "  class="printsubchkbx"  (change)='checkIt(i,"Print_Sts","mainMenuSettings",j,eachMainMenuSetting.menuid)'></td>
+                          <td><input type='checkbox'  [checked] = "subMenu.Import_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' || eachMainMenuSetting.FinalStatus == 'False' "  class="importsubchkbx"  (change)='checkIt(i,"Import_Sts","mainMenuSettings",j,eachMainMenuSetting.menuid)'></td>
+                          <td><input type='checkbox'  [checked] = "subMenu.Export_Sts == 'True' && eachMainMenuSetting.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' || eachMainMenuSetting.FinalStatus == 'False' "  class="exportsubchkbx"  (change)='checkIt(i,"Export_Sts","mainMenuSettings",j,eachMainMenuSetting.menuid)'></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                     <td></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"Add_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                      [checked] = "eachMainMenuSetting.Add_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' " [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " class="addchkbx"></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"Edit_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                      [checked] = "eachMainMenuSetting.Edit_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' "  [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " class="editchkbx"></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"View_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                      [checked] = "eachMainMenuSetting.View_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' " [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " class="viewchkbx"></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"Download_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                      [checked] = "eachMainMenuSetting.Download_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' " [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " class="downloadchkbx"></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"Print_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                      [checked] = "eachMainMenuSetting.Print_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' " [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " class="printchkbx"></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"Import_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                      [checked] = "eachMainMenuSetting.Import_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' "  [disabled] = "eachMainMenuSetting.FinalStatus == 'False' " class="importchkbx"></td>
+                    <td *ngIf='eachMainMenuSetting.subrolemenu === null'><input type='checkbox' (change)='checkIt(i,"Export_Sts","mainMenuSettings","",eachMainMenuSetting.menuid,"mainmenu")'
+                       [checked] = "eachMainMenuSetting.Export_Sts == 'True' &&  eachMainMenuSetting.FinalStatus == 'True' "  [disabled] = "eachMainMenuSetting.FinalStatus == 'False' "  class="exportchkbx"></td>
+                  </tr>
+                  </tbody>
+                </table> 
+          
+            <!-- </form>   -->
+          </div>
+        </div>
+      <br/>
+      <div align="center">
+      <button type="button" class="btn btn-warning ltr" (click)="mainmenusettingsadd()">Submit</button>&nbsp;&nbsp;&nbsp;    
+    </div>
+    </ng-template>
+   
+  </ngb-tab>
+  <ngb-tab title="Setting Menu" id="settingmenu">
+    <ng-template ngbTabContent><br>
+      <div class="row">
+        <!-- <div (click)='onChange("Branch")'>test</div> -->
+        <div class="col-lg-12">
+          <!-- <div *ngIf='allDataLoaded'> -->
+           
+            <table  id="dataTable"   style="width: 100%;display: table" class="table table-hover table-responsive">
+              <thead style="width: 100%;">
+              <tr>
+                  <th>Sno</th>
+                <th>Menu name</th>
+                <th>submenu name</th>
+                <th>Add</th>
+                <th>Edit</th>
+                <th>View</th>
+                <th>Download</th>
+                <th>Print</th>
+                <th>Import</th>
+                <th>Export</th>
+              </tr>
+              </thead>
+              <tbody style="width: 100%;">
+              <tr *ngFor='let eachSettingMenu of settingsMenu;let i = index' class="settingsrow">
+                <td>{{i+1}}</td>
+                <td class="maincls"><input type='checkbox' [checked] = "eachSettingMenu.FinalStatus == 'True' "   (change)='activateRow($event,i,"mainMenuSettings" , eachSettingMenu, "settingmenu") '>&nbsp;&nbsp;
+                  {{eachSettingMenu.formName || eachSettingMenu.text}}</td>
+
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length > 0' colspan="8" class="subtdmenu">
+
+                  <table  id="dataTable" style="width: 100%;display: table" class="table table-hover table-responsive">
+                    <thead style="width: 100%;">
+                    <tr>
+                      <th>submenu name</th>
+                      <th>Add</th>
+                      <th>Edit</th>
+                      <th>View</th>
+                      <th>Download</th>
+                      <th>Print</th>
+                      <th>Import</th>
+                      <th>Export</th>
+                    </tr>
+                    </thead>
+                    <tbody style="width: 100%;">
+                    <tr *ngFor='let subMenu of eachSettingMenu.subrolesetingmenu;let j=index' class="submainclass">
+                      <td ><input type='checkbox'    class="subformchkbk" [checked] = "subMenu.FinalStatus == 'True' && eachSettingMenu.FinalStatus == 'True'  "  [disabled] = "eachSettingMenu.FinalStatus == 'False' " (change)='activatesettingssubRow($event,j,"eachSettingMenu",subMenu,i,eachSettingMenu.menuid) '>&nbsp;&nbsp;{{subMenu.text || subMenu.text}}</td>
+                      <td ><input type='checkbox' [checked] = "subMenu.Add_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True'  " [disabled] = "subMenu.FinalStatus == 'False'  ||  eachSettingMenu.FinalStatus == 'False' " class="addsubchkbx" (change)='checkIt(i,"Add_Sts","mainMenuSettings",j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                      <td ><input type='checkbox' [checked] = "subMenu.Edit_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' ||  eachSettingMenu.FinalStatus == 'False'  " class="editsubchkbx" (change)='checkIt(i,"Edit_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                      <td ><input type='checkbox' [checked] = "subMenu.View_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True'  " [disabled] = "subMenu.FinalStatus == 'False' ||  eachSettingMenu.FinalStatus == 'False'  " class="viewsubchkbx" (change)='checkIt(i,"View_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                      <td><input type='checkbox'  [checked] = "subMenu.Download_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' ||  eachSettingMenu.FinalStatus == 'False'  " class="downloadsubchkbx" (change)='checkIt(i,"Download_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                      <td ><input type='checkbox' [checked] = "subMenu.Print_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' ||  eachSettingMenu.FinalStatus == 'False'  " class="printsubchkbx" (change)='checkIt(i,"Print_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                      <td ><input type='checkbox' [checked] = "subMenu.Import_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' ||  eachSettingMenu.FinalStatus == 'False'  " class="importsubchkbx" (change)='checkIt(i,"Import_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                      <td ><input type='checkbox'  [checked] = "subMenu.Export_Sts == 'True' && eachSettingMenu.FinalStatus  == 'True' && subMenu.FinalStatus  == 'True' " [disabled] = "subMenu.FinalStatus == 'False' ||  eachSettingMenu.FinalStatus == 'False'  " class="exportsubchkbx" (change)='checkIt(i,"Export_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"Add_Sts","mainMenuSettings",j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.Add_Sts == 'True' " [disabled] = "eachSettingMenu.FinalStatus == 'False' " class="addchkbx"></td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"Edit_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.Edit_Sts == 'True' " [disabled] = "eachSettingMenu.FinalStatus == 'False' "  class="editchkbx"></td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"View_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.View_Sts == 'True' " [disabled] = "eachSettingMenu.FinalStatus == 'False' "  class="viewchkbx"></td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"Download_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.Download_Sts == 'True' " [disabled] = "eachSettingMenu.FinalStatus == 'False' "  class="downloadchkbx"></td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"Print_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.Print_Sts == 'True' " [disabled] = "eachSettingMenu.FinalStatus == 'False' " class="printchkbx"></td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"Import_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.Import_Sts == 'True' "  [disabled] = "eachSettingMenu.FinalStatus == 'False' "  class="importchkbx"></td>
+                <td *ngIf='eachSettingMenu.subrolesetingmenu.length === 0'><input type='checkbox' (change)='checkIt(i,"Export_Sts","mainMenuSettings" ,j,eachSettingMenu.menuid , "settingsmenu")'
+                  [checked] = "eachSettingMenu.Export_Sts == 'True' " [disabled] = "eachSettingMenu.FinalStatus == 'False' "  class="exportchkbx"></td>
+              </tr>
+              </tbody>
+            </table>
+          <!-- </div> -->
+          <div align="center">
+            <button type="button" class="btn btn-warning ltr" (click)="settingsMenuAdd()">Submit</button>&nbsp;&nbsp;&nbsp;    
+          </div>
+          <div class="showLoader1" *ngIf='showLoader'><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+          <!-- <div class="card">
+                          <div class="card-body">
+                                  
+                              <h4 class="card-title">Asset Master</h4>
+                          
+                              <button style="margin-top:-40px;float:right;background:#1976d2;color:#fff;padding:8px 15px;border-radius:4px;border:none;cursor: pointer" (click)="addAsset()">Add New Asset</button>
+                              <br>
+                          
+                          </div>
+                      </div> -->
+        </div>
+
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Patient Setting" id="patientsetting">
+    <ng-template ngbTabContent><br>
+      <div class="row">
+          <!-- <div (click)='onChange("Branch")'>test</div> -->
+          <div class="col-lg-12">
+            <!-- <div *ngIf='allDataLoaded'> -->
+              <table  id="dataTable" style="width: 100%;display: table" class="table table-hover table-responsive">
+                <thead style="width: 100%;">
+                <tr>
+                    <th>Sno</th>
+                  <th>Menu name</th>
+                  <!-- <th>submenu name</th> -->
+                  <th>Add</th>
+                  <th>Edit</th>
+                  <th>View</th>
+                  <th>Book Appointment</th>
+                  <th>Create Invoice</th>
+                  <th>Create Prescription</th>
+                  <th>Add Visit Note</th>
+                  <th>Reload</th> 
+                </tr>
+                </thead>
+                <tbody style="width: 100%;">
+                <tr *ngFor='let eachpatientsettingMenu of patientsettingMenu;let i = index'>
+                  <td>{{i+1}}</td>
+                  <td><input type='checkbox' [checked] = "eachpatientsettingMenu.FinalStatus == 'True' " (change)='activatepatientRow($event,i,"patientSettings",eachpatientsettingMenu)'>&nbsp;&nbsp;
+                    {{eachpatientsettingMenu.menu_name || eachpatientsettingMenu.menu_name}}</td>
+  
+                  <!-- <td></td> -->
+                  <td ><input type='checkbox' (change)='patientcheckIt(i,"Add_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.Add_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="addchkbx"></td>
+                  <td ><input type='checkbox' (change)='patientcheckIt(i,"Edit_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.Edit_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="editchkbx"></td>
+                  <td ><input type='checkbox' (change)='patientcheckIt(i,"View_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.View_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="viewchkbx"></td>
+                  <td ><input type='checkbox' (change)='patientcheckIt(i,"BookApnt_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.BookApnt_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="bookappointmentchkbx"></td>
+                  <td ><input type='checkbox' (change)='patientcheckIt(i,"CreateInvoice_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.CreateInvoice_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="createinvoicechkbx"></td>
+                  <td><input type='checkbox' (change)='patientcheckIt(i,"createPrescription_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.createPrescription_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="createprescriptionchkbx"></td>
+                  <td ><input type='checkbox' (change)='patientcheckIt(i,"Addvisitnote_sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                      [checked]='eachpatientsettingMenu.Addvisitnote_sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="addvisitnotechkbx"></td>
+                      <td ><input type='checkbox' (change)='patientcheckIt(i,"Reload_Sts","pateintsettings",eachpatientsettingMenu.menuid,eachpatientsettingMenu)'
+                        [checked]='eachpatientsettingMenu.Reload_Sts == "True"' [disabled] = "eachpatientsettingMenu.FinalStatus == 'False' " class="reloadchkbx"></td>
+                </tr>
+                </tbody>
+              </table>
+            <!-- </div> -->
+            <div align="center">
+              <button type="button" class="btn btn-warning ltr" (click)="patientsettingsadd()">Submit</button>&nbsp;&nbsp;&nbsp;    
+            </div>
+            <div class="showLoader1" *ngIf='showLoader'><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+            <!-- <div class="card">
+                            <div class="card-body">
+                                    
+                                <h4 class="card-title">Asset Master</h4>
+                            
+                                <button style="margin-top:-40px;float:right;background:#1976d2;color:#fff;padding:8px 15px;border-radius:4px;border:none;cursor: pointer" (click)="addAsset()">Add New Asset</button>
+                                <br>
+                            
+                            </div>
+                        </div> -->
+          </div>
+  
+        </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

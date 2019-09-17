@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-md-12" style="text-align:center">
+      <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+      <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <h4 class="ltr">Visit Note Details</h4>
+    <h4 class="rtl">زيارة ملاحظة التفاصيل</h4>
+  </div>
+  <div *ngIf="pay" class="col-md-3">
+    <h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5>
+    <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5>
+  </div>
+</div>
+<div class="preloader" *ngIf="showLoader">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link"> Patient Details</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link"><span>تفاصيل المريض</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/visitnote'>Visit Note Details </a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/visitnote'><span>زيارة ملاحظة التفاصيل</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3  pl-lg-4">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+    </div>
+    <app-sidelinks></app-sidelinks>
+  </div>
+
+
+  <div class="col-md-9">
+    <div class="card-header">
+      <p class="m-b-0 text-black ltr">
+        <i class="sl-icon-menu font-14"></i> &nbsp; Visit Note Details</p>
+      <p class="m-b-0 text-black rtl">
+        <i class="sl-icon-menu font-14"></i> &nbsp;زيارة ملاحظة التفاصيل</p>
+    </div>
+
+    <div *ngIf="showdata">
+      <div style="text-align:right !important">
+        <span class="ltr">
+          <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addvisitnote" [queryParams]="{referal:patientId}">
+            <i class="fa fa-fw fa-user"></i> Add</a>
+        </span>
+        <span class="rtl" style="float:left">
+          <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addvisitnote" [queryParams]="{referal:patientId}">
+            <i class="fa fa-fw fa-user"></i> إضافة</a>
+        </span>
+      </div>
+      <table style="width: 100%;display: table" class="table table-hover table-responsive" id="dataTable">
+        <thead class="ltr">
+          <tr>
+            <th>File Number</th>
+            <th>Doctor</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Trans Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <thead class="rtl">
+          <tr>
+            <th> رقم الملف</th>
+            <th> طبيب</th>
+            <th>الحالة</th>
+            <th>ملاحظات</th>
+            <th>عبر التاريخ</th>
+            <th>أفعال</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of table">
+            <td>{{patient.PatientID}}</td>
+            <td>{{patient.DoctorID}}</td>
+            <td>{{patient.Status}}</td>
+            <td>{{patient.Notes}}</td>
+            <td>{{patient.Trans_Date}}</td>
+            <td>
+              <span class="fa fa-eye text-info" [routerLink]="['/viewvisitnote']" [queryParams]="{Refrral:patient.Sno,patientid:patient.PatientID}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="fa fa-pencil-alt text-info" [routerLink]="['/editvisitnote']" [queryParams]="{Refrral:patient.Sno,patientid:patient.PatientID}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="nodata" align="center">
+      <br>
+      <br>
+      <img src="./assets/images/folder-icon.png" height="100px" width="100px">
+      <br>
+      <br>
+      <p>
+        <b>There are no visit notes</b>
+      </p>
+      <p> You may not have created any yet. You could
+        <a routerLink="/addvisitnote" [queryParams]="{referal:patientId}">
+          <u>create a visit note</u>
+        </a> now.
+      </p>
+    </div>
+  </div>
+</div>

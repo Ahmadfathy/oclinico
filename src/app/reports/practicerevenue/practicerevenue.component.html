@@ -1,0 +1,261 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'> Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/practicerevenue'> Practice Revenue</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/practicerevenue'>
+          <span>ممارسة الإيرادات
+          </span>
+        </a>
+      </li>
+      <!-- <li class="rtl">
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;Practice Revenue </p>
+        <p class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;ممارسة الإيرادات
+        </p>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <label class="form-control-label ltr">From Date</label>
+            <label class="form-control-label rtl">من التاريخ
+            </label>
+            <br>
+            <!-- <input type="date" name="FromDate" id="FromDate" class="form-control" (change)="MyFromDate($event.target.value)" [(ngModel)]="Day_FromDate"> -->
+            <input [owlDateTimeTrigger]="FromDate" [owlDateTime]="FromDate" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyFromDate()"
+              [(ngModel)]="Day_FromDate">
+            <owl-date-time [pickerType]="'calendar'" #FromDate></owl-date-time>
+          </div>
+          <div class="col-6">
+            <label class="form-control-label ltr">To Date</label>
+            <label class="form-control-label rtl">حتى الآن
+            </label>
+            <br>
+            <!-- <input type="date" name="ToDate" id="ToDate" class="form-control" (change)="MyToDate($event.target.value)" [(ngModel)]="Day_ToDate"> -->
+            <input [owlDateTimeTrigger]="ToDate" [owlDateTime]="ToDate" placeholder="mm/dd/yyyy" class="form-control" (dateTimeInput)="MyToDate()"
+              [(ngModel)]="Day_ToDate">
+            <owl-date-time [pickerType]="'calendar'" #ToDate></owl-date-time>
+          </div>
+          <div class="col-12">
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-md btn-info ltr" (click)="btnSearch()">
+                <i class="fas fa-search"></i>
+                Search</button>
+              <button type="submit" class="btn btn-md btn-info rtl" (click)="btnSearch()">
+                <i class="fas fa-search"></i>
+                بحث</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <label class="form-control-label ltr">Summary</label>
+        <label class="form-control-label rtl">ملخص
+        </label>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr">
+            <tr>
+              <th>Doctor</th>
+              <th>Amount</th>
+              <th>Tax</th>
+              <th>Discount</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <thead class="headrow rtl">
+            <tr>
+              <th>طبيب
+              </th>
+              <th>كمية</th>
+              <th>ضريبة
+              </th>
+              <th>خصم
+              </th>
+              <th>مجموع
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of Summary;let i=index;">
+              <td>{{prd.docname}}</td>
+              <td>{{prd.total}}</td>
+              <td>{{prd.tax}}</td>
+              <td>{{prd.Disc}}</td>
+              <td>{{prd.final}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata">No Data Found</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <label class="form-control-label ltr">Revenue By Item Type-Summary</label>
+        <label class="form-control-label rtl">الإيرادات حسب نوع البند - الملخص
+        </label>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr">
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Amount</th>
+              <th>Tax</th>
+              <th>Discount</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <thead class="headrow rtl">
+            <tr>
+              <th>بند</th>
+              <th>كمية</th>
+              <th>كمية</th>
+              <th>ضريبة</th>
+              <th>خصم</th>
+              <th>مجموع
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of TypeSummary;let i=index;">
+              <td>{{prd.bill_type}}</td>
+              <td>{{prd.qty}}</td>
+              <td>{{prd.Total}}</td>
+              <td>{{prd.tax}}</td>
+              <td>{{prd.disc}}</td>
+              <td>{{prd.final}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div [hidden]="nodata1">No Data Found</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <label class="form-control-label ltr">Revenue by Item Type-Detailed</label>
+        <label class="form-control-label rtl">الإيرادات حسب نوع البند مفصل
+        </label>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr">
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Amount</th>
+              <th>Tax</th>
+              <th>Discount</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <thead class="headrow rtl">
+            <tr>
+              <th>بند</th>
+              <th>كمية</th>
+              <th>كمية</th>
+              <th>ضريبة</th>
+              <th>خصم</th>
+              <th>مجموع
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of TypeDetailed;let i=index;">
+              <td>{{prd.Name}}</td>
+              <td>{{prd.qt}}</td>
+              <td>{{prd.Alltoal}}</td>
+              <td>{{prd.tottax}}</td>
+              <td>{{prd.totdisc}}</td>
+              <td>{{prd.finaltot}}</td>
+            </tr>
+          </tbody>
+          <div [hidden]="nodata2">No Data Found</div>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0">
+          <thead class="headrow ltr bg-info text-white">
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Amount</th>
+              <th>Tax</th>
+              <th>Discount</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <thead class="headrow rtl bg-info text-white">
+            <tr>
+              <th>بند</th>
+              <th>كمية</th>
+              <th>كمية</th>
+              <th>ضريبة</th>
+              <th>خصم</th>
+              <th>مجموع
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of TypeDetailed1;let i=index;">
+              <td>{{prd.Name}}</td>
+              <td>{{prd.qt}}</td>
+              <td>{{prd.Alltotal}}</td>
+              <td>{{prd.tottax}}</td>
+              <td>{{prd.totdisc}}</td>
+              <td>{{prd.finaltot}}</td>
+            </tr>
+          </tbody>
+          <div [hidden]="nodata3">No Data Found</div>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+<h4 class="ltr">Department Details</h4>
+<h4 class="rtl">تفاصيل القسم</h4>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/settings'> Settings</a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Department Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/settings'>
+                    <span> إعدادات</span>
+                </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span>تفاصيل القسم</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <p class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;Department Details</p>
+                <p class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;تفاصيل القسم</p>
+            </div>
+            <div class="container">
+
+                <div class="text-right justify-content-between">
+
+                    <span class="ltr">
+                        <a class="nav-link" style="display: inline-block;" routerLink='/addDepartments'>
+                            <i class="fa fa-fw fa-user"></i> Add</a>
+                    </span>
+                    <span class="rtl">
+                        <a class="nav-link" style="display: inline-block;" routerLink='/addDepartments'>
+                            <i class="fa fa-fw fa-user"></i> إضافة</a>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <table class="table table-hover table-bordered" cellspacing="0">
+                    <thead class="headrow ltr">
+                        <tr>
+                            <th>Department Name (in english)</th>
+                            <th>Department Name (in arabic)</th>
+                            <th>Status</th>
+                            <th>Transaction Date</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <thead class="headrow rtl">
+                        <tr>
+                            <th>إسم الألة (in english)</th>
+                            <th>إسم الألة (in arabic)</th>
+                            <th>الحالة</th>
+                            <th>تاريخ العملية</th>
+                            <th>تعديل</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let client of deptdetails">
+                            <td>{{client.DeptName}}</td>
+                            <td>{{client.ArabicName}}</td>
+                            <td>{{client.Status}}</td>
+                            <td>{{client.Trans_Date}}</td>
+                            <td style="display:flex;">
+                                <span>
+                                    <a class="nav-link" [routerLink]="['/editDepartments']" [queryParams]="{DeptId:client.Sno}">
+                                        <i class="fa fa-pencil-alt text-info"></i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

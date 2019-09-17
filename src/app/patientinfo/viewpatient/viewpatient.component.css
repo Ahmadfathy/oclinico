@@ -1,0 +1,29 @@
+.zoom_img {
+    margin: 0px;
+    height: 70px;
+    width: 70px;
+    -moz-transition: -moz-transform 0.5s ease-in;
+    -webkit-transition: -webkit-transform 0.5s ease-in;
+    -o-transition: -o-transform 0.5s ease-in;
+}
+
+.zoom_img:hover {
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    cursor: pointer;
+}
+
+.pphoto {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+
+#mytables .table td,
+.myTable td {
+    padding: 0.5rem;
+}
+li:hover { 
+    background-color:#E0FFFF ;
+  }

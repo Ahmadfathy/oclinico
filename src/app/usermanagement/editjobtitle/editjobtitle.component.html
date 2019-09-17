@@ -1,0 +1,109 @@
+<div class="preloader" style="background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+  </div>
+</div>
+<h3 class="ltr">Edit Job Titles</h3>
+<h3 class="rtl">تعديل المسمى الوظيفي</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb" >
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/jobtitle'>Job Titles</a></li>
+         <li class="rtl"> <a class="nav-link " routerLink='/jobtitle'><span>المسمى الوظيفي</span></a></li>
+        <li class="ltr"><a class="nav-link ">Edit Job Title</a></li>
+         <li class="rtl"><a class="nav-link "><span>تعديل المسمى الوظيفي</span></a></li>
+      </ul>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="editjob">
+        <div class="card-header">
+          <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Edit Job Title</p>
+          <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;تعديل المسمى الوظيفي</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Job Title (in english)&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">المسمى الوظيفي (in english)&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="title" formControlName="title" [ngClass]="{'has-error' :formErrors.title}"
+                (blur)="checkValidationErrors()" type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.title" style="color: red">
+                {{formErrors.title}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Job Title (in arabic)&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">المسمى الوظيفي (in arabic)&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="title" formControlName="titlear" [ngClass]="{'has-error' :formErrors.titlear}"
+                (blur)="checkValidationErrors()" dir="rtl" (keypress)="arabic($event)"  type="text" class="form-control">
+              <span class="help-block" *ngIf="formErrors.titlear" style="color: red">
+                {{formErrors.titlear}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Hierarchy&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">التسلسل الهرمي&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="hierarchy" formControlName="hierarchy" [ngClass]="{'has-error' :formErrors.hierarchy}"
+                (blur)="checkValidationErrors()" type="number" class="form-control">
+              <span class="help-block" *ngIf="formErrors.hierarchy" style="color: red">
+                {{formErrors.hierarchy}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Status&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">الالحالة&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.rolestatus}">
+                <select formControlName="rolestatus" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                  <option label="select" disabled></option>
+                  <option [value]="1">Active</option>
+                  <option [value]="0">Inactive</option>
+                </select>
+                <select formControlName="rolestatus" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                  <option label="اختار" disabled></option>
+                  <option [value]="1">نشط</option>
+                  <option [value]="0">غير نشط</option>
+                </select>
+                <!-- <span class="help-block" *ngIf="formErrors.status" style="color: red">
+                  {{formErrors.status}}
+                </span> -->
+              </div>
+            </div>
+          </div> <hr>
+          <div class="form-actions text-center submitBtns">
+              <div class="card-body ">
+                <button type="submit" class="btn btn-md btn-warning ltr" (click)="Update()" style="margin-right:10px;margin-left: -40%;">
+                  <i class="fa fa-check-circle"></i> Update</button>
+                  <button type="submit" class="btn btn-md btn-warning rtl" (click)="Update()" style="margin-right:-35%;margin-left: 17px;">
+                    <i class="fa fa-check-circle"></i> تحديث</button>
+                 
+                <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/jobtitle']">
+                  <i class="fa fa-ban"></i> Cancel</button>
+                  <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/jobtitle']">
+                    <i class="fa fa-ban"></i> إلغاء</button>
+                 
+              </div>
+            </div>
+        </div>
+      
+      </form>
+    </div>
+  </div>

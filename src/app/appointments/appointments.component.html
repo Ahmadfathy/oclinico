@@ -1,0 +1,418 @@
+<div id="container">
+    <div class="row">
+        <div class="leftcal">
+            <!-- <div id='pickerdate' ></div> -->
+            <input id='pickerdatecurrent'>
+            <div class="mt-3">
+                <input id='pickerdatenext'>
+            </div>
+            <div class="doctors mt-4">
+                <h4>Doctors</h4> <span class="docExpand">+</span>
+                <div class="doctorsNameArea"></div>
+            </div>
+            <div class="appoint">
+                <h6 class="py-1">Select Status</h6>
+                <ul class="Appointments">
+                    <li>
+                        <input id="label1" type="checkbox" />
+                        <label for="label1">UnConfirmed <span><i class="ti-check"></i></span></label>
+                    </li>
+                    <li>
+                        <input id="label2" type="checkbox" />
+                        <label for="label2">Waiting <span><i class="ti-check"></i></span></label>
+                    </li>
+                    <li>
+                        <input id="label3" type="checkbox" />
+                        <label for="label3">Confirmed <span><i class="ti-check"></i></span></label>
+                    </li>
+                    <li>
+                        <input id="label4" type="checkbox" />
+                        <label for="label4">Arrived <span><i class="ti-check"></i></span></label>
+                    </li>
+                    <li>
+                        <input id="label5" type="checkbox" />
+                        <label for="label5">NotArrived <span><i class="ti-check"></i></span></label>
+                    </li>
+                    <li>
+                        <input id="label6" type="checkbox" />
+                        <label for="label6">Completed <span><i class="ti-check"></i></span></label>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div>
+        <div id="calendar" class="rightcal"></div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+<div class="loader"></div>
+<div class="pageOverlay">
+    <div class="appointmentDetailsModal">
+
+        <span class="close">&times;</span>
+        <div class="mainAppHead">
+
+            <div class="appHeaderbo">
+
+                Appointment
+
+                <div class="ifConfirmed">Confirm</div>
+            </div>
+
+
+
+            <div class="appDocName"></div>
+            <div class="appTimings"></div>
+
+        </div>
+
+        <div class="mainAppBody">
+
+
+
+            <span class="eventStart"></span>
+
+
+            <span class="eventEnd"></span>
+            <span class="appty"></span>
+
+
+
+            <div class="leftDet">
+                <div class="appPatientname"></div>
+                <div class="appPatientid"></div>
+                <div class="appPatientphone"></div>
+                <div class="appPatientemail"></div>
+                <div class="appPatienttimings"></div>
+
+            </div>
+            <div class="rightDet">
+
+
+                <div class="arriveStatus">
+                    <div class="arrived bor">Arrived</div>
+                    <div class="unarrived bor"> Not Arrived</div>
+
+
+                </div>
+                <div class="addPayment bor">Add Payment</div>
+                <div class="addTreatment bor">Treatment Notes</div>
+
+
+            </div>
+
+            <div style="clear : both"></div>
+            <div class="appFoot">
+
+                <div class="btns">
+
+
+
+                    <div class="reschedule">Reschedule</div>
+                    <div class="reschedule btn-danger" id="canclbtn">Cancel</div>
+                    <div class=" reschedule btn-success">Book another</div>
+                </div>
+            </div>
+
+            <div style="clear : both"></div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="appointmentModal">
+
+        <span class="close">&times;</span>
+        <div class="appHeader">
+
+            New Appointment
+        </div>
+
+
+        <div class="appointmentBody">
+
+            <div style="margin-top:10px;padding: 10px;">
+                <div class="row">
+                    <div class="col-md-3">Doctor* :</div>
+                    <div class="col-md-7"><input type="text" class="doctorName" readonly></div>
+                </div><br>
+
+                <div class="row" style="position:relative">
+                    <div class="col-md-3">Patient* :</div>
+                    <div class="col-md-7">
+                        <!-- <input type="text" [(ngModel)]="patientName"><img src='../../assets//images//5.gif'> -->
+                        <div class="input-wrapper">
+                            <input id="patient">
+                            <label for="patient" class="fa fa-search input-icon"></label>
+                            <label class="loading-icon"><img src='assets//images//5.gif'></label>
+                        </div>
+                        <div class="errormsg" style="color:red;">Please enter patient</div>
+
+                        <div class="patientDetails"></div>
+
+                        <div class="patientDetails not">
+                            <!-- No Patients Found.<br> <span class="createPatient">Create a Patient</span> -->
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-2 addPatient"><img src='assets/images//add_patient.png'></div>
+
+
+
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-3">Type* :</div>
+                    <div class="col-md-7">
+                        <select class="appointmentType">
+
+                        </select>
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-3">Note* :</div>
+                    <div class="col-md-7"><textarea class="notesText" type="text" col="10" row="10"></textarea></div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-3">Date* :</div>
+                    <div class="col-md-7"><input type="date" class="appointmentDate" readonly></div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-3">Time* :</div>
+                    <div class="col-md-7">
+                        <select class="mainStartTimeHour">
+
+                        </select> &nbsp;
+
+
+                        <select class="mainStartTimeMins">
+
+                        </select> &nbsp;
+
+                        <span>To </span> &nbsp;
+
+                        <select class="mainEndTimeHour">
+
+                        </select> &nbsp;
+
+                        <select class="mainEndTimeMins">
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div style="text-align: center;">
+            <button type="submit" style="background-color:#3587d8;color:white" class='addAppointment'>ADD</button>
+        </div>
+    </div>
+
+
+
+
+    <div class="createPatientModal">
+        <span class="close">&times;</span>
+        <div class="appHeader">
+
+            New Patient
+        </div>
+
+        <div class="appointmentBody">
+
+            <div style="margin-top:10px;padding: 10px;">
+                <div class="row">
+                    <div class="col-md-4">Doctor* :</div>
+                    <div class="col-md-8"><input type="text" class="doctorName" readonly></div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-4">Type* :</div>
+                    <div class="col-md-8">
+                        <select class="appointmentTypePatient">
+
+                        </select>
+                    </div>
+                </div><br>
+
+
+                <div class="row">
+                    <div class="col-md-4">Title</div>
+                    <div class="col-md-8">
+                        <select class="titleNew"></select>
+                    </div>
+
+                </div><br>
+
+                <div class="row">
+
+
+                    <div class="col-md-4">Arabic Names</div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="arname1">
+                    </div>
+                </div><br>
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="arname2">
+                    </div>
+                </div><br>
+
+                <div class="row">
+
+
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="arname3">
+                    </div>
+                </div><br>
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4">English Names</div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="engname1">
+                    </div>
+                </div><br>
+                <div class="row">
+
+
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="engname2">
+                    </div>
+                </div><br>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4"></div>
+
+                    <div class="col-md-8">
+                        <input type="text" class="engname3">
+                    </div>
+                </div><br>
+
+                <div class="row">
+
+
+                    <div class="col-md-4">
+                        <div>Date of Birth</div>
+                        <input type="radio" name='dob' id="ardob" class="dobmain">
+                        <label for="ardob">Arabic</label>
+                    </div>
+
+                    <div class="col-md-8">
+
+                        <input id="arabicDob">
+                    </div>
+
+
+
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <input type="radio" name='dob' id="endob" class="dobmain">
+                        <label for="endob">English</label>
+                    </div>
+
+                    <div class="col-md-8">
+
+                        <input id="engDob">
+                    </div>
+
+
+
+                </div><br>
+
+
+                <div class="row">
+                    <div class="col-md-4">Gender* :</div>
+                    <div class="col-md-8">
+                        <select class="gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                </div><br>
+
+
+                <div class="row">
+
+
+                    <div class="col-md-4">Mobile</div>
+
+                    <div class="col-md-8">
+                        <input type="number" class="patientmob">
+                    </div>
+                </div><br>
+
+                <div class="row">
+
+
+                    <div class="col-md-4">Email</div>
+
+                    <div class="col-md-8">
+                        <input type="email" class="patientEmail">
+                    </div>
+                </div><br>
+
+                <div class="row">
+
+
+                    <div class="col-md-4">Notes</div>
+
+                    <div class="col-md-8">
+                        <textarea class="textnotes"></textarea>>
+                    </div>
+                </div><br>
+                <div style="text-align: center;">
+                    <button type="submit" style="background-color:#3587d8;color:white" class='addPatientQuick'>ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>

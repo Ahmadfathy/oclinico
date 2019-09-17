@@ -1,0 +1,245 @@
+<style type="text/css">
+    .auth-wrapper .auth-box {
+        max-width: inherit !important;
+        background-color: transparent !important;
+        box-shadow: inherit !important;
+        margin: 0px !important;
+        padding: 90px;
+        width: 100%;
+    }
+    
+    .db img {
+        width: 50%;
+        filter: drop-shadow(0px 0px 0px #383838);
+    }
+    
+    .footer {
+        margin: 0 auto;
+        padding: 5px 0px;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background-color: #0e70a0;
+        color: white;
+    }
+    
+    .anaccount {
+        color: #fff;
+    }
+    
+    .text-info {
+        color: #ffdc79 !important;
+    }
+    
+    .auth-wrapper {
+        background: url(assets/images/big/auth-bg.jpg) no-repeat fixed;
+        background-size: cover;
+        background-position: 100% 0%;
+    }
+
+    @media (max-width: 768px) {
+        .auth-wrapper .auth-box {
+            padding: 10px !important;
+        }
+
+    }
+
+    @media (max-width: 767px) {
+
+        .auth-wrapper {
+            background: url(assets/images/big/auth-bg-mobile.jpg) no-repeat fixed;
+        }
+    }
+</style>
+<!-- <div class="auth-wrapper no-block justify-content-center align-items-center" style="background:url(assets/images/big/auth-bg.jpg) no-repeat fixed; background-size: cover; background-position: 100% 0%;"> -->
+    <div class="auth-wrapper no-block justify-content-center align-items-center">
+
+    <!-- ------------- -->
+    <ul class="loginlang">
+        <li class="nav-item" ngbDropdown placement="bottom-left">
+            <a ngbDropdownToggle class="nav-link" href="javascript:void(0)" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#fff">
+                <!-- <i class="flag-icon flag-icon-{{flag}} font-18"></i> -->
+                <i style="color:#fff; font-style: normal">{{flag}}</i>
+            </a>
+            <div class="dropdown-menu-left animated fadeIn" aria-labelledby="navbarDropdown2" ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:void(0)" (click)="changelag('English')">
+                    <!-- <i class="flag-icon flag-icon-us"></i> -->
+                    <span *ngIf="langenglish">English</span>
+                    <span *ngIf="langarabic">إنجليزي</span>
+                </a>
+
+                <a class="dropdown-item" href="javascript:void(0)" (click)="changelag('Arabic')">
+                    <!-- <i class="flag-icon flag-icon-sa"></i> -->
+                    <span *ngIf="langenglish">Arabic</span>
+                    <span *ngIf="langarabic">عربى</span>
+                </a>
+
+            </div>
+        </li>
+    </ul>
+    <!-- ----------------->
+    <div class="auth-box">
+        <div id="loginform" [ngClass]="{'d-none': recoverform}">
+
+            <div class="row">
+                <div class="col-lg-6 order-lg-1">
+                    <div class="logo">
+                        <span class="db d-block d-sm-none">
+                                    <img src="assets/images/logo-IU.png" alt="logo" />
+                                </span>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-0">
+                    <h3 class="font-medium m-b-20 text-light" *ngIf="langenglish">Portal for Electronic Services</h3>
+                    <h3 class="font-medium m-b-20 text-light" *ngIf="langarabic">بوابة للخدمات الالكترونية </h3>
+                    <form class="form-horizontal m-t-20" (ngSubmit)="onSubmit()" [formGroup]="login" id="loginform">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="ti-user"></i>
+                                </span>
+                            </div>
+                            <input type="email" formControlName="Username" *ngIf="langenglish" class="form-control" placeholder="Username" required [ngClass]="{ 'is-invalid': submitted && f.Username.errors }" (keyup)="inputkeyups()" />
+                            <input type="email" formControlName="Username" *ngIf="langarabic" (keyup)="inputkeyups()" class="form-control" placeholder="اسم المستخدم" required [ngClass]="{ 'is-invalid': submitted && f.Username.errors }" />
+
+                            <div *ngIf="submitted && f.Username.errors" class="invalid-feedback pl-5">
+                                <div *ngIf="f.Username.errors.required" style="color: white;">
+                                    <span *ngIf="langenglish">Username is required</span>
+                                    <span *ngIf="langarabic">اسم المستخدم مطلوب</span>
+                                </div>
+                                <div *ngIf="f.Username.errors.pattern" style="color: white;">
+                                    <span *ngIf="langenglish">Invalid user Email.</span>
+                                    <span *ngIf="langarabic">البريد الإلكتروني للمستخدم غير صالح.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2">
+                                    <i class="ti-pencil"></i>
+                                </span>
+                            </div>
+                            <input type="password" formControlName="password" *ngIf="langenglish" (keyup)="inputkeyups()" class="form-control" placeholder="Password" required [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <input type="password" formControlName="password" *ngIf="langarabic" (keyup)="inputkeyups()" class="form-control" placeholder="كلمه السر" required [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback pl-5">
+                                <div *ngIf="f.password.errors.required" style="color: white;">
+                                    <span *ngIf="langenglish">Password is required</span>
+                                    <span *ngIf="langarabic">كلمة المرور مطلوبة</span>
+
+                                </div>
+                                <div *ngIf="f.password.errors.minlength" style="color: white;">
+                                    <span *ngIf="langenglish">Password must be at least 6 characters</span>
+                                    <span *ngIf="langarabic">كلمة المرور مطلوبة</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <span style="color: white;margin-left: 50px;" [hidden]="wrongCred" *ngIf="langenglish">Invalid Login Details.</span>
+                            <span style="color: white;margin-left: 50px;" [hidden]="wrongCred" *ngIf="langarabic">تفاصيل تسجيل الدخول غير صالحة.</span>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" *ngIf="langenglish" for="customCheck1" style="font-weight: bold;color: #1d2124 !important;">Remember me</label>
+                                    <label class="custom-control-label" *ngIf="langarabic" for="customCheck1" style="font-weight: bold;color: #1d2124 !important;">تذكرنى</label>
+                                    <a (click)="showRecoverForm()" *ngIf="langenglish" href="javascript:void(0)" id="to-recover" class="text-dark float-right" style="font-weight: bold;">
+                                        <i class="fa fa-lock m-r-5"></i> Forgot password?</a>
+
+                                    <a (click)="showRecoverForm()" *ngIf="langarabic" href="javascript:void(0)" id="to-recover" class="text-dark float-right">
+                                        <i class="fa fa-lock m-r-5"></i> هل نسيت كلمة المرور؟</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 p-b-20">
+                                <button class="btn btn-block btn-lg text-alt" [ngClass]="{'button--loading':loginvalid,'btn-primary':login.valid,'btn-secondary':!login.valid}" type="submit">
+                                    <span *ngIf="langenglish">Log In</span>
+                                    <span *ngIf="langarabic">تسجيل الدخول</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0 m-t-10">
+                            <div class="col-sm-12 text-center anaccount" *ngIf="langenglish">
+                                Don't have an account?
+                                <a routerLink="/signup" class="text-info m-l-5">
+                                    <b>Sign Up</b>
+                                </a>
+                            </div>
+                            <div class="col-sm-12 text-center anaccount" *ngIf="langarabic">
+                                ليس لديك حساب؟
+
+
+                                <a routerLink="/signup" class="text-info m-l-5">
+                                    <b>سجل</b>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <!-- Form -->
+
+
+
+        </div>
+
+
+        <!-- -----------------------------forgot password------------------- -->
+        <div id="recoverform" [ngClass]="{'d-block': recoverform}">
+            <div class="logo">
+                <span class="db">
+                    <img src="assets/images/logo-IU.png" alt="logo" style="width:220px;" />
+                </span>
+                <br>
+                <br>
+                <h3 class="font-medium m-b-20" *ngIf="langenglish">Recover Password</h3>
+                <h3 class="font-medium m-b-20" *ngIf="langarabic">إستعادة كلمة المرور</h3>
+                <span style="color: white;" *ngIf="langenglish">Enter your Email and instructions will be sent to you!</span>
+                <!-- <span style="color: white;" *ngIf="langarabic">Enter your Email and instructions will be sent to you!</span> -->
+            </div>
+            <div class="row m-t-20">
+                <!-- Form -->
+                <div class="col-lg-3"></div>
+                <form class="col-lg-6" (ngSubmit)="ForgotPswSubmit()" [formGroup]="forgotPswFG">
+                    <!-- email -->
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <input class="form-control" formControlName="recoveryemail" type="email" required="" placeholder="" required [ngClass]="{ 'is-invalid': submitted && fgt.recoveryemail.errors }">
+                            <div *ngIf="fgt.recoveryemail.errors.required" style="color: white;">
+                                <span *ngIf="langenglish">Registered Email is required.</span>
+                                <span *ngIf="langarabic">البريد الإلكتروني المسجل مطلوب. </span>
+                            </div>
+
+                            <div *ngIf="fgt.recoveryemail.errors.pattern" style="color: white;">
+                                <span *ngIf="langenglish">Please enter valid Email.</span>
+                                <span *ngIf="langarabic">الرجاء إدخال بريد إلكتروني صحيح. </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- pwd -->
+                    <div class="row m-t-20">
+                        <div class="col-12">
+                            <button class="btn btn-block btn-lg btn-danger" *ngIf="langenglish" [ngClass]="{'button--loading':fpasswordvalid,'btn-primary':forgotPswFG.valid,'btn-secondary':!forgotPswFG.valid}" type="submit" name="action">Reset</button>
+                            <button class="btn btn-block btn-lg btn-danger" *ngIf="langarabic" [ngClass]="{'button--loading':fpasswordvalid,'btn-primary':forgotPswFG.valid,'btn-secondary':!forgotPswFG.valid}" type="submit" name="action">إعادة تعيين</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    2019 © ISLAMIC UNIVERSITY OF MADINAH
+</div>

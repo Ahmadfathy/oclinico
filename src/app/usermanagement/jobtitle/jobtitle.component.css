@@ -1,0 +1,22 @@
+.headrow{
+    background-color: #3587d8;
+    color: white;
+  }
+.form-control {
+    border: 1px solid darkgray;
+    background: #f2f2f2;
+    border-radius: 8px;
+}
+select[_ngcontent-c2] {
+    text-transform: none;
+    /* background: #f2f2f2; */
+    width: 100%;
+    border-color: darkgray!important;
+    border-radius: 8px;
+}
+.custom-select {
+    border-color: darkgray!important;
+    border-radius: 8px;
+    /* background: #f2f2f2; */
+}
+

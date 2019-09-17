@@ -1,0 +1,228 @@
+<div class="row">
+  <h4 class="ltr"> View Payment</h4>
+  <h4 class="rtl">عرض المدفوع </h4>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/getpayment'>
+          Payment</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link rtl" routerLink='/getpayment'>
+          <span>المدفوعات</span></a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link ">
+         View Payment</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>عرض المدفوع</span> </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<br>
+<br>
+<div class="card">
+
+  <div class="card-header">      
+    <p class="m-b-0 text-black ltr">
+      <i class="sl-icon-menu font-14"></i> &nbsp;View Payment</p>
+    <p class="m-b-0 text-black rtl">
+      <i class="sl-icon-menu font-14"></i> &nbsp;عرض المدفوع</p>
+  </div>
+  <div class="card-body" >
+  
+        <div class="row">
+          <div class="col-sm-12 text-right mb-3">
+              <a class="btn btn-info text-white " (click)="print()">
+                  <i class="fa fa-fw fa-user "></i>
+                  <span class="ltr">Print</span>
+                  <span class="rtl">طباعة</span>
+              </a>
+              &nbsp;
+              <a class="btn btn-info text-white "  (click)="DeleteUser()">
+                <i class="fa fa-fw fa-user "></i>
+                <span class="ltr">Delete</span>
+                <span class="rtl">حذف</span>
+            </a>
+          </div>
+      </div>
+        <div id="DivIdToPrint">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-6">
+              <table width="100%" style="border-collapse: collapse;">
+                <tbody>
+                  <tr>
+                    <td width="50%">
+                      <label class="control-label ltr">
+                        <span id="lblcredit" title="Allocated to account credit">Allocated to account credit</span>&nbsp;&nbsp;
+                      </label>
+                      <label class="control-label rtl">
+                        <span id="lblcredit" title="Allocated to account credit">اضافته لحساب المدين</span>
+                      </label>
+                      <label class="control-label">
+                        <span style="color:red;">{{lbcredit}}</span> {{this.currency}} &nbsp;&nbsp;
+                        <span>{{lblcur1}}</span>
+                      </label>
+                    </td>
+                   
+                    
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table" width="100%">
+                <thead>
+                  <tr>
+                    <th colspan="2">
+                      <label class="control-label ltr">
+                        <span title="Payment Details">Payment Details</span>
+                      </label>
+                      <label class="control-label rtl">
+                        <span title="Payment Details">بيانات الدفع</span>
+                      </label>
+                    </th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td width="50%">
+                    <label class="control-label">
+                      <span class="ltr">Date</span>
+                    </label>
+                    <label class="control-label">
+                      <span class="rtl">تاريخ</span>
+                    </label>
+                  </td>
+                  <td width="50%">
+                    <span>{{date}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label class="control-label ltr">
+                      <span>Patient</span>
+                    </label>
+                    <label class="control-label rtl">
+                      <span>المريض</span>
+                    </label>
+                  </td>
+                  <td>
+                    <span>{{patient}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+        
+                    <table width="100%" style="border-collapse: collapse;" cellspacing="5" cellpadding="5">
+                      <tbody *ngFor="let i of paymentdetails">
+                        <tr>
+                          <td width="50%">
+                            <label class="control-label">
+                              {{i.paymenttype}}
+                            </label>
+                          </td>
+                          <td width="50%">
+                            <label class="control-label">
+                              {{i.Pay_Amnt}} &nbsp;&nbsp;{{this.currency}}
+                            </label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label class="control-label ltr">
+                      <span>Total Payment</span>
+                    </label>
+                    <label class="control-label rtl">
+                      <span>المبلغ الإجمالي</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label class="control-label">
+                      <span>{{payment}}</span>
+                      &nbsp;&nbsp;
+                      <span>{{lblcur}}</span>{{this.currency}}
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <label class="control-label ltr">
+                      <span>Payment applied to invoices</span>
+                    </label>
+                    <label class="control-label rtl">
+                      <span>المدفوعات تم تطبيقها في الفواتير</span>
+                    </label>
+                    <table width="100%" class="table table-striped table-bordered table-advance" style="border-collapse: collapse;" cellspacing="5"
+                      cellpadding="5">
+        
+                      <tbody *ngFor="let item of invoicedetails">
+                        <tr>
+                          <td width="50%">
+                            <label class="control-label" style="color:green">
+                              {{item.invoice}}
+                            </label>
+                          </td>
+                          <td width="50%">
+                            <label class="control-label">
+                              {{item.date}}
+                            </label>
+                          </td>
+                          <td width="50%">
+                            <label class="control-label">
+                              {{item.amnt}} {{this.currency}}
+                              <!-- <asp:Label runat="server" ID="lblcur" Text='<%#Session["currency"] %>' ToolTip='<%#Session["currency"] %>'></asp:Label>  -->
+                            </label>
+                          </td>
+                          <td width="50%"  class="no-print">
+                            <label class="control-label">
+                              <a [routerLink]="['/viewinvoice']" [queryParams]="{invoicenum:item.invoice}" >View Invoice</a>
+        
+                            </label>
+                          </td>
+        
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div style="text-align: center;font-weight:bold;" [hidden]="nodata">No Data Found</div>
+                  </td>
+                </tr>
+              </table>
+              <br>
+            </div>
+        
+            <div class="col-md-6">
+              <label class="control-label ltr" style="margin-left: 10px  !important">
+                <span id="lblnote" title="Notes">Notes</span>
+              </label>
+              <label class="control-label rtl" style="margin-left: 5px  !important">
+                <span id="lblnote" title="Notes">الملاحظات</span>
+              </label>
+        
+              <div style="width: 100%; min-height: 30px; height: auto; max-height: 243px; border: 1px solid #993;
+                                    background-color: #f4f2e6; border-radius: 6px;margin-left: 12px !important;">
+                <span style="margin-left: 12px !important;">{{Notes}}</span>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  </div>
+</div>

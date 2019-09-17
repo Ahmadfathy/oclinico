@@ -1,0 +1,161 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/product'>Products</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/product'><span>المنتجات</span> </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/stockadjustment'>Stock Adjustment</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/stockadjustment'><span>تعديل المخزون</span>
+        </a>
+      </li>
+      <!-- <li class="rtl">
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;{{Name}}</p>
+      </div>
+      <form [formGroup]="addStocklevel">
+        <div class="row">
+          <div class="col-md-12 col-lg-10 col-xl-12">
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <!-- <div class="col-md-6" [ngClass]="{'has-error' : formErrors.ItemCode}"> -->
+                  <label class="form-control-label ltr">Which way are you changing the stock level?
+                  </label>
+                  <label class="form-control-label rtl">ما الطريقة التي تغير بها مستوى المخزون؟
+                  </label>
+                </div>
+                <div class="col-md-6">
+                  <input type="radio" id="Increasing" [value]="true" [checked]="!isSpecial" [(ngModel)]="selected" name="radioModel" formControlName="radioModel"
+                    (change)="onSelectionChangeYes($event)"> &nbsp;
+                  <label class="ltr">Increasing</label>
+                  &nbsp; &nbsp;
+                  <label class="rtl">في ازدياد
+                  </label>
+                  &nbsp; &nbsp; &nbsp;
+                  <input type="radio" id="Decreasing" [value]="false" [checked]="isSpecial" [(ngModel)]="selected" name="radioModel" formControlName="radioModel"
+                    (change)="onSelectionChangeNo($event)"> &nbsp;
+                  <label class="ltr">Decreasing</label>
+                  &nbsp;&nbsp;
+                  <label class="rtl">تقليل</label>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-3">
+                  <!-- <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Name}"> -->
+                  <label class="form-control-label ltr">What type of stock change is it?
+                    <strong class="req">*</strong>
+                  </label>
+                  <label class="form-control-label rtl">ما هو نوع التغيير في الأسهم هو؟
+                    <strong class="req">*</strong>
+                  </label>
+                </div>
+                <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Stocktype}">
+                  <select name="Stocktype" id="Stocktype" formControlName="Stocktype" class="form-control ltr">
+                    <option value="" selected>Select</option>
+                    <option value="Damaged">Damaged</option>
+                    <option value="Out Of Date">Out Of Date</option>
+                    <option value="Item Sold">Item Sold</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <select name="Stocktype" id="Stocktype" formControlName="Stocktype" class="form-control rtl">
+                    <option value="" selected>تحديد</option>
+                    <option value="Damaged">التالفة</option>
+                    <option value="Out Of Date">انتهت صلاحيته
+                    </option>
+                    <option value="Item Sold">بيعت</option>
+                    <option value="Other">آخر</option>
+                  </select>
+                  <span style="color: red;" class="help-block" *ngIf="formErrors.Stocktype">
+                    {{formErrors.Stocktype}}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <!-- <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Price}"> -->
+                  <label class="form-control-label ltr">How many are you decreasing it by?
+                    <strong class="req">*</strong>
+                  </label>
+                  <label class="form-control-label rtl">كم كنت تقليله من قبل؟
+                    <strong class="req">*</strong>
+                  </label>
+                </div>
+                <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Stock}">
+                  <input type="text" class="form-control" name="Stock" id="Stock" formControlName="Stock">
+                  <span style="color: red;" class="help-block" *ngIf="formErrors.Stock">
+                    {{formErrors.Stock}}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <!-- <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Notes}"> -->
+                  <label class="form-control-label ltr">Notes
+                    <strong class="req">*</strong>
+                  </label>
+                  <label class="form-control-label rtl">الملاحظات
+                    <strong class="req">*</strong>
+                  </label>
+                </div>
+                <div class="col-md-6" [ngClass]="{'has-error' : formErrors.Notes}">
+                  <textarea class="form-control" name="Notes" id="Notes" formControlName="Notes" cols="40" rows="5"></textarea>
+                  <span style="color: red;" class="help-block" *ngIf="formErrors.Notes">
+                    {{formErrors.Notes}}
+                  </span>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-6 offset-md-3">
+                  <button type="submit" class="btn btn-md btn-warning ltr" (click)="addproductsubmit()">
+                    <i class="fa fa-check-circle"></i>
+                    Submit</button>&nbsp;
+                  <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/product']">
+                    <i class="fa fa-ban"></i>
+                    Cancel</button>
+                  <button type="submit" class="btn btn-md btn-warning rtl" (click)="addproductsubmit()">
+                    <i class="fa fa-check-circle"></i>
+                    إرسل</button>&nbsp;
+                  <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/product']">
+                    <i class="fa fa-ban"></i>
+                    إلغاء</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

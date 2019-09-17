@@ -1,0 +1,185 @@
+<div class="preloader" *ngIf="showLoader">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span> تفاصيل المريض</span></a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link">Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link"><span>البحث المتقدم</span> </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="m-b-0 text-black ltr">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;Patient Details</h4>
+                <h4 class="m-b-0 text-black rtl">
+                    <i class="sl-icon-menu font-14"></i> &nbsp;التفاصيل الشخصية</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-right">
+                    <span class="ltr">
+                        <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addpatient">
+                            <i class="fa fa-fw fa-user"></i> Add</a>
+                    </span>
+                    <span class="rtl">
+                        <a class="nav-link" style="display: inline-block;color: #4798e8;" routerLink="/addpatient">
+                            <i class="fa fa-fw fa-user"></i> إضافة</a>
+                    </span>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Patient Type</label>
+                    <select class="form-control" id='patienttype'>
+                        <option value="">All</option>
+                        <option selected>Student</option>
+                        <option>Employee</option>
+                        <option>University Faculty</option>
+                        <option>OutPatient</option>
+                    </select>
+                </div>
+                <div class="row p-t-20">
+                    <div class="col-md-4">
+                        <label class="form-control-label ltr">Patient Id</label>
+                        <label class="form-control-label rtl">رقم المريض</label>
+                        <input id="pid" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control-label ltr">Email Id</label>
+                        <label class="form-control-label rtl">الايميل</label>
+                        <input id="Email" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-control-label ltr">Mobile Number</label>
+                        <label class="form-control-label rtl">رقم الهاتف المحمول</label>
+                        <input id="mobileno" type="number" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">First Name</label>
+                        <label class="form-control-label rtl">الاسم الاول</label>
+                        <input id="fname" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">Middle Name</label>
+                        <label class="form-control-label rtl">اسم الأب</label>
+                        <input id="mname" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">Last Name</label>
+                        <label class="form-control-label rtl">اسم العائلة</label>
+                        <input id="lname" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">First Name(arabic)</label>
+                        <label class="form-control-label rtl">الاسم الاول</label>
+                        <input id="afname" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">Father's Name(arabic)</label>
+                        <label class="form-control-label rtl">اسم الأب</label>
+                        <input id="afathername" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">Last Name(arabic)</label>
+                        <label class="form-control-label rtl">اسم العائلة</label>
+                        <input id="alname" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <label class="form-control-label ltr">City</label>
+                        <label class="form-control-label rtl">مدينة</label>
+                        <input id="city" type="text" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-actions text-center submitBtns">
+                    <div class="card-body ">
+                        <button type="submit" class="btn btn-md btn-success ltr" (click)="autocomplate()" style="margin-right:10px;">
+                            <i class="fa fa-check-circle"></i>
+                            Search</button>
+                        <button type="submit" class="btn btn-md btn-success rtl" (click)="autocomplate()" style="margin-right:10px;">
+                            <i class="fa fa-check-circle"></i>
+                            بحث</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-bordered responsive w-100" *ngIf="showdata" cellspacing="0" style="width:100% ">
+            <thead class="ltr">
+                <tr>
+                    <th>Sno</th>
+                    <th>Patient Id</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Mobile No</th>
+                    <th>Email Id</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <thead class="rtl">
+                <tr>
+                    <th>الرقم التسلسلي</th>
+                    <th>رقم المريض</th>
+                    <th>اسم</th>
+                    <th>تاريخ الميلاد</th>
+                    <th>جنس</th>
+                    <th>رقم الهاتف المحمول</th>
+                    <th>الايميل</th>
+                    <th>الاجراءات</th>
+                </tr>
+            </thead>
+            <tbody style="width:100%">
+                <tr *ngFor="let patient of table;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{patient.patient_id}}</td>
+                    <td>{{patient.name}}</td>
+                    <td>{{patient.dob1}}</td>
+                    <td>{{patient.Gender}}</td>
+                    <td>{{patient.MobileNo}}</td>
+                    <td>{{patient.Email}}</td>
+                    <td>
+                        <span class="fa fa-eye text-info" style="cursor: pointer;" [routerLink]="['/viewpatient']" [queryParams]="{Refrral:patient.patient_id}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="fa fa-pencil-alt text-info" style="cursor: pointer;" [routerLink]="['/editpatient']" [queryParams]="{Refrral:patient.patient_id}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

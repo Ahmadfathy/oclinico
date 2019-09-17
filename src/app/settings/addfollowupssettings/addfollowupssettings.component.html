@@ -1,0 +1,99 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="isPageloaderVisible">
+        <div class="spinner" style="margin: 100px auto !important;">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    
+    
+      <h4 class="ltr">Add Follow Up</h4>
+      <h4 class="rtl">إضافة (موعد تابع)</h4>
+
+      
+
+          <div class="row">
+            <div class="col-md-12">
+                <ul id="breadcrumb">
+                    <li ><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+                    <li class="ltr"><a class="nav-link"  routerLink='/settings'> Settings</a></li>
+                    <li class="ltr"><a class="nav-link"  routerLink='/FollowUps'><span ></span>Follow Ups</a></li>
+                    <li class="ltr"><a class="nav-link"> Add Follow Up</a></li>
+                    <li class="rtl"><a class="nav-link"  routerLink='/settings'><span > إعدادات</span></a></li>
+                    
+                    <li class="rtl"><a class="nav-link"  routerLink='/FollowUps'><span>موعد متابع </span></a></li>
+                    <li class="rtl"><a class="nav-link"><span>إضافة (موعد تابع)</span></a></li>
+                   
+                   
+                </ul>
+            </div>
+        </div>
+
+<form [formGroup]="addfollowup">
+
+<div class="row">
+<div class="col-md-12 col-lg-12 col-xl-12">
+  <div class="card">
+        <div class="card-header">
+                <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Add Follow Up</h4>
+                <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;إضافة (موعد تابع)</h4>
+              </div>
+      <div class="card-body">
+          
+          <div class="row">
+            <div class="col-md-6" [ngClass]="{'has-error' : formErrors.docname}">
+              <!-- <form class="m-t-0"> -->
+                  <label class="form-control-label ltr">Doctor Name *</label>
+                  <label class="form-control-label rtl">اسم الطبيب *</label>
+                  <input type="text" class="form-control"  formControlName="docname"  (blur)="checkValidationErrors()" on-focusout="focusOutFunction($event)">
+                 
+                  <span class="help-block errorcolorcls" *ngIf="formErrors.docname">
+                    {{formErrors.docname}}
+                  </span>
+              <!-- </form> -->
+          </div>
+            
+           <div class="col-md-6">
+            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.days}">
+                    <label class="form-control-label ltr">Days *</label>
+                    <label class="form-control-label rtl">أيام *</label>
+                
+                      <select value="Select" name="title" formControlName="days"  class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()"> 
+                        <option value="select" disabled>-- select --</option>
+                        <option *ngFor="let d of daysarr" [ngValue]="d.daysval">{{d.daysval}}</option>
+                      </select>
+                      <select value="Select" name="title" formControlName="days"  class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()"> 
+                          <option value="select" disabled>-- اختار --</option>
+                        <option *ngFor="let d of daysarr" [ngValue]="d.daysval">{{d.daysval}}</option>
+                      </select>
+                      <span class="help-block errorcolorcls" *ngIf="formErrors.days">
+                        {{formErrors.days}}
+                      </span>
+                      
+            </div>
+        </div>
+              </div>
+              
+                      <div class="row mt-5">
+                          <div class="col-md-12 text-center submitBtns">
+                              <button type="submit" class="btn btn-md btn-warning ltr" (click)="addfollowupsubmit()" style="margin-right:5px;">
+                                  <i class ="fa fa-check-circle"></i>
+                                   Submit </button>
+                              <button type="submit" class="btn btn-md btn-warning rtl" (click)="addfollowupsubmit()" >
+                                  <i class ="fa fa-check-circle"></i>
+                                  إرسل </button>
+                              <button type="submit" class="btn btn-md btn-success ltr" (click)="addfollowupcancle()">
+                                      <i class ="fa fa-ban"></i>
+                                  Cancel</button>
+                              <button type="submit" class="btn btn-md btn-success rtl" (click)="addfollowupcancle()" style="margin-right:5px;">
+                                      <i class ="fa fa-ban"></i>
+                                      إلغاء</button>
+                          </div>
+                      </div>
+      </div>
+  </div>
+</div>
+</div>
+
+
+
+</form>

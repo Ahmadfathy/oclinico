@@ -1,0 +1,158 @@
+<!-- 
+
+<div class="container editcontainer"> 
+  <div class="row">
+      <div class="col-md-12">
+        
+    <ul id="breadcrumb" class="aligncls">
+      <li><a class="nav-link"  routerLink='/dashboard' ><span class="fa fa-fw fa-home"> </span></a></li>
+      <li><a class="nav-link"  routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span> Settings</a></li>
+      <li><a class="nav-link"  routerLink='/MainTemplate'><span ></span>Letter Template Details</a></li>
+  
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="container"  [hidden]="AddDiv">
+
+  <h3>Edit Template</h3>
+    <div class="form-group">
+      <div class="table  borderless">
+        <tr><th><label>Template Name*</label></th> 
+           <td>   <input type="text" id="tname" [(ngModel)]="editTemp_title" (blur)="edittempnamechange()" >
+              <br> <div *ngIf="tempname" class="errmsg">Template Name is required.</div>
+          </td></tr>
+
+        <tr><th>  <label> Description*</label></th> 
+          <td><ckeditor [editor]="Editor" placeholder="Enter Description Here" [(ngModel)]="editTemp_Descri" (blur)="edittempdescchange()">  </ckeditor>
+           <br> <div *ngIf="descpname" class="errmsg">Template Description is required.</div>
+          </td></tr>
+      </div>
+     
+    </div>
+
+    <div _ngcontent-c3="" class="col-md-12 text-center submitBtns">
+        <button _ngcontent-c3="" class="btn btn-md btn-warning" type="submit" (click)="EditTempSubmit()">
+          <i _ngcontent-c3="" class="fa fa-check-circle"></i> Update</button>
+
+          &nbsp;
+          <button _ngcontent-c3="" class="btn btn-md btn-success" type="submit" (click)="cancel()">
+          <i _ngcontent-c3="" class="fa fa-check-circle"></i> Cancel</button></div>
+        </div>
+
+
+<div class="container"  [hidden]="EditDiv">
+  
+    <h3>Add Template</h3>
+      <div class="form-group" id="EditTemplate" >
+        <div class="table  borderless">
+          <tr><th><label>Template Name*</label></th>  
+            <td>           
+                <input type="text" [(ngModel)]="addTemp_title" (blur)="addtempnamechange()">
+                <br> <div *ngIf="tempname" class="errmsg">Template Name is required.</div>
+              </td></tr>
+
+          <tr><th>  <label> Description*</label></th> 
+            <td><ckeditor [editor]="Editor" placeholder="Enter Description Here" [(ngModel)]="addTemp_Descri" (blur)="addtempdescchange()"> </ckeditor>
+              <br> <div *ngIf="descpname" class="errmsg">Template Name is required.</div>
+             </td></tr>
+        </div>
+       
+      </div>
+      <div _ngcontent-c3="" class="col-md-12 text-center submitBtns">
+          <button _ngcontent-c3="" class="btn btn-md btn-warning" type="submit" (click)="AddTempSubmit()">
+            <i _ngcontent-c3="" class="fa fa-check-circle"></i> Submit</button>
+  
+            &nbsp;
+            <button _ngcontent-c3="" class="btn btn-md btn-success" type="submit" (click)="cancel()">
+            <i _ngcontent-c3="" class="fa fa-ban"></i> Cancel</button></div>
+  </div>
+   -->
+
+<div class="preloader"  *ngIf="isPageloaderVisible">
+  <div class="spinner" >
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb" style="margin-left: -6%;">
+        <li class="ltr"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>Settings</a>
+        </li>
+        <li class="ltr"><a class="nav-link" routerLink='/MainTemplate'>Letter Template Details</a></li>
+        <li class="ltr"><a class="nav-link">{{displaytype}} Letter Template Details</a></li>
+      </ul>
+      <ul class="rtl" id="breadcrumb" style="margin-right: -6%;">
+        <li class="rtl"><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/settings'><span class="fa fa fa-fw fa-cog"> </span>إعدادات</a>
+        </li>
+        <li class="rtl"><a class="nav-link" routerLink='/MainTemplate'>تفاصيل قالب الرسائل</a></li>
+        <li class="rtl"><a class="nav-link">تعديل تفاصيل المعمل</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <form [formGroup]="edittemp">
+        <div class="card-header">
+          <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;{{displaytype}} Letter Template Details</h4>
+          <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;أضافه تفاصيل المعمل</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Template Name&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">اسم القالب&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-4">
+              <input id="tname" [disabled]="displaytype == 'View'" formControlName="tname"
+                [ngClass]="{'has-error' :formErrors.tname}" (blur)="checkValidationErrors()" type="text"
+                class="form-control">
+
+              <span class="help-block" *ngIf="formErrors.tname" style="color: red">
+                {{formErrors.tname}}
+              </span>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="form-control-label ltr">Description&nbsp;<i class="fa fa-star mystar"></i></label>
+              <label class="form-control-label rtl">وصف&nbsp;<i class="fa fa-star mystar"></i></label>
+            </div>
+            <div class="col-md-8">
+                <ckeditor [disabled]='displaytype == "View"' id="editTemp_Descri" [editor]="Editor" placeholder="Enter Description Here" formControlName="editTemp_Descri" 
+                [ngClass]="{'has-error' :formErrors.editTemp_Descri}" (blur)="checkValidationErrors()"></ckeditor>
+              <span class="help-block" *ngIf="formErrors.editTemp_Descri" style="color: red">
+                {{formErrors.editTemp_Descri}}
+              </span>
+            </div>
+          </div><br>
+          <div class="form-actions text-center submitBtns" *ngIf="displaytype == 'Edit' ">
+            <div class="card-body ">
+              <button type="submit" class="btn btn-md btn-warning ltr" (click)="EditTempSubmit()"
+                style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                Update</button>
+              <button type="submit" class="btn btn-md btn-warning rtl" (click)="EditTempSubmit()"
+                style="margin-right:10px;">
+                <i class="fa fa-check-circle"></i>
+                تحديث</button>
+              <button type="submit" class="btn btn-md btn-success ltr" [routerLink]="['/MainTemplate']">
+                <i class="fa fa-ban"></i>
+                Cancel</button>
+              <button type="submit" class="btn btn-md btn-success rtl" [routerLink]="['/MainTemplate']">
+                <i class="fa fa-ban"></i>
+                إلغاء</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <h4 class="ltr">Attachments</h4>
+    <h4 class="rtl">مرفقات</h4>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Patient Details</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span>تفاصيل المريض</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/autocomplate'>
+                    <span>البحث المتقدم</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/attachements' [queryParams]="{Refrral:patientId}">Attachments </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/attachements'>
+                    <span>مرفقات</span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/viewattachements'>View Attachments </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/viewattachements'>
+                    <span>عرض المرفقات</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+        <app-sidelinks></app-sidelinks>
+    </div>
+    <!-- <div class="col-md-8">
+    <form [formGroup]="Attachments" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-md-6">
+          <label for="email">Attachments</label>
+         <input type="file" class="form-control"formControlName="uploadfile"[ngClass]="{ 'is-invalid': submitted && f.uploadfile.errors }"name="filename"#theFile>
+       
+         <div *ngIf="submitted && f.uploadfile.errors" class="invalid-feedback">
+            <div *ngIf="f.uploadfile.errors.required">Please Upload Attachment</div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4">{{atachments}}</div>
+    </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="email">Description Name</label>
+     <input class="form-control"formControlName="description"[ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+     <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">Please Enter Description Name</div>
+    </div>
+  </div></div>
+  <div class="row">
+  <div class="form-group col-md-6">
+      <label for="email">Description Details</label>
+      <textarea class="form-control"formControlName="descriptiondetailes"[ngClass]="{ 'is-invalid': submitted && f.descriptiondetailes.errors }"></textarea>
+      <div *ngIf="submitted && f.descriptiondetailes.errors" class="invalid-feedback">
+          <div *ngIf="f.descriptiondetailes.errors.required">Please Enter Description Details</div>
+      </div>
+  </div> 
+  </div>
+<br>
+<div class="row">
+    <button class="btn btn-warning margin"style="float:right"(click)="createattachements()">
+        <i class="fa fa-check-circle"></i> Update
+   </button>
+  <button class="btn btn-info margin ml-2" style='float:right'>
+      <i class="fa fa-ban"></i>  Cancel
+   </button>
+     
+</div>
+</form>
+  
+</div> -->
+
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr">
+                <i class="sl-icon-menu font-14"></i> &nbsp; View Attachments</p>
+            <p class="m-b-0 text-black rtl">
+                <i class="sl-icon-menu font-14"></i> &nbsp;عرض المرفقات</p>
+        </div>
+
+        <div class="col-md-12 mt-3">
+            <a href={{atachments}} target="_blank"> {{atachments}} </a>
+        </div>
+    </div>
+</div>

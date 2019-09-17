@@ -1,0 +1,1501 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'>Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/x-ray-request'>X-ray Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/x-ray-request'>
+          <span>طلب إشاعة</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link">{{xtype}} X-ray Report</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link">
+          <span>طلب إشاعة</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <p class="m-b-0 text-black ltr">
+          <i class="sl-icon-menu font-14"></i> &nbsp;{{xtype}} X-ray Report</p>
+        <p class="m-b-0 text-black rtl">
+          <i class="sl-icon-menu font-14"></i> &nbsp;
+          <span>طلب إشاعة</span>
+        </p>
+      </div>
+      <br>
+      <div class="card-body">
+        <div style="float:right;margin-bottom: 20px;" class="ltr">
+          <button class="btn btn-info ltr" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>Print</button>
+        </div>
+        <div style="float:left;margin-bottom: 20px;" class="rtl">
+          <button class="btn btn-info rtl" (click)="print()">
+            <i class="icon-print icon-white i_btn"></i>طباعة</button>
+        </div>
+        <div class="row">
+          <div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;">
+            <table cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr class="top">
+                  <td colspan="2">
+                    <table width="100%" style="border: 1px solid #000; border-radius: 10px;;">
+                      <tbody>
+                        <tr>
+                          <td width="28%">
+                            <input type="text" value="" [(ngModel)]="p1" style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                            /> : اسم المريض
+                            <div style="height: 10px;"></div>
+                            <input type="text" value="" style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                              [(ngModel)]="p2" /> : رقم الملف
+                            <div style="height: 10px;"></div>
+                            <input type="text" value="" [(ngModel)]="p3" style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;"
+                            /> :موعد الفحص
+                          </td>
+                          <td width="48%" class="title" style="text-align: center">
+                            <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;">
+                          </td>
+                          <td width="24%" style="text-align: center;"> المملكة العربية السعودية وزارة التعليم الجامعة الاسلامية بالمدينة المنورة المركز الطبي الجامعي
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="height: 10px;"></td>
+                        </tr>
+                        <tr>
+                          <td style="position: relative; text-align: center;" colspan="3">
+                            <div style="position: absolute; top: -13px; left: 31%; background-color: #d6f4ff; border: 1px solid #000; border-radius: 5px; padding: 5px; color: #1ba3c5; font-weight: bold; font-size: 20px;">X - RAY REQUEST &nbsp; &nbsp; &nbsp;
+                              <input type="checkbox" value="" id="c.t" [(ngModel)]="cb1" (change)="checkboxchange($event,'c.t')" />
+                              <label for="c.t">C.T</label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td style="font-weight: bold; font-size: 18px; text-align: center;">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="40%" style="height: 10px;">
+                          </td>
+                          <td width="60%" style="font-weight: bold; font-size: 18px;">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="2" style="border: 1px solid #000; border-radius: 10px;">
+                    <table width="100%" cellpadding="2" cellspacing="2">
+                      <tbody>
+                        <tr>
+                          <td width="15%">
+                            Clinical Date :
+                          </td>
+                          <td colspan="3">
+                            <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" [(ngModel)]="p4"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="4">
+                            <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Reffered by Dr.
+                          </td>
+                          <td width="47%">
+                            <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" [(ngModel)]="p5"
+                            />
+                          </td>
+                          <td width="6%">
+                            ON. :
+                          </td>
+                          <td width="32%">
+                            <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" [(ngModel)]="p6"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="4" style="height: 10px;">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="2">
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="40%" style="height: 10px;">
+                          </td>
+                          <td width="60%" style="font-weight: bold; font-size: 18px;">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td width="353" valign="top">
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                            CHEST
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Chest" [(ngModel)]="chestcheck" (change)="checkboxchange($event,'Chest')" />
+                            <label for="Chest">Chest</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="P-A" [(ngModel)]="pacheck" (change)="checkboxchange($event,'P-A')" />
+                            <label for="P-A">P-A</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Lat" [(ngModel)]="latcheck" (change)="checkboxchange($event,'Lat')" />
+                            <label for="Lat">Lat</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="UpperRibs" [(ngModel)]="UpperRibscheck" (change)="checkboxchange($event,'UpperRibs')"
+                            />
+                            <label for="UpperRibs">Upper Ribs</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Ant" [(ngModel)]="Antcheck" (change)="checkboxchange($event,'Ant')" />
+                            <label for="Ant">Ant</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Post" [(ngModel)]="Postcheck" (change)="checkboxchange($event,'Post')" />
+                            <label for="Post">Post</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="LowerRibs" [(ngModel)]="LowerRibscheck" (change)="checkboxchange($event,'LowerRibs')"
+                            />
+                            <label for="LowerRibs">Lower Ribs</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Ant2" [(ngModel)]="Ant2check" (change)="checkboxchange($event,'Ant2')" />
+                            <label for="Ant2">Ant</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Post2" [(ngModel)]="Post2check" (change)="checkboxchange($event,'Post2')" />
+                            <label for="Post2">Post</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                            U.T & GIT
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="K.U.B" [(ngModel)]="kubcheck" (change)="checkboxchange($event,'K.U.B')" />
+                            <label for="K.U.B">K.U.B.</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Abdomen" [(ngModel)]="Abdomencheck" (change)="checkboxchange($event,'Abdomen')" />
+                            <label for="Abdomen">Abdomen</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="PainGallBladder" [(ngModel)]="PainGallBladdercheck" (change)="checkboxchange($event,'PainGallBladder')"
+                            />
+                            <label for="PainGallBladder">Pain Gall Bladder</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="I.V.U" [(ngModel)]="ivucheck" (change)="checkboxchange($event,'I.V.U')" />
+                            <label for="I.V.U">I.V.U</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                            SKULL
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="50%">
+                            <input type="checkbox" value="" id="Skull" [(ngModel)]="Skullcheck" (change)="checkboxchange($event,'Skull')" />
+                            <label for="Skull">Skull</label>
+                          </td>
+                          <td width="22%">
+                            <input type="checkbox" value="" [(ngModel)]="Skullpacheck" (change)="checkboxchange($event,'Skull-P-A')" id="Skull-P-A" />
+                            <label for="Skull-P-A">P-A</label>
+                          </td>
+                          <td width="28%">
+                            <input type="checkbox" value="" id="Skull-Lat" [(ngModel)]="Skulllatcheck" (change)="checkboxchange($event,'Skull-Lat')"
+                            />
+                            <label for="Skull-Lat">Lat</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Sinuses" [(ngModel)]="Sinusescheck" (change)="checkboxchange($event,'Sinuses')" />
+                            <label for="Sinuses">Sinuses</label>
+                          </td>
+                          <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Nasopharynx" [(ngModel)]="Nasopharynxcheck" (change)="checkboxchange($event,'Nasopharynx')"
+                            />
+                            <label for="Nasopharynx">Naso pharynx</label>
+                          </td>
+                          <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Paravertebrad" [(ngModel)]="Paravertebradcheck" (change)="checkboxchange($event,'Paravertebrad')"
+                            />
+                            <label for="Paravertebrad">Para vertebrad</label>
+                          </td>
+                          <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="NasalBones" [(ngModel)]="NasalBonescheck" (change)="checkboxchange($event,'NasalBones')"
+                            />
+                            <label for="NasalBones">Nasal Bones</label>
+                          </td>
+                          <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="BothMastoids" [(ngModel)]="BothMastoidscheck" (change)="checkboxchange($event,'BothMastoids')"
+                            />
+                            <label for="BothMastoids">Both Mastoids</label>
+                          </td>
+                          <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Mandible" [(ngModel)]="Mandiblecheck" (change)="checkboxchange($event,'Mandible')" />
+                            <label for="Mandible">Mandible</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Mandible-Rt" [(ngModel)]="MandibleRtcheck" (change)="checkboxchange($event,'Mandible-Rt')"
+                            />
+                            <label for="Mandible-Rt">Rt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Mandible-Lt" [(ngModel)]="Mandibleltcheck" (change)="checkboxchange($event,'Mandible-Lt')"
+                            />
+                            <label for="Mandible-Lt">Lt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="T.M.J" [(ngModel)]="tmjcheck" (change)="checkboxchange($event,'T.M.J')" />
+                            <label for="T.M.J">T.M.J</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="T.M.J-Rt" [(ngModel)]="tmjrtcheck" (change)="checkboxchange($event,'T.M.J-Rt')" />
+                            <label for="T.M.J-Rt">Rt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="T.M.J-Lt" [(ngModel)]="tmjltcheck" (change)="checkboxchange($event,'T.M.J-Lt')" />
+                            <label for="T.M.J-Lt">Lt</label>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                            SPINE
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="50%">
+                            <input type="checkbox" value="" id="CeevicalSpine" [(ngModel)]="ceevicalcheck" (change)="checkboxchange($event,'CeevicalSpine')"
+                            />
+                            <label for="CeevicalSpine">Ceevical Spine</label>
+                          </td>
+                          <td width="50%">
+                            <input type="checkbox" value="" [(ngModel)]="lsspinecheck" (change)="checkboxchange($event,'L-SSpine')" id="L-SSpine" />
+                            <label for="L-SSpine">L-S Spine</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="DorsalSpine" [(ngModel)]="DorsalSpinecheck" (change)="checkboxchange($event,'DorsalSpine')"
+                            />
+                            <label for="DorsalSpine">Dorsal Spine</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Sacrum" [(ngModel)]="Sacrumcheck" (change)="checkboxchange($event,'Sacrum')" />
+                            <label for="Sacrum">Sacrum</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="D-LSpine" [(ngModel)]="DlSpinecheck" (change)="checkboxchange($event,'D-LSpine')" />
+                            <label for="D-LSpine">D-L Spine</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" [(ngModel)]="Coccyxcheck" (change)="checkboxchange($event,'Coccyx')" value="" id="Coccyx" />
+                            <label for="Coccyx">Coccyx</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="LumberSpine" [(ngModel)]="LumberSpinecheck" (change)="checkboxchange($event,'LumberSpine')"
+                            />
+                            <label for="LumberSpine">Lumber Spine</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" [(ngModel)]="sijointscheck" (change)="checkboxchange($event,'Sacro-illiacjoints')" id="Sacro-illiacjoints"
+                            />
+                            <label for="Sacro-illiacjoints">Sacro-illiac joints</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Others" [(ngModel)]="otherscheck" (change)="checkboxchange($event,'Others')" />
+                            <label for="Others">Others</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td width="345" valign="top">
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold;  border-bottom: 1px solid #000;">
+                            UPPER LIMB
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" [(ngModel)]="stetnumcheck" (change)="checkboxchange($event,'Stetnum')" value="" id="Stetnum" />
+                            <label for="Stetnum">Stetnum</label>
+                          </td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Clavicle" [(ngModel)]="Claviclecheck" (change)="checkboxchange($event,'Clavicle')" />
+                            <label for="Clavicle">Clavicle</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="UL-P-A" [(ngModel)]="ulpacheck" (change)="checkboxchange($event,'UL-P-A')" />
+                            <label for="UL-P-A">P-A</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="UL-Lat" [(ngModel)]="ullatcheck" (change)="checkboxchange($event,'UL-Lat')" />
+                            <label for="UL-Lat">Lat</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Scapula" [(ngModel)]="Scapulacheck" (change)="checkboxchange($event,'Scapula')" />
+                            <label for="Scapula">Scapula</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Scapula-Lt" [(ngModel)]="ScapulaLtcheck" (change)="checkboxchange($event,'Scapula-Lt')"
+                            />
+                            <label for="Scapula-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Scapula-Rt" [(ngModel)]="ScapulaRtcheck" (change)="checkboxchange($event,'Scapula-Rt')"
+                            />
+                            <label for="Scapula-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Shoulder" [(ngModel)]="Shouldercheck" (change)="checkboxchange($event,'Shoulder')" />
+                            <label for="Shoulder">Shoulder</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Shoulder-Lt" [(ngModel)]="ShoulderLtcheck" (change)="checkboxchange($event,'Shoulder-Lt')"
+                            />
+                            <label for="Shoulder-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Shoulder-Rt" [(ngModel)]="ShoulderRtcheck" (change)="checkboxchange($event,'Shoulder-Rt')"
+                            />
+                            <label for="Shoulder-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Humerus" [(ngModel)]="Humeruscheck" (change)="checkboxchange($event,'Humerus')" />
+                            <label for="Humerus">Humerus</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Humerus-Lt" [(ngModel)]="Humerusltcheck" (change)="checkboxchange($event,'Humerus-Lt')"
+                            />
+                            <label for="Humerus-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Humerus-Rt" [(ngModel)]="Humerusrtcheck" (change)="checkboxchange($event,'Humerus-Rt')"
+                            />
+                            <label for="Humerus-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Elbow" [(ngModel)]="Elbowcheck" (change)="checkboxchange($event,'Elbow')" />
+                            <label for="Elbow">Elbow</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Elbow-Lt" [(ngModel)]="Elbowltcheck" (change)="checkboxchange($event,'Elbow-Lt')" />
+                            <label for="Elbow-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Elbow-Rt" [(ngModel)]="Elbowrtcheck" (change)="checkboxchange($event,'Elbow-Rt')" />
+                            <label for="Elbow-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Forearm" [(ngModel)]="Forearmcheck" (change)="checkboxchange($event,'Forearm')" />
+                            <label for="Forearm">Forearm</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Forearm-Lt" [(ngModel)]="Forearmltcheck" (change)="checkboxchange($event,'Forearm-Lt')"
+                            />
+                            <label for="Forearm-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Forearm-Rt" [(ngModel)]="ForearmRtcheck" (change)="checkboxchange($event,'Forearm-Rt')"
+                            />
+                            <label for="Forearm-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Wirst" [(ngModel)]="Wirstcheck" (change)="checkboxchange($event,'Wirst')" />
+                            <label for="Wirst">Wirst</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Wirst-Lt" [(ngModel)]="Wirstltcheck" (change)="checkboxchange($event,'Wirst-Lt')" />
+                            <label for="Wirst-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Wirst-Rt" [(ngModel)]="WirstRtcheck" (change)="checkboxchange($event,'Wirst-Rt')" />
+                            <label for="Wirst-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hand" [(ngModel)]="Handcheck" (change)="checkboxchange($event,'Hand')" />
+                            <label for="Hand">Hand</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hand-Lt" [(ngModel)]="Handltcheck" (change)="checkboxchange($event,'Wirst')" />
+                            <label for="Hand-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hand-Rt" [(ngModel)]="Handrtcheck" (change)="checkboxchange($event,'Wirst')" />
+                            <label for="Hand-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Fingers" [(ngModel)]="Fingerscheck" (change)="checkboxchange($event,'Fingers')" />
+                            <label for="Fingers">Fingers</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Fingers-Lt" [(ngModel)]="Fingersltcheck" (change)="checkboxchange($event,'Hand')" />
+                            <label for="Fingers-Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Fingers-Rt" [(ngModel)]="Fingersrtcheck" (change)="checkboxchange($event,'Hand')" />
+                            <label for="Fingers-Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" style="text-align: center;">
+                            <div style="width: 20%; float: left;">01
+                              <sup>st</sup>
+                            </div>
+                            <div style="width: 20%; float: left;">02
+                              <sup>nd</sup>
+                            </div>
+                            <div style="width: 20%; float: left;">03
+                              <sup>rd</sup>
+                            </div>
+                            <div style="width: 20%; float: left;">04
+                              <sup>th</sup>
+                            </div>
+                            <div style="width: 20%; float: left;">05
+                              <sup>th</sup>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold;  border-bottom: 1px solid #000;">
+                            LOWER LIMB
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Pelvis" [(ngModel)]="Pelvischeck" (change)="checkboxchange($event,'Pelvis')" />
+                            <label for="Pelvis">Pelvis</label>
+                          </td>
+                          <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="HipJoint" [(ngModel)]="HipJointcheck" (change)="checkboxchange($event,'HipJoint')" />
+                            <label for="HipJoint">Hip Joint</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="HipJoint-P-A" [(ngModel)]="HipJointpacheck" (change)="checkboxchange($event,'HipJoint-P-A')"
+                            />
+                            <label for="HipJoint-P-A">P-A</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="HipJoint-Lat" [(ngModel)]="HipJointlatcheck" (change)="checkboxchange($event,'HipJoint-Lat')"
+                            />
+                            <label for="HipJoint-Lat">Lat</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip1" />
+                            <label for="Hip1"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip1Lt" [(ngModel)]="Hip1Ltcheck" (change)="checkboxchange($event,'Hip1Lt-Lat')" />
+                            <label for="Hip1Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip1Rt" [(ngModel)]="Hip1Rtcheck" (change)="checkboxchange($event,'Hip1Rt-Lat')" />
+                            <label for="Hip1Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip2" />
+                            <label for="Hip2"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip2Lt" [(ngModel)]="Hip2Ltcheck" (change)="checkboxchange($event,'Hip2Lt-Lat')" />
+                            <label for="Hip2Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip2Rt" [(ngModel)]="Hip2Rtcheck" (change)="checkboxchange($event,'Hip2Rt-Lat')" />
+                            <label for="Hip2Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip3" />
+                            <label for="Hip3"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip3Lt" [(ngModel)]="Hip3Ltcheck" (change)="checkboxchange($event,'Hip3Lt-Lat')" />
+                            <label for="Hip3Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip3Rt" [(ngModel)]="Hip3Rtcheck" (change)="checkboxchange($event,'Hip3Rt-Lat')" />
+                            <label for="Hip3Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip4" />
+                            <label for="Hip4"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip4Lt" [(ngModel)]="Hip4Ltcheck" (change)="checkboxchange($event,'Hip4Lt-Lat')" />
+                            <label for="Hip4Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip4Rt" [(ngModel)]="Hip4Rtcheck" (change)="checkboxchange($event,'Hip4Rt-Lat')" />
+                            <label for="Hip4Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip5" />
+                            <label for="Hip5"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip5Lt" [(ngModel)]="Hip5Ltcheck" (change)="checkboxchange($event,'Hip5Lt-Lat')" />
+                            <label for="Hip5Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip5Rt" [(ngModel)]="Hip5Rtcheck" (change)="checkboxchange($event,'Hip5Rt-Lat')" />
+                            <label for="Hip5Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip6" />
+                            <label for="Hip6"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip6Lt" [(ngModel)]="Hip6Ltcheck" (change)="checkboxchange($event,'Hip6Lt-Lat')" />
+                            <label for="Hip6Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip6Rt" [(ngModel)]="Hip6Rtcheck" (change)="checkboxchange($event,'Hip6Rt-Lat')" />
+                            <label for="Hip6Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip7" />
+                            <label for="Hip7"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip7Lt" [(ngModel)]="Hip7Ltcheck" (change)="checkboxchange($event,'Hip7Lt-Lat')" />
+                            <label for="Hip7Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip7Rt" [(ngModel)]="Hip7Rtcheck" (change)="checkboxchange($event,'Hip7Rt-Lat')" />
+                            <label for="Hip7Rt">Rt</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Hip8" />
+                            <label for="Hip8"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip8Lt" [(ngModel)]="Hip8Ltcheck" (change)="checkboxchange($event,'Hip8Lt-Lat')" />
+                            <label for="Hip8Lt">Lt</label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="Hip8Rt" [(ngModel)]="Hip8Rtcheck" (change)="checkboxchange($event,'Hip8Rt-Lat')" />
+                            <label for="Hip8Rt">Rt</label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+                      <tbody>
+                        <tr>
+                          <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                            MISCELLANEOUS
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="50%">
+                            <input type="checkbox" value="" id="Ponarama" [(ngModel)]="Ponaramacheck" (change)="checkboxchange($event,'Ponarama')" />
+                            <label for="Ponarama">Ponarama</label>
+                          </td>
+                          <td width="50%">
+                            <input type="checkbox" value="" id="Porama" />
+                            <label for="Porama"></label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <input type="checkbox" value="" id="Pona" />
+                            <label for="Pona"></label>
+                          </td>
+                          <td>
+                            <input type="checkbox" value="" id="narama" />
+                            <label for="narama"></label>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 50px;"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div align="center">
+        <button class='btn btn-info ltr' (click)='update()' *ngIf='updatebutton'>Update</button>
+        <button class='btn btn-info rtl' (click)='update()' *ngIf='updatebutton'>تحديث</button>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+<!-- -------------------- Print ----------------------- -->
+<div id="DivIdToPrint" style="display: none;">
+  <div style="width: 700px; margin: 0px auto; font-family: arial; font-size: 14px;" id="DivIdToPrint">
+    <table cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr class="top">
+          <td colspan="2">
+            <table width="100%" style="border: 1px solid #000; border-radius: 10px;;">
+              <tbody>
+                <tr>
+                  <td width="28%">
+                    <div style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{p1}}</div>
+                    : اسم المريض
+                    <div style="height: 10px;"></div>
+                    <div style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{p2}}</div>
+                    : رقم الملف
+                    <div style="height: 10px;"></div>
+                    <div style="width:calc(100% - 82px); border:none; border-bottom: 1px dashed #000; outline: none;float: left;">{{p3}}</div>
+                    :موعد الفحص
+                  </td>
+                  <td width="48%" class="title" style="text-align: center">
+                    <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100px;">
+                  </td>
+                  <td width="24%" style="text-align: center;"> المملكة العربية السعودية وزارة التعليم الجامعة الاسلامية بالمدينة المنورة المركز الطبي الجامعي
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="height: 10px;"></td>
+                </tr>
+                <tr>
+                  <td style="position: relative; text-align: center;" colspan="3">
+                    <div style="position: absolute; top: -13px; left: 31%; background-color: #d6f4ff; border: 1px solid #000; border-radius: 5px; padding: 5px; color: #1ba3c5; font-weight: bold; font-size: 20px;">X - RAY REQUEST &nbsp; &nbsp; &nbsp;
+                      <input type="checkbox" value="" id="ct1" />
+                      <label for="ct1">C.T</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; font-size: 18px; text-align: center;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="40%" style="height: 10px;">
+                  </td>
+                  <td width="60%" style="font-weight: bold; font-size: 18px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="border: 1px solid #000; border-radius: 10px;">
+            <table width="100%" cellpadding="2" cellspacing="2">
+              <tbody>
+                <tr>
+                  <td width="15%">
+                    Clinical Date :
+                  </td>
+                  <td colspan="3">
+                    <div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{p4}}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4">
+                    <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Reffered by Dr.
+                  </td>
+                  <td width="47%">
+                    <!-- <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" />      -->
+                    <div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{p5}}</div>
+                  </td>
+                  <td width="6%">
+                    ON. :
+                  </td>
+                  <td width="32%">
+                    <!-- <input type="text" value="" style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;" /> -->
+                    <div style="width:100%; border:none; border-bottom: 1px dashed #000; outline: none;">{{p6}}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="height: 10px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="40%" style="height: 10px;">
+                  </td>
+                  <td width="60%" style="font-weight: bold; font-size: 18px;">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td width="353" valign="top">
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    CHEST
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Chest1" />
+                    <label for="Chest1">Chest</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="P-A1" />
+                    <label for="P-A1">P-A</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Lat1" />
+                    <label for="Lat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="UpperRibs1" />
+                    <label for="UpperRibs1">Upper Ribs</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Ant1" />
+                    <label for="Ant1">Ant</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Post1" />
+                    <label for="Post1">Post</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="LowerRibs1" />
+                    <label for="LowerRibs">Lower Ribs</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Ant21" />
+                    <label for="Ant21">Ant</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Post21" />
+                    <label for="Post21">Post</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    U.T & GIT
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="K.U.B1" />
+                    <label for="K.U.B1">K.U.B.</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Abdomen1" />
+                    <label for="Abdomen1">Abdomen</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="PainGallBladder1" />
+                    <label for="PainGallBladder1">Pain Gall Bladder</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="IVU1" />
+                    <label for="IVU1">I.V.U</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    SKULL
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="Skull1" />
+                    <label for="Skull1">Skull</label>
+                  </td>
+                  <td width="22%">
+                    <input type="checkbox" value="" id="Skull-P-A1" />
+                    <label for="Skull-P-A1">P-A</label>
+                  </td>
+                  <td width="28%">
+                    <input type="checkbox" value="" id="Skull-Lat1" />
+                    <label for="Skull-Lat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Sinuses1" />
+                    <label for="Sinuses1">Sinuses</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Nasopharynx1" />
+                    <label for="Nasopharynx1">Naso pharynx</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Paravertebrad1" />
+                    <label for="Paravertebrad1">Para vertebrad</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="NasalBones1" />
+                    <label for="NasalBones1">Nasal Bones</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="BothMastoids1" />
+                    <label for="BothMastoids1">Both Mastoids</label>
+                  </td>
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Mandible1" />
+                    <label for="Mandible1">Mandible</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Mandible-Rt1" />
+                    <label for="Mandible-Rt1">Rt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Mandible-Lt1" />
+                    <label for="Mandible-Lt1">Lt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="T.M.J1" />
+                    <label for="T.M.J1">T.M.J</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="T.M.J-Rt1" />
+                    <label for="T.M.J-Rt1">Rt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="T.M.J-Lt1" />
+                    <label for="T.M.J-Lt1">Lt</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    SPINE
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="CeevicalSpine1" />
+                    <label for="CeevicalSpine1">Ceevical Spine</label>
+                  </td>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="LSSpine1" />
+                    <label for="LSSpine1">L-S Spine</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="DorsalSpine1" />
+                    <label for="DorsalSpine1">Dorsal Spine</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Sacrum1" />
+                    <label for="Sacrum1">Sacrum</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="DLSpine1" />
+                    <label for="DLSpine1">D-L Spine</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Coccyx1" />
+                    <label for="Coccyx1">Coccyx</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="LumberSpine1" />
+                    <label for="LumberSpine1">Lumber Spine</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Sijoints1" />
+                    <label for="Sijoints1">Sacro-illiac joints</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Others1" />
+                    <label for="Others1">Others</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td width="345" valign="top">
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold;  border-bottom: 1px solid #000;">
+                    UPPER LIMB
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Stetnum1" />
+                    <label for="Stetnum1">Stetnum</label>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Clavicle1" />
+                    <label for="Clavicle">Clavicle</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ULPA1" />
+                    <label for="ULPA1">P-A</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ULLat1" />
+                    <label for="ULLat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Scapula1" />
+                    <label for="Scapula1">Scapula</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ScapulaLt1" />
+                    <label for="ScapulaLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ScapulaRt1" />
+                    <label for="ScapulaRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Shoulder1" />
+                    <label for="Shoulder1">Shoulder</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ShoulderLt1" />
+                    <label for="ShoulderLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ShoulderRt1" />
+                    <label for="ShoulderRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Humerus1" />
+                    <label for="Humerus1">Humerus</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HumerusLt1" />
+                    <label for="HumerusLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HumerusRt1" />
+                    <label for="HumerusRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Elbow1" />
+                    <label for="Elbow1">Elbow</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ElbowLt1" />
+                    <label for="ElbowLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ElbowRt1" />
+                    <label for="ElbowRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Forearm1" />
+                    <label for="Forearm1">Forearm</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ForearmLt1" />
+                    <label for="ForearmLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="ForearmRt1" />
+                    <label for="ForearmRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Wirst1" />
+                    <label for="Wirst1">Wirst</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="WirstLt1" />
+                    <label for="WirstLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="WirstRt1" />
+                    <label for="WirstRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hand1" />
+                    <label for="Hand1">Hand</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HandLt1" />
+                    <label for="Hand-Lt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HandRt1" />
+                    <label for="Hand-Rt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Fingers1" />
+                    <label for="Fingers1">Fingers</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="FingersLt1" />
+                    <label for="FingersLt1">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="FingersRt1" />
+                    <label for="FingersRt1">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" style="text-align: center;">
+                    <div style="width: 20%; float: left;">01
+                      <sup>st</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">02
+                      <sup>nd</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">03
+                      <sup>rd</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">04
+                      <sup>th</sup>
+                    </div>
+                    <div style="width: 20%; float: left;">05
+                      <sup>th</sup>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold;  border-bottom: 1px solid #000;">
+                    LOWER LIMB
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Pelvis1" />
+                    <label for="Pelvis1">Pelvis</label>
+                  </td>
+                  <td colspan="2"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="HipJoint1" />
+                    <label for="HipJoint1">Hip Joint</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HipJointPA1" />
+                    <label for="HipJointPA1">P-A</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="HipJointLat1" />
+                    <label for="HipJointLat1">Lat</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip11" />
+                    <label for="Hip1"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip11Lt" />
+                    <label for="Hip1Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip11Rt" />
+                    <label for="Hip1Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip21" />
+                    <label for="Hip2"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip21Lt" />
+                    <label for="Hip2Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip21Rt" />
+                    <label for="Hip2Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip31" />
+                    <label for="Hip3"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip31Lt" />
+                    <label for="Hip3Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip31Rt" />
+                    <label for="Hip3Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip41" />
+                    <label for="Hip4"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip41Lt" />
+                    <label for="Hip4Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip41Rt" />
+                    <label for="Hip4Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip51" />
+                    <label for="Hip5"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip51Lt" />
+                    <label for="Hip5Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip51Rt" />
+                    <label for="Hip5Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip61" />
+                    <label for="Hip6"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip61Lt" />
+                    <label for="Hip6Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip61Rt" />
+                    <label for="Hip6Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip71" />
+                    <label for="Hip7"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip71Lt" />
+                    <label for="Hip7Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip71Rt" />
+                    <label for="Hip7Rt">Rt</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Hip81" />
+                    <label for="Hip8"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip81Lt" />
+                    <label for="Hip8Lt">Lt</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="Hip81Rt" />
+                    <label for="Hip8Rt">Rt</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table width="100%" cellpadding="2" cellspacing="2" style="border: 1px solid #000; border-radius: 10px;">
+              <tbody>
+
+                <tr>
+                  <td colspan="3" style="text-align: center; padding: 5px 0px; color: #1ba3c5; font-weight: bold; border-bottom: 1px solid #000;">
+                    MISCELLANEOUS
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="Ponarama1" />
+                    <label for="Ponarama1">Ponarama</label>
+                  </td>
+                  <td width="50%">
+                    <input type="checkbox" value="" id="Porama" />
+                    <label for="Porama"></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" value="" id="Pona" />
+                    <label for="Pona"></label>
+                  </td>
+                  <td>
+                    <input type="checkbox" value="" id="narama" />
+                    <label for="narama"></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="height: 50px;"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

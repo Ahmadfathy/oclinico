@@ -1,0 +1,397 @@
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+</div>
+
+<form [formGroup]="billing">
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul id="breadcrumb">
+                <li>
+                    <a class="nav-link" routerLink='/dashboard'>
+                        <span class="fa fa-fw fa-home"> </span>
+                    </a>
+                </li>
+                <li class="ltr">
+                    <a class="nav-link"> Patient Details</a>
+                </li>
+                <li class="rtl">
+                    <a class="nav-link">
+                        <span>تفاصيل المريض</span>
+                    </a>
+                </li>
+                <li class="ltr">
+                    <a class="nav-link" routerLink='/autocomplate'>Advanced Search</a>
+                </li>
+                <li class="rtl">
+                    <a class="nav-link" routerLink='/autocomplate'>
+                        <span>البحث المتقدم</span>
+                    </a>
+                </li>
+                <li class="ltr">
+                    <a class="nav-link" (click)="edit()">Edit Patient</a>
+                </li>
+                <li class="rtl">
+                    <a class="nav-link" routerLink='/billing'>
+                        <span>تحرير المريض</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <h4 class="card-title mt-4 ltr">Billing</h4>
+                <h4 class="card-title mt-4 rtl">الفواتير</h4>
+
+                <label class="form-control-label ltr">Payment Mode</label>
+                <label class="form-control-label rtl">طريقة الدفع</label>
+                <select class="form-control" (change)="selectChangeHandler($event)" formControlName="paymentmode" id="payment">
+                    <option *ngFor="let item of categories" [value]="item" [selected]="item[1]">{{item}}</option>
+                </select>
+
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div *ngIf="Insurance">
+        <div class="row">
+
+            <div class="col-md-4 form-group">
+
+                <label class="form-control-label ltr">Insurance No*</label>
+                <label class="form-control-label rtl">طريقة الدفع*</label>
+                <input type="text" class="form-control" formControlName="Insuranceno" (focusout)="focinsuno($event.target.value)" [ngClass]="{ 'is-invalid': submitted && f.Insuranceno.errors }">
+                <!-- <div *ngIf="submitted && f.Insuranceno.errors" class="invalid-feedback">
+        <div *ngIf="f.Insuranceno.errors.required">Insurance No is required</div>
+    </div> -->
+                <div [hidden]="Insuranceno" class="errorcode ltr"> Insurance No is required</div>
+                <div [hidden]="Insuranceno" class="errorcode rtl"> Insurance No is required</div>
+            </div>
+
+            <div class="col-md-4 form-group">
+                <label class="form-control-label ltr">Insurance Company *</label>
+                <label class="form-control-label rtl">شركة التأمين *</label>
+                <select class="form-control" formControlName="Insurancecompany" [ngClass]="{ 'is-invalid': submitted && f.Insurancecompany.errors }"
+                    (focusout)="focinsurencecompany($event.target.value)">
+
+                    <option [selected]>Select</option>
+                    <option *ngFor="let company of getcompany" [value]="company.Insurance_CompanyName">{{company.Insurance_CompanyName}}</option>
+                </select>
+                <div [hidden]="Insurancecompany" class="errorcode ltr"> Insurance Company is required</div>
+                <div [hidden]="Insurancecompany" class="errorcode rtl"> Insurance Company is required</div>
+                <!-- <div *ngIf="submitted && f.Insurancecompany.errors" class="invalid-feedback">
+            <div *ngIf="f.Insurancecompany.errors.required">Insurance Company is required</div>
+        </div> -->
+            </div>
+
+            <div class="col-md-4 form-group">
+
+                <label class="form-control-label ltr">Insurance Card*</label>
+                <label class="form-control-label rtl">بطاقة التأمين*</label>
+                <input type="file" class="form-control" formControlName="Insurancecard" (change)="fileup($event)" [ngClass]="{ 'is-invalid': submitted && f.Insurancecard.errors }"
+                    (focusout)="focinsurencecard($event.target.value)">
+                <!-- <div *ngIf="submitted && f.Insurancecard.errors" class="invalid-feedback">
+        <div *ngIf="f.Insurancecard.errors.required">Insurance Card is required</div>
+    </div> -->
+                <div [hidden]="Insurancecard" class="errorcode ltr"> Insurance Card is required</div>
+                <div [hidden]="Insurancecard" class="errorcode rtl"> Insurance Card is required</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="card-title mt-4 ltr">Expiry Date</h4>
+                <h4 class="card-title mt-4 rtl">تاريخ الانتهاء</h4>
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-control-label ltr"> Arabic</label>
+                <label class="form-control-label rtl"> عربى</label>
+                <!-- <input [owlDateTimeTrigger]="dt2"[owlDateTime]="dt2" placeholder="mm/dd/yyyy" class="form-control"formControlName="arabicdate"[ngClass]="{ 'is-invalid': submitted && f.arabicdate.errors }" (focusout)="focadate($event.target.value)">
+    <owl-date-time [pickerType]="'calendar'" #dt2 ></owl-date-time> -->
+
+                <input value={{binddate}} placeholder="dd/mm/yyyy" (keyup)="arabice($event)" class="form-control DATE" size=10 maxlength=10
+                    onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                />
+
+                <!-- <div *ngIf="submitted && f.arabicdate.errors" class="invalid-feedback">
+        <div *ngIf="f.arabicdate.errors.required">Date is required</div>
+    </div> -->
+
+                <!-- <div [hidden]="adate" class="errorcode ltr"> Date is required</div>
+    <div [hidden]="adate" class="errorcode rtl"> Date is required</div> -->
+
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">English</label>
+                <label class="form-control-label rtl">الإنجليزية</label>
+                <!-- <input [owlDateTimeTrigger]="dt3"[owlDateTime]="dt3"  placeholder="mm/dd/yyyy"class="form-control" formControlName="englishdate"[ngClass]="{ 'is-invalid': submitted && f.englishdate.errors }"(focusout)="focedate($event.target.value)">
+    <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time> -->
+                <!-- <div *ngIf="submitted && f.englishdate.errors" class="invalid-feedback">
+        <div *ngIf="f.englishdate.errors.required">Date is required</div>
+    </div> -->
+
+                <input class="form-control DATE" placeholder="dd/mm/yyyy" value={{arabicbinddate}} (keyup)="english($event)" formControlName="englishdate"
+                    size=10 maxlength=10 onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')"
+                />
+                <div [hidden]="edate" class="errorcode ltr"> Date is required</div>
+                <div [hidden]="edate" class="errorcode rtl"> Date is required</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 formGroup">
+            <label class="form-control-label ltr">
+                Referral Type</label>
+            <label class="form-control-label rtl">
+                نوع الإحالة</label>
+            <select class="form-control" (change)="selectreferal($event)" formControlName="Referral">
+                <option *ngFor="let item of Referal" [value]="item" [selected]="item[1]">{{item}}</option>
+            </select>
+        </div>
+        <div class="col-md-4" *ngIf="company">
+            <label class="form-control-label ltr">
+                Company*</label>
+            <label class="form-control-label rtl">
+                شركة*</label>
+            <select class="form-control" formControlName="Comapny" [ngClass]="{ 'is-invalid': submitted && f.Comapny.errors }" (focusout)="foccompany($event.target.value)">
+                <option selected>Select</option>
+                <option *ngFor="let company of getrefcompany" [value]="company.Company_Name">{{company.Company_Name}}</option>
+
+            </select>
+            <!-- <div *ngIf="submitted && f.Comapny.errors" class="invalid-feedback">
+                <div *ngIf="f.Comapny.errors.required">Company is required</div>
+            </div> -->
+            <div [hidden]="compan" class="errorcode ltr"> Company is required</div>
+            <div [hidden]="compan" class="errorcode rtl"> Company is required</div>
+        </div>
+
+        <div class="col-md-4" *ngIf="patient">
+            <label class="form-control-label ltr">Name</label>
+            <label class="form-control-label rtl">اسم</label>
+            <input type="text" class="form-control" formControlName="name">
+
+        </div>
+        <div class="col-md-4" *ngIf="patient">
+            <label class="form-control-label ltr">Contact</label>
+            <label class="form-control-label rtl">اتصل</label>
+            <input type="text" class="form-control" formControlName="contact">
+
+        </div>
+
+        <div class="col-md-4" *ngIf="other">
+            <label class="form-control-label ltr">Other Type</label>
+            <label class="form-control-label rtl">نوع آخر</label>
+            <input type="text" class="form-control" formControlName="other">
+
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="card-title mt-4 ltr">Communication Address is Same or Different*</h4>
+            <h4 class="card-title mt-4 rtl">Communication Address is Same or Different*</h4>
+        </div>
+        <div class="col-md-4">
+            <label class="radio-inline ml-2 ">
+                <input type="radio" id="def" value="same" (change)="selectdef($event)" formControlName="def">Same
+            </label>
+            <label class="radio-inline ml-4">
+                <input type="radio" id="def" value="deferent" (change)="selectdef($event)" formControlName="def">Different
+            </label>
+            <div [hidden]="radio" class="errorcode ltr"> Please Select Address</div>
+            <div [hidden]="radio" class="errorcode rtl"> Please Select Address</div>
+        </div>
+    </div>
+    <div [hidden]="!deferent" id="defe" [formGroup]="deferente">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Area*</label>
+                <label class="form-control-label rtl">المنطقة*</label>
+                <input class="form-control" formControlName="Area" id="area" [ngClass]="{ 'is-invalid': submitted && f.Area.errors }" (focusout)="focarea($event.target.value)">
+                <!-- <div *ngIf="submitted && f.Area.errors" class="invalid-feedback">
+              <div *ngIf="f.Area.errors.required">Area Name is required</div>
+          </div> -->
+                <div [hidden]="area" class="errorcode ltr"> Area Name is required</div>
+                <div [hidden]="area" class="errorcode rtl"> Area Name is required</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Block</label>
+                <label class="form-control-label rtl">الحي</label>
+                <input class="form-control" formControlName="Block" id="block">
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Building*
+                </label>
+                <label class="form-control-label rtl">المبنى*
+                </label>
+                <input class="form-control" formControlName="Building" id="building" [ngClass]="{ 'is-invalid': submitted && f.Building.errors }"
+                    (focusout)="focbuliding($event.target.value)">
+                <!-- <div *ngIf="submitted && f.Building.errors" class="invalid-feedback">
+                  <div *ngIf="f.Building.errors.required">Please Enter Building Name</div>
+              </div> -->
+                <div [hidden]="building" class="errorcode ltr"> Please Enter Building Name</div>
+                <div [hidden]="building" class="errorcode rtl"> Please Enter Building Name</div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Street*</label>
+                <label class="form-control-label rtl">الشارع*</label>
+                <input class="form-control " formControlName="Street" id="street" [ngClass]="{ 'is-invalid': submitted && f.Street.errors }"
+                    (focusout)="focsteret($event.target.value)">
+                <!-- <div *ngIf="submitted && f.Street.errors" class="invalid-feedback">
+                <div *ngIf="f.Street.errors.required">Please Enter Street</div>
+            </div> -->
+                <div [hidden]="street" class="errorcode ltr"> Please Enter Street</div>
+                <div [hidden]="street" class="errorcode rtl"> Please Enter Street</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Floor*</label>
+                <label class="form-control-label rtl">ألدور*</label>
+                <input class="form-control" formControlName="Floor" id="floor" [ngClass]="{ 'is-invalid': submitted && f.Floor.errors }"
+                    (focusout)="focfllor($event.target.value)">
+                <!-- <div *ngIf="submitted && f.Floor.errors" class="invalid-feedback">
+                  <div *ngIf="f.Floor.errors.required">
+                    Please Enter Floor No</div>
+              </div> -->
+                <div [hidden]="floor" class="errorcode ltr"> Please Enter Floor No</div>
+                <div [hidden]="floor" class="errorcode rtl"> Please Enter Floor No</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">City*</label>
+                <label class="form-control-label rtl">مدينة*</label>
+                <input class="form-control" formControlName="City" id="city" [ngClass]="{ 'is-invalid': submitted && f.City.errors }" (focusout)="foccity($event.target.value)">
+                <!-- <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                    <div *ngIf="f.City.errors.required">
+                        Please Enter City  </div>
+                </div> -->
+                <div [hidden]="city" class="errorcode ltr">Please Enter City </div>
+                <div [hidden]="city" class="errorcode rtl">Please Enter City </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Country*</label>
+                <label class="form-control-label rtl">الدولة*</label>
+                <select class="form-control custom-select" id="country" formControlName="Country" [ngClass]="{ 'is-invalid': submitted && f.Country.errors }"
+                    (focusout)="foccountry($event.target.value)">
+                    <option checked="">Select</option>
+                    <option *ngFor="let item of countrys">{{item.Country_Name}}</option>
+                </select>
+                <!-- <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                    <div *ngIf="f.City.errors.required">Please Select Country</div>
+                </div> -->
+                <div [hidden]="country" class="errorcode ltr">Please Select Country </div>
+                <div [hidden]="country" class="errorcode rtl">Please Select Country </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div [hidden]="!same" id="defe">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Area*</label>
+                <label class="form-control-label rtl">المنطقة*</label>
+                <input class="form-control" formControlName="Area" [ngClass]="{ 'is-invalid': submitted && f.Area.errors }">
+                <!-- <div *ngIf="submitted && f.Area.errors" class="invalid-feedback">
+                  <div *ngIf="f.Area.errors.required">Area Name is required</div>
+              </div> -->
+                <div [hidden]="area" class="errorcode ltr"> Area Name is required</div>
+                <div [hidden]="area" class="errorcode rtl"> Area Name is required</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Block</label>
+                <label class="form-control-label rtl">الحي</label>
+                <input class="form-control" formControlName="Block">
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Building*
+                </label>
+                <label class="form-control-label rtl">المبنى*
+                </label>
+                <input class="form-control" formControlName="Building" [ngClass]="{ 'is-invalid': submitted && f.Building.errors }">
+                <!-- <div *ngIf="submitted && f.Building.errors" class="invalid-feedback">
+                      <div *ngIf="f.Building.errors.required">Please Enter Building Name</div>
+                  </div> -->
+                <div [hidden]="building" class="errorcode ltr"> Please Enter Building Name</div>
+                <div [hidden]="building" class="errorcode rtl"> Please Enter Building Name</div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Street*</label>
+                <label class="form-control-label rtl">الشارع*</label>
+                <input class="form-control" formControlName="Street" [ngClass]="{ 'is-invalid': submitted && f.Street.errors }">
+                <!-- <div *ngIf="submitted && f.Street.errors" class="invalid-feedback">
+                    <div *ngIf="f.Street.errors.required">Please Enter Street</div>
+                </div> -->
+                <div [hidden]="street" class="errorcode ltr"> Please Enter Street</div>
+                <div [hidden]="street" class="errorcode rtl"> Please Enter Street</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Floor*</label>
+                <label class="form-control-label rtl">ألدور*</label>
+                <input class="form-control" formControlName="Floor" [ngClass]="{ 'is-invalid': submitted && f.Floor.errors }">
+                <!-- <div *ngIf="submitted && f.Floor.errors" class="invalid-feedback">
+                      <div *ngIf="f.Floor.errors.required">
+                        Please Enter Floor No</div>
+                  </div> -->
+                <div [hidden]="floor" class="errorcode ltr"> Please Enter Floor No</div>
+                <div [hidden]="floor" class="errorcode rtl"> Please Enter Floor No</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-control-label ltr">City*</label>
+                <label class="form-control-label rtl">مدينة*</label>
+                <input class="form-control" formControlName="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
+                <!-- <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                        <div *ngIf="f.City.errors.required">
+                            Please Enter City  </div>
+                    </div> -->
+                <div [hidden]="city" class="errorcode ltr">Please Enter City </div>
+                <div [hidden]="city" class="errorcode rtl">Please Enter City </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label class="form-control-label ltr">Country*</label>
+                <label class="form-control-label rtl">الدولة*</label>
+                <select class="form-control custom-select" formControlName="Country" [ngClass]="{ 'is-invalid': submitted && f.Country.errors }">
+                    <option checked="">Select</option>
+                    <option *ngFor="let item of countrys">{{item.Country_Name}}</option>
+                </select>
+                <!-- <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                        <div *ngIf="f.City.errors.required">Please Select Country</div>
+                    </div> -->
+                <div [hidden]="country" class="errorcode ltr">Please Select Country </div>
+                <div [hidden]="country" class="errorcode rtl">Please Select Country </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4 mt-3">
+            <button type="submit" class="btn btn-warning center-block" (click)="createbilling()">
+                <i class="fa fa-check-circle"></i> Save
+            </button>
+        </div>
+    </div>
+    <!-- {{billing.status}} -->
+</form>

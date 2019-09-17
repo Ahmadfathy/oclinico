@@ -1,0 +1,75 @@
+.errorcolorcls{
+  color: red;
+}
+
+input[type="color" i] {
+  -webkit-appearance: square-button;
+  width: 44px;
+  height: 23px;
+  background-color: buttonface;
+  cursor: default;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(169, 169, 169);
+  border-image: initial;
+  padding: 1px 2px;
+}
+/* .borderless td, .borderless th {
+    border: none;
+} */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.errmsg{
+  color: #ef6e6e;
+}
+
+.headrow{
+  background-color: #4a87ee;
+  color: white;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  } */
+  
+  .editcontainer{
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  
+  .aligncls{
+      margin: 0;
+      padding: 0;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      
+    }
+   
+  
+.form-control {
+  border: 1px solid darkgray;
+  background: #f2f2f2;
+  border-radius: 8px;
+}
+select[_ngcontent-c2] {
+  text-transform: none;
+  /* background: #f2f2f2; */
+  width: 100%;
+  border-color: darkgray!important;
+  border-radius: 8px;
+}
+.custom-select {
+  border-color: darkgray!important;
+  border-radius: 8px;
+  /* background: #f2f2f2; */
+}

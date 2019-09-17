@@ -1,0 +1,102 @@
+<div class="preloader" style="position:fixed;background:#fff;z-index:9;" *ngIf="showLoader">
+    <div class="spinner" style="margin: 100px auto !important;">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3"><h4 class="ltr">{{patient}}</h4> <h4 class="rtl">{{patient}}</h4></div>
+ <div *ngIf="pay"class="col-md-3"><h5 style="color:red" class="ltr">Payment &nbsp;{{payment}}</h5> <h5 style="color:red" class="rtl">Payment &nbsp;{{payment}}</h5></div>
+ </div>
+
+ <div class="row">
+    <div class="col-md-12">
+      <ul id="breadcrumb">
+        <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+        <li class="ltr"><a class="nav-link"> Patient Details</a></li>
+        <li class="rtl"><a class="nav-link"><span>تفاصيل المريض</span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>البحث المتقدم</span></a></li>
+        <li class="ltr"><a class="nav-link" routerLink='/invoices'> Invoices</a></li>
+        <li class="rtl"><a class="nav-link" routerLink='/invoices'><span>الفواتير</span></a></li>
+        
+     
+      </ul>
+    </div>
+  </div>
+
+<div class="row">
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+          </div>
+          <ul class="list-group cls">
+            <li class="list-group-item ltr " routerLink="/viewpatient"  [queryParams]="{referalid : patientId}">Patient Information</li>
+            <li class="list-group-item rtl" routerLink="/viewpatient"  [queryParams]="{referalid : patientId}">معلومات المريض</li>
+            <li class="list-group-item ltr"routerLink="/treatmentnote"  [queryParams]="{referalid : patientId}" >Treatment Notes</li>
+            <li class="list-group-item rtl" routerLink="/treatmentnote"  [queryParams]="{referalid : patientId}" >ملاحظات عن العلاج</li>
+            <li class="list-group-item ltr" routerLink='/laboratory'[queryParams]="{referalid : patientId}" >Lab Request</li>
+            <li class="list-group-item rtl" routerLink='/laboratory'[queryParams]="{referalid : patientId}">طلب للمختبر</li>
+            <li class="list-group-item ltr" routerLink="/prescription" [queryParams]="{Referal : patientId}">Prescription Details</li>
+            <li class="list-group-item rtl" routerLink="/prescription" [queryParams]="{Referal : patientId}">تفاصيل الوصفة الطبية </li>
+            <li class="list-group-item ltr" [queryParams]="{Referal : patientId}" routerLink="/visitnote">Visit Note Details</li>
+            <li class="list-group-item rtl" [queryParams]="{Referal : patientId}"routerLink="/visitnote">تفاصيل زيارة وملاحظاتها</li>
+            <li class="list-group-item ltr" routerLink="/letters"[queryParams]="{Referal : patientId}">Letters</li>
+            <li class="list-group-item rtl" routerLink="/letters"[queryParams]="{Referal : patientId}">الخطابات</li>
+            <li class="list-group-item ltr" routerLink="/attachements"[queryParams]="{referal:patientId}">Attachments</li>
+            <li class="list-group-item rtl" routerLink="/attachements"[queryParams]="{referal:patientId}">المرفقات</li>
+            <li class="list-group-item ltr" routerLink="/appoinmentsgrid" [queryParams]="{Referal : patientId}">Appointments</li>
+            <li class="list-group-item rtl" routerLink="/appoinmentsgrid" [queryParams]="{Referal : patientId}">مواعيد</li>
+            <li class="list-group-item ltr" routerLink="/invoices" [queryParams]="{Referal : patientId}">Invoices</li>
+            <li class="list-group-item rtl" routerLink="/invoices" [queryParams]="{Referal : patientId}">الفواتير</li>
+            <li class="list-group-item ltr" routerLink="/payments" [queryParams]="{Referal : patientId}">Payments</li>
+            <li class="list-group-item rtl" routerLink="/payments" [queryParams]="{Referal : patientId}">المدفوعات</li>
+            <li class="list-group-item ltr" routerLink="/communications" [queryParams]="{Referal : patientId}">Communications</li>
+            <li class="list-group-item rtl" routerLink="/communications" [queryParams]="{Referal : patientId}">التواصل/المحادثات</li>
+            <li class="list-group-item ltr" routerLink="/xray" [queryParams]="{Referal : patientId}">X-Ray</li>
+            <li class="list-group-item rtl" routerLink="/xray" [queryParams]="{Referal : patientId}">الأشعة</li>
+            <li class="list-group-item ltr" routerLink="/procedure" [queryParams]="{Referal : patientId}">Procedures</li>
+            <li class="list-group-item rtl" routerLink="/procedure" [queryParams]="{Referal : patientId}">الإجراءات</li>
+            <li class="list-group-item ltr" routerLink="/admission" [queryParams]="{Referal : patientId}">Admission Details</li>
+            <li class="list-group-item rtl" routerLink="/admission" [queryParams]="{Referal : patientId}">تفاصيل الدخول </li>
+            <li class="list-group-item ltr" routerLink="/discharge" [queryParams]="{Referal : patientId}">Discharge Details</li>
+            <li class="list-group-item rtl" routerLink="/discharge" [queryParams]="{Referal : patientId}">تفاصيل الخروج</li>
+        </ul>
+      </div>
+
+    <!-- <div class="showLoader1" *ngIf='showLoader'><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div> -->
+    <div class="col-md-9">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; Invoices</p>
+            <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;الفواتير</p>
+          </div>
+    <table style="width: 100%;display: table" class="table table-hover table-responsive table-bordered" id="dataTable"
+      *ngIf="showdata">
+      <thead class="ltr">
+      <tr>
+        <th>Invoice No</th>
+        <th> Patient</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+  </thead>
+  <thead class="rtl">
+      <tr>
+        <th>رقم الفاتورة</th>
+        <th> صبور</th>
+        <th>كمية</th>
+        <th>تاريخ</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of table;let i=index">
+      <td>{{patient.Invoiceno}}</td>
+      <td>{{patient.PatientId}}</td>
+      <td>{{patient.Invoice_tot}}</td>
+      <td>{{patient.Trans_datetime}}</td>
+    </tr>
+  </tbody>
+  </table></div>
+</div>

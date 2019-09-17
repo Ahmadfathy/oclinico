@@ -1,0 +1,286 @@
+<!-- <div class="preloader" *ngIf="isPageloaderVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/reports'>Reports</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/reports'>
+          <span>تقارير</span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/followup'>FollowUp</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/sickleave'>
+          <span>إشعار مراجعة</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Follow Up</h4>
+        <h4 class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;مراجعة </h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-bordered" cellspacing="0" id="dataTable">
+          <thead class="ltr" style="background-color: #4a87ee;color: white;">
+            <tr>
+              <th>سنو</th>
+              <th>الرقم </th>
+              <th>التاريخ </th>
+              <th>المرفقات </th>
+              <th>المكرم مدير</th>
+              <th>الاجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let followup of followupdetails;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{followup.LABEL1}}</td>
+              <td>{{followup.LABEL2}}</td>
+              <td>{{followup.LABEL3}}</td>
+              <td>{{followup.LABEL4}}</td>
+              <td style="display:flex;">
+                <span><a class="nav-link" (click)="view('View',followup.tran_date,followup.patient_id)" style="cursor: pointer;color:#4a87ee"><i
+                      class="fa fa-eye text-info"></i></a></span>
+                <span><a class="nav-link" (click)="view('Edit',followup.tran_date,followup.patient_id)" style="cursor: pointer;color:#4a87ee"><i
+                      class="fa fa-pencil-alt text-info"></i></a></span>
+                <span><a class="nav-link" (click)="getprintdata(followup.patient_id,followup.tran_date)" style="cursor: pointer;color:#4a87ee"><i
+                      class="fa fa-print text-info"></i></a></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---------------------------------- Print --------------------------------------- -->
+<div id="DivIdToPrint" style="display: none;">
+    <div style="padding: 30px; border: 1px solid #eee; width:768px; margin:0px auto; font-size: 16px;">
+      <div style=" width: 100%; float: left; height: auto; margin-bottom: 10px;">
+        <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; border-radius: 20px; padding: 15px;">
+          <div style="width: 30%; height: auto; float: left;">
+            <div style="width:calc(100% - 66px); border:none; float:left; min-height: 30px;text-align: right;color: #000;
+            border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+              {{field1}}
+            </div>
+            <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> الرقم : &nbsp; </div>
+            <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+              <span style="width:calc(100% - 180px); border:none; border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+                {{field2}}
+              </span>
+              <span style="width:calc(100% - 180px); border:none; border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+                {{field3}}
+              </span>
+              <span style="width:calc(100% - 145px); border:none; border-bottom: 2px dotted #000; min-height: 30px; outline: none;">
+                {{field4}}
+              </span>
+              <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> التاريخ : &nbsp; </div>
+            </div>
+            <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+              <div type="text" value="" style="width:calc(100% - 80px); border:none; min-height: 30px; border-bottom: 2px dotted #000; outline: none;">
+                {{field5}}</div>
+              <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> المرفقات : &nbsp; </div>
+            </div>
+          </div>
+  
+          <div style="width: 40%; height: auto; float: left; text-align: center;">
+            <img src="http://iumc.oclinico.com/assets/images/logo-IU.png" style="width:100%; max-width:100px;">
+          </div>
+          <div style="text-align: center; width: 30%; height: auto; float: right;">
+            <br> المملكة العربية السعودية
+            <br> وزارة التعليم
+            <br> الجامعة الاسلامية بالمدينة المنورة
+            <br>
+            <strong> المركز الطبي الجامعي</strong>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 0px; text-align: center;">
+        <div style="display: inline-block; padding: 5px; background-color: #fff; font-size: 30px; border-radius: 5px; 
+        border: solid 2px #333; top: -30px; position: relative;">
+          إشعار مراجعة </div>
+      </div>
+      <div class="maindiv" style=" margin-bottom: 10px;">
+        <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; border-radius: 20px 20px 0px 0px; padding: 15px;">
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="height: auto; padding-top: 6px; width: 20%; float: left; margin-right: 10px; text-align: center;">
+              حفظة الله </div>
+              <span style=" width:calc(80% - 150px); height: 20px;
+              display: inline-block; border-bottom: 2px dotted #000; outline: none;">{{field6}} </span>
+            <!-- <span style="width:calc(100% - 290px); border:none; border-bottom: 2px dotted #000; outline: none;">
+              {{field6}}</span> -->
+            <div style="width: 16%; float: right; height: auto; padding-top: 6px; text-align: right;"> المكرم مدير : &nbsp; </div>
+          </div>
+  
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="width: 100%; height:auto; float:left; font-weight: bold; margin: 14px 0px 25px 0px; text-align: center;">
+              السلام عليكم ورحمه الله وبركاته
+            </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="width: 28%; float: left;">
+              <div type="text" value="" style="width:100%; border:none; min-height: 30px; border-bottom: 2px dotted #000; outline: none;">
+                {{field7}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 13%; float: left; margin-right: 10px;">
+              برقم ملف : &nbsp; </div>
+            <div style="width: 40%; float: left;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field8}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 15%; float: right;"> نفيدكم بأن المريض: &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="width: 20%; float: left;">
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field9}}</span>
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field10}}</span>
+              <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field11}}</span>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 6%; float: left; margin-right: 10px;">
+              الموافق </div>
+            <div style="width: 45%; float: left;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field12}}
+              </div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 27%; float: right;"> قد راجع المركز الطبي الجامعي يوم : </div>
+          </div>
+  
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="height: auto; padding-top: 6px; text-align: right;  width: 20%; float: left;">
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field13}}</span>
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field14}}</span>
+              <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field15}}</span>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right;  width: 6%; float: left; margin-right: 10px;">
+              الموافق </div>
+            <div style="width: 51%; float: left;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field16}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right;  width: 21%; float: right;"> قحدد له موعد المراجعة يوم : &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="height: auto; padding-top: 6px; text-align: right;  width: 20%; float: left;">
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field17}}</span>
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field18}}</span>
+              <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field19}}</span>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right;  width: 6%; float: left; margin-right: 10px;">
+              الموافق </div>
+            <div style="width: 18%; float: left; margin-right: 10px;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field20}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 4%; float: left; margin-right: 10px;">
+              يوم: </div>
+            <div style="width: 33%; float: left;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field21}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 15%; float: right;"> تم تحويلة لمستشفى : &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 26%; float: left; margin-right: 10px;">
+              وأعطي العلاج اللازم, </div>
+            <div style="width: 60%; float: left; margin-right: 10px;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field22}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 10%; float: right;"> ويعاني من : &nbsp;
+            </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px; margin-bottom: 20%;">
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 20%; float: left;">
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;"> {{field23}}</span>
+              <span style="width:10%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field24}}</span>
+              <span style="width:47%; border:none; border-bottom: 2px dotted #000; outline: none;">{{field25}}</span>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 6%; float: left; margin-right: 10px;">
+              الموافق </div>
+            <div style="width: 14%; float: left; margin-right: 10px;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field26}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 12%; float: left; margin-right: 10px;">
+              وذلك من يوم: </div>
+            <div style="width: 30%; float: left;">
+              <div type="text" value="" style="width:100%; border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field27}}</div>
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 14%; float: right;"> ويحتاج راحة مدة : &nbsp; </div>
+          </div>
+          <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+            <div style="width: 100%; height:auto; float:right; font-weight: bold; margin-bottom: 10px;">
+              ملاحظة:
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 100%; float: right;"> أي فراغ لا يعبأ أو يلغى فإنه يجعل الإشعار لاغياً
+            </div>
+            <div style="height: auto; padding-top: 6px; text-align: right; width: 100%; float: right;"> يسر المركز الطبي الجامعي موافاتكم بالتقرير الطبي عند طلبكم
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div style="width: 100%; float: left; height: auto; margin-bottom: 10px; ">
+        <div style="width: 95.6%; float: left; height: auto; border: solid 2px #333; border-radius: 0px 0px 20px 20px; padding: 15px;">
+          <div style="width: 35%; height:auto; float:left;">
+            <div style="width: 100%; height:auto; float:left; font-weight: bold; margin-bottom: 10px; text-align: center;">
+              مدير المركز الطبي الجامعي
+            </div>
+            <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+              <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field28}}</div>
+              <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> الاسم : &nbsp; </div>
+            </div>
+            <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+              <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field29}}</div>
+              <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> التوقيع : &nbsp; </div>
+            </div>
+          </div>
+          <div style="width: 29%; height:auto; float:left; font-weight: bold; text-align: center; margin-bottom: 10px;">
+            ختم الإدارة
+          </div>
+          <div style="width: 35%; height:auto; float:right;">
+            <div style="width: 100%; height:auto; float:left; font-weight: bold; margin-bottom: 10px; text-align: center;">
+              الطبيب المعالج
+            </div>
+            <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+              <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field30}}</div>
+              <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> الاسم : &nbsp; </div>
+            </div>
+            <div style="width: 100%; float: left; height: auto; margin-bottom: 10px;">
+              <div type="text" value="" style="width: calc(100% - 67px); border:none; border-bottom: 2px dotted #000; outline: none;">
+                {{field31}}</div>
+              <div style="width: 25%; height: auto; float: right; padding-top: 6px;"> التوقيع : &nbsp; </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

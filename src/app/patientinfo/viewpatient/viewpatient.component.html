@@ -1,0 +1,598 @@
+<div class="row">
+    <div class="col-md-12" >
+        <h4 style="word-spacing: 5px;" class="ltr">{{patient_name}}</h4>
+        <h4 style="word-spacing: 5px;" class="rtl">{{patient_name}} </h4>
+    </div>
+    <div *ngIf="pay" class="col-md-3">
+        <h5 class="ltr text-danger">Payment {{payment}}</h5>
+        <h5 class="rtl text-danger">Payment {{payment}}</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link"> Patient Details</a></li>
+            <li class="rtl"><a class="nav-link"><span>تفاصيل المريض‎</span> </a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/autocomplate'>Advanced Search</a></li>
+            <li class="rtl"><a class="nav-link" routerLink='/autocomplate'><span>بحث متقدم‎</span>  </a></li>
+            <li class="ltr"><a class="nav-link" >View Patient Information</a></li>
+            <li class="rtl"><a class="nav-link" ><span>عرض معلومات المريض‎</span></a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="float:right;margin-bottom: 20px;" class="ltr">
+            <button class="btn btn-warning mr-2 ltr" (click)="edit()"> <i class="lnr lnr-pencil"></i> Edit</button>
+            <!-- <button class="btn btn-warning mr-2 rtl" (click)="edit()"> <i class="lnr lnr-pencil"></i> تصحيح </button>&nbsp;&nbsp; -->
+            <button class="btn btn-info ltr" routerLink="/add"><i class="lnr lnr-calendar-full"></i>Book Appointment</button>
+            <!-- <button class="btn btn-info rtl" routerLink="/Appointments"><i class="lnr lnr-calendar-full"></i>موعد الكتاب</button>&nbsp;&nbsp; -->
+            <button class="btn btn-success ml-2 ltr" routerLink="/addinvoice" [queryParams]="{createpatientinvoice : patientid}"><i class="lnr lnr-pencil"></i>Create Invoice</button>
+            <!-- <button class="btn btn-success ml-2 rtl" routerLink="/addinvoice" [queryParams]="{createpatientinvoice : patientid}"><i class="lnr lnr-pencil"></i>إنشاء فاتورة</button>&nbsp;&nbsp; -->
+        </div>
+        <div style="float:left;margin-bottom: 20px;" class="rtl">
+            <!-- <button class="btn btn-warning mr-2 ltr" (click)="edit()"> <i class="lnr lnr-pencil"></i> Edit</button> -->
+            <button class="btn btn-warning mr-2 rtl" (click)="edit()"> <i class="lnr lnr-pencil"></i><span>تعديل</span></button>&nbsp;&nbsp;
+            <!-- <button class="btn btn-info ltr" routerLink="/Appointments"><i class="lnr lnr-calendar-full"></i>Book Appointment</button> -->
+            <button class="btn btn-info rtl" routerLink="/Appointments"><i class="lnr lnr-calendar-full"></i><span>حجز موعد</span></button>&nbsp;&nbsp;
+            <!-- <button class="btn btn-success ml-2 ltr" routerLink="/addinvoice" [queryParams]="{createpatientinvoice : patientid}"><i class="lnr lnr-pencil"></i>Create Invoice</button> -->
+            <button class="btn btn-success ml-2 rtl" routerLink="/addinvoice" [queryParams]="{createpatientinvoice : patientid}"><i class="lnr lnr-pencil"></i><span>إنشاء فاتورة</span></button>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row" *ngIf="cronic">
+    <div class="col-md-3 pl-lg-2 offset-8">
+        <h4> Chronic Disease : <span style="color:red;" >{{cronic}}</span></h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3  pl-lg-4">
+        <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp; Menu</p>
+            <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;القائمة</p>
+        </div>
+    <app-sidelinks></app-sidelinks>
+    </div>
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title ltr"> Patient Information</h4>
+                <h4 class="card-title rtl"><span>معلومات المريض</span></h4>
+            </div>
+            <div class="card-body">
+                <ngb-tabset #t="ngbTabset">
+                    <ngb-tab>
+                        <ng-template ngbTabTitle><span class="ltr">Patient Details</span><span class="rtl">تفاصيل المريض</span>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="row" id="mytables">
+                                <div class="col-12 pt-4">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <table class="table border">
+                                                <thead class="bg-info  text-white">
+                                                    <tr>
+                                                        <th colspan="3" class="ltr">Personal Details</th>
+                                                        <th colspan="3" class="rtl">التفاصيل الشخصية</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ltr">
+                                                    <tr>
+                                                        <td>Title</td>
+                                                        <td>:</td>
+                                                        <td>{{title}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>FirstName</td>
+                                                        <td>:</td>
+                                                        <td>{{First_name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MiddleName</td>
+                                                        <td>:</td>
+                                                        <td>{{Middle_name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lastname</td>
+                                                        <td>:</td>
+                                                        <td>{{Last_Name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Arabic First Name</td>
+                                                        <td>:</td>
+                                                        <td>{{Ara_firstname}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Arabic Father Name</td>
+                                                        <td>:</td>
+                                                        <td>{{Ara_fathername}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Arabic Last Name</td>
+                                                        <td>:</td>
+                                                        <td>{{Ara_Lastname}}</td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>Date of Birth</td>
+                                                        <td>:</td>
+                                                        <td>{{DOB}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Gender</td>
+                                                        <td>:</td>
+                                                        <td>{{Gender}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Marital Status</td>
+                                                        <td>:</td>
+                                                        <td>{{Marital_status}}</td>
+                                                    </tr>
+                                                </tbody>
+
+                                                <tbody class="rtl">
+                                                    <tr>
+                                                        <td>اللقب</td>
+                                                        <td>:</td>
+                                                        <td>{{title}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>الاسم الاول</td>
+                                                        <td>:</td>
+                                                        <td>{{First_name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>اسم الأب </td>
+                                                        <td>:</td>
+                                                        <td>{{Middle_name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>اسم العائلة</td>
+                                                        <td>:</td>
+                                                        <td>{{Last_Name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>الاسم الأول بالعربي</td>
+                                                        <td>:</td>
+                                                        <td>{{Ara_firstname}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> اسم الاب</td>
+                                                        <td>:</td>
+                                                        <td>{{Ara_fathername}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>اسم العائلة بالعربي </td>
+                                                        <td>:</td>
+                                                        <td>{{Ara_Lastname}}</td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>تاريخ الميلاد</td>
+                                                        <td>:</td>
+                                                        <td>{{DOB}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>جنس</td>
+                                                        <td>:</td>
+                                                        <td>{{Gender}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>الحالة الإجتماعية</td>
+                                                        <td>:</td>
+                                                        <td>{{Marital_status}}</td>
+                                                    </tr>
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="d-table h-100 w-100 text-center">
+                                                <div class="d-table-cell align-middle">
+
+                                                    <img class="img-responsive pphoto ltr" src={{Last_update}} onError="this.src='./assets/images/noimage.png'" alt="IMG">
+                                                    <img class="img-responsive pphoto rtl" src={{Last_update}} onError="this.src='./assets/images/noimage.png'" alt="IMG">
+                                                    <h5 class="mt-2">ID :{{patientId}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <table class="table border">
+                                                <thead class="bg-info  text-white">
+                                                    <tr>
+                                                        <th colspan="3" class="ltr">Contacat Details</th>
+                                                        <th colspan="3" class="rtl">بيانات المتصل</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ltr">
+                                                    <tr height="5">
+                                                        <td>Mobile No</td>
+                                                        <td>:</td>
+                                                        <td>{{Mobileno}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Home Phone No</td>
+                                                        <td>:</td>
+                                                        <td>{{Home_phone}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Work Phone No</td>
+                                                        <td>:</td>
+                                                        <td>{{Work_phoneno}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>:</td>
+                                                        <td>{{Email}}</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <tbody class="rtl">
+                                                    <tr height="5">
+                                                        <td>رقم الهاتف المحمول</td>
+                                                        <td>:</td>
+                                                        <td>{{Mobileno}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>رقم هاتف المنزل</td>
+                                                        <td>:</td>
+                                                        <td>{{Home_phone}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>رقم هاتف العمل</td>
+                                                        <td>:</td>
+                                                        <td>{{Work_phoneno}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>البريد الإلكتروني</td>
+                                                        <td>:</td>
+                                                        <td>{{Email}}</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <table class="table table-border">
+                                                <thead class="bg-info  text-white">
+                                                    <tr>
+                                                        <th colspan="3" class="ltr">Address Details</th>
+                                                        <th colspan="3" class="rtl">تفاصيل العنوان</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ltr">
+                                                    <tr>
+                                                        <td>Area</td>
+                                                        <td>:</td>
+                                                        <td>{{Area}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Block</td>
+                                                        <td>:</td>
+                                                        <td>{{Block}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Buliding</td>
+                                                        <td>:</td>
+                                                        <td>{{Buliding}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Street</td>
+                                                        <td>:</td>
+                                                        <td>{{Street}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Floor</td>
+                                                        <td>:</td>
+                                                        <td>{{Floor}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Country</td>
+                                                        <td>:</td>
+                                                        <td>{{Country}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>City</td>
+                                                        <td>:</td>
+                                                        <td>{{City}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tbody class="rtl">
+                                                    <tr>
+                                                        <td>منطقة</td>
+                                                        <td>:</td>
+                                                        <td>{{Area}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>بلوك</td>
+                                                        <td>:</td>
+                                                        <td>{{Block}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Buliding</td>
+                                                        <td>:</td>
+                                                        <td>{{Buliding}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>شارع</td>
+                                                        <td>:</td>
+                                                        <td>{{Street}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>الدور</td>
+                                                        <td>:</td>
+                                                        <td>{{Floor}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>دولة</td>
+                                                        <td>:</td>
+                                                        <td>{{Country}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>مدينة</td>
+                                                        <td>:</td>
+                                                        <td>{{City}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <table class="table border">
+                                                <thead class="bg-info  text-white">
+                                                    <tr>
+                                                        <th colspan="3" class="ltr">Identification Details</th>
+                                                        <th colspan="3" class="rtl">تفاصيل الهوية</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ltr">
+                                                    <tr height="5">
+                                                        <td>dentification Type</td>
+                                                        <td>:</td>
+                                                        <td>{{Identification_type}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Identification No</td>
+                                                        <td>:</td>
+                                                        <td>{{Identification_no}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Expiry Date</td>
+                                                        <td>:</td>
+                                                        <td>{{Expiry}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Upload ID Proof</td>
+                                                        <td>:</td>
+
+                                                        <td> <img src={{Identification_attachment}} onError="this.src='./assets/images/noimage.png'" alt="IMG" class="zoom_img"></td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <tbody class="rtl">
+                                                    <tr height="5">
+                                                        <td>نوع الهوية</td>
+                                                        <td>:</td>
+                                                        <td>{{Identification_type}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>رقم الهوية او البطاقة</td>
+                                                        <td>:</td>
+                                                        <td>{{Identification_no}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>تاريخ الانتهاء</td>
+                                                        <td>:</td>
+                                                        <td>{{Expiry}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>تحميل اثبات الهوية</td>
+                                                        <td>:</td>
+
+                                                        <td> <img src={{Identification_attachment}} onError="this.src='./assets/images/noimage.png'" alt="IMG" class="zoom_img"></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <table class="table  border">
+                                                <thead class="bg-info  text-white">
+                                                    <tr>
+                                                        <th colspan="3" class="ltr">Other Details</th>
+                                                        <th colspan="3" class="rtl">تفاصيل أخرى</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="ltr">
+                                                    <tr>
+                                                        <td>Occupation</td>
+                                                        <td>:</td>
+                                                        <td>{{Occupation_Name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Emergency Contact</td>
+                                                        <td>:</td>
+                                                        <td>{{Emergency_contact}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Notes</td>
+                                                        <td>:</td>
+                                                        <td>{{Notes}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Nationality</td>
+                                                        <td>:</td>
+                                                        <td>{{Nationality}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Automated Reminder Types</td>
+                                                        <td>:</td>
+                                                        <td>{{Reminder_type}}</td>
+                                                    </tr>
+
+
+
+                                                </tbody>
+                                                <tbody class="rtl">
+                                                    <tr>
+                                                        <td>الوظيفة</td>
+                                                        <td>:</td>
+                                                        <td>{{Occupation_Name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>جهة الاتصال للطوارىء</td>
+                                                        <td>:</td>
+                                                        <td>{{Emergency_contact}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>الملاحظات</td>
+                                                        <td>:</td>
+                                                        <td>{{Notes}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>الجنسية</td>
+                                                        <td>:</td>
+                                                        <td>{{Nationality}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td> أنواع التذكير الآلي</td>
+                                                        <td>:</td>
+                                                        <td>{{Reminder_type}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                        <ng-template ngbTabTitle><span class="ltr">Billing</span><span class="rtl">الفواتير</span></ng-template>
+                        <ng-template ngbTabContent>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <table class="table border mt-4 myTable">
+                                        <thead class="bg-info text-white">
+                                            <tr>
+                                                <th colspan="3" class="ltr">Billing Details</th>
+                                                <th colspan="3" class="rtl">تفاصيل الفاتورة</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr height="5">
+                                                <td class="ltr">Billing Address</td>
+                                                <td class="rtl">عنوان الفاتورة</td>
+                                                <td>:</td>
+                                                <td>{{common_address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ltr">Area</td>
+                                                <td class="rtl">منطقة</td>
+                                                <td>:</td>
+                                                <td>{{Area}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">Block</td>
+                                                <td class="rtl">بلوك</td>
+                                                <td>:</td>
+                                                <td>{{Block}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ltr">Building</td>
+                                                <td class="rtl">المبنى</td>
+                                                <td>:</td>
+                                                <td>{{Building}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">Street</td>
+                                                <td class="rtl">شارع</td>
+                                                <td>:</td>
+                                                <td>{{Street}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ltr">Floor</td>
+                                                <td class="rtl">الدور</td>
+                                                <td>:</td>
+                                                <td>{{Floor}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">City </td>
+                                                <td class="rtl">مدينة </td>
+                                                <td>:</td>
+                                                <td>{{city}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">Country </td>
+                                                <td class="rtl">دولة </td>
+                                                <td>:</td>
+                                                <td>{{Country_Name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ltr">Payment Mode </td>
+                                                <td class="rtl">طريقة الدفع </td>
+                                                <td>:</td>
+                                                <td>{{paymentmode}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">Referal Type </td>
+                                                <td class="rtl">Referal Type </td>
+                                                <td>:</td>
+                                                <td>{{referal_type}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">Referal Name </td>
+                                                <td class="rtl">اسم الأحالة </td>
+                                                <td>:</td>
+                                                <td>{{name}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ltr">Referal Contact </td>
+                                                <td class="rtl">Referal Contact </td>
+                                                <td>:</td>
+                                                <td>{{contact}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+    </div>
+
+</div>

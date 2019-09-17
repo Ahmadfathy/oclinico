@@ -1,0 +1,222 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/products'> Products</a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/Productdetails'> Productdetails</a></li>
+        </ul>
+    </div>
+</div>
+  <div class="container" >
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header">
+                      <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Productdetails::{{nameval}}</p>
+                      <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+                  </div>
+          <!-- <div class='col-md-4'>
+              <h4>Product :</h4>
+           
+          </div> -->
+     
+      <div class="card-body">
+        <!-- <div class="row">
+            <div class='col-md-4'>
+                <h4>Product details :{{nameval}}</h4>
+             
+            </div>
+        </div> -->
+        <hr>
+    
+
+        <form [formGroup]='productdetailsForm'(ngSubmit)="onSubmit()">
+            <div class="row">
+  <div class="col-md-4 ">
+  
+        <div class="form-group">
+                <lable>Registration No</lable>
+                <input type="text" formControlName="Registrationno" 
+                class="form-control" [ngClass]="{' is-invalid':submitted && s.Registrationno.errors}">
+                <div *ngIf="submitted && s.Registrationno.errors" class="invaild-feedback">
+                    <div *ngIf="s.Registrationno.errors.required" style="color: red">Registration No is Required</div>
+                </div>
+         </div>
+         <div class="form-group">
+          <lable>Strength Value</lable>
+          <input type="text" formControlName="Strengthvalue" 
+          class="form-control" [ngClass]="{' is-invalid':submitted && s.Strengthvalue.errors}">
+          <div *ngIf="submitted && s.Strengthvalue.errors" class="invaild-feedback">
+              <div *ngIf="s.Strengthvalue.errors.required" style="color: red">Strength  Value is Required</div>
+          </div>
+   </div>
+   <div class="form-group">
+    <lable>Volume</lable>
+    <select type="text" formControlName="volume" 
+    class="form-control" [ngClass]="{' is-invalid':submitted && s.volume.errors}">
+    <option  value=''disabled selected>Select</option>
+    <option *ngFor="let engname of name" [value]="engname.ID">{{engname.NameEn}}</option>
+  </select>
+    <div *ngIf="submitted && s.volume.errors" class="invaild-feedback">
+        <div *ngIf="s.volume.errors.required" style="color: red">Volume  is Required</div>
+    </div>
+</div>
+<div class="form-group">
+  <lable>package Size</lable>
+  <select type="text" formControlName="packagesize" 
+  class="form-control" [ngClass]="{' is-invalid':submitted && s.packagesize.errors}">
+<option>Select</option>
+</select>
+  <div *ngIf="submitted && s.packagesize.errors" class="invaild-feedback">
+      <div *ngIf="s.packagesize.errors.required" style="color: red">package Size is Required</div>
+  </div>
+</div>
+<div class="form-group">
+  <lable>Barcode</lable>
+  <input type="text" formControlName="barcode" 
+  class="form-control" [ngClass]="{' is-invalid':submitted && s.barcode.errors}">
+  <div *ngIf="submitted && s.barcode.errors" class="invaild-feedback">
+      <div *ngIf="s.barcode.errors.required" style="color: red">Barcode is Required</div>
+  </div>
+</div>
+         </div>
+         <div class="col-md-4 ">
+  
+          <div class="form-group">
+                  <lable>TradeNameAR</lable>
+                  <input type="text" formControlName="TradeNamear" 
+                  class="form-control" [ngClass]="{' is-invalid':submitted && s.TradeNamear.errors}">
+                  <div *ngIf="submitted && s.TradeNamear.errors" class="invaild-feedback">
+                      <div *ngIf="s.TradeNamear.errors.required" style="color: red">TradeNameAR is Required</div>
+                  </div>
+           </div>
+           <div class="form-group">
+            <lable>ATCCode1</lable>
+            <input type="text" formControlName="ATCcode1" 
+            class="form-control" [ngClass]="{' is-invalid':submitted && s.ATCcode1.errors}">
+            <div *ngIf="submitted && s.ATCcode1.errors" class="invaild-feedback">
+                <div *ngIf="s.ATCcode1.errors.required" style="color: red">ATCCode1 is Required</div>
+            </div>
+     </div>
+     <div class="form-group">
+      <lable>Unit of Volume</lable>
+      <select type="text" formControlName="Unitofvolume" 
+      class="form-control" [ngClass]="{' is-invalid':submitted && s.Unitofvolume.errors}">
+    <option value=''disabled selected>Select</option>
+    <option *ngFor="let engname1 of name1" [value]="engname1.ID">{{engname1.NameEn}}</option>
+    </select>
+      <div *ngIf="submitted && s.Unitofvolume.errors" class="invaild-feedback">
+          <div *ngIf="s.Unitofvolume.errors.required" style="color: red">Unit of Volume  is Required</div>
+      </div>
+</div>
+<div class="form-group">
+  <lable>Public Price</lable>
+  <input type="text" formControlName="Publicprice" 
+  class="form-control" [ngClass]="{' is-invalid':submitted && s.Publicprice.errors}">
+  <div *ngIf="submitted && s.Publicprice.errors" class="invaild-feedback">
+      <div *ngIf="s.Publicprice.errors.required" style="color: red">Public price is Required</div>
+  </div>
+</div>
+<div class="form-group">
+  <lable>Alert quantity</lable>
+  <input type="text" formControlName="Alertquantity" 
+  class="form-control" [ngClass]="{' is-invalid':submitted && s.Alertquantity.errors}">
+  <div *ngIf="submitted && s.Alertquantity.errors" class="invaild-feedback">
+      <div *ngIf="s.Alertquantity.errors.required" style="color: red">Alert Quantity  is Required</div>
+  </div>
+</div>
+</div>
+<div class="col-md-4 ">
+  
+  <div class="form-group">
+          <lable>TradeNameEn</lable>
+          <input type="text" formControlName="TradeNameen" 
+          class="form-control" [ngClass]="{' is-invalid':submitted && s.TradeNameen.errors}">
+          <div *ngIf="submitted && s.TradeNameen.errors" class="invaild-feedback">
+              <div *ngIf="s.TradeNameen.errors.required" style="color: red">TradeNameEn is Required</div>
+          </div>
+   </div>
+   <div class="form-group">
+    <lable>ATCCode2</lable>
+    <input type="text" formControlName="ATCcode2" 
+    class="form-control" [ngClass]="{' is-invalid':submitted && s.ATCcode2.errors}">
+    <div *ngIf="submitted && s.ATCcode2.errors" class="invaild-feedback">
+        <div *ngIf="s.ATCcode2.errors.required" style="color: red">ATCCode2 is Required</div>
+    </div>
+</div>
+<div class="form-group">
+<lable>Package Type</lable>
+<select type="text" formControlName="Packagetype" 
+class="form-control" [ngClass]="{' is-invalid':submitted && s.Packagetype.errors}">
+<option value=''disabled selected>Select</option>
+<option *ngFor="let engname2 of name2" [value]="engname2.ID">{{engname2.NameEn}}</option>
+</select>
+<div *ngIf="submitted && s.Packagetype.errors" class="invaild-feedback">
+  <div *ngIf="s.Packagetype.errors.required" style="color: red">Package Type  is Required</div>
+</div>
+</div>
+
+<div class="form-group">
+<lable>Remarks</lable>
+<input type="text" formControlName="remarks" 
+class="form-control" [ngClass]="{' is-invalid':submitted && s.remarks.errors}">
+<div *ngIf="submitted && s.remarks.errors" class="invaild-feedback">
+<div *ngIf="s.remarks.errors.required" style="color: red">Remarks is Required</div>
+</div>
+</div>
+<br>
+<div>
+<button class="btn btn-primary col-md-12"  (click)="insertdata()"id='save'>Save</button>
+<button class="btn btn-primary col-md-12" (click)='update()' id='update'>Update</button>
+</div>
+<!-- <div class='col-md-12' style="margin-top: 33px;">
+    <button class="btn btn-primary"(click)='insertdata()'id='save'>save</button>
+    <button class="btn btn-primary" (click)=' update()' id='update'>Update</button>
+    </div> -->
+</div>
+</div>
+</form>
+
+</div>
+
+
+<br>
+<hr>
+<table class="table table-bordered">
+ <thead>
+<tr>
+ <th>Trade Name AR</th>
+ <th>Strength Value</th>
+ <th>Price</th>
+ <th>Edit</th>
+ <th>Delete</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let s of table ,let i=index">
+    <td>{{s.TradeNameAr}}</td>
+    <td>{{s.StrengthValue}}</td>
+    <td>{{s.price}}</td>
+    <!-- <td><button (click)='edit(s.ID)'>Edit</button></td>  -->
+    <!-- <td><button (click)='delete(s.ID)'>Delete</button></td> -->
+    <td>
+        <a style="color:#4798e8 ">
+        <span class='fa fa-pencil-alt text-info'(click)='edit(s.ID)'></span>
+      </a>
+    </td>
+<td>
+    <a style="color:#4798e8 ">
+    <span class='fa fa-fw fa-trash'(click)='delete(s.ID)'></span>
+  </a>
+</td>
+</tr>
+</tbody>
+</table>   
+        
+         </div>
+        </div>
+        </div>
+      </div>
+  

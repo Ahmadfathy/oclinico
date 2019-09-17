@@ -1,0 +1,708 @@
+#calendar {
+    max-width: 100%;
+}
+
+.leftcal {
+    max-height: 100%;
+    width: 300px;
+}
+
+.removePadding {
+    padding: 0!important
+}
+
+.rightcal {
+    width: calc(100% - 300px);
+    padding: 0 30px !important;
+}
+
+
+/* ::ng-deep .fc-event,
+::ng-deep .fc-event:hover {
+    color: #fff !important;
+} */
+
+::ng-deep .fc-event {
+    background-color: whitesmoke !important;
+    border: none;
+    border-top: 2px solid;
+    border-radius: 0;
+    font-size: .95em !important;
+}
+
+::ng-deep .fc-scroller {
+    height: 100% !important;
+}
+
+::ng-deep .fc-time-grid ::ng-deep .fc-slats ::ng-deep td {
+    height: 2rem !important;
+}
+
+#pickerdatecurrent,
+#pickerdatenext {
+    display: none;
+}
+
+.fc-license-message {
+    display: none
+}
+
+.loader {
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border: 3px solid #ddd;
+    border-top: 3px solid #42a5f5;
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    z-index: 9999999999999999999;
+    display: none
+}
+
+@-webkit-keyframes spin {
+    to {
+        border-top-color: #ec407a;
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    to {
+        border-top-color: #ec407a;
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.cool-loader {
+    width: 40px;
+    height: 80px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    z-index: 999;
+}
+
+.cool-loader__inner {
+    border-radius: 50%;
+    -webkit-animation: loader-animation 0.8s ease-out infinite;
+    -moz-animation: loader-animation 0.8s ease-out infinite;
+    -ms-animation: loader-animation 0.8s ease-out infinite;
+    -o-animation: loader-animation 0.8s ease-out infinite;
+    animation: loader-animation 0.8s ease-out infinite;
+    background: #5cb85c;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 9;
+}
+
+.cool-loader__shadow {
+    width: 40px;
+    bottom: 2px;
+    height: 5px;
+    background: #000;
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    -webkit-animation: shadow-animation 0.8s ease-out infinite;
+    -moz-animation: shadow-animation 0.8s ease-out infinite;
+    -ms-animation: shadow-animation 0.8s ease-out infinite;
+    -o-animation: shadow-animation 0.8s ease-out infinite;
+    animation: shadow-animation 0.8s ease-out infinite;
+}
+
+@keyframes loader-animation {
+    0% {
+        top: 0;
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    35% {
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        background: #5cb85c;
+    }
+    50% {
+        top: 40px;
+        -moz-transform: scale(1.2, 0.8);
+        -o-transform: scale(1.2, 0.8);
+        -ms-transform: scale(1.2, 0.8);
+        -webkit-transform: scale(1.2, 0.8);
+        transform: scale(1.2, 0.8);
+        background: #449d44;
+    }
+    75% {
+        -moz-transform: scale(0.8, 1.2);
+        -o-transform: scale(0.8, 1.2);
+        -ms-transform: scale(0.8, 1.2);
+        -webkit-transform: scale(0.8, 1.2);
+        transform: scale(0.8, 1.2);
+    }
+    100% {
+        top: 0;
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        background: #5cb85c;
+    }
+}
+
+@keyframes shadow-animation {
+    0% {
+        -moz-transform: scale(0.5, 0.5);
+        -o-transform: scale(0.5, 0.5);
+        -ms-transform: scale(0.5, 0.5);
+        -webkit-transform: scale(0.5, 0.5);
+        transform: scale(0.5, 0.5);
+        opacity: 0.1;
+    }
+    50% {
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 0.2;
+    }
+    100% {
+        -moz-transform: scale(0.5, 0.5);
+        -o-transform: scale(0.5, 0.5);
+        -ms-transform: scale(0.5, 0.5);
+        -webkit-transform: scale(0.5, 0.5);
+        transform: scale(0.5, 0.5);
+        opacity: 0.1;
+    }
+}
+
+.ifConfirmed {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    margin: auto;
+    display: none
+}
+
+.pageOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/images/popup_bg.png');
+    z-index: 100;
+    display: none;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.divider {
+    width: 80%;
+    height: 2px;
+    background: #fff
+}
+
+.lf {
+    float: left;
+}
+
+.rt {
+    float: right;
+}
+
+.leftDet,
+.rightDet {
+    width: 48%;
+    float: left;
+    margin-left: 7px
+}
+
+.appointmentModal,
+.appointmentDetailsModal,
+.createPatientModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 450px;
+    height: 430px;
+    background: #F8F8FF;
+    z-index: 9999999999;
+    box-shadow: 0 0 10px #ccc;
+    border: 1px solid #aaa;
+    display: none
+}
+
+.createPatientModal {
+    height: 520px;
+    overflow-y: scroll;
+    overflow-x: none;
+}
+
+.appointmentDetailsModal {
+    width: 484px
+}
+
+.appHeader {
+    width: 100%;
+    height: 65px;
+    background: #e4ebf1;
+    line-height: 65px!important;
+    font-size: 20px!important;
+    color: #495861;
+    text-indent: 15px;
+}
+
+.appDocName {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 1);
+    text-align: left;
+}
+
+.appTimings {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+    text-align: right;
+}
+
+.appHeaderbo {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 1);
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFF;
+    margin-bottom: 10px;
+    text-align: left;
+    position: relative;
+}
+
+.mainAppHead {
+    background-color: #ff7200;
+    padding: 40px 20px;
+    color: #fff;
+}
+
+
+/* ----------------- */
+
+
+/* 
+input,
+select,
+textarea {
+   
+    border: 2px solid #dadada;
+    border-radius: 5px;
+   
+}
+
+input:focus,
+textarea {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+} */
+
+.fc-today {
+    background: transparent !important;
+}
+
+
+/* =============== */
+
+.input-icon {
+    position: absolute;
+    left: 3px;
+    top: calc(50% - 0.5em);
+    /* Keep icon in center of input, regardless of the input height */
+}
+
+.loading-icon {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 0.7em);
+    /* Keep icon in center of input, regardless of the input height */
+    width: 14px;
+    height: 14px;
+    display: none;
+}
+
+.loading-icon img {
+    width: 14px;
+    height: 14px;
+}
+
+.input-wrapper input {
+    padding-left: 17px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.appointmentBody input:not([type=radio]) {
+    width: 100%
+}
+
+.appointmentType,
+.appointmentTypePatient,
+.titleNew,
+.gender {
+    width: 100%
+}
+
+textarea {
+    width: 100%
+}
+
+.fc-today {
+    background: transparent !important;
+    /* hack. because demo will always start out on current day */
+}
+
+.patientDetails {
+    position: absolute;
+    top: 30px;
+    left: 12px;
+    margin: auto;
+    height: auto;
+    overflow-y: scroll;
+    background: #fff;
+    z-index: 99999;
+    width: 278px;
+    cursor: pointer;
+    display: none;
+}
+
+.not {
+    height: 40px;
+    cursor: initial;
+}
+
+.patientDetails div {
+    text-align: center
+}
+
+.patientDetails div:hover {
+    background: dodgerblue;
+    color: #fff;
+}
+
+.newEvent {
+    font-size: 20px;
+    color: green;
+}
+
+.mainAppBody {
+    padding: 7px
+}
+
+.appPatientname {
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    margin-bottom: 5px;
+}
+
+.appPatientphone,
+.appPatientemail,
+.appPatienttimings {
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+    margin-bottom: 5px;
+}
+
+.appFoot {
+    background-color: rgb(224, 224, 224);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 50px;
+    width: 100%;
+}
+
+.appFoot .btns div {
+    background-color: rgb(47, 173, 231);
+    padding: 10px;
+    color: #fff;
+    /* width : 120px; */
+    float: left;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.btns {
+    width: 100%;
+    height: 50px;
+}
+
+.btns .btn-danger {
+    background-color: #ef6e6e !important;
+    border-color: #ef6e6e !important;
+}
+
+.btns .btn-success {
+    background-color: #22c6ab !important;
+    border-color: #22c6ab !important;
+}
+
+.bookanother {
+    float: right!important
+}
+
+.reschedule {
+    margin-right: 10px;
+    margin-left: 10px
+}
+
+.bor {
+    cursor: pointer;
+    -webkit-appearance: button;
+    width: 100%;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 5px;
+    /* border-width: 1px;
+    border-style: solid;
+    border-color: rgb(153, 153, 153); */
+    border: 1px solid #000;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center
+}
+
+.lefty {
+    /* position: fixed;
+  top : 120px;
+  left : 200px;
+  width : 300px;
+  background: red;
+  height:100%; */
+    float: left;
+    width: 300px;
+    height: 100%;
+    margin-right: 50px;
+    background: red;
+}
+
+.righty {
+    float: left;
+}
+
+.doctors,
+.appoint {
+    position: relative;
+    max-width: 300px;
+    border: 1px solid #efeeee;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0, 0, 0, 0.08);
+}
+
+.appoint {
+    margin-top: 30px;
+}
+
+.doctors .docExpand {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 99;
+}
+
+::ng-deep [dir="rtl"] .docExpand {
+    left: 15px;
+    right: auto !important;
+}
+
+.Appointments {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(125px, 1fr));
+    grid-gap: 5px;
+}
+
+.Appointments li {
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, .16);
+    padding: 0 !important;
+    -webkit-user-select: none;
+    /* Safari 3.1+ */
+    -moz-user-select: none;
+    /* Firefox 2+ */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.Appointments li:nth-child(1) label {
+    background-color: #c34e61;
+}
+
+.Appointments li:nth-child(2) label {
+    background-color: #FFC107;
+}
+
+.Appointments li:nth-child(3) label {
+    background-color: #62b968;
+}
+
+.Appointments li:nth-child(4) label {
+    background-color: #4d6cf4;
+}
+
+.Appointments li:nth-child(5) label {
+    background-color: #FF8C00;
+}
+
+.Appointments li:nth-child(6) label {
+    background-color: #40e0d0;
+}
+
+.Appointments li label {
+    font-size: 14px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0;
+    color: #fff;
+    cursor: pointer;
+    opacity: .5;
+    text-shadow: -5px 5px 10px #656565;
+}
+
+.Appointments li label span {
+    opacity: 0;
+    float: right;
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    opacity: 0;
+    color: #fff;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, .36);
+}
+
+.Appointments li input {
+    position: absolute;
+    opacity: 0;
+}
+
+.Appointments li input[type=checkbox]:checked+label span {
+    opacity: 1;
+}
+
+.Appointments li input[type=checkbox]:checked+label {
+    opacity: 1;
+}
+
+.eventStart,
+.eventEnd,
+.appty {
+    display: none
+}
+
+.cancelApp {
+    display: none;
+    background-color: rgb(224, 224, 224);
+    padding: 7px;
+}
+
+.appFoot.hide {
+    background-color: rgb(224, 224, 224);
+}
+
+.mainLab {
+    color: #ff7200;
+    padding: 10px 0px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.cantab {
+    /* max-width: 100%; */
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.cantab td {
+    width: 50%;
+    text-align: -webkit-left;
+    vertical-align: top;
+}
+
+.doctorsNameArea {
+    margin-top: 10px
+}
+
+::ng-deep .doctorsNameArea div {
+    margin-bottom: 5px;
+    border: 1px solid gray;
+    border-radius: 1px;
+}
+
+::ng-deep .doctorsNameArea div label {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+::ng-deep .doctorsNameArea div label span {
+    opacity: 0;
+    float: right;
+}
+
+::ng-deep .doctorsNameArea div input {
+    position: absolute;
+    opacity: 0;
+}
+
+::ng-deep .doctorsNameArea div input[type=checkbox]:checked+label span {
+    opacity: 1;
+}
+
+.docArea {
+    margin-top: 8px;
+    text-indent: 8px
+}
+
+.eventsFiltering {
+    float: left
+}
+
+.createPatientModal .flatpickr-calendar {
+    z-index: 999999999
+}

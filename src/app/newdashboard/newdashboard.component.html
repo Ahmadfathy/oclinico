@@ -1,0 +1,419 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card  bg-light no-card-border">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="m-r-10">
+                        <img src="{{userimgpath}}" alt="user" width="60" class="rounded-circle" />
+
+                    </div>
+                    <div>
+                        <h3 class="m-b-0">Welcome back! {{username}}</h3>
+                        <span>{{todayWeek}}, {{today | date}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row custombox">
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="m-r-0"><span class="btn"><i class="icon appointments"></i></span></div>
+                    <div class="mr-auto">
+                        <h2 class="m-b-0 font-light">{{appointmentscount}}</h2>
+                        <div> APPOINTMENT </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="m-r-0"><span class="btn"><i class="icon doctor"></i></span></div>
+                    <div class="mr-auto">
+                        <h2 class="m-b-0 font-light">{{doctorcount}}</h2>
+                        <div> DOCTORS </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="m-r-0"><span class="btn"><i class="icon freebeds"></i></span></div>
+                    <div class="mr-auto">
+                        <h2 class="m-b-0 font-light">{{freebedlistcount}}</h2>
+                        <div> FREE BED LIST </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="m-r-0"><span class="btn"><i class="icon discharged"></i></span></div>
+                    <div class="mr-auto">
+                        <h2 class="m-b-0 font-light">{{dischargecount}}</h2>
+                        <div> DISCHARGED </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="row custombox mt-5">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon services"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{treatedcount}}</h2>
+                                <div class="text-uppercase"> Treated Patients </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon departments"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{departmentcount}}</h2>
+                                <div class="text-uppercase"> Departments </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon patients"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{patientcount}}</h2>
+                                <div class="text-uppercase"> Patients</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon Prescription"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{prescriptioncount}}</h2>
+                                <div class="text-uppercase"> Prescription</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon inpatient"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{occupiedcount}}</h2>
+                                <div class="text-uppercase"> Inpatient</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon DaySurgery"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{daysurgerycount}}</h2>
+                                <div class="text-uppercase"> Day Surgery</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon radiology"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{radiologycount}}</h2>
+                                <div class="text-uppercase"> Radiology </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="m-r-0"><span class="btn"><i class="icon laboratory"></i></span></div>
+                            <div class="mr-auto">
+                                <h2 class="m-b-0 font-light">{{laboratorycount}}</h2>
+                                <div class="text-uppercase"> Laboratory </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctors Availablity</h4>
+                <h6 class="card-subtitle">Some Description</h6>
+                <canvas height="450px" id="densityChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Automanger Hospital Managemennt</h4>
+                <h6 class="card-subtitle">Showing status from the last year</h6>
+                <canvas baseChart height="450px" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                    [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Reports</h4>
+                <h6 class="card-subtitle">Some Description</h6>
+                <canvas baseChart height="450px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [colors]="[{backgroundColor: [ '#fb8c00', '#4798e8']}]"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!---/////////////////////////////////appointments graphs/////////////////////////////////////////-->
+<div class="row">
+    <!-- <div class="col-md-4">
+        <select class="form-control" (change)="getdayrec($event.target.value)">
+            <option value="">Select Day</option>
+            <option *ngFor="let v of daysarr" value="{{v}}">{{v}}
+            </option>
+        </select>
+    </div> -->
+    <div class="col-md-6">
+        <select class="form-control" (change)="getmonthrec($event.target.value,'month')" [(ngModel)]="thismonth">
+            <option value="">Select month</option>
+            <option *ngFor="let v of months" value="{{v.monthvalue}}">{{v.monthname}}
+            </option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <select class="form-control" (change)="getyearrec($event.target.value,'month')" [(ngModel)]="fullyear">
+            <option value="">select Year</option>
+            <option *ngFor="let y of years" value="{{y}}">{{y}}</option>
+        </select>
+    </div>
+
+
+</div>
+<br>
+<div class="row">
+    
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Appointments</h4>
+                <h6 class="card-subtitle">Day wise</h6>
+                <canvas height="250px" id="adaywise"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-4">
+            <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title">Appointments</h4>
+                        <h6 class="card-subtitle">Month wise</h6>
+                        <canvas height="250px" id="amwise"></canvas>
+                    </div>
+                </div>    
+    </div>
+    <div class="col-sm-4"> 
+            <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Appointments</h4>
+                        <h6 class="card-subtitle">year wise</h6>
+                        <canvas height="250px" id="aywise"></canvas>
+                    </div>
+                </div>
+    </div>
+    
+</div>
+
+<br>
+
+<!--//////////////////////////////closing appointments graph/////////////////////////////-->
+
+<!--//////////////////////////////opening appointments type graph/////////////////////////////-->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Appointments Type</h4>
+                <h6 class="card-subtitle">Month wise</h6>
+                <canvas height="250px" id="atmonthwise"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Appointments Type</h4>
+                <h6 class="card-subtitle">Year wise</h6>
+                <canvas height="250px" id="atyearwise"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--closing appointments type graph-->
+<!--opening precription detils chart-->
+
+<div class="row">   
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Prescription Type</h4>
+                <h6 class="card-subtitle">Day wise</h6>
+                <canvas height="250px" id="pdaywise"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Prescription Type</h4>
+                <h6 class="card-subtitle">Month wise</h6>
+                <canvas height="250px" id="ptmonthwise"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Prescription Type</h4>
+                <h6 class="card-subtitle">Year wise</h6>
+                <canvas height="250px" id="ptyearwise"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--closing precription detils chart-->
+
+
+<!--opening preption detils chart-->
+<div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Doctor  Designation</h4>
+                   
+                    <canvas height="250px" id="designation"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+    
+                    <h4 class="card-title">Doctor Wise Appointments</h4>
+                  
+                    <canvas height="250px" id="doctorwiseappointments"></canvas>
+                </div>
+            </div>
+        </div>
+       
+        <!-- <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+        
+                        <h4 class="card-title">Patient and Family Details</h4>
+                      
+                        <canvas height="250px" id="patientandfamilydetailsc"></canvas>
+                    </div>
+                </div>
+            </div> -->
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+    
+                    <h4 class="card-title">Patient and Family Details</h4>
+                    <h6 class="card-subtitle">Month Wise</h6>
+                    <canvas height="250px" id="patientandfamilydetailsc"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">    
+                    <h4 class="card-title">Mobile and Out Patient</h4>    
+                    <h6 class="card-subtitle">Day Wise</h6>              
+                    <canvas height="250px" id="Mobiledaywise"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">    
+                    <h4 class="card-title">Mobile and Out Patient</h4> 
+                    <h6 class="card-subtitle">Month Wise</h6>                 
+                    <canvas height="250px" id="mobilemonthwise"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">    
+                    <h4 class="card-title">Mobile and Out Patient</h4> 
+                    <h6 class="card-subtitle">Year Wise</h6>                 
+                    <canvas height="250px" id="mobiletyearwise"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+

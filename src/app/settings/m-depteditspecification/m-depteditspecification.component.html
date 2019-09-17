@@ -1,0 +1,123 @@
+<div class="preloader" *ngIf="isPageloaderVisible">
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+    </div>
+</div>
+
+
+<h4 class="ltr">Edit Specialization</h4>
+<h4 class="rtl">Edit Specialization</h4>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li>
+                <a class="nav-link" routerLink='/dashboard'>
+                    <span class="fa fa-fw fa-home"> </span>
+                </a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/settings'> Settings</a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link" routerLink='/Specialization'> Specialization Details</a>
+            </li>
+            <li class="ltr">
+                <a class="nav-link"> Edit Specialization</a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/settings'>
+                    <span> إعدادات</span>
+                </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link" routerLink='/Specialization'>
+                    <span>Specialization Details</span>
+                </a>
+            </li>
+            <li class="rtl">
+                <a class="nav-link">
+                    <span>Edit Specialization</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<form [formGroup]="editDepartment">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="m-b-0 text-black ltr">
+                        <i class="sl-icon-menu font-14"></i> &nbsp;Edit Department</h4>
+                    <h4 class="m-b-0 text-black rtl">
+                        <i class="sl-icon-menu font-14"></i> &nbsp;تعديل القسم</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.deptname}">
+                            <label class="form-control-label ltr">Specialization Name (in english)*</label>
+                            <label class="form-control-label rtl">Specialization Name (in english)*</label>
+                            <input type="text" class="form-control" formControlName="deptname" (blur)="checkValidationErrors()">
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.deptname">
+                                {{formErrors.deptname}}
+                            </span>
+                        </div>
+                        <div class="col-md-4" [ngClass]="{'has-error' : formErrors.deptnamear}">
+                            <label class="form-control-label ltr">Specialization Name (in arabic)*</label>
+                            <label class="form-control-label rtl">Specialization Name (in arabic)*</label>
+                            <input type="text" class="form-control" dir="rtl" (keypress)="arabic($event)" formControlName="deptnamear" (blur)="checkValidationErrors()">
+                            <span class="help-block errorcolorcls" *ngIf="formErrors.deptnamear">
+                                {{formErrors.deptnamear}}
+                            </span>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group m-b-30" [ngClass]="{'has-error' : formErrors.dstatus}">
+                                <label class="mr-sm-2 ltr" for="title">Status *</label>
+                                <label class="mr-sm-2 rtl" for="title">الحالة *</label>
+                                <select name="title" formControlName="dstatus" class="custom-select mr-sm-2 ltr" (blur)="checkValidationErrors()">
+                                    <option value="select" disabled>-- select --</option>
+                                    <option *ngFor="let t of statustype" [ngValue]="t">{{t}}</option>
+
+                                </select>
+                                <select name="title" formControlName="dstatus" class="custom-select mr-sm-2 rtl" (blur)="checkValidationErrors()">
+                                    <option value="select" disabled>-- اختار --</option>
+                                    <option *ngFor="let t of statustype" [ngValue]="t">{{t}}</option>
+
+                                </select>
+                                <span class="help-block errorcolorcls" *ngIf="formErrors.dstatus">
+                                    {{formErrors.dstatus}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center submitBtns">
+                            <button type="submit" class="btn btn-md btn-warning ltr" (click)="addDeptsubmit()" style="margin-right:10px;">
+                                <i class="fa fa-check-circle"></i>
+                                Update</button>
+                            <button type="submit" class="btn btn-md btn-warning rtl" (click)="addDeptsubmit()">
+                                <i class="fa fa-check-circle"></i>
+                                تحديث</button>
+                            <button type="submit" class="btn btn-md btn-success ltr" (click)="adddeptcancle()">
+                                <i class="fa fa-check-circle"></i>
+                                Cancel</button>
+                            <button type="submit" class="btn btn-md btn-success rtl" (click)="adddeptcancle()" style="margin-right:10px;">
+                                <i class="fa fa-check-circle"></i>
+                                إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
