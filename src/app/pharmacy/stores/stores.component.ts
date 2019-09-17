@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 // import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Headers, RequestOptions } from '@angular/http';
 import { json } from 'd3';
-import { anyKeysRemoved } from '@fullcalendar/core/util/object-similarity';
-import { copyStyles } from '@angular/animations/browser/src/util';
-import { formatRange } from '@fullcalendar/core';
+// import { anyKeysRemoved } from '@fullcalendar/core/util/object-similarity';
+// import { copyStyles } from '@angular/animations/browser/src/util';
+// import { formatRange } from '@fullcalendar/core';
 
 
 @Component({

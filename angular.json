@@ -31,36 +31,12 @@
                             "node_modules/@swimlane/ngx-datatable/release/themes/material.css",
                             "node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
                             "src/assets/scss/style.scss",
-                            "node_modules/@fullcalendar/core/main.css",
-                            "node_modules/@fullcalendar/daygrid/main.css",
-                            "node_modules/@fullcalendar/timegrid/main.css",
-                            "node_modules/@fullcalendar/list/main.css",
                             "node_modules/ng-pick-datetime/assets/style/picker.min.css",
-                            "src/assets/fullcalendar/css/fullcalendar.min.css",
-                            "src/assets/fullcalendar/css/fullcalendardaygrid.min.css",
-                            "src/assets/fullcalendar/css/fullcalendartimegrid.min.css",
-                            "src/assets/fullcalendar/css/flatpicker.css",
                             "src/assets/libs/flatpickr.min.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
-                            "src/assets/vendor/sparkline.js",
-                            "src/assets/fullcalendar/js/moment.js",
-                            "src/assets/fullcalendar/js/fullcalendarmain.js",
-                            "src/assets/fullcalendar/js/fullcalendarcore.min.js",
-                            "src/assets/fullcalendar/js/fullcalendarInteraction.min.js",
-                            "src/assets/fullcalendar/js/fullcalendardaygrid.min.js",
-                            "src/assets/fullcalendar/js/fullcalendartimeGrid.min.js",
-                            "src/assets/fullcalendar/js/fullcalendarresourceCommon.min.js",
-                            "src/assets/fullcalendar/js/fullcalendarresourceDayGrid.min.js",
-                            "src/assets/fullcalendar/js/fullcalendarresourceTimeGrid.min.js",
-                            "src/assets/fullcalendar/js/locales.js",
-                            "src/assets/fullcalendar/js/popper.js",
-                            "src/assets/fullcalendar/js/tooltip.js",
-                            "src/assets/fullcalendar/js/jquery.plugin.js",
-                            "src/assets/fullcalendar/js/jquery.datepick.js",
-                            "src/assets/fullcalendar/js/flatpicker.js",
-                            "src/assets/fullcalendar/js/flatpickerar.js"
+                            "src/assets/vendor/sparkline.js"
 
                         ]
                     },

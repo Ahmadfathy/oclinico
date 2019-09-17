@@ -41,7 +41,6 @@ import { DatePipe } from '@angular/common'; // priyanka
 import { AuthGuard } from './shared/guard/auth.guard';
 
 
-import { FullCalendarModule } from '@fullcalendar/angular';
 import {  SidelinksComponent } from './reports/sidelinks/sidelinks.component'
 import {SidelinksModule } from './reports/sidelinks/sidelinks.module';
 //import { AddwardsComponent } from './addwards/addwards.component';
@@ -83,7 +82,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
    
     NgbModule.forRoot(),
-    FullCalendarModule,
     SlimLoadingBarModule.forRoot(),
     RouterModule.forRoot(Approutes, { useHash: true , scrollPositionRestoration: 'enabled' }),
     PerfectScrollbarModule,
