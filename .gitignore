@@ -5,3 +5,4 @@ node_modules.zip
 web.config
 gulp
 dist.zip
+src/app/app-routing.module.ts

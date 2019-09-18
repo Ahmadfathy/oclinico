@@ -1,0 +1,254 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li>
+        <a class="nav-link" routerLink='/dashboard'>
+          <span class="fa fa-fw fa-home"> </span>
+        </a>
+      </li>
+
+      <li class="ltr">
+        <a class="nav-link" routerLink='/Maininvoice'> Invoices</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='/Maininvoice'>
+          <span>الفواتير </span>
+        </a>
+      </li>
+      <li class="ltr">
+        <a class="nav-link" routerLink='/sellinvoice'> Sell Invoices</a>
+      </li>
+      <li class="rtl">
+        <a class="nav-link" routerLink='sellinvoice'>
+          <span>فاتورة بيع </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<form [formGroup]="InvoiveForm">
+  <div class="row ">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="card-title mt-4 ltr">Sell Invoice</h3>
+              <h3 class="card-title mt-4 rtl">فاتورة بيع</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Code</label>
+              <label class="form-control-label rtl">الكود</label>
+              <input type="text" class="form-control" formControlName="Code" (blur)="checkValidationErrors()">
+            </div>
+            <div class="col-md-3">
+              <div class="form-group m-b-30">
+                <label class="mr-sm-2 ltr" for="title">Store Name</label>
+                <label class="mr-sm-2 rtl" for="title">إسم المخزن</label>
+                <select value="Select" name="title" formControlName="Store_ID" (change)="StoresSelected($event)"
+                  class="custom-select mr-sm-2" (blur)="checkValidationErrors()">
+                  <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameAr}}</option>
+                </select>
+                <span class="help-block" *ngIf="formErrors.Store_ID" style="color: red">
+                  {{formErrors.Store_ID}}
+                </span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Patient *</label>
+              <label class="form-control-label rtl">المريض *</label>
+              <select value="Select" name="title" formControlName="Patient"
+                (change)="ManufacturersSelected($event)" class="custom-select mr-sm-2" (blur)="checkValidationErrors()">
+                <option *ngFor="let i of Manufacturers" [value]="i.ID">{{i.Name}}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Invoice Date</label>
+              <label class="form-control-label rtl">تاريخ الاصدار</label>
+              <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="dd/mm/yyyy" class="form-control"
+                formControlName="TrDate" (blur)="checkValidationErrors()">
+              <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+              <span class="help-block errorcolorcls">
+                {{formErrors.TrDate}}
+              </span>
+            </div>
+          </div>
+          <br>
+          <div class="row" formArrayName="BuyInvoiceDetailsList">
+            <div class="row" formGroupName="0">
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Barcode</label>
+                <label class="form-control-label rtl">الباركود</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Product Name *</label>
+                <label class="form-control-label rtl">إسم المنتج *</label>
+                <input type="text" class="form-control" (keyup)="extractSuggestedTexts()" formControlName="ProdName"
+                  (blur)="checkValidationArrayErrors(); out()">
+                <div class="product-container" *ngIf="ShowAuto">
+                  <div>
+                    <div class="product" *ngFor="let p of suggestedTexts" (click)="SelectItem(p)">
+                      <p *ngIf="langulagetype == 'AR'">
+                          {{p.TradeNameAr}}
+                      </p>
+                      <p *ngIf="langulagetype == 'EN'">
+                          {{p.TradeNameEng}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <span class="help-block" *ngIf="formErrors.ProdName" style="color: red">
+                  {{formErrors.ProdName}}
+                </span>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group m-b-30">
+                  <label class="mr-sm-2 ltr" for="title">Unit</label>
+                  <label class="mr-sm-2 rtl" for="title">الوحدة</label>
+
+                  <select value="Select" name="title" class="custom-select mr-sm-2" formControlName="unit_id"
+                    (blur)="checkValidationArrayErrors()" (change)="UnitsSelected($event)">
+                    <option value="select" selected>-- select --</option>
+                    <option value="1">Unit 1</option>
+                    <option value="2">Unit 2</option>
+                    <option value="3">Unit 3</option>
+                    <option value="4">Unit 4</option>
+                  </select>
+                  <span class="help-block" *ngIf="formErrors.unit_id" style="color: red">
+                    {{formErrors.unit_id}}
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Quantity</label>
+                <label class="form-control-label rtl">الكمية</label>
+                <input type="text" class="form-control" formControlName="Qty" (blur)="checkValidationArrayErrors()">
+                <span class="help-block errorcolorcls">
+                  {{formErrors.Qty}}
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Price</label>
+                <label class="form-control-label rtl">السعر</label>
+                <input type="text" class="form-control" formControlName="Price" (blur)="checkValidationArrayErrors()">
+                <span class="help-block errorcolorcls">
+                  {{formErrors.Price}}
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Discount</label>
+                <label class="form-control-label rtl">الخصم</label>
+                <input type="text" class="form-control" formControlName="Discount" (blur)="checkValidationArrayErrors()">
+              </div>
+              <div class="col-md-8" style="text-align: end; margin: 0 auto; margin-top: 29px;">
+                <button type="submit" class="btn btn-md btn-primary" (click)="AddItem()"
+                  style="margin: auto 0; margin-bottom: 0;">
+                  <i class="fa fa-check-circle"></i>
+                  <span class="ltr"> &nbsp; Add</span>
+                  <span class="rtl"> &nbsp; إضافة</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!-- ---------------------------------Table started------------------------ -->
+          <table class="table table-hover table-bordered responsive" id="dataTable" cellspacing="0" style="width:100% ">
+            <thead>
+              <tr class="headrow ltr">
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th style="width: 50px !important;"></th>
+              </tr>
+              <tr class="headrow rtl">
+                <th>إسم المنتج</th>
+                <th>السعر</th>
+                <th>الخصم</th>
+                <th>الوحدة</th>
+                <th>الكمية</th>
+                <th>مجموع</th>
+                <th style="width: 50px !important;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of invoicedetails.BuyInvoiceDetailsList; let j = index">
+                <td>{{i.ProdName}}</td>
+                <td>{{i.Price | number: '.2'}}</td>
+                <td>{{i.Discount | number: '.2'}}</td>
+                <td>{{i.UnitName}}</td>
+                <td>{{i.Qty}}</td>
+                <td>{{i.Invoice_tot | number: '.2'}}</td>
+                <td style="display:flex;">
+                  <span>
+                    <a class="nav-link">
+                      <i class="fa fa-fw fa-trash" style="color: red" (click)="removerow(i)"></i>
+                    </a>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ---------------------------------Table End------------------------ -->
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="form-control-label ltr">Note</label>
+              <label class="form-control-label rtl">ملاحظات</label>
+              <textarea rows="3" class="form-control" formControlName="Notes"></textarea>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Invoice Discount</label>
+              <label class="form-control-label rtl">خصم كلى</label>
+              <input type="text" class="form-control" formControlName="InvoiceDiscount">
+            </div>
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Net</label>
+              <label class="form-control-label rtl">الإجمالى</label>
+              <input type="text" class="form-control" formControlName="InvNet">
+            </div>
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Paid</label>
+              <label class="form-control-label rtl">المدفوع</label>
+              <input type="text" class="form-control" formControlName="Paid">
+            </div>
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Remain</label>
+              <label class="form-control-label rtl">المتبقى</label>
+              <input type="text" class="form-control" readonly formControlName="Remain">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-12 text-center submitBtns">
+                <button type="submit" class="btn btn-md btn-warning" (click)="invoicesubmit()"
+                  style="margin-right:5px;">
+                  <i class="fa fa-check-circle"></i>
+                  <span class="ltr"> &nbsp; Create</span>
+                  <span class="rtl"> &nbsp; إنشاء</span>
+                </button>
+                <button type="submit" class="btn btn-md btn-success" (click)="invoicecancle()">
+                  <i class="fa fa-ban"></i>
+                  <span class="ltr">&nbsp; Cancel</span>
+                  <span class="rtl">&nbsp; إلغاء</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
