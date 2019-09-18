@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import main from '@fullcalendar/core/reducers/main';
+// import main from '@fullcalendar/core/reducers/main';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { UserinfoService } from 'src/app/userinfo.service';
 import { Router, ActivatedRoute } from '@angular/router';
