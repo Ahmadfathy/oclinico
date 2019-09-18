@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { Headers, RequestOptions } from '@angular/http';
 
 
-
 @Component({
   selector: 'app-stores',
   templateUrl: './stores.component.html',
