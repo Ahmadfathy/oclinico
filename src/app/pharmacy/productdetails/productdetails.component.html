@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-12">
         <ul id="breadcrumb">
@@ -8,215 +7,424 @@
         </ul>
     </div>
 </div>
-  <div class="container" >
-
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header">
-                      <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Productdetails::{{nameval}}</p>
-                      <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
-                  </div>
-          <!-- <div class='col-md-4'>
-              <h4>Product :</h4>
-           
-          </div> -->
-     
-      <div class="card-body">
-        <!-- <div class="row">
-            <div class='col-md-4'>
-                <h4>Product details :{{nameval}}</h4>
-             
-            </div>
-        </div> -->
-        <hr>
-    
-
-        <form [formGroup]='productdetailsForm'(ngSubmit)="onSubmit()">
-            <div class="row">
-  <div class="col-md-4 ">
-  
-        <div class="form-group">
-                <lable>Registration No</lable>
-                <input type="text" formControlName="Registrationno" 
-                class="form-control" [ngClass]="{' is-invalid':submitted && s.Registrationno.errors}">
-                <div *ngIf="submitted && s.Registrationno.errors" class="invaild-feedback">
-                    <div *ngIf="s.Registrationno.errors.required" style="color: red">Registration No is Required</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i>
+                        &nbsp;Productdetails::{{nameval}}</p>
+                    <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
                 </div>
-         </div>
-         <div class="form-group">
-          <lable>Strength Value</lable>
-          <input type="text" formControlName="Strengthvalue" 
-          class="form-control" [ngClass]="{' is-invalid':submitted && s.Strengthvalue.errors}">
-          <div *ngIf="submitted && s.Strengthvalue.errors" class="invaild-feedback">
-              <div *ngIf="s.Strengthvalue.errors.required" style="color: red">Strength  Value is Required</div>
-          </div>
-   </div>
-   <div class="form-group">
-    <lable>Volume</lable>
-    <select type="text" formControlName="volume" 
-    class="form-control" [ngClass]="{' is-invalid':submitted && s.volume.errors}">
-    <option  value=''disabled selected>Select</option>
-    <option *ngFor="let engname of name" [value]="engname.ID">{{engname.NameEn}}</option>
-  </select>
-    <div *ngIf="submitted && s.volume.errors" class="invaild-feedback">
-        <div *ngIf="s.volume.errors.required" style="color: red">Volume  is Required</div>
-    </div>
-</div>
-<div class="form-group">
-  <lable>package Size</lable>
-  <select type="text" formControlName="packagesize" 
-  class="form-control" [ngClass]="{' is-invalid':submitted && s.packagesize.errors}">
-<option>Select</option>
-</select>
-  <div *ngIf="submitted && s.packagesize.errors" class="invaild-feedback">
-      <div *ngIf="s.packagesize.errors.required" style="color: red">package Size is Required</div>
-  </div>
-</div>
-<div class="form-group">
-  <lable>Barcode</lable>
-  <input type="text" formControlName="barcode" 
-  class="form-control" [ngClass]="{' is-invalid':submitted && s.barcode.errors}">
-  <div *ngIf="submitted && s.barcode.errors" class="invaild-feedback">
-      <div *ngIf="s.barcode.errors.required" style="color: red">Barcode is Required</div>
-  </div>
-</div>
-         </div>
-         <div class="col-md-4 ">
-  
-          <div class="form-group">
-                  <lable>TradeNameAR</lable>
-                  <input type="text" formControlName="TradeNamear" 
-                  class="form-control" [ngClass]="{' is-invalid':submitted && s.TradeNamear.errors}">
-                  <div *ngIf="submitted && s.TradeNamear.errors" class="invaild-feedback">
-                      <div *ngIf="s.TradeNamear.errors.required" style="color: red">TradeNameAR is Required</div>
-                  </div>
-           </div>
-           <div class="form-group">
-            <lable>ATCCode1</lable>
-            <input type="text" formControlName="ATCcode1" 
-            class="form-control" [ngClass]="{' is-invalid':submitted && s.ATCcode1.errors}">
-            <div *ngIf="submitted && s.ATCcode1.errors" class="invaild-feedback">
-                <div *ngIf="s.ATCcode1.errors.required" style="color: red">ATCCode1 is Required</div>
             </div>
-     </div>
-     <div class="form-group">
-      <lable>Unit of Volume</lable>
-      <select type="text" formControlName="Unitofvolume" 
-      class="form-control" [ngClass]="{' is-invalid':submitted && s.Unitofvolume.errors}">
-    <option value=''disabled selected>Select</option>
-    <option *ngFor="let engname1 of name1" [value]="engname1.ID">{{engname1.NameEn}}</option>
-    </select>
-      <div *ngIf="submitted && s.Unitofvolume.errors" class="invaild-feedback">
-          <div *ngIf="s.Unitofvolume.errors.required" style="color: red">Unit of Volume  is Required</div>
-      </div>
-</div>
-<div class="form-group">
-  <lable>Public Price</lable>
-  <input type="text" formControlName="Publicprice" 
-  class="form-control" [ngClass]="{' is-invalid':submitted && s.Publicprice.errors}">
-  <div *ngIf="submitted && s.Publicprice.errors" class="invaild-feedback">
-      <div *ngIf="s.Publicprice.errors.required" style="color: red">Public price is Required</div>
-  </div>
-</div>
-<div class="form-group">
-  <lable>Alert quantity</lable>
-  <input type="text" formControlName="Alertquantity" 
-  class="form-control" [ngClass]="{' is-invalid':submitted && s.Alertquantity.errors}">
-  <div *ngIf="submitted && s.Alertquantity.errors" class="invaild-feedback">
-      <div *ngIf="s.Alertquantity.errors.required" style="color: red">Alert Quantity  is Required</div>
-  </div>
-</div>
-</div>
-<div class="col-md-4 ">
-  
-  <div class="form-group">
-          <lable>TradeNameEn</lable>
-          <input type="text" formControlName="TradeNameen" 
-          class="form-control" [ngClass]="{' is-invalid':submitted && s.TradeNameen.errors}">
-          <div *ngIf="submitted && s.TradeNameen.errors" class="invaild-feedback">
-              <div *ngIf="s.TradeNameen.errors.required" style="color: red">TradeNameEn is Required</div>
-          </div>
-   </div>
-   <div class="form-group">
-    <lable>ATCCode2</lable>
-    <input type="text" formControlName="ATCcode2" 
-    class="form-control" [ngClass]="{' is-invalid':submitted && s.ATCcode2.errors}">
-    <div *ngIf="submitted && s.ATCcode2.errors" class="invaild-feedback">
-        <div *ngIf="s.ATCcode2.errors.required" style="color: red">ATCCode2 is Required</div>
+            <div class="card-body">
+                <hr>
+                <form [formGroup]='productdetailsForm' (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <label>Generic name *</label>
+                                <input type="text" class="form-control" (keyup)="extractSuggestedTexts()"
+                                    formControlName="genericname"
+                                    [ngClass]="{' is-invalid':submitted && s.genericname.errors}">
+                                <div class="product-container" *ngIf="ShowAuto">
+                                    <div>
+                                        <div class="product" *ngFor="let p of suggestedTexts" (click)="SelectItem(p)">
+                                            {{p.GenericName}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="help-block"
+                                    *ngIf="submitted && s.genericname.errors && s.genericname.errors.required"
+                                    style="color: red">
+                                    Generic Name is Required
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <lable>Public Price</lable>
+                                <input type="text" formControlName="Public_price_SAR" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Public_price_SAR.errors}">
+                                <div *ngIf="submitted && s.Public_price_SAR.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Public_price_SAR.errors.required" style="color: red">Public price is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Barcode</lable>
+                                <input type="text" formControlName="barcode" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.barcode.errors}">
+                                <div *ngIf="submitted && s.barcode.errors" class="invaild-feedback">
+                                    <div *ngIf="s.barcode.errors.required" style="color: red">Barcode is Required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <lable>TradeNameAR</lable>
+                                <input type="text" formControlName="TradeNameAr" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.TradeNameAr.errors}">
+                                <div *ngIf="submitted && s.TradeNameAr.errors" class="invaild-feedback">
+                                    <div *ngIf="s.TradeNameAr.errors.required" style="color: red">TradeNameAR is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Package Type</lable>
+                                <select type="text" formControlName="Package_type_ID" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Package_type_ID.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname2 of name2" [value]="engname2.ID">{{engname2.NameEn}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && s.Package_type_ID.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Package_type_ID.errors.required" style="color: red">Package Type is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Alert quantity</lable>
+                                <input type="text" formControlName="Alertquantity" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Alertquantity.errors}">
+                                <div *ngIf="submitted && s.Alertquantity.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Alertquantity.errors.required" style="color: red">Alert Quantity
+                                        is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <lable>TradeNameEn</lable>
+                                <input type="text" formControlName="TradeNameEng" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.TradeNameEng.errors}">
+                                <div *ngIf="submitted && s.TradeNameEng.errors" class="invaild-feedback">
+                                    <div *ngIf="s.TradeNameEng.errors.required" style="color: red">TradeNameEn is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Registration No</lable>
+                                <input type="text" formControlName="Registrationno" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Registrationno.errors}">
+                                <div *ngIf="submitted && s.Registrationno.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Registrationno.errors.required" style="color: red">Registration No
+                                        is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>package Size</lable>
+                                <select type="text" formControlName="Package_size" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Package_size.errors}">
+                                    <option>Select</option>
+                                </select>
+                                <div *ngIf="submitted && s.Package_size.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Package_size.errors.required" style="color: red">package Size is
+                                        Required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <lable>Strength Value</lable>
+                                <input type="text" formControlName="Strength_value" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Strength_value.errors}">
+                                <div *ngIf="submitted && s.Strength_value.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Strength_value.errors.required" style="color: red">Strength Value
+                                        is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Volume</lable>
+                                <select type="text" formControlName="Volume" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Volume.errors}">
+                                    <option value='0' disabled selected>Select</option>
+                                    <option *ngFor="let engname of name" [value]="engname.ID">{{engname.NameEn}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && s.Volume.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Volume.errors.required" style="color: red">Volume is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Unit of Strength</lable>
+                                <select type="text" formControlName="Unitofstrength" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Unitofstrength.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor='let engname of names' [value]="engname.ID">
+                                        {{engname.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Unitofstrength.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Unitofstrength.errors.required" style="color: red">
+                                        Unit of Strength is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Route of Administration</lable>
+                                <select type="text" formControlName="Routeofadministration" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Routeofadministration.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname6 of name6" [value]="engname6.ID">
+                                        {{engname6.ID}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Routeofadministration.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Routeofadministration.errors.required" style="color: red">Route of
+                                        Administration is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Shelf-life(mon)</lable>
+                                <select type="text" formControlName="Shelf_life_mon_ID" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Shelf_life_mon_ID.errors}">
+                                    <option>null</option>
+                                </select>
+                                <div *ngIf="submitted && s.Shelf_life_mon_ID.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Shelf_life_mon_ID.errors.required" style="color: red">
+                                        Shelf-life is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Country of Manufacture</lable>
+                                <select type="text" formControlName="Countryofmanufacture" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Countryofmanufacture.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname7 of name7" [value]="engname7.ID">
+                                        {{engname7.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Countryofmanufacture.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Countryofmanufacture.errors.required" style="color: red">Country
+                                        of
+                                        Manufacture is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>MAH(Agent name)</lable>
+                                <select type="text" formControlName="Mah" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Mah.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname8 of name8" [value]="engname8.ID">
+                                        {{engname8.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Mah.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Mah.errors.required" style="color: red">MAH is
+                                        Required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <lable>ATCCode1</lable>
+                                <input type="text" formControlName="ATC_Code_1" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.ATC_Code_1.errors}">
+                                <div *ngIf="submitted && s.ATC_Code_1.errors" class="invaild-feedback">
+                                    <div *ngIf="s.ATC_Code_1.errors.required" style="color: red">ATCCode1 is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Unit of Volume</lable>
+                                <select type="text" formControlName="Unit_of_volume_ID" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Unit_of_volume_ID.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname1 of name1" [value]="engname1.ID">{{engname1.NameEn}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && s.Unit_of_volume_ID.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Unit_of_volume_ID.errors.required" style="color: red">Unit of Volume
+                                        is
+                                        Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Dosage form</lable>
+                                <select type="text" formControlName="Dosageform" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Dosageform.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname1 of names1" [value]="engname1.ID">
+                                        {{engname1.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Dosageform.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Dosageform.errors.required" style="color: red">
+                                        Dosage
+                                        form is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Legal status </lable>
+                                <select type="text" formControlName="Legalstatus" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Legalstatus.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor='let engname9 of name9' [value]="engname9.ID">
+                                        {{engname9.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Legalstatus.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Legalstatus.errors.required" style="color: red">
+                                        legal
+                                        Status is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Storage Conditoins</lable>
+                                <select type="text" formControlName="Storageconditions" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Storageconditions.errors}">
+                                    <option value='null'>Select</option>
+                                    <option *ngFor='let engname10 of name10' [value]="engname10.ID">
+                                        {{engname10.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Storageconditions.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Storageconditions.errors.required" style="color: red">
+                                        Storage Condition is Required
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <lable>Marketing Company</lable>
+                                <select type="text" formControlName="Marketingcompany" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Marketingcompany.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor='let engname11 of name11' [value]="engname11.ID">
+                                        {{engname11.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Marketingcompany.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Marketingcompany.errors.required" style="color: red">
+                                        Marketing Company is Required
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <lable>Authorization Status</lable>
+                                <select type="text" formControlName="Authorizationstatus" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Authorizationstatus.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor='let engname12 of name12' [value]="engname12.ID">
+                                        {{engname12.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Authorizationstatus.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Authorizationstatus.errors.required" style="color: red">
+                                        Authorization
+                                        Status is
+                                        Required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <lable>ATCCode2</lable>
+                                <input type="text" formControlName="ATC_Code_2" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.ATC_Code_2.errors}">
+                                <div *ngIf="submitted && s.ATC_Code_2.errors" class="invaild-feedback">
+                                    <div *ngIf="s.ATC_Code_2.errors.required" style="color: red">ATCCode2 is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Remarks</lable>
+                                <input type="text" formControlName="Remarks" class="form-control"
+                                    [ngClass]="{' is-invalid':submitted && s.Remarks.errors}">
+                                <div *ngIf="submitted && s.Remarks.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Remarks.errors.required" style="color: red">Remarks is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Product Control </lable>
+                                <select type="text" formControlName="productcontrol" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.productcontrol.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname2 of name2" [value]="engname2.ID">
+                                        {{engname2.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.productcontrol.errors" class="invaild-feedback">
+                                    <div *ngIf="s.productcontrol.errors.required" style="color: red">
+                                        Product Control is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Manufacture name</lable>
+                                <select type="text" formControlName="Manucfacturename" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Manucfacturename.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname3 of name3" [value]="engname3.ID">
+                                        {{engname3.Name}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Manucfacturename.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Manucfacturename.errors.required" style="color: red">
+                                        Manufacture name is Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Nationality</lable>
+                                <select type="text" formControlName="Nationality" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Nationality.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname4 of name4" [value]="engname4.ID">
+                                        {{engname4.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Nationality.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Nationality.errors.required" style="color: red">
+                                        Nationality is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <lable>Marketing status</lable>
+                                <select type="text" formControlName="Marketingstatus" class="form-control"
+                                    [ngClass]="{'is-invalid':submitted && s.Marketingstatus.errors}">
+                                    <option value='null' disabled selected>Select</option>
+                                    <option *ngFor="let engname5 of name5" [value]="engname5.ID">
+                                        {{engname5.NameEn}}</option>
+                                </select>
+                                <div *ngIf="submitted && s.Marketingstatus.errors" class="invaild-feedback">
+                                    <div *ngIf="s.Marketingstatus.errors.required" style="color: red">
+                                        Marketing Status is Required</div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0; margin-top: 2.3rem;">
+                                <button class="btn btn-primary col-md-12" (click)="insertdata()" id='save'>Save</button>
+                                <button class="btn btn-primary col-md-12" (click)='update()' id='update'>Update</button>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Trade Name AR</th>
+                        <th>Strength Value</th>
+                        <th>Price</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of table ,let i=index">
+                        <td>{{s.TradeNameAr}}</td>
+                        <td>{{s.StrengthValue}}</td>
+                        <td>{{s.price}}</td>
+                        <!-- <td><button (click)='edit(s.ID)'>Edit</button></td>  -->
+                        <!-- <td><button (click)='delete(s.ID)'>Delete</button></td> -->
+                        <td>
+                            <a style="color:#4798e8 ">
+                                <span class='fa fa-pencil-alt text-info' (click)='edit(s.ID)'></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a style="color:#4798e8 ">
+                                <span class='fa fa-fw fa-trash' (click)='delete(s.ID)'></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-<div class="form-group">
-<lable>Package Type</lable>
-<select type="text" formControlName="Packagetype" 
-class="form-control" [ngClass]="{' is-invalid':submitted && s.Packagetype.errors}">
-<option value=''disabled selected>Select</option>
-<option *ngFor="let engname2 of name2" [value]="engname2.ID">{{engname2.NameEn}}</option>
-</select>
-<div *ngIf="submitted && s.Packagetype.errors" class="invaild-feedback">
-  <div *ngIf="s.Packagetype.errors.required" style="color: red">Package Type  is Required</div>
-</div>
-</div>
-
-<div class="form-group">
-<lable>Remarks</lable>
-<input type="text" formControlName="remarks" 
-class="form-control" [ngClass]="{' is-invalid':submitted && s.remarks.errors}">
-<div *ngIf="submitted && s.remarks.errors" class="invaild-feedback">
-<div *ngIf="s.remarks.errors.required" style="color: red">Remarks is Required</div>
-</div>
-</div>
-<br>
-<div>
-<button class="btn btn-primary col-md-12"  (click)="insertdata()"id='save'>Save</button>
-<button class="btn btn-primary col-md-12" (click)='update()' id='update'>Update</button>
-</div>
-<!-- <div class='col-md-12' style="margin-top: 33px;">
-    <button class="btn btn-primary"(click)='insertdata()'id='save'>save</button>
-    <button class="btn btn-primary" (click)=' update()' id='update'>Update</button>
-    </div> -->
-</div>
-</div>
-</form>
-
-</div>
-
-
-<br>
-<hr>
-<table class="table table-bordered">
- <thead>
-<tr>
- <th>Trade Name AR</th>
- <th>Strength Value</th>
- <th>Price</th>
- <th>Edit</th>
- <th>Delete</th>
-</tr>
-</thead>
-<tbody>
-<tr *ngFor="let s of table ,let i=index">
-    <td>{{s.TradeNameAr}}</td>
-    <td>{{s.StrengthValue}}</td>
-    <td>{{s.price}}</td>
-    <!-- <td><button (click)='edit(s.ID)'>Edit</button></td>  -->
-    <!-- <td><button (click)='delete(s.ID)'>Delete</button></td> -->
-    <td>
-        <a style="color:#4798e8 ">
-        <span class='fa fa-pencil-alt text-info'(click)='edit(s.ID)'></span>
-      </a>
-    </td>
-<td>
-    <a style="color:#4798e8 ">
-    <span class='fa fa-fw fa-trash'(click)='delete(s.ID)'></span>
-  </a>
-</td>
-</tr>
-</tbody>
-</table>   
-        
-         </div>
-        </div>
-        </div>
-      </div>
-  

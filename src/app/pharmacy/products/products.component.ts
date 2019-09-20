@@ -1,17 +1,12 @@
+import { ProductServices } from './../products.service';
 import { Component, OnInit } from '@angular/core';
-// import {FormBuilder,FormGroup,Validators} from '@angular/forms';
-import { store } from '@angular/core/src/render3';
-import { Title, Meta } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { UserinfoService } from 'src/app/userinfo.service';
-
 import { Router } from '@angular/router';
-
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
-import { timeHours } from 'd3';
-
 
 @Component({
   selector: 'app-products',
@@ -35,17 +30,21 @@ export class ProductsComponent implements OnInit {
   name10: any;
   name11: any;
   name12: any;
-  validationType:any;
+  validationType: any;
   Name: string;
+  suggestedTexts: any[] = [];
+  ShowAuto: boolean = false;
+  public langulagetype: any = 'us';
+  languageoption: string;
+  GenericName: any[] = [];
 
 
 
   constructor(private formBuilder: FormBuilder,
     private http: Http,
     private meta: Meta,
-
     private cmn: UserinfoService,
-    private router: Router) {
+    private router: Router, private Services: ProductServices) {
     this.meta.addTag({ name: 'Description', content: 'Oclinico' });
     this.meta.addTag({ name: 'Keywords', content: 'Oclinico' });
   }
@@ -55,37 +54,8 @@ export class ProductsComponent implements OnInit {
 
 
     this.productForm = this.formBuilder.group({
-      genericname: ['', Validators.required],
-      Routeofadministration: ['', Validators.required],
-      shelflife: ['', Validators.required],
-      Countryofmanufacture: ['', Validators.required],
-      Mah: ['', Validators.required],
-      Unitofstrength: ['', Validators.required],
-      Legalstatus: ['', Validators.required],
-      Storageconditions: [''],
-      Marketingcompany: ['', Validators.required],
-      Authorizationstatus: ['', Validators.required],
-      Dosageform: ['', Validators.required],
-      productcontrol: ['', Validators.required],
-      Manucfacturename: ['', Validators.required],
-      Nationality: ['', Validators.required],
-      Marketingstatus: ['', Validators.required],
-
-
+      genericname: ['', Validators.required]
     });
-    this.unitstrength();
-    this.dosageform();
-    this.productcontrol();
-    this.manufacturename();
-    this.nationality();
-    this.markitingstatus();
-    this.routeofadmin();
-    this.countryofmanufacture();
-    this.mah();
-    this.legalstatus();
-    this.storagecondition();
-    this.markitingcompany();
-    this.authorazationstatus();
 
   }
   get s() { return this.productForm.controls; }
@@ -162,10 +132,10 @@ export class ProductsComponent implements OnInit {
       if (res.Result == true) {
         alert('Successfully Inserted')
         this.productForm.reset();
-        this.submitted=false;
+        this.submitted = false;
         this.getdata();
         console.log("success");
-     
+
       } else {
 
       }
@@ -175,14 +145,6 @@ export class ProductsComponent implements OnInit {
       console.log("Token Error:" + err);
     }
   }
-
-  //   getdata() {
-
-  //     //service call
-  // console.log("test");
-
-
-  //   }
 
   getdata() {
 
@@ -206,10 +168,10 @@ export class ProductsComponent implements OnInit {
 
       console.log(res.Result);
       if (res.Result == true) {
-      
+
         console.log("success")
-         this.table = res.data;
-          sessionStorage.setItem('masterid',res.data[0].ID)
+        this.table = res.data;
+        sessionStorage.setItem('masterid', res.data[0].ID)
         console.log(this.table);
 
       } else {
@@ -299,156 +261,6 @@ export class ProductsComponent implements OnInit {
   }
 
 
-
-  manufacturename() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/manufacturer/get-all-Manufacturers/"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name3 = res.data;
-      }
-    })
-
-  }
-  nationality() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/11"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name4 = res.data;
-      }
-    })
-
-  }
-
-  markitingstatus() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/10"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name5 = res.data;
-      }
-    })
-
-  }
-
-  routeofadmin() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/3"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name6 = res.data;
-      }
-    })
-
-  }
-
-  countryofmanufacture() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/9"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name7 = res.data;
-      }
-    })
-
-  }
-  mah() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/12"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name8 = res.data;
-      }
-    })
-
-  }
-
-  legalstatus() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/13"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name9 = res.data;
-      }
-    })
-
-  }
-
-  storagecondition() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/7"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name10 = res.data;
-      }
-    })
-
-  }
-
-  markitingcompany() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/10"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name11 = res.data;
-      }
-    })
-
-  }
-
-
-  authorazationstatus() {
-    let headers = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
-    let options = new RequestOptions({ headers: headers });
-    let url = "https://api.oclinico.com/PharmacyAPI/api/common/get-all-Common/15"
-    this.http.post(url, options).map(res => res.json()).subscribe(res => {
-      if (res.Result == true) {
-        this.name12 = res.data;
-      }
-    })
-
-  }
-
   public removeValidators(form: FormGroup) {
     for (const key in form.controls) {
       form.get(key).clearValidators();
@@ -461,6 +273,32 @@ export class ProductsComponent implements OnInit {
       form.get(key).setValidators(this.validationType[key]);
       form.get(key).updateValueAndValidity();
     }
+  }
+
+
+
+  public extractSuggestedTexts() {
+    debugger;
+    let val = this.s.genericname.value;
+    this.GenericName = [];
+    this.suggestedTexts = [];
+    this.Services.getGeneric(val, res => {
+      this.GenericName = res.GenericName;
+      if (this.s.genericname.value !== "") {
+        this.suggestedTexts = this.GenericName.filter(e => e.GenericName.toLowerCase().indexOf(this.s.genericname.value.toLowerCase()) > -1);
+        this.ShowAuto = true;
+      }
+      else {
+        this.suggestedTexts = [];
+        this.ShowAuto = false;
+      }
+    })
+  }
+
+  SelectItem(data: any) {
+    this.ShowAuto = false;
+    this.suggestedTexts = [];
+    this.productForm.get('genericname').setValue(data.GenericName);
   }
 
 

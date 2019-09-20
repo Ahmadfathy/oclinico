@@ -7,3 +7,25 @@
     background-color:  #4a87ee;
     color: white;
   }
+
+  .product-container{
+    position: absolute;
+    z-index: 1;
+    width: 95%;
+    max-height: 250px;
+    background: #f6f6f6;
+    overflow-y: auto;
+  }
+  
+  .product{
+    padding: 10px;
+    color: #0866c2;
+  }
+  
+  .product:hover{
+    background: #c2c2c2;
+  }
+  .headrow {
+    background-color: #3587d8;
+    color: white;
+  }
