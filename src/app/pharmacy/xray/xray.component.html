@@ -52,13 +52,9 @@
                     <td>{{s.Name}}</td>
                     <td>
                       <a style='color: #4798e8'>
-                        <!-- <span class="fa fa-fw fa-plus" [routerLink]="['/productdetails']"
-                          [queryParams]="{Name:s.GenericName,id:s.ID}">
-                        </span>&nbsp;&nbsp;&nbsp; -->
                         <span class="fa fa-fw fa-eye" routerLink='/xraygrid'
                           [queryParams]="{id:s.ID}">
                         </span>&nbsp;&nbsp;&nbsp;
-                        <span class='fa fa-fw fa-trash' (click)="delete(s.ID)"></span>
                       </a>
                     </td>
                   </tr>

@@ -6,11 +6,8 @@ import { UserinfoService } from 'src/app/userinfo.service';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import { Router } from '@angular/router';
-
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
-import { id } from '@swimlane/ngx-charts/release/utils';
-import { resetCompiledComponents } from '@angular/core/src/render3/jit/module';
 
 @Component({
   selector: 'app-productsgrid',
@@ -81,6 +78,50 @@ export class ProductsgridComponent implements OnInit {
       , err => {
         console.log("Token Error:" + err);
       });
+  }
+
+  updatedata() {
+    if (this.productsviewForm.status == "INVALID") {
+      return
+    }
+
+    var accessToken = window.localStorage.Tokenval;
+
+    let url = 'https://api.oclinico.com/PharmacyAPI/api/product-master/update-product';
+
+    let body = {
+      'ID': this.id,
+      'genericname': this.productsviewForm.value.genericname
+    }
+    console.log(body)
+
+    let headers = new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: accessToken
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    this.http.post(url, body, options).map(res => res.json()).subscribe(res => {
+      console.log(res)
+
+      //  this.isPageloaderVisible = false;
+      console.log(res.Result);
+      if (res.Result == true) {
+        alert('Successfully Inserted')
+        this.productsviewForm.reset();
+        this.submitted = false;
+        this.getdata();
+        console.log("success");
+
+      } else {
+
+      }
+    })
+
+    err => {
+      console.log("Token Error:" + err);
+    }
   }
 
 }

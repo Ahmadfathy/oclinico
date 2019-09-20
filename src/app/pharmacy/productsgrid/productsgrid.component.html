@@ -17,11 +17,15 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-10">
                                 <div class="form-group">
                                     <lable>Generic name</lable>
-                                    <input type="text" formControlName="genericname" class="form-control" readonly>
+                                    <input type="text" formControlName="genericname" class="form-control">
                                 </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" (click)="updatedata()"
+                                    style="width: 100%;">Update</button>
                             </div>
                         </div>
                     </div>
