@@ -92,7 +92,7 @@ export class ProductdetailsComponent implements OnInit {
       Strength_value: [''],
       Volume: [''],
       Package_size: [''],
-      barcode: [''],
+      barcode: ['', Validators.required],
       ATC_Code_1: [''],
       Unit_of_volume_ID: [''],
       Alertquantity: [''],

@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <ul id="breadcrumb">
       <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
-      <li class="ltr"><a class="nav-link" routerLink='/products'> Products</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/xray'> X - Ray</a></li>
       <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
     </ul>
   </div>
@@ -13,18 +13,18 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Products</p>
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;X - Ray</p>
             <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-10">
-                <label class="form-control-label ltr">Generic name *</label>
-                <input type="text" class="form-control" formControlName="genericname"
-                  [ngClass]="{' is-invalid':submitted && s.genericname.errors}">
-                <span class="help-block" *ngIf="submitted && s.genericname.errors && s.genericname.errors.required"
+                <label class="form-control-label ltr">Name *</label>
+                <input type="text" class="form-control" formControlName="name"
+                  [ngClass]="{' is-invalid':submitted && s.name.errors}">
+                <span class="help-block" *ngIf="submitted && s.name.errors && s.name.errors.required"
                   style="color: red">
-                  Generic Name is Required
+                  Name is Required
                 </span>
               </div>
               <div class="col-md-2">
@@ -43,24 +43,19 @@
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Generic Name</th>
-                    <th>Dosage Form</th>
-                    <th>Unitofstrength
-                    </th>
+                    <th>Name</th>
                     <th style="width: 114px;">Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let s of table ">
-                    <td>{{s.GenericName}}</td>
-                    <td>{{s.DosageFormID}}</td>
-                    <td>{{s.UnitOfStrengthID}}</td>
+                    <td>{{s.Name}}</td>
                     <td>
                       <a style='color: #4798e8'>
                         <!-- <span class="fa fa-fw fa-plus" [routerLink]="['/productdetails']"
                           [queryParams]="{Name:s.GenericName,id:s.ID}">
                         </span>&nbsp;&nbsp;&nbsp; -->
-                        <span class="fa fa-fw fa-eye" routerLink='/productsgrid'
+                        <span class="fa fa-fw fa-eye" routerLink='/xraygrid'
                           [queryParams]="{id:s.ID}">
                         </span>&nbsp;&nbsp;&nbsp;
                         <span class='fa fa-fw fa-trash' (click)="delete(s.ID)"></span>

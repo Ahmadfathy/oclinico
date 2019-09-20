@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-interface GenericName {
+interface Xray {
   ID: number;
   NameAr: string;
   NameEn: string;
@@ -10,7 +10,7 @@ interface GenericName {
 @Injectable({
   providedIn: 'root'
 })
-export class ProductServices {
+export class XrayServices {
   constructor(private http: HttpClient) { }
 
   getGeneric(value, callback) {

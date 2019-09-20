@@ -10,14 +10,14 @@ import { PharmacyRoutes } from './pharmacy.routing';
 
 @NgModule({
   imports: [
-        FormsModule, 
-        ReactiveFormsModule,
-        CommonModule,
-         RouterModule.forChild(PharmacyRoutes)
-        ],
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule.forChild(PharmacyRoutes)
+  ],
   declarations: [
     PharmacyComponent,
-  
+
   ]
 })
 

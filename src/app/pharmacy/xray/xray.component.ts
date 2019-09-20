@@ -9,11 +9,11 @@ import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  selector: 'app-xray',
+  templateUrl: './xray.component.html',
+  styleUrls: ['./xray.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class XRayComponent implements OnInit {
   productForm: FormGroup;
   submitted = false;
   table = [];
@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit {
 
 
     this.productForm = this.formBuilder.group({
-      genericname: ['', Validators.required]
+      name: ['', Validators.required]
     });
 
   }
@@ -67,6 +67,8 @@ export class ProductsComponent implements OnInit {
     }
     console.log(this.productForm.value)
   }
+
+  
   insertdata() {
     if (this.productForm.status == "INVALID") {
       return
@@ -75,14 +77,13 @@ export class ProductsComponent implements OnInit {
     var accessToken = window.localStorage.Tokenval;
 
 
-    let url = 'https://api.oclinico.com/PharmacyAPI/api/product-master/add-new-product';
+    let url = 'https://api.oclinico.com/PharmacyAPI/api/category-ray/add-new';
 
 
     let body = {
-      'GenericName': this.productForm.value.genericname
+      'Name': this.productForm.value.name
     }
     console.log(body)
-
 
     let headers = new Headers({
       "Content-Type": "application/json",
@@ -93,7 +94,6 @@ export class ProductsComponent implements OnInit {
 
     this.http.post(url, body, options).map(res => res.json()).subscribe(res => {
       console.log(res)
-
 
       //  this.isPageloaderVisible = false;
       console.log(res.Result);
@@ -113,15 +113,10 @@ export class ProductsComponent implements OnInit {
       console.log("Token Error:" + err);
     }
   }
-
   getdata() {
-
-    console.log("test");
     var accessToken = window.localStorage.Tokenval;
-
-    let url = 'https://api.oclinico.com/PharmacyAPI/api/product-master/get-all-product/';
+    let url = 'https://api.oclinico.com/PharmacyAPI/api/category-ray/get-all/';
     let body = {
-
     }
 
     let headers = new Headers({
@@ -132,11 +127,7 @@ export class ProductsComponent implements OnInit {
     let options = new RequestOptions({ headers: headers });
 
     this.http.post(url, body, options).map(res => res.json()).subscribe(res => {
-      console.log(res)
-
-      console.log(res.Result);
       if (res.Result == true) {
-
         console.log("success")
         this.table = res.data;
         sessionStorage.setItem('masterid', res.data[0].ID)
@@ -150,38 +141,35 @@ export class ProductsComponent implements OnInit {
       console.log("Token Error:" + err);
     }
   }
+  // delete(id) {
+  //   var result = confirm("Are you sure you want to delete");
+  //   if (result == true) {
 
+  //     //var accessToken = window.localStorage.Tokenval;    
+  //     let url = "https://api.oclinico.com/PharmacyAPI/api/product-master/delete-product/"
 
+  //     let headers = new Headers({
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       //Authorization: accessToken
+  //     });
+  //     let options = new RequestOptions({ headers: headers });
 
-  delete(id) {
-    var result = confirm("Are you sure you want to delete");
-    if (result == true) {
+  //     this.http.post(url + id, options).map(res => res.json()).subscribe((res) => {
+  //       console.log(res)
 
-      //var accessToken = window.localStorage.Tokenval;    
-      let url = "https://api.oclinico.com/PharmacyAPI/api/product-master/delete-product/"
-
-      let headers = new Headers({
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        //Authorization: accessToken
-      });
-      let options = new RequestOptions({ headers: headers });
-
-      this.http.post(url + id, options).map(res => res.json()).subscribe((res) => {
-        console.log(res)
-
-        if (res.Result == true) {
-          alert('Successfully Delete')
-          console.log("success");
-          this.getdata();
-        } else {
-        }
-      }
-        , (err) => {
-          console.log("Token Error:" + err);
-        });
-    }
-  }
+  //       if (res.Result == true) {
+  //         alert('Successfully Delete')
+  //         console.log("success");
+  //         this.getdata();
+  //       } else {
+  //       }
+  //     }
+  //       , (err) => {
+  //         console.log("Token Error:" + err);
+  //       });
+  //   }
+  // }
 
   public removeValidators(form: FormGroup) {
     for (const key in form.controls) {
@@ -196,7 +184,6 @@ export class ProductsComponent implements OnInit {
       form.get(key).updateValueAndValidity();
     }
   }
-
 }
 
 
