@@ -860,6 +860,14 @@ export const Approutes: Routes = [
         loadChildren: './pharmacy/addmedication/addmedication.module#AddmedicationComponentModule', canActivate: [AuthGuard]
       },
 
+      {
+        path: 'xraygrid',
+        loadChildren: './pharmacy/xraygrid/xraygrid.module#XraygridModule', canActivate: [AuthGuard]
+      },
+      {
+        path: 'xray',
+        loadChildren: './pharmacy/xray/xray.module#XRayModule', canActivate: [AuthGuard]
+      },
 
 
       // ------------------------
