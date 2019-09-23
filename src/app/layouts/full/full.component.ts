@@ -14,9 +14,7 @@ export class FullComponent implements OnInit {
   public config: PerfectScrollbarConfigInterface = {};
   constructor(public router: Router,private _user: UserinfoService) {
     this._user.loginselected_lang.subscribe(message3 =>{
-      console.log(message3);
       this.flag= message3;
-      console.log(this.flag);
       if(this.flag == 'AR'){
         this.options.dir = 'rtl';
       }else {

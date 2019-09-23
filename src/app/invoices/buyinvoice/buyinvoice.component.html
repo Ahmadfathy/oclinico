@@ -110,14 +110,16 @@
                   <label class="mr-sm-2 ltr" for="title">Unit</label>
                   <label class="mr-sm-2 rtl" for="title">الوحدة</label>
 
-                  <select value="Select" name="title" class="custom-select mr-sm-2" formControlName="unit_id"
+                  <input type="text" class="form-control" (keyup)="extractSuggestedTexts()" (blur)="checkValidationArrayErrors()" formControlName="UnitName" readonly>
+                  
+                  <!-- <select value="Select" name="title" class="custom-select mr-sm-2" formControlName="unit_id"
                     (blur)="checkValidationArrayErrors()" (change)="UnitsSelected($event)">
                     <option value="select" selected>-- select --</option>
                     <option value="1">Unit 1</option>
                     <option value="2">Unit 2</option>
                     <option value="3">Unit 3</option>
                     <option value="4">Unit 4</option>
-                  </select>
+                  </select> -->
                   <span class="help-block" *ngIf="formErrors.unit_id" style="color: red">
                     {{formErrors.unit_id}}
                   </span>
@@ -134,7 +136,7 @@
               <div class="col-md-4">
                 <label class="form-control-label ltr">Price</label>
                 <label class="form-control-label rtl">السعر</label>
-                <input type="text" class="form-control" formControlName="Price" (blur)="checkValidationArrayErrors()">
+                <input type="text" class="form-control" formControlName="Price" (blur)="checkValidationArrayErrors()" readonly>
                 <span class="help-block errorcolorcls">
                   {{formErrors.Price}}
                 </span>

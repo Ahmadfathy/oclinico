@@ -30,18 +30,13 @@ export class NavigationComponent implements AfterViewInit {
   ) {
 
     this._user.myuname.subscribe(message => {
-      console.log(message);
       this.username = message;
-      console.log(this.username)
-
     });
 
     this.username = window.localStorage.getItem("name")
 
     this._user.myemail.subscribe(cemail => {
-      console.log(cemail);
       this.useremail = cemail;
-      console.log(this.useremail);
     })
 
     this.useremail = window.localStorage.getItem("username")
@@ -60,9 +55,7 @@ export class NavigationComponent implements AfterViewInit {
     // });
 
     this._user.loginselected_lang.subscribe(message3 =>{
-      console.log(message3);
       this.flag= message3;
-      console.log(this.flag);
 
       if(this.flag == "EN"){
         this.langenglish = true;
@@ -76,7 +69,6 @@ export class NavigationComponent implements AfterViewInit {
   
   }
   ngOnInit() {
-    console.log("header");
     this.langenglish = true;
     this.langarabic = false;
 
@@ -146,7 +138,6 @@ export class NavigationComponent implements AfterViewInit {
   ngAfterViewInit() { }
 
   logout() {
-    console.log("Logout");
     localStorage.removeItem('isLoggedin');
     window.localStorage.clear();
     this.router.navigate(['/newlogin']);

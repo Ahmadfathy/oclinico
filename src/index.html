@@ -19,7 +19,7 @@
         var ALERT_TITLE = "Alert!";
         var ALERT_BUTTON_TEXT = "Ok";
         if (document.getElementById) {
-            window.alert = function(txt) {
+            window.alert = function (txt) {
                 createCustomAlert(txt)
             }
         }
@@ -43,7 +43,7 @@
             btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
             btn.href = "#";
             btn.focus();
-            btn.onclick = function() {
+            btn.onclick = function () {
                 removeCustomAlert();
                 return !1
             };

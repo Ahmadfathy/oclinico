@@ -156,9 +156,7 @@ export class BuyinvoiceComponent implements OnInit {
 
     // For Lang
     this.cmn.currentMessagecat.subscribe(message => {
-      console.log(message);
       this.languageoption = message.split("_")[1];
-      console.log(this.languageoption);
       if (this.languageoption == '' || this.languageoption == undefined || this.languageoption == "undefined") {
         this.langulagetype = "us";
       }
@@ -366,7 +364,7 @@ export class BuyinvoiceComponent implements OnInit {
     }
   }
 
-  public extractSuggestedTexts() {
+  extractSuggestedTexts() {
     let val = this.Items.value[0].ProdName;
     this.products = [];
     this.suggestedTexts = [];
@@ -393,12 +391,18 @@ export class BuyinvoiceComponent implements OnInit {
     this.ShowAuto = false;
     this.suggestedTexts = [];
     this.Items.get('0.Item_ID').setValue(data.ID);
+
     if(this.langulagetype == "EN"){
       this.Items.get('0.ProdName').setValue(data.TradeNameEng);
+      this.Items.get('0.UnitName').setValue(data.NameEng); 
     }
     else{
       this.Items.get('0.ProdName').setValue(data.TradeNameAr);
+      this.Items.get('0.UnitName').setValue(data.NameAr);
     }
+
+    this.Items.get('0.unit_id').setValue(data.Package_type_ID);
+    this.Items.get('0.Price').setValue(data.Public_price_SAR != null ? data.Public_price_SAR : '0.00');
   }
 
   invoicesubmit() {
@@ -426,15 +430,14 @@ export class BuyinvoiceComponent implements OnInit {
     // this.InvoiveForm.get("Store_ID").setValue(data.target.value);
   }
 
-  UnitsSelected(data) {
-    debugger;
-    let selectedOptions = event.target['options'];
-    let selectedIndex = selectedOptions.selectedIndex;
-    let selectElementText = selectedOptions[selectedIndex].text;
+  // UnitsSelected(data) {
+  //   let selectedOptions = event.target['options'];
+  //   let selectedIndex = selectedOptions.selectedIndex;
+  //   let selectElementText = selectedOptions[selectedIndex].text;
 
-    this.Items.get("0.UnitName").setValue(selectElementText);
-    this.Items.get("0.unit_id").setValue(data.target.value);
-  }
+  //   this.Items.get("0.UnitName").setValue(selectElementText);
+  //   this.Items.get("0.unit_id").setValue(data.target.value);
+  // }
 
   removerow(data) {
     var index = this.invoicedetails.BuyInvoiceDetailsList.findIndex(record => record.ProdName === data.ProdName);

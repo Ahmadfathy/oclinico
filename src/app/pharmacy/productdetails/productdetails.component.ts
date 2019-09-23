@@ -63,17 +63,17 @@ export class ProductdetailsComponent implements OnInit {
     // let url =document.URL;
     // this.Name=url.split('=')[1];
 
-    var url = document.URL
-    var url1 = url.split('?')
-    var getids = url1[1].split('=')[1]
-    //console.log(getids);
-    this.nameval = getids.split(":")[0].split("&")[0]
-    //console.log(name)
+    // var url = document.URL
+    // var url1 = url.split('?')
+    // var getids = url1[1].split('=')[1]
+    // //console.log(getids);
+    // this.nameval = getids.split(":")[0].split("&")[0]
+    // //console.log(name)
 
 
-    var currentUrl = document.URL.split('?');
-    currentUrl = currentUrl[currentUrl.length - 1].split('=');
-    this.masterid = currentUrl[currentUrl.length - 1]
+    // var currentUrl = document.URL.split('?');
+    // currentUrl = currentUrl[currentUrl.length - 1].split('=');
+    // this.masterid = currentUrl[currentUrl.length - 1]
 
 
 
@@ -256,8 +256,6 @@ export class ProductdetailsComponent implements OnInit {
         console.log("success")
           ;
         this.table = res.data;
-        console.log(this.table);
-
       } else {
 
       }
@@ -283,7 +281,8 @@ export class ProductdetailsComponent implements OnInit {
     this.http.post(url + this.prid, options).map(res => res.json()).subscribe(res => {
       console.log(res)
 
-
+      debugger;
+      this.id = this.prid;
       if (res.Result == true) {
         //console.log("success")
 
@@ -326,10 +325,6 @@ export class ProductdetailsComponent implements OnInit {
 
           }
         );
-
-        this.id = this.result.data.ID;
-
-
       }
       else {
         console.log("Load Failed:" + this.result.message)

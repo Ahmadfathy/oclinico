@@ -56,26 +56,20 @@ export class SidebarComponent implements OnInit {
     // private settings: FullComponent
   ) {
     this._user.myuname.subscribe(message => {
-      console.log(message);
       this.username = message;
-      console.log(this.username)
     });
 
 
     this._user.myloginType.subscribe(message1 => {
-      console.log(message1);
       this.loginType = message1;
-      console.log(this.loginType);
     })
 
     this._user.myRoleId.subscribe(message2 => {
-      console.log(message2);
       this.CRid = message2;
       //alert(this.CRid)
     })
 
     this._user.myloginuid.subscribe(msg => {
-      console.log(msg);
       this.userid = msg;
     })
 
@@ -127,16 +121,12 @@ export class SidebarComponent implements OnInit {
 
     // });
     this._user.loginselected_lang.subscribe(message3 => {
-      console.log(message3);
       this.langulagetype = message3;
       this.languageoption = message3;
-      console.log(this.langulagetype);
 
       if (this.languageoption == 'EN') {
         this.langulagetype = "EN";
         this.langVal = "1";
-
-        console.log(this.langVal)
 
         this.sidebarnavItems = [];
         this.GetMenu(this.langVal);
@@ -145,7 +135,6 @@ export class SidebarComponent implements OnInit {
 
         this.langulagetype = this.languageoption;
         this.langVal = "2";
-        console.log(this.langVal)
         this.sidebarnavItems = [];
         this.GetMenu(this.langVal);
       }
@@ -153,17 +142,13 @@ export class SidebarComponent implements OnInit {
 
 
     this._user.currentMessagecat.subscribe(message => {
-      console.log(message);
       this.languageoption = message.split("_")[1];
-      console.log(this.languageoption);
 
 
 
       if (this.languageoption == 'EN') {
         this.langulagetype = "EN";
         this.langVal = "1";
-
-        console.log(this.langVal)
 
         this.sidebarnavItems = [];
         this.GetMenu(this.langVal);
@@ -172,7 +157,6 @@ export class SidebarComponent implements OnInit {
 
         this.langulagetype = this.languageoption;
         this.langVal = "2";
-        console.log(this.langVal)
         this.sidebarnavItems = [];
         this.GetMenu(this.langVal);
       }
@@ -228,7 +212,6 @@ export class SidebarComponent implements OnInit {
 
 
     this.GetMenu(this.langVal);
-    console.log(123);
 
     setInterval(() => {
       // window.localStorage.Tokenval = "";
@@ -268,15 +251,11 @@ export class SidebarComponent implements OnInit {
     });
 
     let options = new RequestOptions({ headers: headers });
-    console.log(params);
     this.http.post(serviceUrl, params, options).map(res => res.json()).subscribe(result => {
-      console.log(result);
-
 
       if (result.status_cd === "1") {
         console.log(window.localStorage.getItem("Roletype"));
         console.log(window.localStorage.getItem("RoleID"));
-        console.log(result.data);
         this.sidebarnavItems = result.data;
         // let temp= {
         //   AddStatus: "True",
@@ -305,16 +284,16 @@ export class SidebarComponent implements OnInit {
         //   sidesubmenu: null,
         // }
         // this.sidebarnavItems.push(temp);
-      
+
         // this.mainmenulist = result.data.Table;
         // this.submenu = result.data.Table1;
         for (var i = 0; i < this.sidebarnavItems.length; i++) {
 
           this.sidebarnavItems[i].extralink = false;
 
-          if ((this.sidebarnavItems[i].menu_name == "Pharmacy") || (this.sidebarnavItems[i].menu_name == "User Management") || 
-          (this.sidebarnavItems[i].menu_name == "Appointments") || (this.sidebarnavItems[i].menu_name == "مواعيد") || (this.sidebarnavItems[i].menu_name == "إدارة المستخدم")
-           || (this.sidebarnavItems[i].menu_name == "صيدلية")) {
+          if ((this.sidebarnavItems[i].menu_name == "Pharmacy") || (this.sidebarnavItems[i].menu_name == "User Management") ||
+            (this.sidebarnavItems[i].menu_name == "Appointments") || (this.sidebarnavItems[i].menu_name == "مواعيد") || (this.sidebarnavItems[i].menu_name == "إدارة المستخدم")
+            || (this.sidebarnavItems[i].menu_name == "صيدلية")) {
             this.sidebarnavItems[i].class1 = "has-arrow";
           } else {
             this.sidebarnavItems[i].class1 = "";
@@ -379,7 +358,6 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnDestroy() {
-
     this._user.currentMessagecat.subscribe(message3 => {
       console.log(message3 + "Destroyed");
     })

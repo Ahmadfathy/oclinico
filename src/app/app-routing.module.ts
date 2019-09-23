@@ -834,23 +834,7 @@ export const Approutes: Routes = [
       {
         path: 'productsgrid',
         loadChildren: './pharmacy/productsgrid/productsgrid.module#ProductsgridModule', canActivate: [AuthGuard]
-      }, {
-        path: 'products',
-        loadChildren: './pharmacy/products/products.module#ProductsModule', canActivate: [AuthGuard]
       },
-
-
-      {
-        path: 'productdetails',
-        loadChildren: './pharmacy/productdetails/productdetails.module#ProductdetailsModule', canActivate: [AuthGuard]
-      },
-      {
-        path: 'productsgrid',
-        loadChildren: './pharmacy/productsgrid/productsgrid.module#ProductsgridModule', canActivate: [AuthGuard]
-      },
-
-      // { path: 'Pharmacy', loadChildren: './pharmacy/pharmacy.module#PharmacyModule', canActivate: [AuthGuard] },
-
       {
         path: 'ViewPharmacy',
         loadChildren: './pharmacy/viewpharmacydetails/viewpharmacydetails.module#ViewpharmacydetailsModule', canActivate: [AuthGuard]
@@ -867,6 +851,10 @@ export const Approutes: Routes = [
       {
         path: 'xray',
         loadChildren: './pharmacy/xray/xray.module#XRayModule', canActivate: [AuthGuard]
+      },
+      {
+        path: 'xrayrequest',
+        loadChildren: './pharmacy/xrayrequest/xrayrequest.module#XRayRequestModule', canActivate: [AuthGuard]
       },
 
 
