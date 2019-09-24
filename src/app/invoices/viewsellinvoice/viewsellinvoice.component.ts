@@ -1,4 +1,4 @@
-import { SellinvoiceServices } from './sellinvoice.service';
+import { ViewSellinvoiceServices } from './viewsellinvoice.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
@@ -6,11 +6,11 @@ import { UserinfoService } from 'src/app/userinfo.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sellinvoice',
-  templateUrl: './sellinvoice.component.html',
-  styleUrls: ['./sellinvoice.component.css']
+  selector: 'app-viewsellinvoice',
+  templateUrl: './viewsellinvoice.component.html',
+  styleUrls: ['./viewsellinvoice.component.css']
 })
-export class SellinvoiceComponent implements OnInit {
+export class ViewSellinvoiceComponent implements OnInit {
   invoicedetails: any;
   total: any;
   products: any[] = [];
@@ -86,7 +86,7 @@ export class SellinvoiceComponent implements OnInit {
   constructor(
     private meta: Meta,
     public cmn: UserinfoService,
-    private fb: FormBuilder, private Services: SellinvoiceServices, private router: Router) {
+    private fb: FormBuilder, private Services: ViewSellinvoiceServices, private router: Router) {
     this.meta.addTag({ name: 'Description', content: 'Oclinico' });
     this.meta.addTag({ name: 'Keywords', content: 'Oclinico' });
   }
@@ -95,17 +95,20 @@ export class SellinvoiceComponent implements OnInit {
     return this.fb.group({
       // start item
       Item_ID: [''],
-      ProdName: ['', [Validators.required]],
-      Price: ['', [Validators.required]],
-      Qty: ['', [Validators.required]],
+      ProdName: [''],
+      Price: [''],
+      Qty: [''],
       Discount: ['0.00'],
-      unit_id: ['', [Validators.required]],
+      unit_id: [''],
       UnitName: [''],
       Bonus: ['0'],
       InvoiceNO: ['0'],
       ItemProfit: ['0'],
       ItemBalance: ['0'],
-      Invoice_tot: ['0']
+      Invoice_tot: ['0'],
+      NoOfDays: [''],
+      Dosage: [''],
+      IsChecked: [false]
       // end item
     });
   }
@@ -121,9 +124,9 @@ export class SellinvoiceComponent implements OnInit {
 
     this.InvoiveForm = this.fb.group({
       Code: [''],
-      Store_ID: ['', [Validators.required]],
+      Store_ID: [''],
       Patient: [''],
-      TrDate: ['', [Validators.required]],
+      TrDate: [''],
       Notes: [''],
       InvoiceDiscount: ['0.00'],
       InvNet: ['0.00'],
@@ -186,18 +189,7 @@ export class SellinvoiceComponent implements OnInit {
       this.checkValidationArrayErrors(this.Items);
     } else {
 
-      if (this.Items.get('0.Discount').value == "" || this.Items.get('0.Discount').value == null) {
-        this.Items.get('0.Discount').setValue("0");
-      }
-      var itemTotal = this.Items.get('0.Price').value * this.Items.get('0.Qty').value;
-      var itemDiscount = this.Items.get('0.Discount').value;
-      this.Items.get('0.Invoice_tot').setValue(itemTotal - itemDiscount);
-
-      this.total = this.InvoiveForm.get("InvNet").value;
-      this.InvoiveForm.get("InvNet").setValue(parseFloat(this.total) + (itemTotal - itemDiscount));
-
-      this.OldDiscount = this.InvoiveForm.get("InvoiceDiscount").value;
-      this.InvoiveForm.get("InvoiceDiscount").setValue(parseFloat(this.OldDiscount) + parseFloat(itemDiscount));
+      this.CalcTotals();
 
       if (this.invoicedetails.length == 0) {
         this.invoicedetails = this.InvoiveForm.value;
@@ -395,8 +387,17 @@ export class SellinvoiceComponent implements OnInit {
   }
 
   invoicesubmit() {
-    this.invoicedetails.TotalItems = this.invoicedetails.BuyInvoiceDetailsList.length;
-    if (this.invoicedetails.BuyInvoiceDetailsList.length > 0) {
+    if (this.invoicedetails.length != 0) {
+      if (this.invoicedetails.BuyInvoiceDetailsList.length > 0) {
+        this.invoicedetails.TotalItems = this.invoicedetails.BuyInvoiceDetailsList.length;
+
+        this.invoicedetails.BuyInvoiceDetailsList = this.invoicedetails.BuyInvoiceDetailsList.filter(function (obj) {
+          return obj.IsChecked !== false;
+        });
+      }
+
+      console.log(this.invoicedetails);
+      
       this.Services.saveOrder(this.invoicedetails, () => {
         alert("Invoice Generated Succesfully");
         this.InvoiveForm.reset();
@@ -419,16 +420,6 @@ export class SellinvoiceComponent implements OnInit {
     this.InvoiveForm.get("Patient").setValue(data.target.value);
   }
 
-  // UnitsSelected(data) {
-  //   debugger;
-  //   let selectedOptions = event.target['options'];
-  //   let selectedIndex = selectedOptions.selectedIndex;
-  //   let selectElementText = selectedOptions[selectedIndex].text;
-
-  //   this.Items.get("0.UnitName").setValue(selectElementText);
-  //   this.Items.get("0.unit_id").setValue(data.target.value);
-  // }
-
   removerow(data) {
     var index = this.invoicedetails.BuyInvoiceDetailsList.findIndex(record => record.ProdName === data.ProdName);
     this.invoicedetails.BuyInvoiceDetailsList.splice(index, 1);
@@ -442,6 +433,71 @@ export class SellinvoiceComponent implements OnInit {
 
   invoicecancle() {
     this.router.navigate(['/Maininvoice']);
+  }
+
+  GetCodeData(e) {
+    if (e.charCode == 13 || e.code == 'Enter') {
+      this.Services.getInvData(this.InvoiveForm.get('Code').value, res => {
+        this.InvoiveForm.get('Store_ID').setValue('1');
+        this.InvoiveForm.get('TrDate').setValue(new Date());
+        this.InvoiveForm.get('Patient').setValue(res.PatientData.MS_ID + " " + res.PatientData.Obj_Name);
+
+        res.data.forEach(e => {
+          this.Items.get('0.Item_ID').setValue(e.Produsct_ID);
+          this.Items.get('0.ProdName').setValue(e.TradeNameEng);
+          this.Items.get('0.Price').setValue(e.Public_price_SAR);
+          this.Items.get('0.unit_id').setValue(e.Package_type_ID);
+          this.Items.get('0.UnitName').setValue(e.Package_typeNameEng);
+          this.Items.get('0.Qty').setValue(e.Qty);
+          this.Items.get('0.NoOfDays').setValue(e.NoOfDays);
+          this.Items.get('0.Dosage').setValue(e.Dosage);
+          this.Items.get('0.Discount').setValue('0.00');
+          this.Items.get('0.Bonus').setValue('0.00');
+          this.Items.get('0.InvoiceNO').setValue('0.00');
+          this.Items.get('0.ItemProfit').setValue('0.00');
+          this.Items.get('0.ItemBalance').setValue('0.00');
+          this.Items.get('0.Invoice_tot').setValue(parseFloat(this.Items.get('0.Qty').value) * parseFloat(this.Items.get('0.Price').value));
+          this.Items.get('0.IsChecked').setValue(false);
+
+          this.CalcTotals();
+
+          if (this.invoicedetails.length == 0) {
+            this.invoicedetails = this.InvoiveForm.value;
+          }
+          else {
+            var oldItems = this.invoicedetails.BuyInvoiceDetailsList;
+            oldItems.push(this.Items.value[0]);
+          }
+
+          this.Items.reset();
+        });
+      });
+    }
+  }
+
+  Mark(e, data) {
+    if (e.target.checked) {
+      this.invoicedetails.BuyInvoiceDetailsList.find(i => i.Item_ID == data.Item_ID).IsChecked = true;
+    }
+    else {
+      this.invoicedetails.BuyInvoiceDetailsList.find(i => i.Item_ID == data.Item_ID).IsChecked = true;
+    }
+
+  }
+
+  CalcTotals() {
+    if (this.Items.get('0.Discount').value == "" || this.Items.get('0.Discount').value == null) {
+      this.Items.get('0.Discount').setValue("0");
+    }
+    var itemTotal = this.Items.get('0.Price').value * this.Items.get('0.Qty').value;
+    var itemDiscount = this.Items.get('0.Discount').value;
+    this.Items.get('0.Invoice_tot').setValue(itemTotal - itemDiscount);
+
+    this.total = this.InvoiveForm.get("InvNet").value;
+    this.InvoiveForm.get("InvNet").setValue(parseFloat(this.total) + (itemTotal - itemDiscount));
+
+    this.OldDiscount = this.InvoiveForm.get("InvoiceDiscount").value;
+    this.InvoiveForm.get("InvoiceDiscount").setValue(parseFloat(this.OldDiscount) + parseFloat(itemDiscount));
   }
 
 }

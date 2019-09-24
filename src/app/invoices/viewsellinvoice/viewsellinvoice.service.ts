@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-interface Sellinvoice {
+interface ViewSellinvoice {
   ID: number;
   NameAr: string;
   NameEn: string;
@@ -10,7 +10,7 @@ interface Sellinvoice {
 @Injectable({
   providedIn: 'root'
 })
-export class SellinvoiceServices {
+export class ViewSellinvoiceServices {
   constructor(private http: HttpClient) { }
 
   getProduct(value, callback) {
@@ -36,6 +36,13 @@ export class SellinvoiceServices {
 
   getPT(callback) {
     return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/buy-invoice/get-store-manufacturer`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  getInvData(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/prescription/get-prescription-by-appointment-id/${value}`, {})
       .subscribe((res) => {
         callback(res);
       });

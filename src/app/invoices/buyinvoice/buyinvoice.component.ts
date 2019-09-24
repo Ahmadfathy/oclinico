@@ -176,6 +176,9 @@ export class BuyinvoiceComponent implements OnInit {
       }
     })
 
+
+
+    // get Stores & Manufacturers
     this.Services.getMaster(res => {
       this.Stores = res.Store;
       this.Manufacturers = res.Manufacturer;
@@ -371,10 +374,10 @@ export class BuyinvoiceComponent implements OnInit {
     this.Services.getProduct(val, res => {
       this.products = res.Product;
       if (this.Items.value[0].ProdName !== "") {
-        if(this.langulagetype == "EN"){
+        if (this.langulagetype == "EN") {
           this.suggestedTexts = this.products.filter(e => e.TradeNameEng.toLowerCase().indexOf(this.Items.value[0].ProdName.toLowerCase()) > -1);
         }
-        else{
+        else {
           this.suggestedTexts = this.products.filter(e => e.TradeNameAr.toLowerCase().indexOf(this.Items.value[0].ProdName.toLowerCase()) > -1);
         }
 
@@ -392,11 +395,11 @@ export class BuyinvoiceComponent implements OnInit {
     this.suggestedTexts = [];
     this.Items.get('0.Item_ID').setValue(data.ID);
 
-    if(this.langulagetype == "EN"){
+    if (this.langulagetype == "EN") {
       this.Items.get('0.ProdName').setValue(data.TradeNameEng);
-      this.Items.get('0.UnitName').setValue(data.NameEng); 
+      this.Items.get('0.UnitName').setValue(data.NameEng);
     }
-    else{
+    else {
       this.Items.get('0.ProdName').setValue(data.TradeNameAr);
       this.Items.get('0.UnitName').setValue(data.NameAr);
     }
@@ -427,7 +430,7 @@ export class BuyinvoiceComponent implements OnInit {
 
   ManufacturersSelected(data) {
     // var xxx = data.target.value;
-    // this.InvoiveForm.get("Store_ID").setValue(data.target.value);
+    this.InvoiveForm.get("ManufacturerId").setValue(data.target.value);
   }
 
   // UnitsSelected(data) {

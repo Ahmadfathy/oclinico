@@ -29,7 +29,7 @@ export class BuyinvoiceServices {
   }
 
   getMaster(callback) {
-    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/buy-invoice/get-store-manufacturer`, {})
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/buy-invoice/get-store-manufacturer/`, {})
       .subscribe((res) => {
         callback(res);
       });
