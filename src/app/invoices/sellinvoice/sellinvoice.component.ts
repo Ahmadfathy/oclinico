@@ -122,7 +122,7 @@ export class SellinvoiceComponent implements OnInit {
     this.InvoiveForm = this.fb.group({
       Code: [''],
       Store_ID: ['', [Validators.required]],
-      Patient: [''],
+      CS_ID: [''],
       TrDate: ['', [Validators.required]],
       Notes: [''],
       InvoiceDiscount: ['0.00'],
@@ -416,18 +416,8 @@ export class SellinvoiceComponent implements OnInit {
 
   ManufacturersSelected(data) {
     // var xxx = data.target.value;
-    this.InvoiveForm.get("Patient").setValue(data.target.value);
+    this.InvoiveForm.get("CS_ID").setValue(data.target.value);
   }
-
-  // UnitsSelected(data) {
-  //   debugger;
-  //   let selectedOptions = event.target['options'];
-  //   let selectedIndex = selectedOptions.selectedIndex;
-  //   let selectElementText = selectedOptions[selectedIndex].text;
-
-  //   this.Items.get("0.UnitName").setValue(selectElementText);
-  //   this.Items.get("0.unit_id").setValue(data.target.value);
-  // }
 
   removerow(data) {
     var index = this.invoicedetails.BuyInvoiceDetailsList.findIndex(record => record.ProdName === data.ProdName);

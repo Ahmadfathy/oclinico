@@ -134,7 +134,7 @@ export class BuyinvoiceComponent implements OnInit {
     this.InvoiveForm = this.fb.group({
       Code: [''],
       Store_ID: ['', [Validators.required]],
-      ManufacturerId: [''],
+      CS_ID: [''],
       TrDate: ['', [Validators.required]],
       Notes: [''],
       InvoiceDiscount: ['0.00'],
@@ -430,7 +430,7 @@ export class BuyinvoiceComponent implements OnInit {
 
   ManufacturersSelected(data) {
     // var xxx = data.target.value;
-    this.InvoiveForm.get("ManufacturerId").setValue(data.target.value);
+    this.InvoiveForm.get("CS_ID").setValue(data.target.value);
   }
 
   // UnitsSelected(data) {

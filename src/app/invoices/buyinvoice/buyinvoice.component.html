@@ -64,11 +64,11 @@
             <div class="col-md-3">
               <label class="form-control-label ltr">Manufacture *</label>
               <label class="form-control-label rtl">المورد *</label>
-              <select value="Select" name="title" formControlName="ManufacturerId"
+              <select value="Select" name="title" formControlName="CS_ID"
                 (change)="ManufacturersSelected($event)" class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'AR'">
                 <option *ngFor="let i of Manufacturers" [value]="i.ID">{{i.NameAr}}</option>
               </select>
-              <select value="Select" name="title" formControlName="ManufacturerId"
+              <select value="Select" name="title" formControlName="CS_ID"
                 (change)="ManufacturersSelected($event)" class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'EN'">
                 <option *ngFor="let i of Manufacturers" [value]="i.ID">{{i.NameEng}}</option>
               </select>

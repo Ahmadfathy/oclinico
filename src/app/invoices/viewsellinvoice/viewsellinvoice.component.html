@@ -16,10 +16,10 @@
         </a>
       </li>
       <li class="ltr">
-        <a class="nav-link" routerLink='/sellinvoice'> Sell Invoices</a>
+        <a class="nav-link" routerLink='/viewsellinvoice'> View Sell Invoices</a>
       </li>
       <li class="rtl">
-        <a class="nav-link" routerLink='sellinvoice'>
+        <a class="nav-link" routerLink='viewsellinvoice'>
           <span>فاتورة بيع </span>
         </a>
       </li>
@@ -42,8 +42,8 @@
             <div class="col-md-3">
               <label class="form-control-label ltr">Code</label>
               <label class="form-control-label rtl">الكود</label>
-              <input type="text" class="form-control" formControlName="Code" (blur)="checkValidationErrors()"
-                (keypress)="GetCodeData($event)">
+              <input type="text" class="form-control" formControlName="FindID" (blur)="checkValidationErrors()"
+                (keypress)="GetCodeData($event)" [attr.disabled]="invoicedetails.length == 0 ? null : 'true'">
             </div>
             <div class="col-md-3">
               <div class="form-group m-b-30">
@@ -65,11 +65,8 @@
             <div class="col-md-3">
               <label class="form-control-label ltr">Patient *</label>
               <label class="form-control-label rtl">المريض *</label>
-              <input type="text" class="form-control" formControlName="Patient" (blur)="checkValidationErrors()" readonly>
-              <!-- <select value="Select" name="title" formControlName="Patient" (change)="ManufacturersSelected($event)"
-                class="custom-select mr-sm-2" (blur)="checkValidationErrors()">
-                <option *ngFor="let i of Patients" [value]="i.ID">{{i.Name}}</option>
-              </select> -->
+              <input type="text" class="form-control" formControlName="CS_ID" (blur)="checkValidationErrors()"
+                readonly>
             </div>
             <div class="col-md-3">
               <label class="form-control-label ltr">Invoice Date</label>
@@ -81,6 +78,12 @@
                 {{formErrors.TrDate}}
               </span>
             </div>
+            <div class="col-md-3">
+              <label class="form-control-label ltr">Item Barcode *</label>
+              <label class="form-control-label rtl">باركود المنتج *</label>
+              <input type="text" class="form-control" formControlName="BarCode" (blur)="checkValidationErrors()"
+                (keypress)="GetBarcodeData($event)" [attr.disabled]="invoicedetails.length == 0 ? 'true' : null">
+            </div>
           </div>
           <br>
           <br>
@@ -91,41 +94,32 @@
                 <th>#</th>
                 <th>Product Name</th>
                 <th>Price</th>
+                <th>Dosage</th>
                 <th>No Of Days</th>
                 <th>Unit</th>
                 <th>Quantity</th>
-                <th>Dosage</th>
-                <!-- <th style="width: 50px !important;"></th> -->
               </tr>
               <tr class="headrow rtl">
                 <th>#</th>
                 <th>إسم المنتج</th>
                 <th>السعر</th>
+                <th>الجرعة</th>
                 <th>عدد الأيام</th>
                 <th>الوحدة</th>
                 <th>الكمية</th>
-                <th>الحرعة</th>
-                <!-- <th style="width: 50px !important;"></th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let i of invoicedetails.BuyInvoiceDetailsList; let j = index">
                 <th>
-                  <input type="checkbox" (click)="Mark($event, i)">
+                  <input type="checkbox" (click)="Mark($event, i)" id="Bar_{{i.BarCode}}">
                 </th>
                 <td>{{i.ProdName}}</td>
-                <td>{{i.Price | number: '.2'}}</td>
-                <td>{{i.NoOfDays}}</td>
-                <td>{{i.UnitName}}</td>
-                <td>{{i.Qty}}</td>
-                <td>{{i.Dosage}}</td>
-                <!-- <td style="display:flex;">
-                  <span>
-                    <a class="nav-link">
-                      <i class="fa fa-fw fa-trash" style="color: red" (click)="removerow(i)"></i>
-                    </a>
-                  </span>
-                </td> -->
+                <td style="text-align: center;">{{i.Price | number: '.2'}}</td>
+                <td style="text-align: center;">{{i.Dosage}}</td>
+                <td style="text-align: center;">{{i.NoOfDays}}</td>
+                <td style="text-align: center;">{{i.UnitName}}</td>
+                <td style="text-align: center;">{{i.Qty}}</td>
               </tr>
             </tbody>
           </table>
@@ -164,25 +158,25 @@
             </div>
           </div>
           <br>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-12 text-center submitBtns">
-                <button type="submit" class="btn btn-md btn-warning" (click)="invoicesubmit()"
-                  style="margin-right:5px;">
-                  <i class="fa fa-check-circle"></i>
-                  <span class="ltr"> &nbsp; Create</span>
-                  <span class="rtl"> &nbsp; إنشاء</span>
-                </button>
-                <button type="submit" class="btn btn-md btn-success" (click)="invoicecancle()">
-                  <i class="fa fa-ban"></i>
-                  <span class="ltr">&nbsp; Cancel</span>
-                  <span class="rtl">&nbsp; إلغاء</span>
-                </button>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
   </div>
 </form>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12 text-center submitBtns">
+      <button type="submit" class="btn btn-md btn-warning" (click)="invoicesubmit()" style="margin-right:5px;">
+        <i class="fa fa-check-circle"></i>
+        <span class="ltr"> &nbsp; Create</span>
+        <span class="rtl"> &nbsp; إنشاء</span>
+      </button>
+      <button type="submit" class="btn btn-md btn-success" (click)="invoicecancle()">
+        <i class="fa fa-ban"></i>
+        <span class="ltr">&nbsp; Cancel</span>
+        <span class="rtl">&nbsp; إلغاء</span>
+      </button>
+    </div>
+  </div>
+</div>

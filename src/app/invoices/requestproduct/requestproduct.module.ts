@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewSellinvoiceComponent } from './viewsellinvoice.component';
+import { RequestProductComponent } from './requestproduct.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ClickoutsideDirective } from './clickoutside.directive';
-import { ViewSellinvoiceServices } from './viewsellinvoice.service';
+import { RequestProductServices } from './requestproduct.service';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'View Sell Invoice',
+      title: 'Request Product',
       rtltitle: 'ذلك. لا تمانع'
     },
-    component: ViewSellinvoiceComponent
+    component: RequestProductComponent
   }
 ];
 
@@ -31,12 +31,12 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    ViewSellinvoiceServices
+    RequestProductServices
   ],
   declarations: [
-    ViewSellinvoiceComponent,
+    RequestProductComponent,
     ClickoutsideDirective
   ]
 })
 
-export class ViewSellinvoiceModule { }
+export class RequestProductModule { }

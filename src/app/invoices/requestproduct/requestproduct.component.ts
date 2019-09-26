@@ -1,4 +1,4 @@
-import { ViewSellinvoiceServices } from './viewsellinvoice.service';
+import { RequestProductServices } from './requestproduct.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
@@ -6,11 +6,12 @@ import { UserinfoService } from 'src/app/userinfo.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-viewsellinvoice',
-  templateUrl: './viewsellinvoice.component.html',
-  styleUrls: ['./viewsellinvoice.component.css']
+  selector: 'app-requestproduct',
+  templateUrl: './requestproduct.component.html',
+  styleUrls: ['./requestproduct.component.css']
 })
-export class ViewSellinvoiceComponent implements OnInit {
+export class RequestProductComponent implements OnInit {
+  ManufactureList: any[];
   invoicedetails: any;
   total: any;
   products: any[] = [];
@@ -24,7 +25,7 @@ export class ViewSellinvoiceComponent implements OnInit {
   suggestedTexts: any[] = [];
   OldDiscount: any;
   Stores: any[] = [];
-  Patients: any[] = [];
+  Manufacturers: any[] = [];
 
   ValidationMessages = {
 
@@ -41,9 +42,6 @@ export class ViewSellinvoiceComponent implements OnInit {
     },
     'TrDate': {
       'required': 'Please select Date'
-    },
-    'Price': {
-      'required': 'Please Enter Price'
     },
     'Qty': {
       'required': 'Please Enter Quantity'
@@ -65,9 +63,6 @@ export class ViewSellinvoiceComponent implements OnInit {
     'TrDate': {
       'required': 'رجاء إختيار التاريخ'
     },
-    'Price': {
-      'required': 'رجاء إدخال السعر'
-    },
     'Qty': {
       'required': 'رجاء إدخال الكمية'
     }
@@ -75,18 +70,17 @@ export class ViewSellinvoiceComponent implements OnInit {
 
 
   formErrors = {
-    'Store_ID': '',
-    'TrDate': '',
+    'StoreID': '',
     'ProdName': '',
     'unit_id': '',
-    'Price': '',
-    'Qty': ''
+    'Qty': '',
+    'RequestDate': ''
   }
 
   constructor(
     private meta: Meta,
     public cmn: UserinfoService,
-    private fb: FormBuilder, private Services: ViewSellinvoiceServices, private router: Router) {
+    private fb: FormBuilder, private Services: RequestProductServices, private router: Router) {
     this.meta.addTag({ name: 'Description', content: 'Oclinico' });
     this.meta.addTag({ name: 'Keywords', content: 'Oclinico' });
   }
@@ -94,22 +88,15 @@ export class ViewSellinvoiceComponent implements OnInit {
   createItem(): FormGroup {
     return this.fb.group({
       // start item
-      BarCode: [''],
-      Item_ID: [''],
-      ProdName: [''],
-      Price: [''],
-      Qty: [''],
-      Discount: ['0.00'],
+      ProductID: [''],
+      ProdName: ['', [Validators.required]],
+      Qty: ['', [Validators.required]],
       unit_id: [''],
       UnitName: [''],
       Bonus: ['0'],
       InvoiceNO: ['0'],
       ItemProfit: ['0'],
-      ItemBalance: ['0'],
-      Invoice_tot: ['0'],
-      NoOfDays: [''],
-      Dosage: [''],
-      IsChecked: [false]
+      ItemBalance: ['0']
       // end item
     });
   }
@@ -120,22 +107,15 @@ export class ViewSellinvoiceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ManufactureList = [];
     this.invoicedetails = [];
     this.total = 0;
 
     this.InvoiveForm = this.fb.group({
-      FindID: [''],
-      Code: [''],
-      Store_ID: [''],
-      CS_ID: [''],
-      TrDate: [''],
+      StoreID: ['', [Validators.required]],
+      RequestDate: ['', [Validators.required]],
       Notes: [''],
-      InvoiceDiscount: ['0.00'],
-      InvNet: ['0.00'],
-      Paid: ['0.00'],
-      Remain: ['0.00'],
-      TotalItems: [''],
-      BarCode: [''],
+
       BuyInvoiceDetailsList: this.fb.array([this.createItem()])
     })
 
@@ -159,21 +139,20 @@ export class ViewSellinvoiceComponent implements OnInit {
       }
 
       this.formErrors = {
-        'Store_ID': '',
-        'TrDate': '',
+        'StoreID': '',
         'ProdName': '',
         'unit_id': '',
-        'Price': '',
-        'Qty': ''
+        'Qty': '',
+        'RequestDate': ''
       }
     })
 
+
+
+    // get Stores & Manufacturers
     this.Services.getMaster(res => {
       this.Stores = res.Store;
-    })
-
-    this.Services.getPT(res => {
-      this.Patients = res.Patients;
+      this.Manufacturers = res.Manufacturer;
     })
   }
 
@@ -184,6 +163,27 @@ export class ViewSellinvoiceComponent implements OnInit {
     }
   }
 
+  AddItem() {
+    this.fromsubmit = true;
+    if (this.InvoiveForm.invalid == true) {
+      this.checkValidationErrors(this.InvoiveForm);
+      this.checkValidationArrayErrors(this.Items);
+    } else {
+      if (this.invoicedetails.length == 0) {
+        this.invoicedetails = this.InvoiveForm.value;
+      }
+      else {
+        var oldItems = this.invoicedetails.BuyInvoiceDetailsList;
+        oldItems.push(this.Items.value[0]);
+      }
+
+      this.Items.reset();
+      this.Items.get("0.Bonus").setValue('0');
+      this.Items.get("0.InvoiceNO").setValue('0');
+      this.Items.get("0.ItemProfit").setValue('0');
+      this.Items.get("0.ItemBalance").setValue('0');
+    }
+  }
 
   checkValidationErrors(group: FormGroup = this.InvoiveForm): void {
     Object.keys(group.controls).forEach((key: string) => {
@@ -322,121 +322,72 @@ export class ViewSellinvoiceComponent implements OnInit {
     }
   }
 
+  extractSuggestedTexts() {
+    let val = this.Items.value[0].ProdName;
+    this.products = [];
+    this.suggestedTexts = [];
+    this.Services.getProduct(val, res => {
+      this.products = res.Product;
+      if (this.Items.value[0].ProdName !== "") {
+        if (this.langulagetype == "EN") {
+          this.suggestedTexts = this.products.filter(e => e.TradeNameEng.toLowerCase().indexOf(this.Items.value[0].ProdName.toLowerCase()) > -1);
+        }
+        else {
+          this.suggestedTexts = this.products.filter(e => e.TradeNameAr.toLowerCase().indexOf(this.Items.value[0].ProdName.toLowerCase()) > -1);
+        }
+
+        this.ShowAuto = true;
+      }
+      else {
+        this.suggestedTexts = [];
+        this.ShowAuto = false;
+      }
+    })
+  }
+
+  SelectItem(data: any) {
+    this.ShowAuto = false;
+    this.suggestedTexts = [];
+    this.Items.get('0.ProductID').setValue(data.ID);
+
+    if (this.langulagetype == "EN") {
+      this.Items.get('0.ProdName').setValue(data.TradeNameEng);
+      this.Items.get('0.UnitName').setValue(data.NameEng);
+    }
+    else {
+      this.Items.get('0.ProdName').setValue(data.TradeNameAr);
+      this.Items.get('0.UnitName').setValue(data.NameAr);
+    }
+
+    this.Items.get('0.unit_id').setValue(data.Package_type_ID);
+  }
 
   invoicesubmit() {
-    if (this.invoicedetails.length != 0) {
-      if (this.invoicedetails.BuyInvoiceDetailsList.length > 0) {
-        this.invoicedetails.TotalItems = this.invoicedetails.BuyInvoiceDetailsList.length;
-
-        this.invoicedetails.BuyInvoiceDetailsList = this.invoicedetails.BuyInvoiceDetailsList.filter(function (obj) {
-          return obj.IsChecked !== false;
-        });
-      }
-
-      console.log(this.invoicedetails);
-
+    this.invoicedetails.TotalItems = this.invoicedetails.BuyInvoiceDetailsList.length;
+    if (this.invoicedetails.BuyInvoiceDetailsList.length > 0) {
       this.Services.saveOrder(this.invoicedetails, () => {
         alert("Invoice Generated Succesfully");
         this.InvoiveForm.reset();
         this.invoicedetails = [];
-        this.Items.get("0.Discount").setValue('0.00');
         this.Items.get("0.Bonus").setValue('0');
         this.Items.get("0.InvoiceNO").setValue('0');
         this.Items.get("0.ItemProfit").setValue('0');
         this.Items.get("0.ItemBalance").setValue('0');
-
-        this.InvoiveForm.get("InvNet").setValue('0.00');
-        this.InvoiveForm.get("Paid").setValue('0.00');
-        this.InvoiveForm.get("Remain").setValue('0.00');
-        this.InvoiveForm.get("InvoiceDiscount").setValue('0.00');
       })
     }
   }
 
-  StoresSelected(data) {
-    this.InvoiveForm.get("Store_ID").setValue(data.target.value);
+  FromStoresSelected(data) {
+    this.InvoiveForm.get("StoreID").setValue(data.target.value);
   }
 
-  ManufacturersSelected(data) {
-    // var xxx = data.target.value;
-    this.InvoiveForm.get("CS_ID").setValue(data.target.value);
+
+  removerow(data) {
+    var index = this.invoicedetails.BuyInvoiceDetailsList.findIndex(record => record.ProdName === data.ProdName);
+    this.invoicedetails.BuyInvoiceDetailsList.splice(index, 1);
   }
 
   invoicecancle() {
     this.router.navigate(['/Maininvoice']);
-  }
-
-  GetCodeData(e) {
-    if (e.charCode == 13 || e.key == 'Enter') {
-      this.Services.getInvData(this.InvoiveForm.get('FindID').value, res => {
-        this.InvoiveForm.get('Store_ID').setValue('1');
-        this.InvoiveForm.get('TrDate').setValue(new Date());
-        this.InvoiveForm.get('CS_ID').setValue(res.PatientData.MS_ID + " " + res.PatientData.Obj_Name);
-
-        res.data.forEach(e => {
-          this.InvoiveForm.get('Code').setValue(e.Master_ID);
-          this.Items.get('0.BarCode').setValue(e.BarCode);
-          this.Items.get('0.Item_ID').setValue(e.Produsct_ID);
-          this.Items.get('0.ProdName').setValue(e.TradeNameEng);
-          this.Items.get('0.Price').setValue(e.Public_price_SAR);
-          this.Items.get('0.unit_id').setValue(e.Package_type_ID);
-          this.Items.get('0.UnitName').setValue(e.Package_typeNameEng);
-          this.Items.get('0.NoOfDays').setValue(e.NoOfDays);
-          this.Items.get('0.Dosage').setValue(e.Dosage);
-          this.Items.get('0.Qty').setValue(parseFloat(this.Items.get('0.NoOfDays').value) * parseFloat(this.Items.get('0.Dosage').value));
-          this.Items.get('0.Discount').setValue('0.00');
-          this.Items.get('0.Bonus').setValue('0.00');
-          this.Items.get('0.InvoiceNO').setValue('0.00');
-          this.Items.get('0.ItemProfit').setValue('0.00');
-          this.Items.get('0.ItemBalance').setValue('0.00');
-          this.Items.get('0.Invoice_tot').setValue(parseFloat(this.Items.get('0.NoOfDays').value) * parseFloat(this.Items.get('0.Price').value));
-          this.Items.get('0.IsChecked').setValue(false);
-
-          this.CalcTotals();
-
-          if (this.invoicedetails.length == 0) {
-            debugger;
-            this.invoicedetails = this.InvoiveForm.value;
-          }
-          else {
-            var oldItems = this.invoicedetails.BuyInvoiceDetailsList;
-            oldItems.push(this.Items.value[0]);
-          }
-
-          this.Items.reset();
-        });
-      });
-    }
-  }
-
-  Mark(e, data) {
-    if (e.target.checked) {
-      this.invoicedetails.BuyInvoiceDetailsList.find(i => i.Item_ID == data.Item_ID).IsChecked = true;
-    }
-    else {
-      this.invoicedetails.BuyInvoiceDetailsList.find(i => i.Item_ID == data.Item_ID).IsChecked = true;
-    }
-  }
-
-  GetBarcodeData(e) {
-    if (e.charCode == 13 || e.key == 'Enter') {
-      this.invoicedetails.BuyInvoiceDetailsList.find(i => i.BarCode == this.InvoiveForm.get('BarCode').value).IsChecked = true;
-      $("#Bar_" + this.InvoiveForm.get('BarCode').value).attr('checked','checked');
-    }
-  }
-
-  CalcTotals() {
-    if (this.Items.get('0.Discount').value == "" || this.Items.get('0.Discount').value == null) {
-      this.Items.get('0.Discount').setValue("0");
-    }
-    var itemTotal = this.Items.get('0.Price').value * this.Items.get('0.Qty').value;
-    var itemDiscount = this.Items.get('0.Discount').value;
-    this.Items.get('0.Invoice_tot').setValue(itemTotal - itemDiscount);
-
-    this.total = this.InvoiveForm.get("InvNet").value;
-    this.InvoiveForm.get("InvNet").setValue(parseFloat(this.total) + (itemTotal - itemDiscount));
-
-    this.OldDiscount = this.InvoiveForm.get("InvoiceDiscount").value;
-    this.InvoiveForm.get("InvoiceDiscount").setValue(parseFloat(this.OldDiscount) + parseFloat(itemDiscount));
   }
 }
