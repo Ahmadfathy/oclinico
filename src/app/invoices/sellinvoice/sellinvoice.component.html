@@ -86,7 +86,7 @@
               <div class="col-md-4">
                 <label class="form-control-label ltr">Barcode</label>
                 <label class="form-control-label rtl">الباركود</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="Barcode" (keypress)="GetBarcodeData($event)">
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Product Name *</label>

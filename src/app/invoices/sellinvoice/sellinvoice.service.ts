@@ -20,6 +20,13 @@ export class SellinvoiceServices {
       });
   }
 
+  getProductByBarCode(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/buy-invoice/get-product-barcode/${value}`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+  
   saveOrder(data, callback) {
     return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/sales-invoice/add-new-sales-invoice/`, data, {})
       .subscribe((res) => {

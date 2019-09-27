@@ -90,7 +90,7 @@
               <div class="col-md-4">
                 <label class="form-control-label ltr">Barcode</label>
                 <label class="form-control-label rtl">الباركود</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="Barcode" (keypress)="GetBarcodeData($event)">
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Product Name *</label>
@@ -120,15 +120,6 @@
 
                   <input type="text" class="form-control" (keyup)="extractSuggestedTexts()"
                     (blur)="checkValidationArrayErrors()" formControlName="UnitName" readonly>
-
-                  <!-- <select value="Select" name="title" class="custom-select mr-sm-2" formControlName="unit_id"
-                    (blur)="checkValidationArrayErrors()" (change)="UnitsSelected($event)">
-                    <option value="select" selected>-- select --</option>
-                    <option value="1">Unit 1</option>
-                    <option value="2">Unit 2</option>
-                    <option value="3">Unit 3</option>
-                    <option value="4">Unit 4</option>
-                  </select> -->
                   <span class="help-block" *ngIf="formErrors.unit_id" style="color: red">
                     {{formErrors.unit_id}}
                   </span>
@@ -256,25 +247,25 @@
             </div>
           </div>
           <br>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-12 text-center submitBtns">
-                <button type="submit" class="btn btn-md btn-warning" (click)="invoicesubmit()"
-                  style="margin-right:5px;">
-                  <i class="fa fa-check-circle"></i>
-                  <span class="ltr"> &nbsp; Create</span>
-                  <span class="rtl"> &nbsp; إنشاء</span>
-                </button>
-                <button type="submit" class="btn btn-md btn-success" (click)="invoicecancle()">
-                  <i class="fa fa-ban"></i>
-                  <span class="ltr">&nbsp; Cancel</span>
-                  <span class="rtl">&nbsp; إلغاء</span>
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </form>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12 text-center submitBtns">
+      <button type="submit" class="btn btn-md btn-warning" (click)="invoicesubmit()"
+        style="margin-right:5px;">
+        <i class="fa fa-check-circle"></i>
+        <span class="ltr"> &nbsp; Create</span>
+        <span class="rtl"> &nbsp; إنشاء</span>
+      </button>
+      <button type="submit" class="btn btn-md btn-success" (click)="invoicecancle()">
+        <i class="fa fa-ban"></i>
+        <span class="ltr">&nbsp; Cancel</span>
+        <span class="rtl">&nbsp; إلغاء</span>
+      </button>
+    </div>
+  </div>
+</div>

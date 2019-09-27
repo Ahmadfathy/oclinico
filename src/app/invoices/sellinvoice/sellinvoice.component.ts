@@ -94,6 +94,7 @@ export class SellinvoiceComponent implements OnInit {
   createItem(): FormGroup {
     return this.fb.group({
       // start item
+      Barcode: [''],
       Item_ID: [''],
       ProdName: ['', [Validators.required]],
       Price: ['', [Validators.required]],
@@ -432,6 +433,27 @@ export class SellinvoiceComponent implements OnInit {
 
   invoicecancle() {
     this.router.navigate(['/Maininvoice']);
+  }
+
+  GetBarcodeData(e) {
+    if (e.charCode == 13 || e.key == 'Enter') {
+      this.Services.getProductByBarCode(this.Items.get("0.Barcode").value, res => {
+        this.Items.get('0.Item_ID').setValue(res.Product.ID);
+
+        if (this.langulagetype == "EN") {
+          this.Items.get('0.ProdName').setValue(res.Product.TradeNameEng);
+          this.Items.get('0.UnitName').setValue(res.Product.NameEng);
+        }
+        else {
+          this.Items.get('0.ProdName').setValue(res.Product.TradeNameAr);
+          this.Items.get('0.UnitName').setValue(res.Product.NameAr);
+        }
+    
+        this.Items.get('0.unit_id').setValue(res.Product.Package_type_ID);
+        this.Items.get('0.Price').setValue(res.Product.Public_price_SAR != null ? res.Product.Public_price_SAR : '0.00');
+
+      })
+    }
   }
 
 }
