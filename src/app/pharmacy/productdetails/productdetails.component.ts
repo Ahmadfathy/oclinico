@@ -31,6 +31,9 @@ export class ProductdetailsComponent implements OnInit {
 
   // New Section
   productForm: FormGroup;
+  names: any;
+  names1: any;
+  
   name3: any;
   name4: any;
   name5: any;
