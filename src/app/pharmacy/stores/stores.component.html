@@ -1,100 +1,119 @@
 <div class="row">
-        <div class="col-md-12">
-            <ul id="breadcrumb">
-                <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
-                <li class="ltr"><a class="nav-link" routerLink='/Stores'>Stores</a></li>
-               
-            </ul>
-        </div>
-    </div>
-  
+    <div class="col-md-12">
+        <ul id="breadcrumb">
+            <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+            <li class="ltr"><a class="nav-link" routerLink='/Stores'>Stores</a></li>
 
-    <div class="container">
-     <div class="row">
-        <div class="col-md-12">
-        <div class="card">
-        <div class="card-header">
-        <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Stores:</p>
-       
-        </div>
-        <div class="card-body">
-        <div class="row">
-            <div class="col-sd-4">
-                <h3>Stores</h3>
-            </div>
-        </div>
-        <hr>
-
-        <form [formGroup]="StoresForm" (ngSubmit)="onSubmit()">
-
-            <div class="row">
-                <div class='col-md-4'>
-                    <label>Arabic Name</label>
-                    <input type="text" formControlName="ArabicName"id='arname' class="form-control"
-                        [ngClass]="{'is-invalid': submitted && c.ArabicName.errors}" />
-                    <div *ngIf="submitted && c.ArabicName.errors" class="invalid-feedback">
-                        <div *ngIf="c.ArabicName.errors.required">ArabicName is required</div>
-                    </div>
-                </div>
-
-                <div class='col-md-4'>
-                    <label>English Name</label>
-                    <input type="text" formControlName="EnglishName"id='engname' class="form-control"
-                        [ngClass]="{'is-invalid': submitted && c.EnglishName.errors}" />
-                    <div *ngIf="submitted && c.EnglishName.errors" class="invalid-feedback">
-                        <div *ngIf="c.EnglishName.errors.required">English Name is required</div>
-                    </div>
-                </div>
-
-
-                <div class='col-md-4' style="margin-top: 33px;">
-                    <button class="btn btn-primary"(click)='insertdata()'id='reg'>Register</button>
-                    <button class="btn btn-primary" (click)=' update()' id='update'>Update</button>
-                </div>
-
-            </div>
-        </form>
-       
-        <br><br>
-        <div class='row'>
-            <div class='col-md-12'>
-                <table class='table table-bordered table-striped'>
-                    <thead>
-                        <tr>
-                            <th>S.no</th>
-                            <th>Arabic Name</th>
-                            <th>English Name</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor='let t of table; let i=index'>
-                            <tr>
-                                <td>{{i+1}}</td>
-                                <td>{{t.NameAr}}</td>
-                                <td> {{t.NameEn}}</td>
-                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-pencil-alt text-info"(click)='edit(t.ID)'aria-hidden="true"></span>
-
-                                </td> 
-<!-- 
-                               <td><button (click)='edit(t.ID)'>Edit</button></td>
-                                <td><button (click)='delete(t.ID)'>Delete</button></td> -->
-
-                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash text-info"(click)='delete(t.ID)'aria-hidden="true"></i>
-                                </td> 
-                            </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-
+        </ul>
     </div>
 </div>
-</div>
-</div>
-</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Stores:</p>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sd-4">
+                            <h3>Stores</h3>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <form [formGroup]="StoresForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class='col-md-4'>
+                                <label>Arabic Name</label>
+                                <input type="text" formControlName="ArabicName" id='arname' class="form-control"
+                                    [ngClass]="{'is-invalid': submitted && c.ArabicName.errors}" />
+                                <div *ngIf="submitted && c.ArabicName.errors" class="invalid-feedback">
+                                    <div *ngIf="c.ArabicName.errors.required">ArabicName is required</div>
+                                </div>
+                            </div>
+
+                            <div class='col-md-4'>
+                                <label>English Name</label>
+                                <input type="text" formControlName="EnglishName" id='engname' class="form-control"
+                                    [ngClass]="{'is-invalid': submitted && c.EnglishName.errors}" />
+                                <div *ngIf="submitted && c.EnglishName.errors" class="invalid-feedback">
+                                    <div *ngIf="c.EnglishName.errors.required">English Name is required</div>
+                                </div>
+                            </div>
+                            <div class='col-md-4'>
+                                <div class="form-group m-b-30">
+                                    <label class="mr-sm-2 ltr" for="title">Parent Store Name</label>
+                                    <label class="mr-sm-2 rtl" for="title">إسم المخزن الرئيسى</label>
+                                    <select value="Select" name="title" formControlName="ParentID"
+                                        (change)="StoresSelected($event)" class="form-control"
+                                        [ngClass]="{'is-invalid': submitted && c.ParentID.errors}"
+                                        *ngIf="langulagetype == 'AR'">
+                                        <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameAr}}</option>
+                                    </select>
+                                    <select value="Select" name="title" formControlName="ParentID"
+                                        (change)="StoresSelected($event)" class="form-control"
+                                        [ngClass]="{'is-invalid': submitted && c.ParentID.errors}"
+                                        *ngIf="langulagetype == 'EN'">
+                                        <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameEn}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && c.ParentID.errors" class="invalid-feedback">
+                                        <div *ngIf="c.ParentID.errors.required">Parent Store is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-md-4'>
+                                <button class="btn btn-primary" (click)='insertdata()' id='reg'>Register</button>
+                                <button class="btn btn-primary" (click)=' update()' id='update'>Update</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <br><br>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <table class='table table-bordered table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>S.no</th>
+                                        <th>Arabic Name</th>
+                                        <th>English Name</th>
+                                        <th>Parent Store En</th>
+                                        <th>Parent Store Ar</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor='let t of table; let i=index'>
+                                        <tr>
+                                            <td>{{i+1}}</td>
+                                            <td>{{t.NameAr}}</td>
+                                            <td> {{t.NameEn}}</td>
+                                            <td> {{t.stNameEn}}</td>
+                                            <td> {{t.stNameAr}}</td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                                    class="fa fa-pencil-alt text-info" (click)='edit(t.ID)'
+                                                    aria-hidden="true"></span>
+
+                                            </td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash text-info"
+                                                    (click)='delete(t.ID)' aria-hidden="true"></i>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

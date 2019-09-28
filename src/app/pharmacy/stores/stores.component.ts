@@ -5,6 +5,8 @@ import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 // import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Headers, RequestOptions } from '@angular/http';
+import { StoresServices } from './stores.service';
+import { UserinfoService } from 'src/app/userinfo.service';
 
 
 @Component({
@@ -25,25 +27,53 @@ export class StoresComponent implements OnInit {
   table = [];
   id: any;
   result: any;
+  Stores: any[] = [];
+  languageoption: any;
+  public langulagetype: any = 'us';
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private meta: Meta) { }
-  ngOnInit() {  
+  constructor(private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private meta: Meta,
+    private Services: StoresServices,
+    public cmn: UserinfoService) { }
+
+  ngOnInit() {
     this.StoresForm = this.formBuilder.group({
       ArabicName: ['', Validators.required],
       EnglishName: ['', Validators.required],
+      ParentID: ['', Validators.required]
     });
 
     $('#update').hide();
     this.tablegrid();
+
+    // get Stores & Manufacturers
+    this.Services.getMaster(res => {
+      this.Stores = res.Store;
+    })
+
+    // For Lang
+    this.cmn.currentMessagecat.subscribe(message => {
+      this.languageoption = message.split("_")[1];
+      if (this.languageoption == '' || this.languageoption == undefined || this.languageoption == "undefined") {
+        this.langulagetype = "us";
+      }
+      else {
+        this.langulagetype = this.languageoption;
+      }
+    })
   }
+
   get c() {
     return this.StoresForm.controls;
   }
+
   alertMsg(msg: any) {
     alert(msg);
   }
+
   onSubmit() {
-    
     this.submitted = true;
     //   stop here if form is invalid
     if (this.StoresForm.invalid) {
@@ -52,6 +82,7 @@ export class StoresComponent implements OnInit {
 
     //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.StoresForm.value))
   }
+
   insertdata() {
     if (this.StoresForm.invalid) {
       return
@@ -60,6 +91,7 @@ export class StoresComponent implements OnInit {
     let body = {
       'NameAr': this.StoresForm.value.ArabicName,
       'NameEn': this.StoresForm.value.EnglishName,
+      'ParentID': this.StoresForm.value.ParentID,
       'UserID': "1",
       'ManagerID': "1",
       'AssistantID': "1"
@@ -71,13 +103,10 @@ export class StoresComponent implements OnInit {
 
     let url = 'https://api.oclinico.com/PharmacyAPI/api/Store/add-new-Store'
     this.http.post<any>(url, body).subscribe(res => {
-
-
       if (res.Result = true) {
         alert('Sucessfully Insert')
         this.StoresForm.reset()
         this.tablegrid()
-        //this.router.navigate(['/grid'])
       }
       else {
         console.log('error')
@@ -85,6 +114,7 @@ export class StoresComponent implements OnInit {
     })
 
   }
+
   tablegrid() {
     let url = 'https://api.oclinico.com/PharmacyAPI/api/Store/get-all-Store/'
     let body = {}
@@ -98,7 +128,8 @@ export class StoresComponent implements OnInit {
       }
     })
   }
-  edit(id: any) { 
+
+  edit(id: any) {
     let url = 'https://api.oclinico.com/PharmacyAPI/api/Store/get-Store-by-id/'
     let headers = new Headers({
       "Content-Type": "application/json",
@@ -107,7 +138,7 @@ export class StoresComponent implements OnInit {
     let options = new RequestOptions({ headers: headers });
     this.http.post(url + id, options).subscribe(
       (res) => {
-      this.result = res;
+        this.result = res;
         console.log(res);
         if (this.result.Result == true) {
           //this.tablegrid();
@@ -115,6 +146,7 @@ export class StoresComponent implements OnInit {
             {
               ArabicName: this.result.data.NameAr,
               EnglishName: this.result.data.NameEn,
+              ParentID: this.result.data.ParentID
             }
           );
           this.id = this.result.data.ID;
@@ -127,11 +159,13 @@ export class StoresComponent implements OnInit {
       }
       , (err) => { console.log("Error: " + err); });
   }
+
   update() {
     let body = {
       'ID': this.id,
       'NameAr': this.StoresForm.value.ArabicName,
       'NameEn': this.StoresForm.value.EnglishName,
+      'ParentID': this.StoresForm.value.ParentID,
       'UserID': "1",
       'ManagerID': "1",
       'AssistantID': "1"
@@ -149,12 +183,13 @@ export class StoresComponent implements OnInit {
             {
               ArabicName: "",
               EnglishName: "",
+              ParentID: ""
             });
           this.id = null;
           $('#update').hide();
           $('#reg').show();
           this.alertMsg("Updated Successfully");
-         this.submitted=false;
+          this.submitted = false;
         } else {
           console.log("Update Failed :" + this.result.message)
         }
@@ -162,8 +197,6 @@ export class StoresComponent implements OnInit {
       , (err) => { console.log("Error: " + err); }
     );
   }
-
-  // result : any;
 
   delete(id: any) {
 
@@ -195,7 +228,9 @@ export class StoresComponent implements OnInit {
     }
   }
 
- 
+  StoresSelected(data) {
+    this.StoresForm.get("ParentID").setValue(data.target.value);
+  }
 
 }
 
