@@ -40,6 +40,8 @@ export const Approutes: Routes = [
       { path: 'sellinvoice', loadChildren: './invoices/sellinvoice/sellinvoice.module#SellinvoiceModule', canActivate: [AuthGuard] },
       { path: 'viewsellinvoice', loadChildren: './invoices/viewsellinvoice/viewsellinvoice.module#ViewSellinvoiceModule', canActivate: [AuthGuard] },
       { path: 'requestproduct', loadChildren: './invoices/requestproduct/requestproduct.module#RequestProductModule', canActivate: [AuthGuard] },
+      { path: 'requestproductlist', loadChildren: './invoices/requestproductlist/requestproductlist.module#RequestProductListModule', canActivate: [AuthGuard] },
+      { path: 'viewrequestproduct', loadChildren: './invoices/viewrequestproduct/viewrequestproduct.module#ViewRequestProductModule', canActivate: [AuthGuard] },
       // LAZY LOAD PENDING ..
       //   {   path:'Maininvoice',    
 

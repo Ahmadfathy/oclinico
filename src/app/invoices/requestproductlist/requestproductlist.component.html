@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/requestproduct'> Request Product List</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm' (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Request Product List</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <div align="left">
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th style="width: 114px;">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table ">
+                    <td *ngIf="langulagetype == 'EN'">{{s.StoresEng}}</td>
+                    <td *ngIf="langulagetype == 'AR'">{{s.StoreAr}}</td>
+                    <td>{{s.TrDate | date}}</td>
+                    <td>
+                      <a style='color: #4798e8'>
+                        <span class="fa fa-fw fa-eye" routerLink='/viewrequestproduct'
+                          [queryParams]="{id:s.ID}">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

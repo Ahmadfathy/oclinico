@@ -43,16 +43,16 @@
               <div class="form-group m-b-30">
                 <label class="mr-sm-2 ltr" for="title">Store Name</label>
                 <label class="mr-sm-2 rtl" for="title">المخزن</label>
-                <select value="Select" name="title" formControlName="StoreID" (change)="FromStoresSelected($event)"
+                <select value="Select" name="title" formControlName="Store_ID" (change)="FromStoresSelected($event)"
                   class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'AR'">
                   <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameAr}}</option>
                 </select>
-                <select value="Select" name="title" formControlName="StoreID" (change)="FromStoresSelected($event)"
+                <select value="Select" name="title" formControlName="Store_ID" (change)="FromStoresSelected($event)"
                   class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'EN'">
                   <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameEn}}</option>
                 </select>
-                <span class="help-block" *ngIf="formErrors.StoreID" style="color: red">
-                  {{formErrors.StoreID}}
+                <span class="help-block" *ngIf="formErrors.Store_ID" style="color: red">
+                  {{formErrors.Store_ID}}
                 </span>
               </div>
             </div>
@@ -60,20 +60,20 @@
               <label class="form-control-label ltr">Request Date</label>
               <label class="form-control-label rtl">تاريخ الطلب</label>
               <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="dd/mm/yyyy" class="form-control"
-                formControlName="RequestDate" (blur)="checkValidationErrors()">
+                formControlName="TrDate" (blur)="checkValidationErrors()">
               <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
               <span class="help-block errorcolorcls">
-                {{formErrors.RequestDate}}
+                {{formErrors.TrDate}}
               </span>
             </div>
           </div>
           <br>
-          <div class="row" formArrayName="BuyInvoiceDetailsList">
+          <div class="row" formArrayName="StoreRequestList">
             <div class="row" formGroupName="0" style="width: 100%;">
               <div class="col-md-2">
                 <label class="form-control-label ltr">Barcode</label>
                 <label class="form-control-label rtl">الباركود</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="Barcode" (keypress)="GetBarcodeData($event)">
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Product Name *</label>
@@ -143,7 +143,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let i of invoicedetails.BuyInvoiceDetailsList; let j = index">
+              <tr *ngFor="let i of invoicedetails.StoreRequestList; let j = index">
                 <td>{{i.ProdName}}</td>
                 <td>{{i.UnitName}}</td>
                 <td>{{i.Qty}}</td>

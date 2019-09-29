@@ -1,4 +1,4 @@
-import { RequestProductServices } from './requestproduct.service';
+import { ViewRequestProductServices } from './viewrequestproduct.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
@@ -6,11 +6,11 @@ import { UserinfoService } from 'src/app/userinfo.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-requestproduct',
-  templateUrl: './requestproduct.component.html',
-  styleUrls: ['./requestproduct.component.css']
+  selector: 'app-viewrequestproduct',
+  templateUrl: './viewrequestproduct.component.html',
+  styleUrls: ['./viewrequestproduct.component.css']
 })
-export class RequestProductComponent implements OnInit {
+export class ViewRequestProductComponent implements OnInit {
   ManufactureList: any[];
   invoicedetails: any;
   total: any;
@@ -75,11 +75,12 @@ export class RequestProductComponent implements OnInit {
     'Qty': '',
     'TrDate': ''
   }
+  id: string;
 
   constructor(
     private meta: Meta,
     public cmn: UserinfoService,
-    private fb: FormBuilder, private Services: RequestProductServices, private router: Router) {
+    private fb: FormBuilder, private Services: ViewRequestProductServices, private router: Router) {
     this.meta.addTag({ name: 'Description', content: 'Oclinico' });
     this.meta.addTag({ name: 'Keywords', content: 'Oclinico' });
   }
@@ -87,13 +88,12 @@ export class RequestProductComponent implements OnInit {
   createItem(): FormGroup {
     return this.fb.group({
       // start item
-      Barcode: [''],
       Product_ID: [''],
-      ProdName: ['', [Validators.required]],
-      Qty: ['', [Validators.required]],
-      unit_id: [''],
-      UnitName: [''],
-      Store_ID: ['']
+      ProductAr: [''],
+      ProductEng: [''],
+      Qty: [''],
+      Store_ID: [''],
+      Master_ID: ['']
     });
   }
 
@@ -132,14 +132,6 @@ export class RequestProductComponent implements OnInit {
 
         this.langulagetype = this.languageoption;
       }
-
-      this.formErrors = {
-        'Store_ID': '',
-        'ProdName': '',
-        'unit_id': '',
-        'Qty': '',
-        'TrDate': ''
-      }
     })
 
 
@@ -147,6 +139,16 @@ export class RequestProductComponent implements OnInit {
     // get Stores & Manufacturers
     this.Services.getMaster(res => {
       this.Stores = res.Store;
+    })
+
+    let url = document.URL;
+    this.id = url.split('=')[1];
+    this.getdata();
+  }
+  getdata() {
+    this.Services.getData(this.id, res => {
+      this.InvoiveForm.get('Store_ID').setValue(res.StoreRequest[0].Store_ID);
+      this.invoicedetails.StoreRequestList = res.StoreRequest;
     })
   }
 
@@ -157,24 +159,6 @@ export class RequestProductComponent implements OnInit {
     }
   }
 
-  AddItem() {
-    this.Items.get("0.Store_ID").setValue(this.InvoiveForm.get('Store_ID').value);
-    this.fromsubmit = true;
-    if (this.InvoiveForm.invalid == true) {
-      this.checkValidationErrors(this.InvoiveForm);
-      this.checkValidationArrayErrors(this.Items);
-    } else {
-      if (this.invoicedetails.length == 0) {
-        this.invoicedetails = this.InvoiveForm.value;
-      }
-      else {
-        var oldItems = this.invoicedetails.StoreRequestList;
-        oldItems.push(this.Items.value[0]);
-      }
-
-      this.Items.reset();
-    }
-  }
 
   checkValidationErrors(group: FormGroup = this.InvoiveForm): void {
     Object.keys(group.controls).forEach((key: string) => {
@@ -313,54 +297,15 @@ export class RequestProductComponent implements OnInit {
     }
   }
 
-  extractSuggestedTexts() {
-    let val = this.Items.value[0].ProdName;
-    this.products = [];
-    this.suggestedTexts = [];
-    this.Services.getProduct(val, res => {
-      this.products = res.Product;
-      if (this.Items.value[0].ProdName !== "") {
-        if (this.langulagetype == "EN") {
-          this.suggestedTexts = this.products.filter(e => e.TradeNameEng.toLowerCase().indexOf(this.Items.value[0].ProdName.toLowerCase()) > -1);
-        }
-        else {
-          this.suggestedTexts = this.products.filter(e => e.TradeNameAr.toLowerCase().indexOf(this.Items.value[0].ProdName.toLowerCase()) > -1);
-        }
-
-        this.ShowAuto = true;
-      }
-      else {
-        this.suggestedTexts = [];
-        this.ShowAuto = false;
-      }
-    })
-  }
-
-  SelectItem(data: any) {
-    this.ShowAuto = false;
-    this.suggestedTexts = [];
-    this.Items.get('0.Product_ID').setValue(data.ID);
-
-    if (this.langulagetype == "EN") {
-      this.Items.get('0.ProdName').setValue(data.TradeNameEng);
-      this.Items.get('0.UnitName').setValue(data.NameEng);
-    }
-    else {
-      this.Items.get('0.ProdName').setValue(data.TradeNameAr);
-      this.Items.get('0.UnitName').setValue(data.NameAr);
-    }
-
-    this.Items.get('0.unit_id').setValue(data.Package_type_ID);
-  }
 
   invoicesubmit() {
     this.invoicedetails.TotalItems = this.invoicedetails.StoreRequestList.length;
     if (this.invoicedetails.StoreRequestList.length > 0) {
-      this.Services.saveOrder(this.invoicedetails, () => {
-        alert("Invoice Generated Succesfully");
-        this.InvoiveForm.reset();
-        this.invoicedetails = [];
-      })
+      // this.Services.saveOrder(this.invoicedetails, () => {
+      //   alert("Invoice Generated Succesfully");
+      //   this.InvoiveForm.reset();
+      //   this.invoicedetails = [];
+      // })
     }
   }
 
@@ -375,25 +320,6 @@ export class RequestProductComponent implements OnInit {
   }
 
   invoicecancle() {
-    this.router.navigate(['/requestproduct']);
-  }
-
-  GetBarcodeData(e) {
-    if (e.charCode == 13 || e.key == 'Enter') {
-      this.Services.getProductByBarCode(this.Items.get("0.Barcode").value, res => {
-        this.Items.get('0.Product_ID').setValue(res.Product.ID);
-
-        if (this.langulagetype == "EN") {
-          this.Items.get('0.ProdName').setValue(res.Product.TradeNameEng);
-          this.Items.get('0.UnitName').setValue(res.Product.NameEng);
-        }
-        else {
-          this.Items.get('0.ProdName').setValue(res.Product.TradeNameAr);
-          this.Items.get('0.UnitName').setValue(res.Product.NameAr);
-        }
-
-        this.Items.get('0.unit_id').setValue(res.Product.Package_type_ID);
-      })
-    }
+    this.router.navigate(['/requestproductlist']);
   }
 }

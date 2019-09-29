@@ -35,5 +35,11 @@ export class RequestProductServices {
       });
   }
 
+  getProductByBarCode(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/buy-invoice/get-product-barcode/${value}`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
 }
 
