@@ -42,6 +42,8 @@ export const Approutes: Routes = [
       { path: 'requestproduct', loadChildren: './invoices/requestproduct/requestproduct.module#RequestProductModule', canActivate: [AuthGuard] },
       { path: 'requestproductlist', loadChildren: './invoices/requestproductlist/requestproductlist.module#RequestProductListModule', canActivate: [AuthGuard] },
       { path: 'viewrequestproduct', loadChildren: './invoices/viewrequestproduct/viewrequestproduct.module#ViewRequestProductModule', canActivate: [AuthGuard] },
+      { path: 'transferproduct', loadChildren: './invoices/transferproduct/transferproduct.module#TransferProductModule', canActivate: [AuthGuard] },
+      { path: 'inventory', loadChildren: './invoices/inventory/inventory.module#InventoryModule', canActivate: [AuthGuard] },
       // LAZY LOAD PENDING ..
       //   {   path:'Maininvoice',    
 
