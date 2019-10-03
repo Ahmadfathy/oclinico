@@ -116,7 +116,7 @@ export class newdashboardComponent implements OnInit {
     this.patientandfamilydetails(this.thismonth, this.fullyear);
     this.chartsforspecilization();
     this.bindDoctorwiseapp();
-    this.Mobilechart(this.thismonth, this.fullyear);
+    // this.Mobilechart(this.thismonth, this.fullyear);
   }
   getdata() {
     var accessToken = window.localStorage.Tokenval
@@ -227,7 +227,7 @@ export class newdashboardComponent implements OnInit {
       this.bindapptypecharts(val, this.fullyear == undefined ? "" : this.fullyear);
       this.precdetails(val, this.fullyear == undefined ? "" : this.fullyear);
       this.patientandfamilydetails(val, this.fullyear == undefined ? "" : this.fullyear);
-      this.Mobilechart(val, this.fullyear == undefined ? "" : this.fullyear);
+      // this.Mobilechart(val, this.fullyear == undefined ? "" : this.fullyear);
     }
   }
   getyearrec(val, a) {
@@ -236,7 +236,7 @@ export class newdashboardComponent implements OnInit {
       this.bindapptypecharts(this.thismonth == undefined ? "" : this.thismonth, val);
       this.precdetails(this.thismonth == undefined ? "" : this.thismonth, val);
       this.patientandfamilydetails(this.thismonth == undefined ? "" : this.thismonth, val);
-      this.Mobilechart(this.thismonth == undefined ? "" : this.thismonth, val);
+      // this.Mobilechart(this.thismonth == undefined ? "" : this.thismonth, val);
     }
   }
   bindbarcharts(val, type) {
@@ -284,30 +284,30 @@ export class newdashboardComponent implements OnInit {
         appdate.push(final[i].date)
       }
       //binding chart     
-      var myChart = new Chart(document.getElementById("adaywise"));
-      myChart.clear();
-      this.chart.chart.clear();
-      var myChart = new Chart(document.getElementById("adaywise"), {
-        // type: 'horizontalBar',
-        type: 'bar',
-        data: {
-          labels: appdate,
-          datasets: [{
-            label: "Appointments",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd",
-              "#FF00FF", "#8A2BE2", "#00BFFF", "#FF69B4", "#F08080", "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460",
-              "#3498DB", "#003399", "#3cba9f", "#E9967A", "#c45850", "#F39C12", "#48C9B0", "#48C9B0", "#FF69B4", "#E9967A",
-              "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460"
-            ],
-            data: appcount
-          }]
-        },
-        options: {
-          legend: { display: false }, title: { display: true, text: appmonth[0] == undefined ? "No data found" : appmonth[0] }
-        }
-      });
-      myChart.update();
-      this.chart.chart.update();
+      // var myChart = new Chart(document.getElementById("adaywise"));
+      // myChart.clear();
+      // this.chart.chart.clear();
+      // var myChart = new Chart(document.getElementById("adaywise"), {
+      //   // type: 'horizontalBar',
+      //   type: 'bar',
+      //   data: {
+      //     labels: appdate,
+      //     datasets: [{
+      //       label: "Appointments",
+      //       backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd",
+      //         "#FF00FF", "#8A2BE2", "#00BFFF", "#FF69B4", "#F08080", "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460",
+      //         "#3498DB", "#003399", "#3cba9f", "#E9967A", "#c45850", "#F39C12", "#48C9B0", "#48C9B0", "#FF69B4", "#E9967A",
+      //         "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460"
+      //       ],
+      //       data: appcount
+      //     }]
+      //   },
+      //   options: {
+      //     legend: { display: false }, title: { display: true, text: appmonth[0] == undefined ? "No data found" : appmonth[0] }
+      //   }
+      // });
+      // myChart.update();
+      // this.chart.chart.update();
       //closing day wise chart
 
       //opening month wise chart             
@@ -322,18 +322,18 @@ export class newdashboardComponent implements OnInit {
         monthname.push("No data found");
         monthcounts.push(0);
       }
-      new Chart(document.getElementById("amwise"), {
-        type: 'pie',
-        data: {// labels:["january","Feburuary","March","April","May","june","July","August","September","October","November","December"],
-          labels: monthname,
-          datasets: [{
-            label: "Appointments",
-            backgroundColor: ["#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: monthcounts
-          }]
-        },
-        options: { legend: { display: true } }
-      });
+      // new Chart(document.getElementById("amwise"), {
+      //   type: 'pie',
+      //   data: {// labels:["january","Feburuary","March","April","May","june","July","August","September","October","November","December"],
+      //     labels: monthname,
+      //     datasets: [{
+      //       label: "Appointments",
+      //       backgroundColor: ["#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+      //       data: monthcounts
+      //     }]
+      //   },
+      //   options: { legend: { display: true } }
+      // });
 
       //yearwise data
       var yearcount = []; var yearname = [];
@@ -346,18 +346,18 @@ export class newdashboardComponent implements OnInit {
         yearcount.push(0);
         yearname.push("No data Found");
       }
-      new Chart(document.getElementById("aywise"), {
-        type: 'pie',
-        data: {// labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-          labels: yearname,
-          datasets: [{
-            label: "Year wise appointments",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: [yearcount]
-          }]
-        },
-        options: { legend: { display: true } }
-      });
+      // new Chart(document.getElementById("aywise"), {
+      //   type: 'pie',
+      //   data: {// labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      //     labels: yearname,
+      //     datasets: [{
+      //       label: "Year wise appointments",
+      //       backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+      //       data: [yearcount]
+      //     }]
+      //   },
+      //   options: { legend: { display: true } }
+      // });
     },
       error => {
         console.log(error);
@@ -408,36 +408,36 @@ export class newdashboardComponent implements OnInit {
           }
         }
       }
-      new Chart(document.getElementById("atmonthwise"), {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [
-            // {
-            //   label: "month",
-            //   backgroundColor: "#3e95cd",
-            //   data: months
-            // },
-            {
-              label: "First",
-              backgroundColor: "#2962FF",
-              data: FirstAppointment
-            }, {
-              label: "Standard",
-              backgroundColor: "#8e5ea2",
-              data: StandardAppointment
-            }, {
-              label: "Treatments",
-              backgroundColor: "#ffc107",
-              data: Treatments
-            }]
-        },
-        options: {
-          title: {
-            display: true,//text: 'Appointments Types'
-          }
-        }
-      });
+      // new Chart(document.getElementById("atmonthwise"), {
+      //   type: 'bar',
+      //   data: {
+      //     labels: labels,
+      //     datasets: [
+      //       // {
+      //       //   label: "month",
+      //       //   backgroundColor: "#3e95cd",
+      //       //   data: months
+      //       // },
+      //       {
+      //         label: "First",
+      //         backgroundColor: "#2962FF",
+      //         data: FirstAppointment
+      //       }, {
+      //         label: "Standard",
+      //         backgroundColor: "#8e5ea2",
+      //         data: StandardAppointment
+      //       }, {
+      //         label: "Treatments",
+      //         backgroundColor: "#ffc107",
+      //         data: Treatments
+      //       }]
+      //   },
+      //   options: {
+      //     title: {
+      //       display: true,//text: 'Appointments Types'
+      //     }
+      //   }
+      // });
       var months = [];
       var FirstAppointment = [];
       var StandardAppointment = [];
@@ -457,32 +457,32 @@ export class newdashboardComponent implements OnInit {
         Treatments.push(0);
       }
       ///-------yearwise chart-------------------
-      new Chart(document.getElementById("atyearwise"), {
-        type: 'bar',
-        data: {
-          labels: months,
-          datasets: [
-            {
-              label: "First",
-              backgroundColor: "#2962FF",
-              data: FirstAppointment
-            }, {
-              label: "Standard",
-              backgroundColor: "#8e5ea2",
-              data: StandardAppointment
-            }, {
-              label: "Treatments",
-              backgroundColor: "#ffc107",
-              data: Treatments
-            }]
-        },
-        options: {
-          title: {
-            display: true,
-            //text: 'Appointments Types'
-          }
-        }
-      });
+      // new Chart(document.getElementById("atyearwise"), {
+      //   type: 'bar',
+      //   data: {
+      //     labels: months,
+      //     datasets: [
+      //       {
+      //         label: "First",
+      //         backgroundColor: "#2962FF",
+      //         data: FirstAppointment
+      //       }, {
+      //         label: "Standard",
+      //         backgroundColor: "#8e5ea2",
+      //         data: StandardAppointment
+      //       }, {
+      //         label: "Treatments",
+      //         backgroundColor: "#ffc107",
+      //         data: Treatments
+      //       }]
+      //   },
+      //   options: {
+      //     title: {
+      //       display: true,
+      //       //text: 'Appointments Types'
+      //     }
+      //   }
+      // });
     },
       error => {
         console.log(error);
@@ -552,45 +552,45 @@ export class newdashboardComponent implements OnInit {
         Appointmentyear.push(result.data.Table2[k].Appointmentyear)
         yearprescriptions.push(result.data.Table2[k].noofprescriptions)
       }
-      new Chart(document.getElementById("pdaywise"), {
-        type: 'bar',
-        data: {
-          labels: daysp,
-          datasets: [{
-            label: "prescription Day Wise",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2",
-              "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2",
-              "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd"],
-            data: papp
-          }]
-        },
-        options: { legend: { display: false }, title: { display: true, text: Appointmentmonth[0] == undefined ? "No data found" : Appointmentmonth[0] } }
-      });
+      // new Chart(document.getElementById("pdaywise"), {
+      //   type: 'bar',
+      //   data: {
+      //     labels: daysp,
+      //     datasets: [{
+      //       label: "prescription Day Wise",
+      //       backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2",
+      //         "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2",
+      //         "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd", "#8e5ea2", "#3e95cd"],
+      //       data: papp
+      //     }]
+      //   },
+      //   options: { legend: { display: false }, title: { display: true, text: Appointmentmonth[0] == undefined ? "No data found" : Appointmentmonth[0] } }
+      // });
 
-      new Chart(document.getElementById("ptmonthwise"), {
-        type: 'pie',
-        data: {
-          labels: Appointmentmonth,
-          datasets: [{
-            label: "prescription Month Wise",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: noofprescriptions
-          }]
-        },
-        options: { legend: { display: true } }
-      });
-      new Chart(document.getElementById("ptyearwise"), {
-        type: 'pie',
-        data: {
-          labels: Appointmentyear,
-          datasets: [{
-            label: "prescription Year Wise",
-            backgroundColor: ["#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: yearprescriptions
-          }]
-        },
-        options: { legend: { display: true } }
-      });
+      // new Chart(document.getElementById("ptmonthwise"), {
+      //   type: 'pie',
+      //   data: {
+      //     labels: Appointmentmonth,
+      //     datasets: [{
+      //       label: "prescription Month Wise",
+      //       backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+      //       data: noofprescriptions
+      //     }]
+      //   },
+      //   options: { legend: { display: true } }
+      // });
+      // new Chart(document.getElementById("ptyearwise"), {
+      //   type: 'pie',
+      //   data: {
+      //     labels: Appointmentyear,
+      //     datasets: [{
+      //       label: "prescription Year Wise",
+      //       backgroundColor: ["#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+      //       data: yearprescriptions
+      //     }]
+      //   },
+      //   options: { legend: { display: true } }
+      // });
     },
       error => { console.log(error); });
   }
@@ -624,20 +624,20 @@ export class newdashboardComponent implements OnInit {
         count.push(0);
         designation.push("no data found");
       }
-      new Chart(document.getElementById("designation"), {
-        type: 'pie',
-        data: {
-          labels: designation,
-          datasets: [{
-            label: "Count",
-            backgroundColor: ["#3e95cd", "#487BC9", "#D329CD", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: count
-          }]
-        },
-        options: {
-          legend: { display: true },
-        }
-      });
+      // new Chart(document.getElementById("designation"), {
+      //   type: 'pie',
+      //   data: {
+      //     labels: designation,
+      //     datasets: [{
+      //       label: "Count",
+      //       backgroundColor: ["#3e95cd", "#487BC9", "#D329CD", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+      //       data: count
+      //     }]
+      //   },
+      //   options: {
+      //     legend: { display: true },
+      //   }
+      // });
     }, error => { console.log(error); }
     );
   }
@@ -669,21 +669,21 @@ export class newdashboardComponent implements OnInit {
         count.push(0);
         name.push("No data found");
       }
-      new Chart(document.getElementById("doctorwiseappointments"), {
-        // type: 'horizontalBar',
-        type: 'pie',
-        data: {
-          labels: name,
-          datasets: [{
-            label: "Appointments",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: count
-          }]
-        },
-        options: {
-          legend: { display: true },
-        }
-      });
+      // new Chart(document.getElementById("doctorwiseappointments"), {
+      //   // type: 'horizontalBar',
+      //   type: 'pie',
+      //   data: {
+      //     labels: name,
+      //     datasets: [{
+      //       label: "Appointments",
+      //       backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+      //       data: count
+      //     }]
+      //   },
+      //   options: {
+      //     legend: { display: true },
+      //   }
+      // });
     },
       error => {
         console.log(error);
@@ -752,204 +752,204 @@ export class newdashboardComponent implements OnInit {
         bindcount.push(finaltwo[i].app);
       }
 
-      new Chart(document.getElementById("patientandfamilydetailsc"), {
-        type: 'line',
-        data: {
-          labels: monthforfamily,
-          datasets: [
-            {
-              data: appcount,
-              label: "Patient",
-              borderColor: "#8e5ea2",
-              fill: false
-            },
-            {
-              data: bindcount,
-              label: "family",
-              borderColor: "#3cba9f",
-              fill: false
-            },
-          ]
-        },
-        options: {
-          title: {
-            display: true,
-            //text: 'Appointments Types'
-          }
-        }
-      });
+      // new Chart(document.getElementById("patientandfamilydetailsc"), {
+      //   type: 'line',
+      //   data: {
+      //     labels: monthforfamily,
+      //     datasets: [
+      //       {
+      //         data: appcount,
+      //         label: "Patient",
+      //         borderColor: "#8e5ea2",
+      //         fill: false
+      //       },
+      //       {
+      //         data: bindcount,
+      //         label: "family",
+      //         borderColor: "#3cba9f",
+      //         fill: false
+      //       },
+      //     ]
+      //   },
+      //   options: {
+      //     title: {
+      //       display: true,
+      //       //text: 'Appointments Types'
+      //     }
+      //   }
+      // });
 
     }, error => { console.log(error); });
 
   }
   bindbarchart() {
-    var densityCanvas = document.getElementById("densityChart");
-    Chart.defaults.global.defaultFontFamily = "Poppins";
-    Chart.defaults.global.defaultFontSize = 14;
-    var densityData = {
-      label: 'Doctors Available',
-      data: [12, 23, 7, 5, 9, 20],
-      backgroundColor: [
-        'rgb(71, 152, 232)',
-        'rgb(34, 198, 171)',
-        'rgb(255, 188, 52)',
-        'rgb(239, 110, 110)',
-        'rgb(1, 192, 200)',
-        'rgb(116, 96, 238)',
-      ],
-      borderColor: [
-        'rgba(71, 152, 232, 1)',
-        'rgba(34, 198, 171, 1)',
-        'rgba(255, 188, 52, 1)',
-        'rgba(239, 110, 110, 1)',
-        'rgba(1, 192, 200, 1)',
-        'rgba(116, 96, 238, 1)',
-      ]
-    };
+    // var densityCanvas = document.getElementById("densityChart");
+    // Chart.defaults.global.defaultFontFamily = "Poppins";
+    // Chart.defaults.global.defaultFontSize = 14;
+    // var densityData = {
+    //   label: 'Doctors Available',
+    //   data: [12, 23, 7, 5, 9, 20],
+    //   backgroundColor: [
+    //     'rgb(71, 152, 232)',
+    //     'rgb(34, 198, 171)',
+    //     'rgb(255, 188, 52)',
+    //     'rgb(239, 110, 110)',
+    //     'rgb(1, 192, 200)',
+    //     'rgb(116, 96, 238)',
+    //   ],
+    //   borderColor: [
+    //     'rgba(71, 152, 232, 1)',
+    //     'rgba(34, 198, 171, 1)',
+    //     'rgba(255, 188, 52, 1)',
+    //     'rgba(239, 110, 110, 1)',
+    //     'rgba(1, 192, 200, 1)',
+    //     'rgba(116, 96, 238, 1)',
+    //   ]
+    // };
 
-    var chartOptions = {
-      scales: {
-        yAxes: [{
-          barPercentage: 0.5
-        }]
-      },
-      elements: {
-        rectangle: {
-          borderSkipped: 'left',
-        }
-      }
-    };
+    // var chartOptions = {
+    //   scales: {
+    //     yAxes: [{
+    //       barPercentage: 0.5
+    //     }]
+    //   },
+    //   elements: {
+    //     rectangle: {
+    //       borderSkipped: 'left',
+    //     }
+    //   }
+    // };
 
-    var barChart = new Chart(densityCanvas, {
-      type: 'horizontalBar',
-      data: {
-        labels: ["Dental", "ENT", "Cardiology", "Urology", "Surgery", "Internal"],
-        datasets: [densityData],
-      },
-      options: chartOptions
-    });
+    // var barChart = new Chart(densityCanvas, {
+    //   type: 'horizontalBar',
+    //   data: {
+    //     labels: ["Dental", "ENT", "Cardiology", "Urology", "Surgery", "Internal"],
+    //     datasets: [densityData],
+    //   },
+    //   options: chartOptions
+    // });
   }
 
-  Mobilechart(mon, year) {
-    var accessToken = window.localStorage.Tokenval;
-    let serviceurl = this.cmn.commonUrl + "Account/GetUser";
-    let params = {
-      "text": "chartsformobileandwebentries",
-      "id": mon,
-      "param1": year,
-      "param2": ""
-    }
-    let headres = new Headers({
-      "Content-Type": "application/json",
-      accept: "apllication/json",
-      Authorization: accessToken
-    });
+  // Mobilechart(mon, year) {
+  //   var accessToken = window.localStorage.Tokenval;
+  //   let serviceurl = this.cmn.commonUrl + "Account/GetUser";
+  //   let params = {
+  //     "text": "chartsformobileandwebentries",
+  //     "id": mon,
+  //     "param1": year,
+  //     "param2": ""
+  //   }
+  //   let headres = new Headers({
+  //     "Content-Type": "application/json",
+  //     accept: "apllication/json",
+  //     Authorization: accessToken
+  //   });
 
-    let Options = new RequestOptions({ headers: headres });
-    this.http.post(serviceurl, params, Options).map(res => res.json()).subscribe(res => {
-      // debugger
-      var monthname = [];
-      var monthcount = [];
-      if (res.data.Table.length > 0) {
-        for (let i = 0; i < res.data.Table.length; i++) {
-          monthname.push(res.data.Table[i].Appointmentmonth);
-          monthcount.push(res.data.Table[i].noofprescriptions)
-        }
-      }else {
-        monthname.push("No data found")
-        monthcount.push(0)
-      }//close month count
+  //   let Options = new RequestOptions({ headers: headres });
+  //   this.http.post(serviceurl, params, Options).map(res => res.json()).subscribe(res => {
+  //     // debugger
+  //     var monthname = [];
+  //     var monthcount = [];
+  //     if (res.data.Table.length > 0) {
+  //       for (let i = 0; i < res.data.Table.length; i++) {
+  //         monthname.push(res.data.Table[i].Appointmentmonth);
+  //         monthcount.push(res.data.Table[i].noofprescriptions)
+  //       }
+  //     } else {
+  //       monthname.push("No data found")
+  //       monthcount.push(0)
+  //     }//close month count
 
-      var dayname = [];
-      var daycount = [];
-      if (res.data.Table1.length > 0) {
-        for (let i = 0; i < res.data.Table1.length; i++) {
-          dayname.push(res.data.Table1[i].Appointmentday);
-          daycount.push(res.data.Table1[i].noofprescriptions);
-        }
-      }//close day count
-      var final=[];
-    var j=0;
-      this.daysarr.filter(function (val, i) {
-        if (dayname.indexOf(val) != -1) {
-          final.push({ "date": val, "appointment": daycount[j] })
-          j++;
-        }
-        else {
-          final.push({ "date": val, "appointment": 0 })
-        }
-      });
-
-
-      var appcount = []; var appdate = [];
-      for (let i = 0; i < final.length; i++) {
-        appcount.push(final[i].appointment)
-        appdate.push(final[i].date)
-      }
-
-      var myChart = new Chart(document.getElementById("Mobiledaywise"), {
-        // type: 'horizontalBar',
-        type: 'bar',
-        data: {
-          labels: appdate,
-          datasets: [{
-            label: "Count",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd",
-              "#FF00FF", "#8A2BE2", "#00BFFF", "#FF69B4", "#F08080", "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460",
-              "#3498DB", "#003399", "#3cba9f", "#E9967A", "#c45850", "#F39C12", "#48C9B0", "#48C9B0", "#FF69B4", "#E9967A",
-              "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460"
-            ],
-            data: appcount
-          }]
-        },
-        options: {
-          legend: { display: false }, title: { display: true, text: monthname[0] == undefined ? "No data found" : monthname[0] }
-        }
-      });
-
-      var yearname=[];
-      var yearcount=[];
-      if (res.data.Table2.length > 0) {
-        for (let j = 0; j < res.data.Table2.length; j++) {
-          yearname.push(res.data.Table2[j].Appointmentyear);
-          yearcount.push(res.data.Table2[j].noofprescriptions);
-        }
-      }else {
-        yearname.push("No data found")
-        yearcount.push(0)
-      }//close year count
-
-      new Chart(document.getElementById("mobiletyearwise"), {
-        type: 'pie',
-        data: {// labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-          labels: yearname,
-          datasets: [{
-            label: "Year wise appointments",
-            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: [yearcount]
-          }]
-        },
-        options: { legend: { display: true } }
-      });
+  //     var dayname = [];
+  //     var daycount = [];
+  //     if (res.data.Table1.length > 0) {
+  //       for (let i = 0; i < res.data.Table1.length; i++) {
+  //         dayname.push(res.data.Table1[i].Appointmentday);
+  //         daycount.push(res.data.Table1[i].noofprescriptions);
+  //       }
+  //     }//close day count
+  //     var final = [];
+  //     var j = 0;
+  //     this.daysarr.filter(function (val, i) {
+  //       if (dayname.indexOf(val) != -1) {
+  //         final.push({ "date": val, "appointment": daycount[j] })
+  //         j++;
+  //       }
+  //       else {
+  //         final.push({ "date": val, "appointment": 0 })
+  //       }
+  //     });
 
 
-      new Chart(document.getElementById("mobilemonthwise"), {
-        type: 'pie',
-        data: {// labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-          labels: monthname,
-          datasets: [{
-            label: "Month wise appointments",
-            backgroundColor: ["#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-            data: [monthcount]
-          }]
-        },
-        options: { legend: { display: true } }
-      });
-     
+  //     var appcount = []; var appdate = [];
+  //     for (let i = 0; i < final.length; i++) {
+  //       appcount.push(final[i].appointment)
+  //       appdate.push(final[i].date)
+  //     }
 
-    }, error => {
-      console.log(error);
-    });
-  }
+  //     // var myChart = new Chart(document.getElementById("Mobiledaywise"), {
+  //     //   // type: 'horizontalBar',
+  //     //   type: 'bar',
+  //     //   data: {
+  //     //     labels: appdate,
+  //     //     datasets: [{
+  //     //       label: "Count",
+  //     //       backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd",
+  //     //         "#FF00FF", "#8A2BE2", "#00BFFF", "#FF69B4", "#F08080", "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460",
+  //     //         "#3498DB", "#003399", "#3cba9f", "#E9967A", "#c45850", "#F39C12", "#48C9B0", "#48C9B0", "#FF69B4", "#E9967A",
+  //     //         "#FF6347", "#FF00FF", "#00BFFF", "#48D1CC", "#F4A460"
+  //     //       ],
+  //     //       data: appcount
+  //     //     }]
+  //     //   },
+  //     //   options: {
+  //     //     legend: { display: false }, title: { display: true, text: monthname[0] == undefined ? "No data found" : monthname[0] }
+  //     //   }
+  //     // });
+
+  //     var yearname = [];
+  //     var yearcount = [];
+  //     if (res.data.Table2.length > 0) {
+  //       for (let j = 0; j < res.data.Table2.length; j++) {
+  //         yearname.push(res.data.Table2[j].Appointmentyear);
+  //         yearcount.push(res.data.Table2[j].noofprescriptions);
+  //       }
+  //     } else {
+  //       yearname.push("No data found")
+  //       yearcount.push(0)
+  //     }//close year count
+
+  //     new Chart(document.getElementById("mobiletyearwise"), {
+  //       type: 'pie',
+  //       data: {// labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+  //         labels: yearname,
+  //         datasets: [{
+  //           label: "Year wise appointments",
+  //           backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+  //           data: [yearcount]
+  //         }]
+  //       },
+  //       options: { legend: { display: true } }
+  //     });
+
+
+  //     new Chart(document.getElementById("mobilemonthwise"), {
+  //       type: 'pie',
+  //       data: {// labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+  //         labels: monthname,
+  //         datasets: [{
+  //           label: "Month wise appointments",
+  //           backgroundColor: ["#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+  //           data: [monthcount]
+  //         }]
+  //       },
+  //       options: { legend: { display: true } }
+  //     });
+
+
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
 }
 

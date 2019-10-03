@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { MyChartsComponent } from './my-charts/my-charts.component';
 
 export const Approutes: Routes = [
   {
@@ -17,9 +18,9 @@ export const Approutes: Routes = [
       { path: 'AddCommunication', loadChildren: './addcommunications/addcommunications.module#AddCommunicationModule', canActivate: [AuthGuard] },
       { path: 'Laboratary', loadChildren: './laboratary/laboratary.module#LaborataryModule', canActivate: [AuthGuard] },
 
-       // -------------------- patientsummary ------------------------- //
+      // -------------------- patientsummary ------------------------- //
 
-       { path: 'patientsummery', loadChildren: './patient-summery/patient-summery.module#PatientSummeryModule', canActivate: [AuthGuard] },
+      { path: 'patientsummery', loadChildren: './patient-summery/patient-summery.module#PatientSummeryModule', canActivate: [AuthGuard] },
 
       // -----------------wards--------------
       { path: 'wards', loadChildren: './wards/wards.module#WardsModule', canActivate: [AuthGuard] },
@@ -44,6 +45,7 @@ export const Approutes: Routes = [
       { path: 'viewrequestproduct', loadChildren: './invoices/viewrequestproduct/viewrequestproduct.module#ViewRequestProductModule', canActivate: [AuthGuard] },
       { path: 'transferproduct', loadChildren: './invoices/transferproduct/transferproduct.module#TransferProductModule', canActivate: [AuthGuard] },
       { path: 'inventory', loadChildren: './invoices/inventory/inventory.module#InventoryModule', canActivate: [AuthGuard] },
+      { path: 'charts', loadChildren: './my-charts/my-charts.module#MyChartsModule', canActivate: [AuthGuard] },
       // LAZY LOAD PENDING ..
       //   {   path:'Maininvoice',    
 
@@ -212,7 +214,7 @@ export const Approutes: Routes = [
       { path: 'hematologygrid', loadChildren: './reports/hematologygrid/hematologygrid.module#HematologygridModule', canActivate: [AuthGuard] },
       { path: 'hematology', loadChildren: './reports/hematology/hematology.module#HematologyModule', canActivate: [AuthGuard] },
       { path: 'hematologyview/:id/:text/:date', loadChildren: './reports/hematology/hematology.module#HematologyModule', canActivate: [AuthGuard] },
-      {path: 'hematologyupdate/:id/:text/:date',loadChildren: './reports/hematology/hematology.module#HematologyModule', canActivate: [AuthGuard] }, 
+      { path: 'hematologyupdate/:id/:text/:date', loadChildren: './reports/hematology/hematology.module#HematologyModule', canActivate: [AuthGuard] },
       {
         path: 'viewurinalreport/:id/:text/:date',
         loadChildren: './reports/urinalreport-ev/urinalreport-ev.module#UrinalsEVModule', canActivate: [AuthGuard]
@@ -234,7 +236,7 @@ export const Approutes: Routes = [
         loadChildren: './reports/harmonalgrid/harmonalgrid.module#harmonalgridModule', canActivate: [AuthGuard]
       },
       { path: 'harmonalview/:id/:text/:date', loadChildren: './reports/hormonalassayrequest/hormonalassayrequest.module#hormonalassayrequestModule', canActivate: [AuthGuard] },
-       {path: 'harmonalupdate/:id/:text/:date',loadChildren: './reports/hormonalassayrequest/hormonalassayrequest.module#hormonalassayrequestModule', canActivate: [AuthGuard] }, 
+      { path: 'harmonalupdate/:id/:text/:date', loadChildren: './reports/hormonalassayrequest/hormonalassayrequest.module#hormonalassayrequestModule', canActivate: [AuthGuard] },
       {
         path: 'biochemistrygrid',
         loadChildren: './reports/biochemistrygrid/biochemistrygrid.module#BiochemistrygridComponentModule', canActivate: [AuthGuard]

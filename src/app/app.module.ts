@@ -40,19 +40,9 @@ import {UserinfoService} from 'src/app/userinfo.service';
 import { DatePipe } from '@angular/common'; // priyanka
 import { AuthGuard } from './shared/guard/auth.guard';
 
-
-// import { FullCalendarModule } from '@fullcalendar/angular';
 import {  SidelinksComponent } from './reports/sidelinks/sidelinks.component'
 import {SidelinksModule } from './reports/sidelinks/sidelinks.module';
-//import { AddwardsComponent } from './addwards/addwards.component';
 
-// import { PaymentComponent } from './payment/payment.component';
-// import { RadiologyComponent } from './radiology/radiology.component';
-// import { ViewradiologyComponent } from './viewradiology/viewradiology.component';
-// import { ViewWardsComponent } from './view-wards/view-wards.component';
-// import { ViewLaboratoryComponent } from './view-laboratory/view-laboratory.component';
-// import { PatientSummeryComponent } from './patient-summery/patient-summery.component';
-// import { InvoicesComponent } from './invoices/invoices.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -70,7 +60,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BlankComponent,
     NavigationComponent,
     BreadcrumbComponent,
-    SidebarComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -88,7 +78,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RouterModule.forRoot(Approutes, { useHash: true , scrollPositionRestoration: 'enabled' }),
     PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBUb3jDWJQ28vDJhuQZxkC0NXr_zycm8D0' }),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBUb3jDWJQ28vDJhuQZxkC0NXr_zycm8D0' })
 
   ],
   providers: [

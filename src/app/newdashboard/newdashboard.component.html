@@ -217,13 +217,13 @@
 
 <!---/////////////////////////////////appointments graphs/////////////////////////////////////////-->
 <div class="row">
-    <!-- <div class="col-md-4">
+    <div class="col-md-4">
         <select class="form-control" (change)="getdayrec($event.target.value)">
             <option value="">Select Day</option>
             <option *ngFor="let v of daysarr" value="{{v}}">{{v}}
             </option>
         </select>
-    </div> -->
+    </div>
     <div class="col-md-6">
         <select class="form-control" (change)="getmonthrec($event.target.value,'month')" [(ngModel)]="thismonth">
             <option value="">Select month</option>
@@ -242,7 +242,7 @@
 </div>
 <br>
 <div class="row">
-    
+
     <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
@@ -252,27 +252,27 @@
             </div>
         </div>
     </div>
-    
-    <div class="col-sm-4">
-            <div class="card">
-                    <div class="card-body">
 
-                        <h4 class="card-title">Appointments</h4>
-                        <h6 class="card-subtitle">Month wise</h6>
-                        <canvas height="250px" id="amwise"></canvas>
-                    </div>
-                </div>    
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Appointments</h4>
+                <h6 class="card-subtitle">Month wise</h6>
+                <canvas height="250px" id="amwise"></canvas>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-4"> 
-            <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Appointments</h4>
-                        <h6 class="card-subtitle">year wise</h6>
-                        <canvas height="250px" id="aywise"></canvas>
-                    </div>
-                </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Appointments</h4>
+                <h6 class="card-subtitle">year wise</h6>
+                <canvas height="250px" id="aywise"></canvas>
+            </div>
+        </div>
     </div>
-    
+
 </div>
 
 <br>
@@ -306,7 +306,7 @@
 <!--closing appointments type graph-->
 <!--opening precription detils chart-->
 
-<div class="row">   
+<div class="row">
     <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
@@ -343,77 +343,76 @@
 
 <!--opening preption detils chart-->
 <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Doctor  Designation</h4>
-                   
-                    <canvas height="250px" id="designation"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-    
-                    <h4 class="card-title">Doctor Wise Appointments</h4>
-                  
-                    <canvas height="250px" id="doctorwiseappointments"></canvas>
-                </div>
-            </div>
-        </div>
-       
-        <!-- <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-        
-                        <h4 class="card-title">Patient and Family Details</h4>
-                      
-                        <canvas height="250px" id="patientandfamilydetailsc"></canvas>
-                    </div>
-                </div>
-            </div> -->
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-    
-                    <h4 class="card-title">Patient and Family Details</h4>
-                    <h6 class="card-subtitle">Month Wise</h6>
-                    <canvas height="250px" id="patientandfamilydetailsc"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">    
-                    <h4 class="card-title">Mobile and Out Patient</h4>    
-                    <h6 class="card-subtitle">Day Wise</h6>              
-                    <canvas height="250px" id="Mobiledaywise"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">    
-                    <h4 class="card-title">Mobile and Out Patient</h4> 
-                    <h6 class="card-subtitle">Month Wise</h6>                 
-                    <canvas height="250px" id="mobilemonthwise"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">    
-                    <h4 class="card-title">Mobile and Out Patient</h4> 
-                    <h6 class="card-subtitle">Year Wise</h6>                 
-                    <canvas height="250px" id="mobiletyearwise"></canvas>
-                </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctor Designation</h4>
+
+                <canvas height="250px" id="designation"></canvas>
             </div>
         </div>
     </div>
 
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Doctor Wise Appointments</h4>
+
+                <canvas height="250px" id="doctorwiseappointments"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Patient and Family Details</h4>
+
+                <canvas height="250px" id="patientandfamilydetailsc"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Patient and Family Details</h4>
+                <h6 class="card-subtitle">Month Wise</h6>
+                <canvas height="250px" id="patientandfamilydetailsc"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mobile and Out Patient</h4>
+                <h6 class="card-subtitle">Day Wise</h6>
+                <canvas height="250px" id="Mobiledaywise"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mobile and Out Patient</h4>
+                <h6 class="card-subtitle">Month Wise</h6>
+                <canvas height="250px" id="mobilemonthwise"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mobile and Out Patient</h4>
+                <h6 class="card-subtitle">Year Wise</h6>
+                <canvas height="250px" id="mobiletyearwise"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

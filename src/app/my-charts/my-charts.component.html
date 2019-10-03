@@ -1,0 +1,264 @@
+<div class="container-fluid mb-4 mt-4">
+  <div class="row text-center mb-2">
+    <div class="col-6 col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">123</h1>
+          <h6 class="card-subtitle mb-2 text-muted">No. Of Patients</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">456</h1>
+          <h6 class="card-subtitle mb-2 text-muted">No. Of Inpatient</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">789</h1>
+          <h6 class="card-subtitle mb-2 text-muted">No. Of outpatients</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">321</h1>
+          <h6 class="card-subtitle mb-2 text-muted">Aug Score</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row chart-1">
+    <div class="col-12 col-sm-6">
+      <div class="row">
+        <div class="col-3 mb-2">
+          <div class="card">
+            <div class="card-body p-1">
+              <a href="#" class="btn btn-secondary btn-block btn-sm">January</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Fabruary</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">March</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">April</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">May</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">June</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">July</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">August</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">September</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">October</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">November</a>
+              <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">December</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-9 mb-2">
+          <div class="card" style="height:425px">
+            <div class="card-body p-1">
+              <div class="flex">
+                <div class="flex-item">
+                  <div style="display: block;">
+                  <canvas baseChart 
+                              [datasets]="lineChartData"
+                              [labels]="lineChartLabels"
+                              [options]="lineChartOptions"
+                              [colors]="lineChartColors"
+                              [legend]="lineChartLegend"
+                              [chartType]="lineChartType"
+                              [plugins]="lineChartPlugins"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+                <div class="flex-item">
+                  <table class="table table-responsive table-condensed col-12">
+                    <tr>
+                      <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                    </tr>
+                    <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+                      <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div style="display: block">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"></canvas>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="row mb-2">
+        <div class="col-12 col-sm-7">
+          <div class="row">
+            <div class="col-12">
+              <div class="card mb-2">
+                <div class="card-body p-1">
+                  <div style="display: block">
+                    <canvas baseChart
+                            [data]="pieChartData"
+                            [labels]="pieChartLabels"
+                            [chartType]="pieChartType"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-1">
+                  <div>
+                    <div>
+                      <div>
+                        <canvas baseChart
+                          [datasets]="scatterChartData"
+                          [options]="scatterChartOptions"
+                          [labels]="scatterChartLabels"
+                          [chartType]="scatterChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div style="display: block">
+                    <canvas baseChart
+                            [datasets]="radarChartData"
+                            [labels]="radarChartLabels"
+                            [chartType]="radarChartType"></canvas>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-5">
+          <div class="row">
+            <div class="col-6">
+              <div class="card mb-2">
+                <div class="card-body p-1">
+                  a5
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card mb-2">
+                <div class="card-body p-1">
+                  <div class="media">
+                    <div class="media-body left-divider pl-2  pb-2">
+                      <h3 class="m-0">159</h3>
+                      <h5><small>Admission</small></h5>
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-body left-divider pl-2  pb-2">
+                      <h3 class="m-0">357</h3>
+                      <h6><small>Readmission</small></h6>
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-body left-divider pl-2  pb-2">
+                      <h3 class="m-0">95 %</h3>
+                      <h5><small>Admission</small></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-1">
+                  <div class="media mb-3">
+                    <img src="assets/female.png" width="60" class="pt-2 align-self-start mr-2" alt="...">
+                    <div class="media-body left-divider pl-2">
+                      <h4 class="mt-0">Female</h4>
+                      <h3>267</h3>
+                    </div>
+                  </div>
+                  <div class="media">
+                    <img src="assets/male.png" width="60" class="pt-2 align-self-start mr-2" alt="...">
+                    <div class="media-body left-divider pl-2">
+                      <h4 class="mt-0">Male</h4>
+                      <h3>420</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5">
+          <div class="card">
+            <div class="card-body p-1">
+              <div>
+                <div>
+                  <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="card">
+            <div class="card-body p-1">
+              <div class="media">
+                <div class="media-body left-divider pl-2  pb-2">
+                  <h3 class="m-0">159</h3>
+                  <h5><small>Negative</small></h5>
+                </div>
+              </div>
+              <div class="media">
+                <div class="media-body left-divider pl-2  pb-2">
+                  <h3 class="m-0">357</h3>
+                  <h6><small>Positive</small></h6>
+                </div>
+              </div>
+              <div class="media">
+                <div class="media-body left-divider pl-2  pb-2">
+                  <h3 class="m-0">66%</h3>
+                  <h5><small>Positive Rate</small></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="card">
+            <div class="card-body p-1">
+              <div>
+                <div>
+                  <div>
+                    <canvas baseChart
+                      [data]="doughnutChartData2"
+                      [labels]="doughnutChartLabels2"
+                      [chartType]="doughnutChartType2">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
