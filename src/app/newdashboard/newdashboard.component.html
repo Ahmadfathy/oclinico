@@ -195,9 +195,9 @@
             <div class="card-body">
                 <h4 class="card-title">Automanger Hospital Managemennt</h4>
                 <h6 class="card-subtitle">Showing status from the last year</h6>
-                <canvas baseChart height="450px" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                <!-- <canvas baseChart height="450px" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
                     [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
-                </canvas>
+                </canvas> -->
             </div>
         </div>
     </div>
@@ -206,8 +206,8 @@
             <div class="card-body">
                 <h4 class="card-title">Reports</h4>
                 <h6 class="card-subtitle">Some Description</h6>
-                <canvas baseChart height="450px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                    [colors]="[{backgroundColor: [ '#fb8c00', '#4798e8']}]"></canvas>
+                <!-- <canvas baseChart height="450px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                    [colors]="[{backgroundColor: [ '#fb8c00', '#4798e8']}]"></canvas> -->
             </div>
         </div>
     </div>
@@ -218,24 +218,24 @@
 <!---/////////////////////////////////appointments graphs/////////////////////////////////////////-->
 <div class="row">
     <div class="col-md-4">
-        <select class="form-control" (change)="getdayrec($event.target.value)">
+        <!-- <select class="form-control" (change)="getdayrec($event.target.value)">
             <option value="">Select Day</option>
             <option *ngFor="let v of daysarr" value="{{v}}">{{v}}
             </option>
-        </select>
+        </select> -->
     </div>
     <div class="col-md-6">
-        <select class="form-control" (change)="getmonthrec($event.target.value,'month')" [(ngModel)]="thismonth">
+        <!-- <select class="form-control" (change)="getmonthrec($event.target.value,'month')" [(ngModel)]="thismonth">
             <option value="">Select month</option>
             <option *ngFor="let v of months" value="{{v.monthvalue}}">{{v.monthname}}
             </option>
-        </select>
+        </select> -->
     </div>
     <div class="col-md-6">
-        <select class="form-control" (change)="getyearrec($event.target.value,'month')" [(ngModel)]="fullyear">
+        <!-- <select class="form-control" (change)="getyearrec($event.target.value,'month')" [(ngModel)]="fullyear">
             <option value="">select Year</option>
             <option *ngFor="let y of years" value="{{y}}">{{y}}</option>
-        </select>
+        </select> -->
     </div>
 
 

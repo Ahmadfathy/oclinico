@@ -1,0 +1,211 @@
+<div class="container-fluid mb-4 mt-4">
+  <div class="row">
+    <div class="col-1">
+      <div class="card mb-3">
+        <div class="card-body p-1">
+          <a href="#" class="btn btn-secondary btn-block btn-sm">2017</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">2018</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">2019</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body p-1">
+          <a href="#" class="btn btn-secondary btn-block btn-sm">January</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Fabruary</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">March</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">April</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">May</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">June</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">July</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">August</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Septemb</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">October</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">November</a>
+          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">December</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-11">
+  <div class="row text-center mb-2">
+    <div class="col-12 col-sm-3">
+      <div class="card">
+        <div class="card-body p-4">
+          <h2 class="mb-1">Patients</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-9">
+      <div class="row">
+        <div class="col-6 col-sm-3">
+          <div class="card">
+            <div class="card-body p-1">
+              <h1 class="card-title">5 M</h1>
+              <h6 class="card-subtitle mb-2 text-muted">Treatment Cost</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3">
+          <div class="card">
+            <div class="card-body p-1">
+              <h1 class="card-title">529</h1>
+              <h6 class="card-subtitle mb-2 text-muted">No. Of Patient</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3">
+          <div class="card">
+            <div class="card-body p-1">
+              <h1 class="card-title">4.00</h1>
+              <h6 class="card-subtitle mb-2 text-muted">Avg Score</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3">
+          <div class="card">
+            <div class="card-body p-2">
+              <h6 class="card-title text-left">Divisions</h6>
+              <select name="" id="" class="form-control mb-1">
+                <option value="" readonlt>All</option>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-3">
+      <div class="card mb-2">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <h6><small>Type Of Stay</small></h6>
+              <div class="alert alert-secondary p-1 mb-1">
+                <h5 class="m-0">Type 1</h5>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <h2 class="m-0">78</h2>
+              </div>
+              <div class="alert alert-warning p-1 mb-1">
+                <h5 class="m-0">Type 2</h5>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <h2 class="m-0">66</h2>
+              </div>
+            </div>
+            <div class="col-4">
+              <h6><small>Type Of Stay</small></h6>
+              <div class="alert alert-primary p-1 mb-1">
+                <h5 class="m-0">Type 3</h5>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <h2 class="m-0">99</h2>
+              </div>
+              <div class="alert alert-secondary p-1 mb-1">
+                <h5 class="m-0">Type 4</h5>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <h2 class="m-0">10</h2>
+              </div>
+            </div>
+            <div class="col-4">
+              <h6><small>Type Of Stay</small></h6>
+              <div class="alert alert-danger p-1 mb-1">
+                <h5 class="m-0">Type 5</h5>
+                <div class="pb-4"></div>
+                <h2 class="m-0">64</h2>
+              </div>
+              <div class="alert alert-info p-1 mb-1">
+                <h5 class="m-0">Type 6</h5>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <div class="pb-4"></div>
+                <h2 class="m-0">12</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body p-1">
+          <h6 class="text-center">Type Of Stay</h6>
+          <div style="display: block;">
+            <canvas baseChart height="240"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"></canvas>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="text-center">Gender & Age Group</h6>
+          <div>
+            <div>
+              <div style="display: block">
+                <canvas baseChart width="450" height="450"
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-3">
+      <div class="card mb-2">
+        <div class="card-body p-1">
+          <h6 class="text-center"></h6>
+          <div>
+            <div>
+              <div style="display: block">
+                <canvas baseChart height="300"
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body p-1">
+          <h6 class="text-center"></h6>
+          <div>
+            <div>
+              <div style="display: block">
+                <canvas baseChart height="310"
+                  [data]="polarAreaChartData"
+                  [labels]="polarAreaChartLabels"
+                  [legend]="polarAreaLegend"
+                  [chartType]="polarAreaChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -22,7 +22,7 @@ export class TransferProductServices {
   }
 
   saveOrder(data, callback) {
-    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/Store/add-store-request/`, data, {})
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/store-transfer/add-new-transfer/`, data, {})
       .subscribe((res) => {
         callback(res);
       });

@@ -35,7 +35,11 @@ export class TransferProductComponent implements OnInit {
       'required': 'Please select Unit',
       'Select': 'Please select Unit'
     },
-    'Store_ID': {
+    'StoreFrom': {
+      'required': 'Please select Store',
+      'Select': 'Please select Store'
+    },
+    'StoreTo': {
       'required': 'Please select Store',
       'Select': 'Please select Store'
     },
@@ -55,7 +59,11 @@ export class TransferProductComponent implements OnInit {
       'required': 'رجاء إختيار الوحدة',
       'Select': 'رجاء إختيار الوحدة'
     },
-    'Store_ID': {
+    'StoreFrom': {
+      'required': 'رجاء إختيار المخزن',
+      'Select': 'رجاء إختيار المخزن'
+    },
+    'StoreTo': {
       'required': 'رجاء إختيار المخزن',
       'Select': 'رجاء إختيار المخزن'
     },
@@ -69,7 +77,8 @@ export class TransferProductComponent implements OnInit {
 
 
   formErrors = {
-    'Store_ID': '',
+    'StoreFrom': '',
+    'StoreTo': '',
     'ProdName': '',
     'unit_id': '',
     'Qty': '',
@@ -88,18 +97,17 @@ export class TransferProductComponent implements OnInit {
     return this.fb.group({
       // start item
       Barcode: [''],
-      Product_ID: [''],
+      Item_ID: [''],
       ProdName: ['', [Validators.required]],
       Qty: ['', [Validators.required]],
       unit_id: [''],
-      UnitName: [''],
-      Store_ID: ['']
+      UnitName: ['']
     });
   }
 
 
   get Items(): FormArray {
-    return <FormArray>this.InvoiveForm.get("StoreRequestList");
+    return <FormArray>this.InvoiveForm.get("StoreTransferDetailsList");
   }
 
   ngOnInit() {
@@ -108,10 +116,11 @@ export class TransferProductComponent implements OnInit {
     this.total = 0;
 
     this.InvoiveForm = this.fb.group({
-      Store_ID: ['', [Validators.required]],
+      StoreFrom: ['', [Validators.required]],
+      StoreTo: ['', [Validators.required]],
       TrDate: ['', [Validators.required]],
-      Emp_ID: [localStorage.getItem('userId')],
-      StoreRequestList: this.fb.array([this.createItem()])
+      User_ID: [localStorage.getItem('userId')],
+      StoreTransferDetailsList: this.fb.array([this.createItem()])
     })
 
 
@@ -134,7 +143,8 @@ export class TransferProductComponent implements OnInit {
       }
 
       this.formErrors = {
-        'Store_ID': '',
+        'StoreFrom': '',
+        'StoreTo': '',
         'ProdName': '',
         'unit_id': '',
         'Qty': '',
@@ -158,7 +168,6 @@ export class TransferProductComponent implements OnInit {
   }
 
   AddItem() {
-    this.Items.get("0.Store_ID").setValue(this.InvoiveForm.get('Store_ID').value);
     this.fromsubmit = true;
     if (this.InvoiveForm.invalid == true) {
       this.checkValidationErrors(this.InvoiveForm);
@@ -168,7 +177,7 @@ export class TransferProductComponent implements OnInit {
         this.invoicedetails = this.InvoiveForm.value;
       }
       else {
-        var oldItems = this.invoicedetails.StoreRequestList;
+        var oldItems = this.invoicedetails.StoreTransferDetailsList;
         oldItems.push(this.Items.value[0]);
       }
 
@@ -339,7 +348,7 @@ export class TransferProductComponent implements OnInit {
   SelectItem(data: any) {
     this.ShowAuto = false;
     this.suggestedTexts = [];
-    this.Items.get('0.Product_ID').setValue(data.ID);
+    this.Items.get('0.Item_ID').setValue(data.ID);
 
     if (this.langulagetype == "EN") {
       this.Items.get('0.ProdName').setValue(data.TradeNameEng);
@@ -354,8 +363,8 @@ export class TransferProductComponent implements OnInit {
   }
 
   invoicesubmit() {
-    this.invoicedetails.TotalItems = this.invoicedetails.StoreRequestList.length;
-    if (this.invoicedetails.StoreRequestList.length > 0) {
+    this.invoicedetails.TotalItems = this.invoicedetails.StoreTransferDetailsList.length;
+    if (this.invoicedetails.StoreTransferDetailsList.length > 0) {
       this.Services.saveOrder(this.invoicedetails, () => {
         alert("Invoice Generated Succesfully");
         this.InvoiveForm.reset();
@@ -365,13 +374,17 @@ export class TransferProductComponent implements OnInit {
   }
 
   FromStoresSelected(data) {
-    this.InvoiveForm.get("Store_ID").setValue(data.target.value);
+    this.InvoiveForm.get("StoreFrom").setValue(data.target.value);
+  }
+
+  ToStoresSelected(data) {
+    this.InvoiveForm.get("StoreTo").setValue(data.target.value);
   }
 
 
   removerow(data) {
-    var index = this.invoicedetails.StoreRequestList.findIndex(record => record.ProdName === data.ProdName);
-    this.invoicedetails.StoreRequestList.splice(index, 1);
+    var index = this.invoicedetails.StoreTransferDetailsList.findIndex(record => record.ProdName === data.ProdName);
+    this.invoicedetails.StoreTransferDetailsList.splice(index, 1);
   }
 
   invoicecancle() {
@@ -381,7 +394,7 @@ export class TransferProductComponent implements OnInit {
   GetBarcodeData(e) {
     if (e.charCode == 13 || e.key == 'Enter') {
       this.Services.getProductByBarCode(this.Items.get("0.Barcode").value, res => {
-        this.Items.get('0.Product_ID').setValue(res.Product.ID);
+        this.Items.get('0.Item_ID').setValue(res.Product.ID);
 
         if (this.langulagetype == "EN") {
           this.Items.get('0.ProdName').setValue(res.Product.TradeNameEng);

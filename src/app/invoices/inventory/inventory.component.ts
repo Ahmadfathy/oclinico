@@ -88,7 +88,7 @@ export class InventoryComponent implements OnInit {
     return this.fb.group({
       // start item
       Barcode: [''],
-      Product_ID: [''],
+      Item_ID: [''],
       ProdName: ['', [Validators.required]],
       Qty: ['', [Validators.required]],
       unit_id: [''],
@@ -99,7 +99,7 @@ export class InventoryComponent implements OnInit {
 
 
   get Items(): FormArray {
-    return <FormArray>this.InvoiveForm.get("StoreRequestList");
+    return <FormArray>this.InvoiveForm.get("InventoryDetailsList");
   }
 
   ngOnInit() {
@@ -110,8 +110,8 @@ export class InventoryComponent implements OnInit {
     this.InvoiveForm = this.fb.group({
       Store_ID: ['', [Validators.required]],
       TrDate: ['', [Validators.required]],
-      Emp_ID: [localStorage.getItem('userId')],
-      StoreRequestList: this.fb.array([this.createItem()])
+      User_ID: [localStorage.getItem('userId')],
+      InventoryDetailsList: this.fb.array([this.createItem()])
     })
 
 
@@ -168,7 +168,7 @@ export class InventoryComponent implements OnInit {
         this.invoicedetails = this.InvoiveForm.value;
       }
       else {
-        var oldItems = this.invoicedetails.StoreRequestList;
+        var oldItems = this.invoicedetails.InventoryDetailsList;
         oldItems.push(this.Items.value[0]);
       }
 
@@ -339,7 +339,7 @@ export class InventoryComponent implements OnInit {
   SelectItem(data: any) {
     this.ShowAuto = false;
     this.suggestedTexts = [];
-    this.Items.get('0.Product_ID').setValue(data.ID);
+    this.Items.get('0.Item_ID').setValue(data.ID);
 
     if (this.langulagetype == "EN") {
       this.Items.get('0.ProdName').setValue(data.TradeNameEng);
@@ -354,8 +354,8 @@ export class InventoryComponent implements OnInit {
   }
 
   invoicesubmit() {
-    this.invoicedetails.TotalItems = this.invoicedetails.StoreRequestList.length;
-    if (this.invoicedetails.StoreRequestList.length > 0) {
+    this.invoicedetails.TotalItems = this.invoicedetails.InventoryDetailsList.length;
+    if (this.invoicedetails.InventoryDetailsList.length > 0) {
       this.Services.saveOrder(this.invoicedetails, () => {
         alert("Invoice Generated Succesfully");
         this.InvoiveForm.reset();
@@ -370,8 +370,8 @@ export class InventoryComponent implements OnInit {
 
 
   removerow(data) {
-    var index = this.invoicedetails.StoreRequestList.findIndex(record => record.ProdName === data.ProdName);
-    this.invoicedetails.StoreRequestList.splice(index, 1);
+    var index = this.invoicedetails.InventoryDetailsList.findIndex(record => record.ProdName === data.ProdName);
+    this.invoicedetails.InventoryDetailsList.splice(index, 1);
   }
 
   invoicecancle() {
@@ -381,7 +381,7 @@ export class InventoryComponent implements OnInit {
   GetBarcodeData(e) {
     if (e.charCode == 13 || e.key == 'Enter') {
       this.Services.getProductByBarCode(this.Items.get("0.Barcode").value, res => {
-        this.Items.get('0.Product_ID').setValue(res.Product.ID);
+        this.Items.get('0.Item_ID').setValue(res.Product.ID);
 
         if (this.langulagetype == "EN") {
           this.Items.get('0.ProdName').setValue(res.Product.TradeNameEng);

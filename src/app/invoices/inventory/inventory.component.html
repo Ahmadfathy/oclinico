@@ -67,7 +67,7 @@
             </div>
           </div>
           <br>
-          <div class="row" formArrayName="StoreRequestList">
+          <div class="row" formArrayName="InventoryDetailsList">
             <div class="row" formGroupName="0" style="width: 100%;">
               <div class="col-md-2">
                 <label class="form-control-label ltr">Barcode</label>
@@ -142,7 +142,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let i of invoicedetails.StoreRequestList; let j = index">
+              <tr *ngFor="let i of invoicedetails.InventoryDetailsList; let j = index">
                 <td>{{i.ProdName}}</td>
                 <td>{{i.UnitName}}</td>
                 <td>{{i.Qty}}</td>

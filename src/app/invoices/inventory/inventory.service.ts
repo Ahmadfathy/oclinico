@@ -22,7 +22,7 @@ export class InventoryServices {
   }
 
   saveOrder(data, callback) {
-    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/Store/add-store-request/`, data, {})
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/inventory/add-new-inventory/`, data, {})
       .subscribe((res) => {
         callback(res);
       });

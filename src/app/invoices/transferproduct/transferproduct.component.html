@@ -40,35 +40,35 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group m-b-30">
-                <label class="mr-sm-2 ltr" for="title">Store Name</label>
+                <label class="mr-sm-2 ltr" for="title">Store From Name</label>
                 <label class="mr-sm-2 rtl" for="title">المخزن</label>
-                <select value="Select" name="title" formControlName="Store_ID" (change)="FromStoresSelected($event)"
+                <select value="Select" name="title" formControlName="StoreFrom" (change)="FromStoresSelected($event)"
                   class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'AR'">
                   <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameAr}}</option>
                 </select>
-                <select value="Select" name="title" formControlName="Store_ID" (change)="FromStoresSelected($event)"
+                <select value="Select" name="title" formControlName="StoreFrom" (change)="FromStoresSelected($event)"
                   class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'EN'">
                   <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameEn}}</option>
                 </select>
-                <span class="help-block" *ngIf="formErrors.Store_ID" style="color: red">
-                  {{formErrors.Store_ID}}
+                <span class="help-block" *ngIf="formErrors.StoreFrom" style="color: red">
+                  {{formErrors.StoreFrom}}
                 </span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group m-b-30">
-                <label class="mr-sm-2 ltr" for="title">Store Name</label>
+                <label class="mr-sm-2 ltr" for="title">Store To Name</label>
                 <label class="mr-sm-2 rtl" for="title">المخزن</label>
-                <select value="Select" name="title" formControlName="Store_ID" (change)="FromStoresSelected($event)"
+                <select value="Select" name="title" formControlName="StoreTo" (change)="ToStoresSelected($event)"
                   class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'AR'">
                   <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameAr}}</option>
                 </select>
-                <select value="Select" name="title" formControlName="Store_ID" (change)="FromStoresSelected($event)"
+                <select value="Select" name="title" formControlName="StoreTo" (change)="ToStoresSelected($event)"
                   class="custom-select mr-sm-2" (blur)="checkValidationErrors()" *ngIf="langulagetype == 'EN'">
                   <option *ngFor="let i of Stores" [value]="i.ID">{{i.NameEn}}</option>
                 </select>
-                <span class="help-block" *ngIf="formErrors.Store_ID" style="color: red">
-                  {{formErrors.Store_ID}}
+                <span class="help-block" *ngIf="formErrors.StoreTo" style="color: red">
+                  {{formErrors.StoreTo}}
                 </span>
               </div>
             </div>
@@ -84,7 +84,7 @@
             </div>
           </div>
           <br>
-          <div class="row" formArrayName="StoreRequestList">
+          <div class="row" formArrayName="StoreTransferDetailsList">
             <div class="row" formGroupName="0" style="width: 100%;">
               <div class="col-md-2">
                 <label class="form-control-label ltr">Barcode</label>
@@ -159,7 +159,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let i of invoicedetails.StoreRequestList; let j = index">
+              <tr *ngFor="let i of invoicedetails.StoreTransferDetailsList; let j = index">
                 <td>{{i.ProdName}}</td>
                 <td>{{i.UnitName}}</td>
                 <td>{{i.Qty}}</td>
