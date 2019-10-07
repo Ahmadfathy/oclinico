@@ -45,7 +45,8 @@ export const Approutes: Routes = [
       { path: 'viewrequestproduct', loadChildren: './invoices/viewrequestproduct/viewrequestproduct.module#ViewRequestProductModule', canActivate: [AuthGuard] },
       { path: 'transferproduct', loadChildren: './invoices/transferproduct/transferproduct.module#TransferProductModule', canActivate: [AuthGuard] },
       { path: 'inventory', loadChildren: './invoices/inventory/inventory.module#InventoryModule', canActivate: [AuthGuard] },
-
+      { path: 'rep-inventory', loadChildren: './pharmacy/rep-inventory/rep-inventory.module#RepInventoryModule', canActivate: [AuthGuard] },
+      { path: 'rep-prescription-compare', loadChildren: './pharmacy/rep-prescription-compare/rep-prescription-compare.module#RepPrescriptionCompareModule', canActivate: [AuthGuard] },
 
       // ----------------------Charts---------------------
       { path: 'charts', loadChildren: './my-charts/my-charts.module#MyChartsModule', canActivate: [AuthGuard] },

@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/products'> Rep Inventory</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm' (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Rep Inventory</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <!-- <div class="row">
+              <div class="col-md-10">
+                <label class="form-control-label ltr">Generic name *</label>
+                <input type="text" class="form-control" formControlName="genericname"
+                  [ngClass]="{' is-invalid':submitted && s.genericname.errors}">
+                <span class="help-block" *ngIf="submitted && s.genericname.errors && s.genericname.errors.required"
+                  style="color: red">
+                  Generic Name is Required
+                </span>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">Save</button>
+              </div>
+            </div> -->
+            <hr>
+            <div align="left">
+              <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form mt-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search....." (keypress)="getdata($event)">
+                </div>
+              </form>
+              <br>
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ProductAr</th>
+                    <th>ProductEng</th>
+                    <th>Qty</th>
+                    <th>ExpireDate</th>
+                    <th>StoreAr</th>
+                    <th>StoreEng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table ">
+                    <td>{{s.ProductAr}}</td>
+                    <td>{{s.ProductEng}}</td>
+                    <td>{{s.Qty}}</td>
+                    <td>{{s.ExpireDate}}</td>
+                    <td>{{s.StoreAr}}</td>
+                    <td>{{s.StoreEng}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
