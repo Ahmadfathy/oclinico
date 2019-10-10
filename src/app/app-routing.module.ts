@@ -16,7 +16,10 @@ export const Approutes: Routes = [
       { path: '', loadChildren: './iuma-appointments/iuma-appointments.module#IumaAppointmentsModule', canActivate: [AuthGuard] },
       { path: 'Communication', loadChildren: './communications/communications.module#MainCommunicationModule', canActivate: [AuthGuard] },
       { path: 'AddCommunication', loadChildren: './addcommunications/addcommunications.module#AddCommunicationModule', canActivate: [AuthGuard] },
+
+
       { path: 'Laboratary', loadChildren: './laboratary/laboratary.module#LaborataryModule', canActivate: [AuthGuard] },
+      { path: 'labs', loadChildren: './laboratary/labs/labs.module#LabsModule', canActivate: [AuthGuard] },
 
       // -------------------- patientsummary ------------------------- //
 
@@ -54,13 +57,6 @@ export const Approutes: Routes = [
       { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsModule', canActivate: [AuthGuard] },
       { path: 'patients', loadChildren: './patients/patients.module#PatientsModule', canActivate: [AuthGuard] },
       { path: 'treatments', loadChildren: './treatments/treatments.module#TreatmentsModule', canActivate: [AuthGuard] },
-      // LAZY LOAD PENDING ..
-      //   {   path:'Maininvoice',    
-
-      //   loadChildren: () => import('./invoices/invoices.module').then(mod => mod.InvoicesModule)
-      // },
-
-
 
       // ----------------------Products---------------------
 
