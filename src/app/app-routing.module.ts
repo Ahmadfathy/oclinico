@@ -20,6 +20,8 @@ export const Approutes: Routes = [
 
       { path: 'Laboratary', loadChildren: './laboratary/laboratary.module#LaborataryModule', canActivate: [AuthGuard] },
       { path: 'labs', loadChildren: './laboratary/labs/labs.module#LabsModule', canActivate: [AuthGuard] },
+      { path: 'maincategory', loadChildren: './laboratary/maincategory/maincategory.module#MainCategoryModule', canActivate: [AuthGuard] },
+      { path: 'subcategory', loadChildren: './laboratary/subcategory/subcategory.module#SubCategoryModule', canActivate: [AuthGuard] },
 
       // -------------------- patientsummary ------------------------- //
 
