@@ -8,7 +8,8 @@ import { Color, BaseChartDirective, MultiDataSet, Label } from 'ng2-charts';
   styleUrls: ['./my-charts.component.css']
 })
 export class MyChartsComponent implements OnInit {
-
+  lineChartPlugins: any;
+  
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -151,6 +152,14 @@ export class MyChartsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  chartHovered(e){
+
+  }
+
+  chartClicked(e){
+
   }
 
 }

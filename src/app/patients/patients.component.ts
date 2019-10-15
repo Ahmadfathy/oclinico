@@ -8,7 +8,7 @@ import { SingleDataSet, MultiDataSet, Color, BaseChartDirective, Label } from 'n
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-
+  barChartPlugins: any;
   // Doughnut
   public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
   public doughnutChartData: MultiDataSet = [

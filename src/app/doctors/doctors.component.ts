@@ -9,6 +9,10 @@ import { Color, MultiDataSet, Label } from 'ng2-charts';
 })
 export class DoctorsComponent implements OnInit {
 
+  lineChartPlugins: any;
+  barChartPlugins: any;
+  pieChartPlugins: any;
+  
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
@@ -259,5 +263,12 @@ export class DoctorsComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  chartHovered(e){
 
+  }
+
+  chartClicked(e){
+
+  }
 }

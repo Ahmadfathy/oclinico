@@ -9,6 +9,7 @@ import { Color, MultiDataSet, Label } from 'ng2-charts';
 })
 export class DivisionsComponent implements OnInit {
 
+  lineChartPlugins: any;
   // Radar
   public radarChartOptions: RadialChartOptions = {
     responsive: true,
@@ -187,4 +188,11 @@ export class DivisionsComponent implements OnInit {
   ngOnInit() {
   }
 
+  chartHovered(e){
+
+  }
+
+  chartClicked(e){
+
+  }
 }
