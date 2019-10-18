@@ -19,19 +19,19 @@
           </div>
           <div class="card-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="form-control-label ltr">Main Category *</label>
-                    <select class="form-control" [ngClass]="{' is-invalid':submitted && s.MainCategoryId.errors}">
+                    <select class="form-control" [ngClass]="{' is-invalid':submitted && s.Parent_ID.errors}">
                       <option value="">Select Main Category</option>
                       <option value="1">Main Category 1</option>
                       <option value="2">Main Category 2</option>
                     </select>
-                    <span class="help-block" *ngIf="submitted && s.MainCategoryId.errors && s.MainCategoryId.errors.required"
+                    <span class="help-block" *ngIf="submitted && s.Parent_ID.errors && s.Parent_ID.errors.required"
                       style="color: red">
                       Main Category is Required
                     </span>
                   </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label class="form-control-label ltr">Sub Category name Ar *</label>
                 <input type="text" class="form-control" formControlName="NameAr"
                   [ngClass]="{' is-invalid':submitted && s.NameAr.errors}">
@@ -40,13 +40,22 @@
                   Sub Category NameAr is Required
                 </span>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <label class="form-control-label ltr">Sub Category name EN*</label>
                 <input type="text" class="form-control" formControlName="NameEng"
                   [ngClass]="{' is-invalid':submitted && s.NameEng.errors}">
                 <span class="help-block" *ngIf="submitted && s.NameEng.errors && s.NameEng.errors.required"
                   style="color: red">
                   Sub Category NameEng is Required
+                </span>
+              </div>
+              <div class="col-md-3">
+                <label class="form-control-label ltr">Price *</label>
+                <input type="text" class="form-control" formControlName="Price"
+                  [ngClass]="{' is-invalid':submitted && s.Price.errors}">
+                <span class="help-block" *ngIf="submitted && s.Price.errors && s.Price.errors.required"
+                  style="color: red">
+                  Price is Required
                 </span>
               </div>
               <div class="col-md-12" style="margin-top: 15px;">

@@ -41,5 +41,38 @@ export class LaborataryServices {
       });
   }
 
+  // ********************************************************************** //
+  // ********************************************************************** //
+
+  getAllCategory(callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-all-test-category/`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  getCategoryById(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-test-category-by-id/${value}`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  saveNewCategory(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/add-new-test-category/`, value)
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  updateCategory(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/update-test-category/`, value)
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  // ********************************************************************** //
+  // ********************************************************************** //
 }
 

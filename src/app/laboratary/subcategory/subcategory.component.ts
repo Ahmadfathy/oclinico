@@ -56,9 +56,10 @@ export class SubCategoryComponent implements OnInit {
 
     this.productForm = this.formBuilder.group({
       ID: [''],
-      MainCategoryId: ['', Validators.required],
+      Parent_ID: ['', Validators.required],
       NameAr: ['', Validators.required],
       NameEng: [''],
+      Price: [''],
       Emp_ID: [localStorage.getItem('userId')]
     });
 
@@ -80,7 +81,7 @@ export class SubCategoryComponent implements OnInit {
 
     if (this.btnText == "Save") {
       this.productForm.get("Emp_ID").setValue(localStorage.getItem('userId'));
-      this.Services.saveNewLab(this.productForm.value, res => {
+      this.Services.saveNewCategory(this.productForm.value, res => {
         alert('Successfully Inserted')
         this.productForm.reset();
         this.submitted = false;
@@ -88,7 +89,7 @@ export class SubCategoryComponent implements OnInit {
       })
     }
     else{
-      this.Services.updateLab(this.productForm.value, res => {
+      this.Services.updateCategory(this.productForm.value, res => {
         alert('Successfully Updated')
         this.productForm.reset();
         this.submitted = false;
@@ -100,8 +101,7 @@ export class SubCategoryComponent implements OnInit {
   }
 
   getdata() {
-
-    this.Services.getAllLabs(res => {
+    this.Services.getAllCategory(res => {
       this.table = null;
       sessionStorage.setItem('masterid', res.data[0].ID)
       console.log(this.table);
@@ -109,12 +109,13 @@ export class SubCategoryComponent implements OnInit {
   }
 
   getdataById(id) {
-    this.Services.getLabById(id, res => {
+    this.Services.getCategoryById(id, res => {
       this.productForm.patchValue(
         {
           ID: res.data.ID,
           NameAr: res.data.NameAr,
-          NameEng: res.data.NameEng
+          NameEng: res.data.NameEng,
+          Price: res.data.Price
         });
         this.btnText = "Update";
     })
