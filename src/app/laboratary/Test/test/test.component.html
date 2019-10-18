@@ -3,7 +3,7 @@
     <ul id="breadcrumb">
       <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
       <li class="ltr"><a class="nav-link" routerLink='/laboratary'> Laboratary</a></li>
-      <li class="ltr"><a class="nav-link" routerLink='/subcategory'> Sub Category</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/tests'> Tests</a></li>
       <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
     </ul>
   </div>
@@ -14,48 +14,39 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Sub Category</p>
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Tests</p>
             <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-3">
-                <label class="form-control-label ltr">Main Category *</label>
-                <select class="form-control" [ngClass]="{' is-invalid':submitted && s.Parent_ID.errors}">
-                  <option value="">Select Main Category</option>
-                  <option value="1">Main Category 1</option>
-                  <option value="2">Main Category 2</option>
-                </select>
-                <span class="help-block" *ngIf="submitted && s.Parent_ID.errors && s.Parent_ID.errors.required"
-                  style="color: red">
-                  Main Category is Required
-                </span>
-              </div>
-              <div class="col-md-3">
-                <label class="form-control-label ltr">Sub Category name Ar *</label>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Test name *</label>
                 <input type="text" class="form-control" formControlName="NameAr"
                   [ngClass]="{' is-invalid':submitted && s.NameAr.errors}">
                 <span class="help-block" *ngIf="submitted && s.NameAr.errors && s.NameAr.errors.required"
                   style="color: red">
-                  Sub Category NameAr is Required
+                  Lab NameAr is Required
                 </span>
               </div>
-              <div class="col-md-3">
-                <label class="form-control-label ltr">Sub Category name EN*</label>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Test name EN*</label>
                 <input type="text" class="form-control" formControlName="NameEng"
                   [ngClass]="{' is-invalid':submitted && s.NameEng.errors}">
                 <span class="help-block" *ngIf="submitted && s.NameEng.errors && s.NameEng.errors.required"
                   style="color: red">
-                  Sub Category NameEng is Required
+                  Lab NameEng is Required
                 </span>
               </div>
-              <div class="col-md-3">
-                <label class="form-control-label ltr">Price *</label>
-                <input type="text" class="form-control" formControlName="Price"
-                  [ngClass]="{' is-invalid':submitted && s.Price.errors}">
-                <span class="help-block" *ngIf="submitted && s.Price.errors && s.Price.errors.required"
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Category *</label>
+                <select class="form-control" [ngClass]="{' is-invalid':submitted && s.Category_ID.errors}">
+                  <option value="0">Select Main Category</option>
+                  <option value="1">Main Category 1</option>
+                  <option value="2">Main Category 2</option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.Category_ID.errors && s.Category_ID.errors.required"
                   style="color: red">
-                  Price is Required
+                  Category is Required
                 </span>
               </div>
               <div class="col-md-12" style="margin-top: 15px;">
@@ -76,6 +67,7 @@
                   <tr>
                     <th>Name Ar</th>
                     <th>Name En</th>
+                    <th>Category</th>
                     <th style="width: 114px;">Details</th>
                   </tr>
                 </thead>
@@ -83,6 +75,7 @@
                   <tr *ngFor="let s of table ">
                     <td>{{s.NameAr}}</td>
                     <td>{{s.NameEng}}</td>
+                    <td>{{s.Category_ID}}</td>
                     <td style="text-align: center;">
                       <a style='color: #4798e8'>
                         <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
