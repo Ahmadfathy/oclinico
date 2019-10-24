@@ -45,7 +45,7 @@ export class LaborataryServices {
   // ********************************************************************** //
 
   getAllCategory(callback) {
-    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-all-test-category/`, {})
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-all-test-category/0`, {})
       .subscribe((res) => {
         callback(res);
       });

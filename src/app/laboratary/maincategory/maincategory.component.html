@@ -75,6 +75,9 @@
                       <a style='color: #4798e8'>
                         <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
                         </span>&nbsp;&nbsp;&nbsp;
+                        <span class="fa fa-fw fa-plus" [routerLink]="['/subcategory']"
+                          [queryParams]="{id:s.ID}">
+                        </span>&nbsp;&nbsp;&nbsp;
                       </a>
                     </td>
                   </tr>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions, ChartOptions } from 'chart.js';
 import { Color, MultiDataSet, Label } from 'ng2-charts';
-
+import * as html2pdf from 'html2pdf.js';
 @Component({
   selector: 'app-divisions',
   templateUrl: './divisions.component.html',
@@ -188,11 +188,25 @@ export class DivisionsComponent implements OnInit {
   ngOnInit() {
   }
 
-  chartHovered(e){
+  chartHovered(e) {
 
   }
 
-  chartClicked(e){
+  chartClicked(e) {
 
+  }
+
+  // --------------------------------print -----------------------------------------------
+
+  print() {
+    const options = {
+      filename: 'divisions.pdf',
+      iamge: { type: 'jpeg' },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' }
+    };
+
+    const element: Element = document.getElementById('element-to-print');
+    html2pdf().from(element).set(options).save();
   }
 }

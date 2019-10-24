@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartType, ChartDataSets, ChartOptions } from 'chart.js';
 import { SingleDataSet, MultiDataSet, Color, BaseChartDirective, Label } from 'ng2-charts';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-patients',
@@ -126,6 +127,20 @@ export class PatientsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // --------------------------------print -----------------------------------------------
+
+  print() {
+    const options = {
+      filename: 'patients.pdf',
+      iamge: { type: 'jpeg' },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' }
+    };
+
+    const element: Element = document.getElementById('element-to-print');
+    html2pdf().from(element).set(options).save();
   }
 
 }

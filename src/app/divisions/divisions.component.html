@@ -1,201 +1,229 @@
-<div class="container-fluid mb-4 mt-4">
-  <div class="row">
-    <div class="col-1">
-      <div class="card mb-3">
-        <div class="card-body p-1">
-          <a href="#" class="btn btn-secondary btn-block btn-sm">2017</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">2018</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">2019</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body p-1">
-          <a href="#" class="btn btn-secondary btn-block btn-sm">January</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Fabruary</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">March</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">April</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">May</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">June</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">July</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">August</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Septemb</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">October</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">November</a>
-          <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">December</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-11">
-      <div class="row text-center mb-2">
-        <div class="col-12 col-sm-3">
-          <div class="card">
-            <div class="card-body p-2">
-              <h2 class="m-0">Division</h2>
+<button class="btn btn-info ltr" (click)="print()"><i class="icon-print icon-white i_btn"></i>Print</button>
+
+<div id="element-to-print">
+    <div class="container-fluid mb-4 mt-4">
+        <div class="row">
+          <div class="col-1">
+            <div class="card mb-3">
+              <div class="card-body p-1">
+                <a href="#" class="btn btn-secondary btn-block btn-sm">2017</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">2018</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">2019</a>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-9">
-          <div class="card">
-            <div class="card-body p-2">
-              <div class="row">
-                <div class="col-6 col-md-2 col-sm-4">
-                  <div class="card">
-                    <div class="card-header p-1 text-center">
-                      Division #1
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-2 col-sm-4">
-                  <div class="card">
-                    <div class="card-header p-1 text-center">
-                      Division #2
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-2 col-sm-4">
-                  <div class="card">
-                    <div class="card-header p-1 text-center">
-                      Division #3
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-2 col-sm-4">
-                  <div class="card">
-                    <div class="card-header p-1 text-center">
-                      Division #4
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-2 col-sm-4">
-                  <div class="card">
-                    <div class="card-header p-1 text-center">
-                      Division #5
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6 col-md-2 col-sm-4">
-                  <div class="card">
-                    <div class="card-header p-1 text-center">
-                      Division #6
-                    </div>
-                  </div>
-                </div>
+            <div class="card">
+              <div class="card-body p-1">
+                <a href="#" class="btn btn-secondary btn-block btn-sm">January</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Fabruary</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">March</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">April</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">May</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">June</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">July</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">August</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">Septemb</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">October</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">November</a>
+                <a href="#" class="btn btn-secondary btn-block btn-sm mt-1">December</a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row mb-2">
-        <div class="col-12 col-sm-5">
-          <div class="row text-center mb-2">
-            <div class="col-4">
-              <div class="card">
-                <div class="card-body p-2">
-                  <h3 class="card-title">123</h3>
-                  <h6 class="card-subtitle mb-2 text-muted">No. Of Patients</h6>
+          <div class="col-11">
+            <div class="row text-center mb-2">
+              <div class="col-12 col-sm-3">
+                <div class="card">
+                  <div class="card-body p-2">
+                    <h2 class="m-0">Division</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-9">
+                <div class="card">
+                  <div class="card-body p-2">
+                    <div class="row">
+                      <div class="col-6 col-md-2 col-sm-4">
+                        <div class="card">
+                          <div class="card-header p-1 text-center">
+                            Division #1
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-2 col-sm-4">
+                        <div class="card">
+                          <div class="card-header p-1 text-center">
+                            Division #2
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-2 col-sm-4">
+                        <div class="card">
+                          <div class="card-header p-1 text-center">
+                            Division #3
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-2 col-sm-4">
+                        <div class="card">
+                          <div class="card-header p-1 text-center">
+                            Division #4
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-2 col-sm-4">
+                        <div class="card">
+                          <div class="card-header p-1 text-center">
+                            Division #5
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-2 col-sm-4">
+                        <div class="card">
+                          <div class="card-header p-1 text-center">
+                            Division #6
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-4">
-              <div class="card">
-                <div class="card-body p-2">
-                  <h3 class="card-title">33.56</h3>
-                  <h6 class="card-subtitle mb-2 text-muted">Avg Age</h6>
+            <div class="row mb-2">
+              <div class="col-12 col-sm-5">
+                <div class="row text-center mb-2">
+                  <div class="col-4">
+                    <div class="card">
+                      <div class="card-body p-2">
+                        <h3 class="card-title">123</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">No. Of Patients</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="card">
+                      <div class="card-body p-2">
+                        <h3 class="card-title">33.56</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">Avg Age</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="card">
+                      <div class="card-body p-2">
+                        <h3 class="card-title">4.04</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">Avg Of Score</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-sm-8">
+                    <div class="card">
+                      <div class="card-body p-1">
+                        <h6 class="text-center">Wait Time Type</h6>
+                        <div>
+                          <div>
+                            <div style="display: block">
+                              <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                                [chartType]="doughnutChartType">
+                              </canvas>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4">
+                    <div class="card mb-1">
+                      <div class="card-body p-1">
+                        <h6 class="text-center">Doctor</h6>
+                        <div class="alert alert-info p-1 m-0">
+                          <h5 class="m-0">Ahmad Fathy</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card mb-1">
+                      <div class="card-body p-1">
+                        <h6 class="text-center">Gender</h6>
+                        <div class="row">
+                          <div class="col-6 p-1">
+                            <div class="alert alert-primary p-1 m-0">
+                              <h6>Male</h6>
+                              <h5 class="m-0">50</h5>
+                            </div>
+                          </div>
+                          <div class="col-6 p-1">
+                            <div class="alert alert-warning p-1 m-0">
+                              <h6>Female</h6>
+                              <h5 class="m-0">22</h5>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-4">
-              <div class="card">
-                <div class="card-body p-2">
-                  <h3 class="card-title">4.04</h3>
-                  <h6 class="card-subtitle mb-2 text-muted">Avg Of Score</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-sm-8">
-              <div class="card">
-                <div class="card-body p-1">
-                  <h6 class="text-center">Wait Time Type</h6>
-                  <div>
+              <div class="col-12 col-sm-3">
+                <div class="card mb-1">
+                  <div class="card-body p-1">
+                    <h6 class="text-center">No Of Patient & Treatment</h6>
                     <div>
-                      <div style="display: block">
-                        <canvas baseChart
-                          [data]="doughnutChartData"
-                          [labels]="doughnutChartLabels"
-                          [chartType]="doughnutChartType">
-                        </canvas>
+                      <div>
+                        <div style="display: block">
+                          <canvas height="260" baseChart [datasets]="bubbleChartData" [options]="bubbleChartOptions"
+                            [colors]="bubbleChartColors" [legend]="bubbleChartLegend" [chartType]="bubbleChartType">
+                          </canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="card mb-1">
+                  <div class="card-body p-1">
+                    <h6 class="text-center">No Of Patients by Divisions</h6>
+                    <div>
+                      <div>
+                        <div style="display: block">
+                          <canvas height="190" baseChart [datasets]="radarChartData" [options]="radarChartOptions"
+                            [labels]="radarChartLabels" [chartType]="radarChartType">
+                          </canvas>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-sm-4">
-              <div class="card mb-1">
-                <div class="card-body p-1">
-                  <h6 class="text-center">Doctor</h6>
-                  <div class="alert alert-info p-1 m-0">
-                    <h5 class="m-0">Ahmad Fathy</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-1">
-                <div class="card-body p-1">
-                  <h6 class="text-center">Gender</h6>
-                  <div class="row">
-                    <div class="col-6 p-1">
-                      <div class="alert alert-primary p-1 m-0">
-                        <h6>Male</h6>
-                        <h5 class="m-0">50</h5>
-                      </div>
-                    </div>
-                    <div class="col-6 p-1">
-                      <div class="alert alert-warning p-1 m-0">
-                        <h6>Female</h6>
-                        <h5 class="m-0">22</h5>
-                      </div>
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <div class="card">
+                  <div class="card-body p-1">
+                    <h6 class="text-center">Patients By Month</h6>
+                    <div style="display: block;">
+                      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                        [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-3">
-          <div class="card mb-1">
-            <div class="card-body p-1">
-              <h6 class="text-center">No Of Patient & Treatment</h6>
-              <div>
-                <div>
-                  <div style="display: block">
-                    <canvas height="260" baseChart
-                      [datasets]="bubbleChartData"
-                      [options]="bubbleChartOptions"
-                      [colors]="bubbleChartColors"
-                      [legend]="bubbleChartLegend"
-                      [chartType]="bubbleChartType">
-                    </canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-4">
-          <div class="card mb-1">
-            <div class="card-body p-1">
-              <h6 class="text-center">No Of Patients by Divisions</h6>
-              <div>
-                <div>
-                  <div style="display: block">
-                    <canvas height="190" baseChart
-                      [datasets]="radarChartData"
-                      [options]="radarChartOptions"
-                      [labels]="radarChartLabels"
-                      [chartType]="radarChartType">
-                    </canvas>
+              <div class="col-12 col-sm-6">
+                <div class="card">
+                  <div class="card-body p-1">
+                    <h6 class="text-center">Average Of LOS</h6>
+                    <div>
+                      <div>
+                        <div style="display: block">
+                          <canvas baseChart [datasets]="scatterChartData" [options]="scatterChartOptions"
+                            [labels]="scatterChartLabels" [chartType]="scatterChartType">
+                          </canvas>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -203,47 +231,5 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12 col-sm-6">
-          <div class="card">
-            <div class="card-body p-1">
-              <h6 class="text-center">Patients By Month</h6>
-              <div style="display: block;">
-                <canvas baseChart
-                            [datasets]="lineChartData"
-                            [labels]="lineChartLabels"
-                            [options]="lineChartOptions"
-                            [colors]="lineChartColors"
-                            [legend]="lineChartLegend"
-                            [chartType]="lineChartType"
-                            [plugins]="lineChartPlugins"
-                            (chartHover)="chartHovered($event)"
-                            (chartClick)="chartClicked($event)"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6">
-          <div class="card">
-            <div class="card-body p-1">
-              <h6 class="text-center">Average Of LOS</h6>
-              <div>
-                <div>
-                  <div style="display: block">
-                    <canvas baseChart
-                      [datasets]="scatterChartData"
-                      [options]="scatterChartOptions"
-                      [labels]="scatterChartLabels"
-                      [chartType]="scatterChartType">
-                    </canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 

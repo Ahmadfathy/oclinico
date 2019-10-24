@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, MultiDataSet, Label } from 'ng2-charts';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-my-charts',
@@ -9,7 +10,7 @@ import { Color, BaseChartDirective, MultiDataSet, Label } from 'ng2-charts';
 })
 export class MyChartsComponent implements OnInit {
   lineChartPlugins: any;
-  
+
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -154,12 +155,24 @@ export class MyChartsComponent implements OnInit {
   ngOnInit() {
   }
 
-  chartHovered(e){
+  chartHovered(e) {
 
   }
 
-  chartClicked(e){
+  chartClicked(e) {
 
+  }
+
+  print() {
+    const options = {
+      filename: 'my-chart.pdf',
+      iamge: { type: 'jpeg' },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' }
+    };
+
+    const element: Element = document.getElementById('element-to-print');
+    html2pdf().from(element).set(options).save();
   }
 
 }

@@ -59,6 +59,7 @@ export class MainCategoryComponent implements OnInit {
       NameAr: ['', Validators.required],
       NameEng: [''],
       Price: [''],
+      Parent_ID: ['0'],
       Emp_ID: [localStorage.getItem('userId')]
     });
 
@@ -80,6 +81,7 @@ export class MainCategoryComponent implements OnInit {
 
     if (this.btnText == "Save") {
       this.productForm.get("Emp_ID").setValue(localStorage.getItem('userId'));
+      this.productForm.get("Parent_ID").setValue("0");
       this.Services.saveNewCategory(this.productForm.value, res => {
         alert('Successfully Inserted')
         this.productForm.reset();
