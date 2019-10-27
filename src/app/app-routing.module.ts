@@ -1205,6 +1205,9 @@ export const Approutes: Routes = [
       { path: 'todays', loadChildren: './iuma-appointments/todays/todays.module#TodaysModule', canActivate: [AuthGuard] },
       { path: 'upcoming', loadChildren: './iuma-appointments/upcoming/upcoming.module#UpcomingModule', canActivate: [AuthGuard] },
       //UpcomingModule
+
+            // --------------Rooms-------------------
+            { path: 'rooms', loadChildren: './rooms/rooms.module#RoomsModule', canActivate: [AuthGuard] },
     ]
   },
   {

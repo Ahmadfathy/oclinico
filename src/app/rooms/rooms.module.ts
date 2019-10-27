@@ -6,8 +6,8 @@ import { Routes, RouterModule, } from '@angular/router';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { LaborataryServices } from './../laboratary.service'
-import { LabsComponent } from './labs.component';
+import { RoomsServices } from './rooms.service'
+import { RoomsComponent } from './rooms.component';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
       // title: 'Add Communication',
       // rtltitle: 'ذلك. لا تمانع'
     },
-    component: LabsComponent
+    component: RoomsComponent
   }
 ];
 
@@ -32,12 +32,12 @@ const routes: Routes = [
   ],
 
   declarations: [
-    LabsComponent,
+    RoomsComponent,
 
 
   ],
   providers: [
-    LaborataryServices
+    RoomsServices
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
@@ -45,7 +45,7 @@ const routes: Routes = [
   ]
 })
 
-export class LabsModule { }
+export class RoomsModule { }
 
 
 

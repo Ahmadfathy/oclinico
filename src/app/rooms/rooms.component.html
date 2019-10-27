@@ -1,0 +1,122 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/rooms'> Rooms</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm' (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Rooms</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Room name ar *</label>
+                <input type="text" class="form-control" formControlName="NameAr"
+                  [ngClass]="{' is-invalid':submitted && s.NameAr.errors}">
+                <span class="help-block" *ngIf="submitted && s.NameAr.errors && s.NameAr.errors.required"
+                  style="color: red">
+                  Room NameAr is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Room name EN*</label>
+                <input type="text" class="form-control" formControlName="NameEng"
+                  [ngClass]="{' is-invalid':submitted && s.NameEng.errors}">
+                <span class="help-block" *ngIf="submitted && s.NameEng.errors && s.NameEng.errors.required"
+                  style="color: red">
+                  Room NameEng is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Room Type *</label>
+                <select class="form-control" formControlName="RoomType_ID" [ngClass]="{' is-invalid':submitted && s.RoomType_ID.errors}">
+                  <option value="">Select Room Type</option>
+                  <option value="1">Type 1</option>
+                  <option value="2">Type 2</option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.RoomType_ID.errors && s.RoomType_ID.errors.required"
+                  style="color: red">
+                  Room Type is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Room Floor *</label>
+                <select class="form-control" formControlName="Room_Floor" [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
+                  <option value="">Select Room Floor</option>
+                  <option value="1">Floor 1</option>
+                  <option value="2">Floor 2</option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.Room_Floor.errors && s.Room_Floor.errors.required"
+                  style="color: red">
+                  Room Floor is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Bed Count *</label>
+                <input type="text" class="form-control" formControlName="Bed_Count"
+                  [ngClass]="{' is-invalid':submitted && s.Bed_Count.errors}">
+                <span class="help-block" *ngIf="submitted && s.Bed_Count.errors && s.Bed_Count.errors.required"
+                  style="color: red">
+                  Bed Count is Required
+                </span>
+              </div>
+              <div class="col-md-12">
+                <label class="form-control-label ltr">Note *</label>
+                  <textarea rows=3 class="form-control" formControlName="Notes"></textarea>
+              </div>
+              <div class="col-md-12" style="margin-top: 15px;">
+                <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">{{btnText}}</button>
+              </div>
+            </div>
+            <hr>
+            <div align="left">
+              <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form mt-0" style="display:none;">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search.....">
+                </div>
+              </form>
+              <br>
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Name Ar</th>
+                    <th>Name En</th>
+                    <th>Room Type</th>
+                    <th>Room Floor</th>
+                    <th>Bed Count</th>
+                    <th style="width: 114px;">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table ">
+                    <td>{{s.NameAr}}</td>
+                    <td>{{s.NameEng}}</td>
+                    <td>{{s.RoomType_ID}}</td>
+                    <td>{{s.Room_Floor}}</td>
+                    <td>{{s.Bed_Count}}</td>
+                    <td style="text-align: center;">
+                      <a style='color: #4798e8'>
+                        <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
