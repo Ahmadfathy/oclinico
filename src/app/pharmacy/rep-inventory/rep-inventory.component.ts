@@ -57,65 +57,12 @@ export class RepInventoryComponent implements OnInit {
       genericname: ['', Validators.required]
     });
 
+    this.getdata("");
   }
   get s() { return this.productForm.controls; }
 
-  // onSubmit() {
-  //   this.submitted = true;
-  //   if (this.productForm.invalid) {
-  //     return;
-  //   }
-  //   console.log(this.productForm.value)
-  // }
-  // insertdata() {
-  //   if (this.productForm.status == "INVALID") {
-  //     return
-  //   }
-
-  //   var accessToken = window.localStorage.Tokenval;
-
-
-  //   let url = 'https://api.oclinico.com/PharmacyAPI/api/product-master/add-new-product';
-
-
-  //   let body = {
-  //     'GenericName': this.productForm.value.genericname
-  //   }
-  //   console.log(body)
-
-
-  //   let headers = new Headers({
-  //     "Content-Type": "application/json",
-  //     Accept: "application/json",
-  //     Authorization: accessToken
-  //   });
-  //   let options = new RequestOptions({ headers: headers });
-
-  //   this.http.post(url, body, options).map(res => res.json()).subscribe(res => {
-  //     console.log(res)
-
-
-  //     //  this.isPageloaderVisible = false;
-  //     console.log(res.Result);
-  //     if (res.Result == true) {
-  //       alert('Successfully Inserted')
-  //       this.productForm.reset();
-  //       this.submitted = false;
-  //       this.getdata();
-  //       console.log("success");
-
-  //     } else {
-
-  //     }
-  //   })
-
-  //   err => {
-  //     console.log("Token Error:" + err);
-  //   }
-  // }
 
   getdata(id) {
-    debugger;
     console.log("test");
     var accessToken = window.localStorage.Tokenval;
 
