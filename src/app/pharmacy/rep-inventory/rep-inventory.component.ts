@@ -115,7 +115,7 @@ export class RepInventoryComponent implements OnInit {
   // }
 
   getdata(id) {
-
+    debugger;
     console.log("test");
     var accessToken = window.localStorage.Tokenval;
 

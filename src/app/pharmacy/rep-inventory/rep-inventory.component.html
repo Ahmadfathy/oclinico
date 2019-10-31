@@ -35,7 +35,7 @@
             <div align="left">
               <form class="form-inline waves-light" mdbWavesEffect>
                 <div class="md-form mt-0">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search....." (keypress)="getdata($event)">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search....." (keyup)="getdata($event.target.value)">
                 </div>
               </form>
               <br>

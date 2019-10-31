@@ -38,7 +38,8 @@
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Room Type *</label>
-                <select class="form-control" formControlName="RoomType_ID" [ngClass]="{' is-invalid':submitted && s.RoomType_ID.errors}">
+                <select class="form-control" formControlName="RoomType_ID"
+                  [ngClass]="{' is-invalid':submitted && s.RoomType_ID.errors}">
                   <option value="">Select Room Type</option>
                   <option value="1">Type 1</option>
                   <option value="2">Type 2</option>
@@ -50,7 +51,8 @@
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Room Floor *</label>
-                <select class="form-control" formControlName="Room_Floor" [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
+                <select class="form-control" formControlName="Room_Floor"
+                  [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
                   <option value="">Select Room Floor</option>
                   <option value="1">Floor 1</option>
                   <option value="2">Floor 2</option>
@@ -71,7 +73,7 @@
               </div>
               <div class="col-md-12">
                 <label class="form-control-label ltr">Note *</label>
-                  <textarea rows=3 class="form-control" formControlName="Notes"></textarea>
+                <textarea rows=3 class="form-control" formControlName="Notes"></textarea>
               </div>
               <div class="col-md-12" style="margin-top: 15px;">
                 <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">{{btnText}}</button>
