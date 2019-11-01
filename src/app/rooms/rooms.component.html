@@ -20,6 +20,7 @@
             <div class="row">
               <div class="col-md-4">
                 <label class="form-control-label ltr">Room name ar *</label>
+                <label class="form-control-label rtl">الإسم بالعربية *</label>
                 <input type="text" class="form-control" formControlName="NameAr"
                   [ngClass]="{' is-invalid':submitted && s.NameAr.errors}">
                 <span class="help-block" *ngIf="submitted && s.NameAr.errors && s.NameAr.errors.required"
@@ -29,6 +30,7 @@
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Room name EN*</label>
+                <label class="form-control-label rtl">الاسم بالانجليزية*</label>
                 <input type="text" class="form-control" formControlName="NameEng"
                   [ngClass]="{' is-invalid':submitted && s.NameEng.errors}">
                 <span class="help-block" *ngIf="submitted && s.NameEng.errors && s.NameEng.errors.required"
@@ -38,11 +40,16 @@
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Room Type *</label>
-                <select class="form-control" formControlName="RoomType_ID"
-                  [ngClass]="{' is-invalid':submitted && s.RoomType_ID.errors}">
-                  <option value="">Select Room Type</option>
-                  <option value="1">Type 1</option>
-                  <option value="2">Type 2</option>
+                <label class="form-control-label rtl">نوع الغرفة *</label>
+                <select class="form-control ltr" formControlName="RoomType_ID"
+                  [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
+                  <option value="" disabled selected>Select Room Type</option>
+                  <option *ngFor="let f of roomtypes" [value]="f.ID">{{f.NameEng}}</option>
+                </select>
+                <select class="form-control rtl" formControlName="RoomType_ID"
+                  [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
+                  <option value="" disabled selected>إختر نوع الغرفة</option>
+                  <option *ngFor="let f of roomtypes" [value]="f.ID">{{f.NameAr}}</option>
                 </select>
                 <span class="help-block" *ngIf="submitted && s.RoomType_ID.errors && s.RoomType_ID.errors.required"
                   style="color: red">
@@ -51,11 +58,16 @@
               </div>
               <div class="col-md-4">
                 <label class="form-control-label ltr">Room Floor *</label>
-                <select class="form-control" formControlName="Room_Floor"
+                <label class="form-control-label rtl">دور الغرفة *</label>
+                <select class="form-control ltr" formControlName="Room_Floor"
                   [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
-                  <option value="">Select Room Floor</option>
-                  <option value="1">Floor 1</option>
-                  <option value="2">Floor 2</option>
+                  <option value="" disabled selected>Select Room Floor</option>
+                  <option *ngFor="let f of floors" [value]="f.ID">{{f.NameEng}}</option>
+                </select>
+                <select class="form-control rtl" formControlName="Room_Floor"
+                  [ngClass]="{' is-invalid':submitted && s.Room_Floor.errors}">
+                  <option value="" disabled selected>إختر دور الغرفة</option>
+                  <option *ngFor="let f of floors" [value]="f.ID">{{f.NameAr}}</option>
                 </select>
                 <span class="help-block" *ngIf="submitted && s.Room_Floor.errors && s.Room_Floor.errors.required"
                   style="color: red">

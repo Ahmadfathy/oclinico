@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/roomtypes'> Room Types</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm' (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Room Types</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <label class="form-control-label ltr">Room Type name ar *</label>
+                <label class="form-control-label rtl">الإسم بالعربية *</label>
+                <input type="text" class="form-control" formControlName="NameAr"
+                  [ngClass]="{' is-invalid':submitted && s.NameAr.errors}">
+                <span class="help-block" *ngIf="submitted && s.NameAr.errors && s.NameAr.errors.required"
+                  style="color: red">
+                  Room Type NameAr is Required
+                </span>
+              </div>
+              <div class="col-md-6">
+                <label class="form-control-label ltr">Room Type name EN*</label>
+                <label class="form-control-label rtl">الاسم بالانجليزية*</label>
+                <input type="text" class="form-control" formControlName="NameEng"
+                  [ngClass]="{' is-invalid':submitted && s.NameEng.errors}">
+                <span class="help-block" *ngIf="submitted && s.NameEng.errors && s.NameEng.errors.required"
+                  style="color: red">
+                  Room Type NameEng is Required
+                </span>
+              </div>
+              <div class="col-md-12" style="margin-top: 15px;">
+                <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">{{btnText}}</button>
+              </div>
+            </div>
+            <hr>
+            <div align="left">
+              <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form mt-0" style="display:none;">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search.....">
+                </div>
+              </form>
+              <br>
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Name Ar</th>
+                    <th>Name En</th>
+                    <th style="width: 114px;">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table ">
+                    <td>{{s.NameAr}}</td>
+                    <td>{{s.NameEng}}</td>
+                    <td style="text-align: center;">
+                      <a style='color: #4798e8'>
+                        <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

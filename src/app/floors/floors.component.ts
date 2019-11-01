@@ -1,19 +1,17 @@
-import { RoomsServices } from './rooms.service'
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FloorsServices } from './floors.service';
 
 @Component({
-  selector: 'app-rooms',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css']
+  selector: 'app-floors',
+  templateUrl: './floors.component.html',
+  styleUrls: ['./floors.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class FloorsComponent implements OnInit {
   productForm: FormGroup;
   submitted = false;
   table = [];
-  floors: any;
-  roomtypes: any;
   validationType: any;
   Name: string;
   suggestedTexts: any[] = [];
@@ -27,36 +25,18 @@ export class RoomsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private meta: Meta,
-    private Services: RoomsServices) {
+    private Services: FloorsServices) {
     this.meta.addTag({ name: 'Description', content: 'Oclinico' });
     this.meta.addTag({ name: 'Keywords', content: 'Oclinico' });
   }
 
-  getAllFloors(){
-    this.Services.getAllFloor(res => {
-      this.floors = res.data;
-    })
-  }
-
-  getAllRoomTypes(){
-    this.Services.getAllRoomType(res => {
-      this.roomtypes = res.data;
-    })
-  }
-
   ngOnInit() {
-    this.getAllFloors();
-    this.getAllRoomTypes();
     this.getdata();
 
     this.productForm = this.formBuilder.group({
       ID: [''],
       NameAr: ['', Validators.required],
-      NameEng: [''],
-      RoomType_ID: [''],
-      Room_Floor: [''],
-      Bed_Count: [''],
-      Notes: ['']
+      NameEng: ['']
     });
 
   }
@@ -78,7 +58,7 @@ export class RoomsComponent implements OnInit {
 
     if (this.btnText == "Save") {
       this.productForm.get("ID").setValue(0);
-      this.Services.saveNewRoom(this.productForm.value, () => {
+      this.Services.saveNewFloor(this.productForm.value, () => {
         alert('Successfully Inserted')
         this.productForm.reset();
         this.submitted = false;
@@ -86,7 +66,7 @@ export class RoomsComponent implements OnInit {
       })
     }
     else {
-      this.Services.updateRoom(this.productForm.value, () => {
+      this.Services.updateFloor(this.productForm.value, () => {
         alert('Successfully Updated')
         this.productForm.reset();
         this.submitted = false;
@@ -98,7 +78,7 @@ export class RoomsComponent implements OnInit {
   }
 
   getdata() {
-    this.Services.getAllRooms(res => {
+    this.Services.getAllFloor(res => {
       this.table = res.data;
       sessionStorage.setItem('masterid', res.data[0].ID)
       console.log(this.table);
@@ -106,7 +86,7 @@ export class RoomsComponent implements OnInit {
   }
 
   getdataById(id) {
-    this.Services.getRoomById(id, res => {
+    this.Services.getFloorById(id, res => {
       this.productForm.patchValue(res.data);
       this.btnText = "Update";
     })

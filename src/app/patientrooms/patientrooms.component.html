@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/patientrooms'> Patient Rooms</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Room Types</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Patient Code *</label>
+                <label class="form-control-label rtl">كود المريض *</label>
+                <input type="text" class="form-control" formControlName="Patient_ID"
+                  [ngClass]="{' is-invalid':submitted && s.Patient_ID.errors}" (keypress)="getPatientData($event)">
+                <span class="help-block" style="color: blue" *ngIf="patientData != '' || patientData != null">
+                  {{patientData}}
+                </span>
+                <span class="help-block" *ngIf="submitted && s.Patient_ID.errors && s.Patient_ID.errors.required"
+                  style="color: red">
+                  You must enter patient code
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Rooms *</label>
+                <label class="form-control-label rtl">الغرف*</label>
+                <select class="form-control ltr" formControlName="Room_ID"
+                  [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}" (change)="SelectRoom($event.target.value)">
+                  <option value="" disabled selected>Select Room Type</option>
+                  <option *ngFor="let f of rooms" [value]="f.ID">{{f.NameEng}}</option>
+                </select>
+                <select class="form-control rtl" formControlName="Room_ID"
+                  [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}" (change)="SelectRoom($event.target.value)">
+                  <option value="" disabled selected>إختر نوع الغرفة</option>
+                  <option *ngFor="let f of rooms" [value]="f.ID">{{f.NameAr}}</option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.Room_ID.errors && s.Room_ID.errors.required"
+                  style="color: red">
+                  You must select room
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Beds *</label>
+                <label class="form-control-label rtl">السراير*</label>
+                <select class="form-control" formControlName="BedID" id="BedID" disabled
+                  [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}">
+                  <option value="" disabled selected>Select Bed</option>
+                  <option *ngFor="let f of beds" [value]="f.ID">{{f.num}}</option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.BedID.errors && s.BedID.errors.required"
+                  style="color: red">
+                  You must select a Bed
+                </span>
+              </div>
+              <div class="col-md-4" style="margin-top: 15px;">
+                <label class="form-control-label ltr">Price *</label>
+                <label class="form-control-label rtl">السعر *</label>
+                <input type="text" class="form-control" formControlName="Price"
+                  [ngClass]="{' is-invalid':submitted && s.Price.errors}">
+                <span class="help-block" *ngIf="submitted && s.Price.errors && s.Price.errors.required"
+                  style="color: red">
+                  You must enter price
+                </span>
+              </div>
+              <div class="col-md-4" style="margin-top: 15px;">
+                <label class="form-control-label ltr">Discount *</label>
+                <label class="form-control-label rtl">الخصم *</label>
+                <input type="text" class="form-control" formControlName="Discount"
+                  [ngClass]="{' is-invalid':submitted && s.Discount.errors}">
+                <span class="help-block" *ngIf="submitted && s.Discount.errors && s.Discount.errors.required"
+                  style="color: red">
+                  You must enter discount
+                </span>
+              </div>
+              <div class="col-md-4" style="margin-top: 15px;">
+                <label class="form-control-label ltr">CheckIn Date</label>
+                <label class="form-control-label rtl">تاريخ الدخول</label>
+                <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="dd/mm/yyyy" class="form-control"
+                  formControlName="CheckIn_Date" [ngClass]="{' is-invalid':submitted && s.CheckIn_Date.errors}">
+                <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                <span *ngIf="submitted && s.CheckIn_Date.errors && s.CheckIn_Date.errors.required" style="color: red">
+                  You must select date
+                </span>
+              </div>
+              <div class="col-md-12" style="margin-top: 15px;">
+                <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">{{btnText}}</button>
+              </div>
+            </div>
+            <hr>
+            <div align="left">
+              <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form mt-0" style="display:none;">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search.....">
+                </div>
+              </form>
+              <br>
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Patient Name</th>
+                    <th>RoomNameAr</th>
+                    <th>BedID</th>
+                    <th>CheckIn</th>
+                    <th style="width: 114px;">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table ">
+                    <td>{{s.PeopleNameAr}}</td>
+                    <td>{{s.RoomNameAr}}</td>
+                    <td>{{s.BedID}}</td>
+                    <td>{{s.CheckIn_Date}}</td>
+                    <td style="text-align: center;">
+                      <a style='color: #4798e8'>
+                        <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

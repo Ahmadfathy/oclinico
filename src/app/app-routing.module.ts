@@ -1206,8 +1206,17 @@ export const Approutes: Routes = [
       { path: 'upcoming', loadChildren: './iuma-appointments/upcoming/upcoming.module#UpcomingModule', canActivate: [AuthGuard] },
       //UpcomingModule
 
-            // --------------Rooms-------------------
-            { path: 'rooms', loadChildren: './rooms/rooms.module#RoomsModule', canActivate: [AuthGuard] },
+      // --------------Rooms-------------------
+      { path: 'rooms', loadChildren: './rooms/rooms.module#RoomsModule', canActivate: [AuthGuard] },
+
+      // --------------Floors-------------------
+      { path: 'floors', loadChildren: './floors/floors.module#FloorsModule', canActivate: [AuthGuard] },
+
+      // --------------Room Types-------------------
+      { path: 'roomtypes', loadChildren: './roomtypes/roomtypes.module#RoomTypesModule', canActivate: [AuthGuard] },
+
+      // --------------Room Types-------------------
+      { path: 'patientrooms', loadChildren: './patientrooms/patientrooms.module#PatientRoomsModule', canActivate: [AuthGuard] },
     ]
   },
   {
