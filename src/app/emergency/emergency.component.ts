@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PatientRoomsServices } from './patientrooms.service';
+import { EmergencyServices } from './emergency.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 declare var $: any;
 
 @Component({
-  selector: 'app-patientrooms',
-  templateUrl: './patientrooms.component.html',
-  styleUrls: ['./patientrooms.component.css']
+  selector: 'app-emergency',
+  templateUrl: './emergency.component.html',
+  styleUrls: ['./emergency.component.css']
 })
-export class PatientRoomsComponent implements OnInit {
+export class EmergencyComponent implements OnInit {
   productForm: FormGroup;
+  EditForm: FormGroup;
   submitted = false;
   table = [];
   rooms = [];
@@ -30,7 +32,8 @@ export class PatientRoomsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private meta: Meta,
-    private Services: PatientRoomsServices) {
+    private Services: EmergencyServices,
+    private modalService: NgbModal) {
     this.meta.addTag({ name: 'Description', content: 'Oclinico' });
     this.meta.addTag({ name: 'Keywords', content: 'Oclinico' });
   }
@@ -51,11 +54,16 @@ export class PatientRoomsComponent implements OnInit {
       ID: [''],
       Patient_ID: ['', Validators.required],
       Room_ID: ['', Validators.required],
-      Check_Status: ['1', Validators.required],
-      Price: ['', Validators.required],
-      Discount: ['0', Validators.required],
-      BedID: ['', Validators.required],
-      CheckIn_Date: ['', Validators.required]
+      Doctor_ID: ['7', Validators.required]
+    });
+
+    this.EditForm = this.formBuilder.group({
+      ID: ['', Validators.required],
+      blood_Presh: ['', Validators.required],
+      sugar_perc: ['', Validators.required],
+      H_count: ['', Validators.required],
+      Is_fat: ['', Validators.required],
+      Initial_Report: ['', Validators.required]
     });
 
   }
@@ -78,27 +86,34 @@ export class PatientRoomsComponent implements OnInit {
     else {
       if (this.btnText == "Save") {
         this.productForm.get("ID").setValue(0);
-        this.Services.saveNewPatientRoom(this.productForm.value, () => {
+        this.Services.saveNewEmergency(this.productForm.value, () => {
           alert('Successfully Inserted')
           this.productForm.reset();
           this.submitted = false;
           this.getdata();
         })
       }
-      else {
-        this.Services.updatePatientRoom(this.productForm.value, () => {
-          alert('Successfully Updated')
-          this.productForm.reset();
-          this.submitted = false;
-          this.getdata();
-          this.btnText = "Save";
-        })
-      }
+    }
+  }
+
+  EditData() {
+    this.submitted = true;
+    if (this.EditForm.invalid) {
+      return;
+    }
+    else {
+      this.Services.updateEmergency(this.EditForm.value, () => {
+        alert('Successfully Updated')
+        this.EditForm.reset();
+        this.submitted = false;
+        this.getdata();
+        this.modalService.dismissAll();
+      })
     }
   }
 
   getdata() {
-    this.Services.getAllPatientRooms(res => {
+    this.Services.getAllEmergency(res => {
       this.table = res.data;
       sessionStorage.setItem('masterid', res.data[0].ID)
       console.log(this.table);
@@ -106,7 +121,7 @@ export class PatientRoomsComponent implements OnInit {
   }
 
   getdataById(id) {
-    this.Services.getPatientRoomById(id, res => {
+    this.Services.getEmergencyById(id, res => {
       this.productForm.patchValue(res.data);
       this.btnText = "Update";
     })
@@ -127,30 +142,35 @@ export class PatientRoomsComponent implements OnInit {
   }
 
   SelectRoom(data) {
-    this.Services.getRoomBedById(data, res => {
-      this.beds = res.Bed;
-      if (this.beds.length > 0) {
-        $("#BedID").prop('disabled', false);
-      }
-      else {
-        $("#BedID").prop('disabled', true);
-      }
-    })
+    // this.Services.getRoomBedById(data, res => {
+    //   this.beds = res.Bed;
+    //   if (this.beds.length > 0) {
+    //     $("#BedID").prop('disabled', false);
+    //   }
+    //   else {
+    //     $("#BedID").prop('disabled', true);
+    //   }
+    // })
   }
 
   getPatientData(e) {
     if (e.charCode == 13 || e.key == 'Enter') {
       this.Services.getPatientData(e.target.value, res => {
-        if(res.Result){
+        if (res.Result) {
           $("#ptId").val(res.data.ID + " " + res.data.Obj_Name);
           // $("#ptId").prop('disabled', true);
           this.productForm.get("Patient_ID").setValue(res.data.ID);
         }
-        else{
+        else {
           alert('No Patient Found')
         }
       })
     }
+  }
+
+  openVerticallyCentered(content, data) {
+    this.EditForm.patchValue(data);
+    this.modalService.open(content, { centered: true });
   }
 }
 

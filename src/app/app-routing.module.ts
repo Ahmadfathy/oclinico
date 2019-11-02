@@ -1217,6 +1217,10 @@ export const Approutes: Routes = [
 
       // --------------Room Types-------------------
       { path: 'patientrooms', loadChildren: './patientrooms/patientrooms.module#PatientRoomsModule', canActivate: [AuthGuard] },
+
+      // --------------Emergency-------------------
+      { path: 'emergency', loadChildren: './emergency/emergency.module#EmergencyModule', canActivate: [AuthGuard] },
+      
     ]
   },
   {

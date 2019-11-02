@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <ul id="breadcrumb">
       <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
-      <li class="ltr"><a class="nav-link" routerLink='/patientrooms'> Patient Rooms</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/emergency'> Emergency</a></li>
       <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
     </ul>
   </div>
@@ -13,12 +13,12 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Room Types</p>
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Emergency</p>
             <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label class="form-control-label ltr">Patient Code *</label>
                 <label class="form-control-label rtl">كود المريض *</label>
                 <input type="text" class="form-control" id="ptId"
@@ -28,65 +28,22 @@
                   You must enter patient code
                 </span>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label class="form-control-label ltr">Rooms *</label>
                 <label class="form-control-label rtl">الغرف*</label>
                 <select class="form-control ltr" formControlName="Room_ID"
                   [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}" (change)="SelectRoom($event.target.value)">
-                  <option value="" disabled selected>Select Room</option>
+                  <option value="" disabled selected>Select Room Type</option>
                   <option *ngFor="let f of rooms" [value]="f.ID">{{f.NameEng}}</option>
                 </select>
                 <select class="form-control rtl" formControlName="Room_ID"
                   [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}" (change)="SelectRoom($event.target.value)">
-                  <option value="" disabled selected>إختر الغرفة</option>
+                  <option value="" disabled selected>إختر نوع الغرفة</option>
                   <option *ngFor="let f of rooms" [value]="f.ID">{{f.NameAr}}</option>
                 </select>
                 <span class="help-block" *ngIf="submitted && s.Room_ID.errors && s.Room_ID.errors.required"
                   style="color: red">
                   You must select room
-                </span>
-              </div>
-              <div class="col-md-4">
-                <label class="form-control-label ltr">Beds *</label>
-                <label class="form-control-label rtl">السراير*</label>
-                <select class="form-control" formControlName="BedID" id="BedID" disabled
-                  [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}">
-                  <option value="" disabled selected>Select Bed</option>
-                  <option *ngFor="let f of beds" [value]="f.ID">{{f.num}}</option>
-                </select>
-                <span class="help-block" *ngIf="submitted && s.BedID.errors && s.BedID.errors.required"
-                  style="color: red">
-                  You must select a Bed
-                </span>
-              </div>
-              <div class="col-md-4" style="margin-top: 15px;">
-                <label class="form-control-label ltr">Price *</label>
-                <label class="form-control-label rtl">السعر *</label>
-                <input type="text" class="form-control" formControlName="Price"
-                  [ngClass]="{' is-invalid':submitted && s.Price.errors}">
-                <span class="help-block" *ngIf="submitted && s.Price.errors && s.Price.errors.required"
-                  style="color: red">
-                  You must enter price
-                </span>
-              </div>
-              <div class="col-md-4" style="margin-top: 15px;">
-                <label class="form-control-label ltr">Discount *</label>
-                <label class="form-control-label rtl">الخصم *</label>
-                <input type="text" class="form-control" formControlName="Discount"
-                  [ngClass]="{' is-invalid':submitted && s.Discount.errors}">
-                <span class="help-block" *ngIf="submitted && s.Discount.errors && s.Discount.errors.required"
-                  style="color: red">
-                  You must enter discount
-                </span>
-              </div>
-              <div class="col-md-4" style="margin-top: 15px;">
-                <label class="form-control-label ltr">CheckIn Date</label>
-                <label class="form-control-label rtl">تاريخ الدخول</label>
-                <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="dd/mm/yyyy" class="form-control"
-                  formControlName="CheckIn_Date" [ngClass]="{' is-invalid':submitted && s.CheckIn_Date.errors}">
-                <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-                <span *ngIf="submitted && s.CheckIn_Date.errors && s.CheckIn_Date.errors.required" style="color: red">
-                  You must select date
                 </span>
               </div>
               <div class="col-md-12" style="margin-top: 15px;">
@@ -106,20 +63,23 @@
                 <thead>
                   <tr>
                     <th>Patient Name</th>
-                    <th>RoomNameAr</th>
-                    <th>BedID</th>
-                    <th>CheckIn</th>
-                    <th style="width: 114px;">Details</th>
+                    <th>Room Name</th>
+                    <th>Initial Report</th>
+                    <th style="width: 75px;">Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let s of table ">
-                    <td>{{s.PeopleNameAr}}</td>
-                    <td>{{s.RoomNameAr}}</td>
-                    <td>{{s.BedID}}</td>
-                    <td>{{s.CheckIn_Date}}</td>
+                    <td>{{s.patientName}}</td>
+                    <td>{{s.RoomName}}</td>
+                    <td style="text-align: center; width: 75px;">
+                      <a style='color: black' href="" onclick="return false">
+                        <span class="fas fa-procedures" (click)="openVerticallyCentered(content, s)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
                     <td style="text-align: center;">
-                      <a style='color: #4798e8'>
+                      <a style='color: #4798e8' href="" onclick="return false">
                         <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
                         </span>&nbsp;&nbsp;&nbsp;
                       </a>
@@ -134,3 +94,52 @@
     </div>
   </div>
 </form>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Emergency Info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="EditForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Blood Presh:</label>
+            <input class="form-control" formControlName="blood_Presh">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Sugar Perc:</label>
+            <input class="form-control" id="SugarPerc" formControlName="sugar_perc">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Heart Count:</label>
+            <input class="form-control" id="HeartCount" formControlName="H_count">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" formControlName="Is_fat"> Is fat
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="email">Initial Report:</label>
+            <textarea class="form-control" rows="3" formControlName="Initial_Report"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" (click)="EditData()">Edit</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
