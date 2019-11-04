@@ -13,9 +13,13 @@ declare var $: any;
 export class EmergencyComponent implements OnInit {
   productForm: FormGroup;
   EditForm: FormGroup;
+  CheckOutForm: FormGroup;
+  ClinicForm: FormGroup;
+
   submitted = false;
   table = [];
   rooms = [];
+  clinics = [];
   patients = [];
   patientData = [];
   beds = [];
@@ -46,14 +50,21 @@ export class EmergencyComponent implements OnInit {
     })
   }
 
+  getclinics() {
+    this.Services.getAllClinic(res => {
+      this.clinics = res.data;
+    })
+  }
+
   ngOnInit() {
     this.getrooms();
     this.getdata();
+    this.getclinics();
 
     this.productForm = this.formBuilder.group({
       ID: [''],
       Patient_ID: ['', Validators.required],
-      Room_ID: ['', Validators.required],
+      Room_ID: [''],
       Doctor_ID: ['7', Validators.required]
     });
 
@@ -66,6 +77,14 @@ export class EmergencyComponent implements OnInit {
       Initial_Report: ['', Validators.required]
     });
 
+    this.CheckOutForm = this.formBuilder.group({
+      ID: ['', Validators.required]
+    });
+
+    this.ClinicForm = this.formBuilder.group({
+      ID: ['', Validators.required],
+      Clinic_ID: ['', Validators.required]
+    });
   }
 
   get s() { return this.productForm.controls; }
@@ -116,7 +135,6 @@ export class EmergencyComponent implements OnInit {
     this.Services.getAllEmergency(res => {
       this.table = res.data;
       sessionStorage.setItem('masterid', res.data[0].ID)
-      console.log(this.table);
     })
   }
 
@@ -141,18 +159,6 @@ export class EmergencyComponent implements OnInit {
     }
   }
 
-  SelectRoom(data) {
-    // this.Services.getRoomBedById(data, res => {
-    //   this.beds = res.Bed;
-    //   if (this.beds.length > 0) {
-    //     $("#BedID").prop('disabled', false);
-    //   }
-    //   else {
-    //     $("#BedID").prop('disabled', true);
-    //   }
-    // })
-  }
-
   getPatientData(e) {
     if (e.charCode == 13 || e.key == 'Enter') {
       this.Services.getPatientData(e.target.value, res => {
@@ -171,6 +177,37 @@ export class EmergencyComponent implements OnInit {
   openVerticallyCentered(content, data) {
     this.EditForm.patchValue(data);
     this.modalService.open(content, { centered: true });
+  }
+
+  openVerticallyCentered2(content, data) {
+    this.CheckOutForm.get("ID").setValue(data.ID);
+    this.modalService.open(content, { centered: true });
+  }
+
+  openVerticallyCentered3(content, data) {
+    this.ClinicForm.get("ID").setValue(data.ID);
+    this.modalService.open(content, { centered: true });
+  }
+
+  CheckOut() {
+    this.Services.updateEmergencyCheckOut(this.CheckOutForm.get("ID").value, res => {
+      if (res.Result) {
+        alert('Data Updated');
+        this.modalService.dismissAll();
+        this.getdata();
+      }
+    })
+  }
+
+  EditClinic() {
+    this.Services.updateClinic(this.ClinicForm.get("ID").value,
+      this.ClinicForm.get("Clinic_ID").value, res => {
+        if (res.Result) {
+          alert('Data Updated');
+          this.modalService.dismissAll();
+          this.getdata();
+        }
+      })
   }
 }
 

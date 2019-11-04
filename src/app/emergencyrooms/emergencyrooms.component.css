@@ -29,10 +29,3 @@
     background-color: #3587d8;
     color: white;
   }
-
-[dir="rtl"] .ltr {
-  display: none;
-}
-[dir="ltr"] .rtl {
-  display: none;
-}

@@ -103,6 +103,7 @@ export class SubCategoryComponent implements OnInit {
   getdata() {
     this.Services.getAllCategory(res => {
       this.table = null;
+      this.table = res.data;
       sessionStorage.setItem('masterid', res.data[0].ID)
       console.log(this.table);
     })

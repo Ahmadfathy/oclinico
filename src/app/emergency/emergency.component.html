@@ -28,25 +28,7 @@
                   You must enter patient code
                 </span>
               </div>
-              <div class="col-md-6">
-                <label class="form-control-label ltr">Rooms *</label>
-                <label class="form-control-label rtl">الغرف*</label>
-                <select class="form-control ltr" formControlName="Room_ID"
-                  [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}" (change)="SelectRoom($event.target.value)">
-                  <option value="" disabled selected>Select Room Type</option>
-                  <option *ngFor="let f of rooms" [value]="f.ID">{{f.NameEng}}</option>
-                </select>
-                <select class="form-control rtl" formControlName="Room_ID"
-                  [ngClass]="{' is-invalid':submitted && s.Room_ID.errors}" (change)="SelectRoom($event.target.value)">
-                  <option value="" disabled selected>إختر نوع الغرفة</option>
-                  <option *ngFor="let f of rooms" [value]="f.ID">{{f.NameAr}}</option>
-                </select>
-                <span class="help-block" *ngIf="submitted && s.Room_ID.errors && s.Room_ID.errors.required"
-                  style="color: red">
-                  You must select room
-                </span>
-              </div>
-              <div class="col-md-12" style="margin-top: 15px;">
+              <div class="col-md-6" style="margin-top: 15px;">
                 <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">{{btnText}}</button>
               </div>
             </div>
@@ -65,6 +47,8 @@
                     <th>Patient Name</th>
                     <th>Room Name</th>
                     <th>Initial Report</th>
+                    <th style="width: 50px;">Check Out</th>
+                    <th style="width: 50px;">Clinic</th>
                     <th style="width: 75px;">Details</th>
                   </tr>
                 </thead>
@@ -75,6 +59,18 @@
                     <td style="text-align: center; width: 75px;">
                       <a style='color: black' href="" onclick="return false">
                         <span class="fas fa-procedures" (click)="openVerticallyCentered(content, s)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                    <td style="text-align: center;">
+                      <a style='color: red' href="" onclick="return false">
+                        <span class="fas fa-sign-out-alt" (click)="openVerticallyCentered2(content2, s)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                    <td style="text-align: center;">
+                      <a style='color: blueviolet' href="" onclick="return false">
+                        <span class="fas fa-notes-medical" (click)="openVerticallyCentered3(content3, s)">
                         </span>&nbsp;&nbsp;&nbsp;
                       </a>
                     </td>
@@ -140,6 +136,69 @@
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary" (click)="EditData()">Edit</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Emergency Info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="EditForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="email" class="ltr">are you sure yo want to Chackout?</label>
+            <!-- <label for="email" class="rtl">هل أنت متأكد من تأكيد الخروج؟</label> -->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" (click)="CheckOut()">Yes</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Emergency Info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="ClinicForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="email">Clinic:</label>
+            <select class="form-control ltr" formControlName="Clinic_ID"
+              [ngClass]="{' is-invalid':submitted && s.Clinic_ID.errors}">
+              <option value="" disabled selected>Select Clinic</option>
+              <option *ngFor="let f of clinics" [value]="f.ID">{{f.NameEng}}</option>
+            </select>
+            <!-- <select class="form-control rtl" formControlName="Clinic_ID"
+              [ngClass]="{' is-invalid':submitted && s.Clinic_ID.errors}">
+              <option value="" disabled selected>إختر العيادة</option>
+              <option *ngFor="let f of clinics" [value]="f.ID">{{f.NameAr}}</option>
+            </select> -->
+            <span class="help-block" *ngIf="submitted && s.Clinic_ID.errors && s.Clinic_ID.errors.required"
+              style="color: red">
+              You must select clinic
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" (click)="EditClinic()">Edit</button>
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
   </div>
 </ng-template>

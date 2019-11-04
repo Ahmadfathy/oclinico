@@ -42,6 +42,21 @@ export class EmergencyServices {
       });
   }
 
+  updateEmergencyCheckOut(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/dep-emergency/get-dep-emergency-check-out/${value}`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  updateClinic(value1, value2, callback){
+    debugger;
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/dep-emergency/get-dep-emergency-update-clinic/${value1}/${value2}`, {})
+    .subscribe((res) => {
+      callback(res);
+    });
+  }
+
   // ********************************************************************** //
   // ********************************************************************** //
 
@@ -54,6 +69,13 @@ export class EmergencyServices {
 
   getAllRoom(callback) {
     return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/Room/get-all-room/`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  getAllClinic(callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/dep-emergency/get-all-clinic/`, {})
       .subscribe((res) => {
         callback(res);
       });
