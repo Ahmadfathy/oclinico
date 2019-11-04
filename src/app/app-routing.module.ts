@@ -1224,7 +1224,8 @@ export const Approutes: Routes = [
       // --------------Emergency Rooms-------------------
       { path: 'emergencyrooms', loadChildren: './emergencyrooms/emergencyrooms.module#EmergencyRoomsModule', canActivate: [AuthGuard] },
       
-      
+      // --------------Emergency Rooms-------------------
+      { path: 'testnormals', loadChildren: './laboratary/Test/testnormals/testnormals.module#TestNormalsModule', canActivate: [AuthGuard] },
     ]
   },
   {

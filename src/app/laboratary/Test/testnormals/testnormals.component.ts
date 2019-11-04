@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 import { laborataryTestServices } from '../../laborataryTest.service';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-testnormals',
+  templateUrl: './testnormals.component.html',
+  styleUrls: ['./testnormals.component.css']
 })
-export class TestsComponent implements OnInit {
+export class TestNormalsComponent implements OnInit {
   productForm: FormGroup;
   submitted = false;
   table = [];
@@ -51,9 +51,15 @@ export class TestsComponent implements OnInit {
 
     this.productForm = this.formBuilder.group({
       ID: [''],
-      NameAr: ['', Validators.required],
-      NameEng: [''],
-      Category_ID: ['']
+      Test_Category_ID: [''],
+      Male: [''],
+      Female: [''],
+      Age_From: [''],
+      Age_To: [''],
+      Normal: [''],
+      L: [''],
+      H: [''],
+      TestUnit: ['']
     });
   }
   
@@ -74,7 +80,7 @@ export class TestsComponent implements OnInit {
 
     if (this.btnText == "Save") {
       this.productForm.get("ID").setValue(0);
-      this.Services.saveNewTest(this.productForm.value, () => {
+      this.Services.saveNewNormalTest(this.productForm.value, () => {
         alert('Successfully Inserted')
         this.productForm.reset();
         this.submitted = false;
@@ -82,7 +88,7 @@ export class TestsComponent implements OnInit {
       })
     }
     else{
-      this.Services.updateTest(this.productForm.value, () => {
+      this.Services.updateNormalTest(this.productForm.value, () => {
         alert('Successfully Updated')
         this.productForm.reset();
         this.submitted = false;
@@ -94,7 +100,7 @@ export class TestsComponent implements OnInit {
   }
 
   getdata() {
-    this.Services.getAllTests(res => {
+    this.Services.getAllNormalTests(res => {
       this.table = res.data;
       sessionStorage.setItem('masterid', res.data[0].ID)
       console.log(this.table);
@@ -102,14 +108,8 @@ export class TestsComponent implements OnInit {
   }
 
   getdataById(id) {
-    this.Services.getTestById(id, res => {
-      this.productForm.patchValue(
-        {
-          ID: res.data.ID,
-          NameAr: res.data.NameAr,
-          NameEng: res.data.NameEng,
-          Category_ID: res.data.Category_ID
-        });
+    this.Services.getTestNormalById(id, res => {
+      this.productForm.patchValue(res.data);
         this.btnText = "Update";
     })
   }

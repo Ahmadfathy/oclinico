@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/laboratary'> Laboratary</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/tests'> Tests</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm' (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Tests</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Category *</label>
+                <select class="form-control" [ngClass]="{' is-invalid':submitted && s.Test_Category_ID.errors}" formControlName="Test_Category_ID">
+                  <option value="0">Select Main Category</option>
+                  <option value="1">Main Category 1</option>
+                  <option value="2">Main Category 2</option>
+                </select>
+                <span class="help-block"
+                  *ngIf="submitted && s.Test_Category_ID.errors && s.Test_Category_ID.errors.required"
+                  style="color: red">
+                  Category is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Male *</label>
+                <input type="text" class="form-control" formControlName="Male"
+                  [ngClass]="{' is-invalid':submitted && s.Male.errors}">
+                <span class="help-block" *ngIf="submitted && s.Male.errors && s.Male.errors.required"
+                  style="color: red">
+                  Male is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Female</label>
+                <input type="text" class="form-control" formControlName="Female"
+                  [ngClass]="{' is-invalid':submitted && s.Female.errors}">
+                <span class="help-block" *ngIf="submitted && s.Female.errors && s.Female.errors.required"
+                  style="color: red">
+                  Female is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Age From</label>
+                <input type="text" class="form-control" formControlName="Age_From"
+                  [ngClass]="{' is-invalid':submitted && s.Age_From.errors}">
+                <span class="help-block" *ngIf="submitted && s.Age_From.errors && s.Age_From.errors.required"
+                  style="color: red">
+                  Age From is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Age To</label>
+                <input type="text" class="form-control" formControlName="Age_To"
+                  [ngClass]="{' is-invalid':submitted && s.Age_From.errors}">
+                <span class="help-block" *ngIf="submitted && s.Age_To.errors && s.Age_To.errors.required"
+                  style="color: red">
+                  Age To is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">Normal</label>
+                <input type="text" class="form-control" formControlName="Normal"
+                  [ngClass]="{' is-invalid':submitted && s.Normal.errors}">
+                <span class="help-block" *ngIf="submitted && s.Normal.errors && s.Normal.errors.required"
+                  style="color: red">
+                  Normal is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">L</label>
+                <input type="text" class="form-control" formControlName="L"
+                  [ngClass]="{' is-invalid':submitted && s.L.errors}">
+                <span class="help-block" *ngIf="submitted && s.L.errors && s.L.errors.required" style="color: red">
+                  L is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">H</label>
+                <input type="text" class="form-control" formControlName="H"
+                  [ngClass]="{' is-invalid':submitted && s.H.errors}">
+                <span class="help-block" *ngIf="submitted && s.H.errors && s.H.errors.required" style="color: red">
+                  H is Required
+                </span>
+              </div>
+              <div class="col-md-4">
+                <label class="form-control-label ltr">TestUnit</label>
+                <input type="text" class="form-control" formControlName="TestUnit"
+                  [ngClass]="{' is-invalid':submitted && s.TestUnit.errors}">
+                <span class="help-block" *ngIf="submitted && s.TestUnit.errors && s.TestUnit.errors.required"
+                  style="color: red">
+                  TestUnit is Required
+                </span>
+              </div>
+              <div class="col-md-12" style="margin-top: 15px;">
+                <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">{{btnText}}</button>
+              </div>
+            </div>
+            <hr>
+            <div align="left">
+              <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form mt-0" style="display:none;">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search.....">
+                </div>
+              </form>
+              <br>
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Age From</th>
+                    <th>Age To</th>
+                    <th>Normal</th>
+                    <th style="width: 114px;">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table ">
+                    <td>{{s.Category_NameEng}}</td>
+                    <td>{{s.Age_From}}</td>
+                    <td>{{s.Age_To}}</td>
+                    <td>{{s.Normal}}</td>
+                    <td style="text-align: center;">
+                      <a style='color: #4798e8'>
+                        <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

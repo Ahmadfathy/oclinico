@@ -80,6 +80,7 @@ export class SubCategoryComponent implements OnInit {
     }
 
     if (this.btnText == "Save") {
+      this.productForm.get("ID").setValue(0);
       this.productForm.get("Emp_ID").setValue(localStorage.getItem('userId'));
       this.Services.saveNewCategory(this.productForm.value, res => {
         alert('Successfully Inserted')

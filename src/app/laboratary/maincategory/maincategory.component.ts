@@ -80,6 +80,7 @@ export class MainCategoryComponent implements OnInit {
     }
 
     if (this.btnText == "Save") {
+      this.productForm.get("ID").setValue(0);
       this.productForm.get("Emp_ID").setValue(localStorage.getItem('userId'));
       this.productForm.get("Parent_ID").setValue("0");
       this.Services.saveNewCategory(this.productForm.value, res => {

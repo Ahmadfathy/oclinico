@@ -43,5 +43,35 @@ export class laborataryTestServices {
 
   // ********************************************************************** //
   // ********************************************************************** //
+  // ********************************************************************** //
+  // ********************************************************************** //
+
+  getAllNormalTests(callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-all-test-normal/`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  getTestNormalById(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-test-normal-by-id/${value}`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  saveNewNormalTest(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/add-new-test-normal/`, value)
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  updateNormalTest(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/update-test-normal/`, value)
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
 }
 
