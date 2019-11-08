@@ -34,6 +34,14 @@ export class laborataryTestServices {
       });
   }
 
+  saveNewTestCategory(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/add-new-test-category-junk/`, value)
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
+  
   updateTest(value, callback) {
     return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/update-test/`, value)
       .subscribe((res) => {

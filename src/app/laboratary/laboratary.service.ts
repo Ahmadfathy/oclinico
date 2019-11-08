@@ -51,6 +51,13 @@ export class LaborataryServices {
       });
   }
 
+  getSubCategory(value, callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-all-test-category/${value}`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
+
   getCategoryById(value, callback) {
     return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-test-category-by-id/${value}`, {})
       .subscribe((res) => {

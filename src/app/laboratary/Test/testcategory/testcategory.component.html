@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul id="breadcrumb">
+      <li><a class="nav-link" routerLink='/dashboard'><span class="fa fa-fw fa-home"> </span></a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/laboratary'> Laboratary</a></li>
+      <li class="ltr"><a class="nav-link" routerLink='/tests'> Tests</a></li>
+      <!-- <li class="rtl"><a class="nav-link" routerLink='/Maininvoice'><span>ألتفاصيل النفقات</span></a></li> -->
+    </ul>
+  </div>
+</div>
+<form [formGroup]='productForm'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="m-b-0 text-black ltr"> <i class="sl-icon-menu font-14"></i> &nbsp;Tests</p>
+            <!-- <p class="m-b-0 text-black rtl"> <i class="sl-icon-menu font-14"></i> &nbsp;ألتفاصيل النفقات</p> -->
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-control-label ltr">Main Category *</label>
+                <select class="form-control" [ngClass]="{' is-invalid':submitted && s.MainCategory_ID.errors}"
+                  (change)="selectMain($event)" formControlName="MainCategory_ID">
+                  <option value="0">Select Main Category</option>
+                  <option [value]="item.ID" *ngFor="let item of maincategory">{{item.NameEng}}</option>
+                </select>
+                <span class="help-block"
+                  *ngIf="submitted && s.MainCategory_ID.errors && s.MainCategory_ID.errors.required" style="color: red">
+                  Main Category is Required
+                </span>
+              </div>
+              <div class="col-md-3">
+                <label class="form-control-label ltr">Sub Category *</label>
+                <select class="form-control" [ngClass]="{' is-invalid':submitted && s.Category_ID.errors}"
+                  (change)="selectSub($event)" formControlName="Category_ID">
+                  <option value="0">Select Sub Category</option>
+                  <option [value]="item.ID" *ngFor="let item of subcategory">{{item.NameEng}}</option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.Category_ID.errors && s.Category_ID.errors.required"
+                  style="color: red">
+                  Sub Category is Required
+                </span>
+              </div>
+              <div class="col-md-3">
+                <label class="form-control-label ltr">Test *</label>
+                <select class="form-control" [ngClass]="{' is-invalid':submitted && s.Test_ID.errors}"
+                  (change)="selectTest($event)" formControlName="Test_ID">
+                  <option value="0">Select Test</option>
+                  <option [value]="item.ID" *ngFor="let item of tests">{{item.NameEng}}
+                  </option>
+                </select>
+                <span class="help-block" *ngIf="submitted && s.Test_ID.errors && s.Test_ID.errors.required"
+                  style="color: red">
+                  Test is Required
+                </span>
+              </div>
+              <div class="col-md-3">
+                <div class="col-md-12" style="margin-top: 29px;">
+                  <button class="btn btn-primary" (click)="insertdata()" style="width: 100%;">Add</button>
+                </div>
+              </div>
+              <div class="col-md-12" style="margin-top: 15px;">
+                <button class="btn btn-primary" (click)="Savedata()" style="width: 100%;">{{btnText}}</button>
+              </div>
+            </div>
+            <hr>
+            <div align="left">
+              <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form mt-0" style="display:none;">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search.....">
+                </div>
+              </form>
+              <br>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Test</th>
+                    <th>Main Category</th>
+                    <th>Sub Category</th>
+                    <!-- <th style="width: 114px;">Details</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of table">
+                    <td>{{s.TestName}}</td>
+                    <td>{{s.MainCategoryName}}</td>
+                    <td>{{s.SubCategoryName}}</td>
+                    <!-- <td style="text-align: center;">
+                      <a style='color: #4798e8'>
+                        <span class="fa fa-pencil-alt" (click)="getdataById(s.ID)">
+                        </span>&nbsp;&nbsp;&nbsp;
+                      </a>
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
