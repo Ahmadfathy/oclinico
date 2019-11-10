@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      // title: 'Add Communication',
+      title: 'Test Category',
       // rtltitle: 'ذلك. لا تمانع'
     },
     component: TestCategoriesComponent
