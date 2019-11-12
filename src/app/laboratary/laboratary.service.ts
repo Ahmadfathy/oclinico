@@ -81,5 +81,12 @@ export class LaborataryServices {
 
   // ********************************************************************** //
   // ********************************************************************** //
+
+  getAllRequest(callback) {
+    return this.http.post(`https://api.oclinico.com/PharmacyAPI/api/labs/get-request/`, {})
+      .subscribe((res) => {
+        callback(res);
+      });
+  }
 }
 
