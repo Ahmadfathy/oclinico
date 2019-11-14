@@ -1228,6 +1228,9 @@ export const Approutes: Routes = [
       
       // --------------Emergency Rooms-------------------
       { path: 'testnormals', loadChildren: './laboratary/Test/testnormals/testnormals.module#TestNormalsModule', canActivate: [AuthGuard] },
+
+      // --------------Emergency Rooms-------------------
+      { path: 'tree', loadChildren: './tree/tree.module#TreeModule', canActivate: [AuthGuard] },
     ]
   },
   {

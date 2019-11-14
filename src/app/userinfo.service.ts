@@ -34,7 +34,7 @@ export class UserinfoService {
   username =  'User name' ;
   useremail = 'user@mail.com';
   userimgpath = 'assets/images/user.jpg';
- public  commonUrl : any ="";
+  public  commonUrl : any ="";
   public commonToken : any;
 
   // ----------anji----------------------
